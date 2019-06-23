@@ -18,7 +18,7 @@ def main():
     year = args.year
     month = args.month
     day = args.date
-    position = {'lat': args.latitude, 'lon': args.longitude, 'altitude': args.altitude}
+    position = {'lat': args.latitude, 'lon': args.longitude, 'alt': args.altitude}
 
     if day is not None and month is None:
         month = date.today().month
