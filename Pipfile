@@ -6,7 +6,7 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-skyfield = "*"
+skyfield = ">=1.13.0,<2.0.0"
 
 [requires]
 python_version = "3.7"
