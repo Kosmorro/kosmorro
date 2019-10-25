@@ -1,4 +1,4 @@
-# Astronewbie Ephemeris Calculator
+# ![Kosmorro](assets/png/kosmorro-logo.png)
 
 ## Installation
 
