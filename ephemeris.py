@@ -116,8 +116,6 @@ class Ephemeris:
                         is_risen = False
                         break
 
-            print(is_elevating, last_is_elevating, max_elevation, last_position, position)
-
             if not is_elevating and last_is_elevating:
                 # Planet has reached its azimuth in the last hour, let's look for a more precise time!
                 for minutes in range(0, 60):
