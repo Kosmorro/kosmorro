@@ -18,6 +18,7 @@ import argparse
 import numpy
 from datetime import date
 from ephemeris import Ephemeris
+import dumper
 import json
 
 
@@ -42,7 +43,8 @@ def main():
     ephemeris = Ephemeris(position)
     e = ephemeris.compute_ephemeris(year, month, day)
 
-    print(json.dumps(e, default=json_default, indent=4, separators=(',', ': ')))
+    d = dumper.TextDumper(e)
+    print(d.to_string())
 
 
 def get_args():

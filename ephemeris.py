@@ -39,7 +39,7 @@ class Ephemeris:
         sunrise = t[0] if y[0] else t[1]
         sunset = t[1] if not y[1] else t[0]
 
-        return {'rise': sunrise.utc_iso(), 'set': sunset.utc_iso()}
+        return {'rise': sunrise, 'set': sunset}
 
     def get_moon(self, year, month, day) -> dict:
         time1 = self.timescale.utc(year, month, day - 10)
@@ -138,16 +138,16 @@ class Ephemeris:
             if rise_time is not None and set_time is not None and maximum_time is not None:
                 return {
                     'name': o['planet'],
-                    'rise': rise_time.utc_iso(),
-                    'maximum': maximum_time.utc_iso(),
-                    'set': set_time.utc_iso()
+                    'rise': rise_time,
+                    'maximum': maximum_time,
+                    'set': set_time
                 }
 
         return {
             'name': o['planet'],
-            'rise': rise_time.utc_iso() if rise_time is not None else None,
-            'maximum': maximum_time.utc_iso() if maximum_time is not None else None,
-            'set': set_time.utc_iso() if set_time is not None else None
+            'rise': rise_time if rise_time is not None else None,
+            'maximum': maximum_time if maximum_time is not None else None,
+            'set': set_time if set_time is not None else None
         }
 
     def compute_ephemeris_for_month(self, year: int, month: int) -> list:

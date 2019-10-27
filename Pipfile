@@ -8,6 +8,7 @@ pylintfileheader = "*"
 
 [packages]
 skyfield = ">=1.13.0,<2.0.0"
+tabulate = "*"
 
 [requires]
 python_version = "3.7"
