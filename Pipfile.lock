@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "a6463123982344b774cb2942d39c78f685080f195e7634dc1efb58088341019c"
+            "sha256": "87e49f26ac5fcddb454c1ec4233406938f06ba68534ee464a1b1c2398f2d1d26"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -18,7 +18,6 @@
     "default": {
         "jplephem": {
             "hashes": [
-                "sha256:41d61a07a1ae26cdef1e35311e473ccc2a3231a991cd94d08e70126266eedb94",
                 "sha256:9dffb9f3d3f6d996ade875102431fe385e8ea422da25c8ba17b0508d9ca1282b"
             ],
             "version": "==2.9"
@@ -51,8 +50,7 @@
         },
         "sgp4": {
             "hashes": [
-                "sha256:1fb3cdbc11981a9ff34a032169f83c1f4a2877d1b6c295aed044e1d890b73892",
-                "sha256:bf76f4c692fa30af9b0dc901826895ff9a5956a62f9a720c7b5e1fbf701811db"
+                "sha256:1fb3cdbc11981a9ff34a032169f83c1f4a2877d1b6c295aed044e1d890b73892"
             ],
             "version": "==1.4"
         },
@@ -64,5 +62,14 @@
             "version": "==1.13"
         }
     },
-    "develop": {}
+    "develop": {
+        "pylintfileheader": {
+            "hashes": [
+                "sha256:214a445432b56c177b65bd1b8f10f2b3dafbb5bc002cea9309c9309bf66e7588",
+                "sha256:333afb23262b2530964cd9181303c8ff16b5c3e7236efe3d1fca0684f2b3bd0c"
+            ],
+            "index": "pypi",
+            "version": "==0.0.2"
+        }
+    }
 }
