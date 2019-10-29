@@ -6,7 +6,6 @@ verify_ssl = true
 [dev-packages]
 pylintfileheader = "*"
 pylint = "*"
-pylint-fail-under = "*"
 
 [packages]
 skyfield = ">=1.13.0,<2.0.0"

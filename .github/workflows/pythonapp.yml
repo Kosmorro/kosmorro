@@ -15,8 +15,8 @@ jobs:
         python-version: 3.7
     - name: Install dependencies
       run: |
-        pip install --upgrade pipenv
+        pip install --upgrade pip pipenv
         pipenv sync -d
     - name: Lint
       run: |
-        pipenv run pylint-fail-under --fail_under 9.0 *.py
+        pipenv run pylint *.py

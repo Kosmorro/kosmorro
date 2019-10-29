@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "e2479c38bc67f14f5ac49d82e76f3bd4e4dd3608049c62d5c7b78747a4d967f0"
+            "sha256": "a4fc96d52284ee4a4df4ed2a665fd9e8b4a12ce6f0c2eac4885b45febd71d579"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -126,14 +126,6 @@
             "index": "pypi",
             "version": "==2.4.3"
         },
-        "pylint-fail-under": {
-            "hashes": [
-                "sha256:4584c0eb6bf2c3dcf9402c74734a49d3a7a86fbe3590276b517fbcbdcba1333a",
-                "sha256:d372e3a698634b48550c4e4af10dc145a6d2c2d9ee26a40690ae635661c85de2"
-            ],
-            "index": "pypi",
-            "version": "==0.3.0"
-        },
         "pylintfileheader": {
             "hashes": [
                 "sha256:214a445432b56c177b65bd1b8f10f2b3dafbb5bc002cea9309c9309bf66e7588",
@@ -177,6 +169,7 @@
         },
         "wrapt": {
             "hashes": [
+                "sha256:3a2ee5a4eea6b4627ad048022f20e13377dfa180b51e40bcb0f9154cdb9120ee",
                 "sha256:565a021fd19419476b9362b05eeaa094178de64f8361e44468f9e9d7843901e1"
             ],
             "version": "==1.11.2"
