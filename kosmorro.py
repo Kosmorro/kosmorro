@@ -15,19 +15,18 @@
 #    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import argparse
-import numpy
 from datetime import date
-from ephemeris import Ephemeris
+import numpy
 import dumper
-import json
+from ephemeris import Ephemeris
 
 
 # Fixes the "TypeError: Object of type int64 is not JSON serializable"
 # See https://stackoverflow.com/a/50577730
-def json_default(o):
-    if isinstance(o, numpy.int64):
-        return int(o)
-    raise TypeError('Object of type ' + str(type(o)) + ' could not be integrated in the JSON')
+def json_default(obj):
+    if isinstance(obj, numpy.int64):
+        return int(obj)
+    raise TypeError('Object of type ' + str(type(obj)) + ' could not be integrated in the JSON')
 
 
 def main():
@@ -41,10 +40,10 @@ def main():
         month = date.today().month
 
     ephemeris = Ephemeris(position)
-    e = ephemeris.compute_ephemeris(year, month, day)
+    ephemerides = ephemeris.compute_ephemeris(year, month, day)
 
-    d = dumper.TextDumper(e)
-    print(d.to_string())
+    dump = dumper.TextDumper(ephemerides)
+    print(dump.to_string())
 
 
 def get_args():
@@ -67,5 +66,5 @@ def get_args():
     return parser.parse_args()
 
 
-if '__main__' == __name__:
+if __name__ == '__main__':
     main()

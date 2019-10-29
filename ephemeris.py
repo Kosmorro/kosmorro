@@ -49,11 +49,13 @@ class Ephemeris:
 
         return ephemeris
 
-    def get_sun(self, time1, time2) -> dict:
-        t, y = almanac.find_discrete(time1, time2, almanac.sunrise_sunset(self.planets, self.position))
+    def get_sun(self, start_time, end_time) -> dict:
+        times, is_risen = almanac.find_discrete(start_time,
+                                                end_time,
+                                                almanac.sunrise_sunset(self.planets, self.position))
 
-        sunrise = t[0] if y[0] else t[1]
-        sunset = t[1] if not y[1] else t[0]
+        sunrise = times[0] if is_risen[0] else times[1]
+        sunset = times[1] if not is_risen[1] else times[0]
 
         return {'rise': sunrise, 'set': sunset}
 
@@ -61,9 +63,9 @@ class Ephemeris:
         time1 = self.timescale.utc(year, month, day - 10)
         time2 = self.timescale.utc(year, month, day)
 
-        _, y = almanac.find_discrete(time1, time2, almanac.moon_phases(self.planets))
+        _, moon_phase = almanac.find_discrete(time1, time2, almanac.moon_phases(self.planets))
 
-        return {'phase': y[-1]}
+        return {'phase': moon_phase[-1]}
 
     def get_planets(self, year: int, month: int, day: int) -> dict:
         args = []
@@ -85,22 +87,22 @@ class Ephemeris:
         return obj
 
     @staticmethod
-    def get_planet(o) -> dict:
+    def get_planet(p_obj) -> dict:
         load = Loader('./cache')
         planets = load('de421.bsp')
         timescale = load.timescale()
-        position = Topos(latitude_degrees=o['observer']['latitude'], longitude_degrees=o['observer']['longitude'])
+        position = Topos(latitude_degrees=p_obj['observer']['latitude'],
+                         longitude_degrees=p_obj['observer']['longitude'])
         observer = planets['earth'] + position
-        planet = planets[o['planet']]
+        planet = planets[p_obj['planet']]
         rise_time = maximum_time = set_time = None
-        max_elevation = None
         is_risen = None
         is_elevating = None
         last_is_elevating = None
         last_position = None
 
         for hours in range(0, 24):
-            time = timescale.utc(o['year'], o['month'], o['day'], hours)
+            time = timescale.utc(p_obj['year'], p_obj['month'], p_obj['day'], hours)
             position = observer.at(time).observe(planet).apparent().altaz()[0].degrees
 
             if is_risen is None:
@@ -111,7 +113,7 @@ class Ephemeris:
             if rise_time is None and not is_risen and is_elevating and position > 0:
                 # Planet has risen in the last hour, let's look for a more precise time!
                 for minutes in range(0, 60):
-                    time = timescale.utc(o['year'], o['month'], o['day'], hours - 1, minutes)
+                    time = timescale.utc(p_obj['year'], p_obj['month'], p_obj['day'], hours - 1, minutes)
                     position = observer.at(time).observe(planet).apparent().altaz()[0].degrees
 
                     if position > 0:
@@ -123,7 +125,7 @@ class Ephemeris:
             if set_time is None and is_risen and not is_elevating and position < 0:
                 # Planet has set in the last hour, let's look for a more precise time!
                 for minutes in range(0, 60):
-                    time = timescale.utc(o['year'], o['month'], o['day'], hours - 1, minutes)
+                    time = timescale.utc(p_obj['year'], p_obj['month'], p_obj['day'], hours - 1, minutes)
                     position = observer.at(time).observe(planet).apparent().altaz()[0].degrees
 
                     if position < 0:
@@ -135,10 +137,9 @@ class Ephemeris:
             if not is_elevating and last_is_elevating:
                 # Planet has reached its azimuth in the last hour, let's look for a more precise time!
                 for minutes in range(0, 60):
-                    time = timescale.utc(o['year'], o['month'], o['day'], hours - 1, minutes)
+                    time = timescale.utc(p_obj['year'], p_obj['month'], p_obj['day'], hours - 1, minutes)
                     position = observer.at(time).observe(planet).apparent().altaz()[0].degrees
 
-                    max_elevation = position
                     maximum_time = time
 
                     if last_position > position:
@@ -153,20 +154,20 @@ class Ephemeris:
 
             if rise_time is not None and set_time is not None and maximum_time is not None:
                 return {
-                    'name': o['planet'],
+                    'name': p_obj['planet'],
                     'rise': rise_time,
                     'maximum': maximum_time,
                     'set': set_time
                 }
 
         return {
-            'name': o['planet'],
+            'name': p_obj['planet'],
             'rise': rise_time if rise_time is not None else None,
             'maximum': maximum_time if maximum_time is not None else None,
             'set': set_time if set_time is not None else None
         }
 
-    def compute_ephemeris_for_month(self, year: int, month: int) -> list:
+    def compute_ephemerides_for_month(self, year: int, month: int) -> list:
         if month == 2:
             is_leap_year = (year % 4 == 0 and year % 100 > 0) or (year % 400 == 0)
             max_day = 29 if is_leap_year else 28
@@ -175,48 +176,49 @@ class Ephemeris:
         else:
             max_day = 31 if month % 2 == 0 else 30
 
-        e = []
+        ephemerides = []
 
         for day in range(1, max_day + 1):
-            e.append(self.compute_ephemeris_for_day(year, month, day))
+            ephemerides.append(self.compute_ephemeris_for_day(year, month, day))
 
-        return e
+        return ephemerides
 
-    def compute_ephemeris_for_year(self, year: int) -> dict:
-        e = {}
+    def compute_ephemerides_for_year(self, year: int) -> dict:
+        ephemerides = {}
         for month in range(0, 12):
-            e[self.MONTH[month]] = self.compute_ephemeris_for_month(year, month + 1)
+            ephemerides[self.MONTH[month]] = self.compute_ephemerides_for_month(year, month + 1)
 
-        e['seasons'] = self.get_seasons(year)
+        ephemerides['seasons'] = self.get_seasons(year)
 
-        return e
+        return ephemerides
 
     def get_seasons(self, year: int) -> dict:
-        t1 = self.timescale.utc(year, 1, 1)
-        t2 = self.timescale.utc(year, 12, 31)
-        t, y = almanac.find_discrete(t1, t2, almanac.seasons(self.planets))
+        start_time = self.timescale.utc(year, 1, 1)
+        end_time = self.timescale.utc(year, 12, 31)
+        times, almanac_seasons = almanac.find_discrete(start_time, end_time, almanac.seasons(self.planets))
 
         seasons = {}
-        for ti, yi in zip(t, y):
-            if yi == 0:
+        for time, almanac_season in zip(times, almanac_seasons):
+            if almanac_season == 0:
                 season = 'MARCH'
-            elif yi == 1:
+            elif almanac_season == 1:
                 season = 'JUNE'
-            elif yi == 2:
+            elif almanac_season == 2:
                 season = 'SEPTEMBER'
-            elif yi == 3:
+            elif almanac_season == 3:
                 season = 'DECEMBER'
             else:
                 raise AssertionError
 
-            seasons[season] = ti.utc_iso()
+            seasons[season] = time.utc_iso()
 
         return seasons
 
     def compute_ephemeris(self, year: int, month: int, day: int):
         if day is not None:
             return self.compute_ephemeris_for_day(year, month, day)
-        elif month is not None:
-            return self.compute_ephemeris_for_month(year, month)
-        else:
-            return self.compute_ephemeris_for_year(year)
+
+        if month is not None:
+            return self.compute_ephemerides_for_month(year, month)
+
+        return self.compute_ephemerides_for_year(year)

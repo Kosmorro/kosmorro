@@ -30,13 +30,12 @@ class Dumper(ABC):
 
 class TextDumper(Dumper):
     def to_string(self):
-        s = '\n\n'.join([self.get_planets(self.ephemeris['planets'], self.ephemeris['sun']),
-                         self.get_moon(self.ephemeris['moon'])])
-        return s
+        return '\n\n'.join([self.get_planets(self.ephemeris['planets'], self.ephemeris['sun']),
+                            self.get_moon(self.ephemeris['moon'])])
 
     @staticmethod
     def get_planets(planets, sun):
-        s = [['SUN', sun['rise'].utc_strftime('%H:%M'), '-', sun['set'].utc_strftime('%H:%M')]]
+        data = [['SUN', sun['rise'].utc_strftime('%H:%M'), '-', sun['set'].utc_strftime('%H:%M')]]
         for planet in planets:
             name = planet
             planet_data = planets[planet]
@@ -45,9 +44,9 @@ class TextDumper(Dumper):
                                                                           else '  -'
             planet_set = planet_data['set'].utc_strftime('%H:%M') if planet_data['set'] is not None else '  -'
 
-            s.append([name, planet_rise, planet_maximum, planet_set])
+            data.append([name, planet_rise, planet_maximum, planet_set])
 
-        return tabulate(s, headers=['Planet', 'Rise time', 'Maximum time', 'Set time'], tablefmt='simple',
+        return tabulate(data, headers=['Planet', 'Rise time', 'Maximum time', 'Set time'], tablefmt='simple',
                         stralign='center', colalign=('left',))
 
     @staticmethod
