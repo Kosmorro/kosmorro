@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 #    Kosmorro - Compute The Next Ephemeris
 #    Copyright (C) 2019  Jérôme Deuchnord <jerome@deuchnord.fr>
 #
@@ -36,18 +38,6 @@ class Ephemeris:
         self.latitude = position['lat']
         self.longitude = position['lon']
         self.position = Topos(latitude_degrees=position['lat'], longitude_degrees=position['lon'])
-
-    def compute_ephemeris_for_day(self, year: int, month: int, day: int) -> dict:
-        ephemeris = {}
-        time1 = self.timescale.utc(year, month, day, 2)
-        time2 = self.timescale.utc(year, month, day + 1, 2)
-
-        # Compute sunrise and sunset
-        ephemeris['sun'] = self.get_sun(time1, time2)
-        ephemeris['moon'] = self.get_moon(year, month, day)
-        ephemeris['planets'] = self.get_planets(year, month, day)
-
-        return ephemeris
 
     def get_sun(self, start_time, end_time) -> dict:
         times, is_risen = almanac.find_discrete(start_time,
@@ -167,6 +157,18 @@ class Ephemeris:
             'set': set_time if set_time is not None else None
         }
 
+    def compute_ephemerides_for_day(self, year: int, month: int, day: int) -> dict:
+        ephemeris = {}
+        time1 = self.timescale.utc(year, month, day, 2)
+        time2 = self.timescale.utc(year, month, day + 1, 2)
+
+        # Compute sunrise and sunset
+        ephemeris['sun'] = self.get_sun(time1, time2)
+        ephemeris['moon'] = self.get_moon(year, month, day)
+        ephemeris['planets'] = self.get_planets(year, month, day)
+
+        return ephemeris
+
     def compute_ephemerides_for_month(self, year: int, month: int) -> list:
         if month == 2:
             is_leap_year = (year % 4 == 0 and year % 100 > 0) or (year % 400 == 0)
@@ -179,7 +181,7 @@ class Ephemeris:
         ephemerides = []
 
         for day in range(1, max_day + 1):
-            ephemerides.append(self.compute_ephemeris_for_day(year, month, day))
+            ephemerides.append(self.compute_ephemerides_for_day(year, month, day))
 
         return ephemerides
 
@@ -216,7 +218,7 @@ class Ephemeris:
 
     def compute_ephemeris(self, year: int, month: int, day: int):
         if day is not None:
-            return self.compute_ephemeris_for_day(year, month, day)
+            return self.compute_ephemerides_for_day(year, month, day)
 
         if month is not None:
             return self.compute_ephemerides_for_month(year, month)

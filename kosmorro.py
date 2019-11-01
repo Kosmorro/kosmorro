@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 #    Kosmorro - Compute The Next Ephemeris
 #    Copyright (C) 2019  Jérôme Deuchnord <jerome@deuchnord.fr>
 #
