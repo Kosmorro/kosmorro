@@ -57,17 +57,20 @@ For instance, if you want the ephemeris of October 31th, 2019 in Paris, France:
 
 ```console
 $ python kosmorro.py --latitude 48.8032 --longitude 2.3511 -m 10 -d 31 2019
-Planet     Rise time    Maximum time    Set time
---------  -----------  --------------  ----------
-SUN          06:35           -           16:32
-MERCURY      08:44         13:01         16:59
-VENUS        08:35         13:01         17:18
-MARS         04:48         10:20         15:51
-JUPITER      10:40         15:01         18:46
-SATURN       12:12         16:20         20:26
-URANUS       16:23           -           06:22
-NEPTUNE      14:53         20:23         01:56
-PLUTO        12:36         17:01         20:50
+Planet     Rise time    Culmination time    Set time
+--------  -----------  ------------------  ----------
+Sun          06:35           11:33           16:32
+Moon         10:21           14:41           19:01
+Mercury      08:37           12:51           17:04
+Venus        08:28           12:56           17:23
+Mars         04:42           10:19           15:55
+Jupiter      10:33           14:42           18:52
+Saturn       12:05           16:18           20:31
+Uranus       16:17             -             06:27
+Neptune      14:47           20:21           02:00
+Pluto        12:29           16:42           20:55
 
 Moon phase: New Moon
+
+Note: All the hours are given in UTC.
 ```

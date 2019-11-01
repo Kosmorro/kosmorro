@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-#    Kosmorro - Compute The Next Ephemeris
+#    Kosmorro - Compute The Next Ephemerides
 #    Copyright (C) 2019  Jérôme Deuchnord <jerome@deuchnord.fr>
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -17,13 +17,16 @@
 #    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 from abc import ABC, abstractmethod
+import datetime
 from tabulate import tabulate
 from skyfield import almanac
+from .data import Object
 
 
 class Dumper(ABC):
-    def __init__(self, ephemeris):
+    def __init__(self, ephemeris, date: datetime.date = datetime.date.today()):
         self.ephemeris = ephemeris
+        self.date = date
 
     @abstractmethod
     def to_string(self):
@@ -32,23 +35,36 @@ class Dumper(ABC):
 
 class TextDumper(Dumper):
     def to_string(self):
-        return '\n\n'.join([self.get_planets(self.ephemeris['planets'], self.ephemeris['sun']),
-                            self.get_moon(self.ephemeris['moon'])])
+        return '\n\n'.join(['Ephemerides of %s' % self.date.strftime('%A %B %d, %Y'),
+                            self.get_asters(self.ephemeris['planets']),
+                            self.get_moon(self.ephemeris['moon_phase']),
+                            'Note: All the hours are given in UTC.'])
 
     @staticmethod
-    def get_planets(planets, sun):
-        data = [['SUN', sun['rise'].utc_strftime('%H:%M'), '-', sun['set'].utc_strftime('%H:%M')]]
-        for planet in planets:
-            name = planet
-            planet_data = planets[planet]
-            planet_rise = planet_data['rise'].utc_strftime('%H:%M') if planet_data['rise'] is not None else '  -'
-            planet_maximum = planet_data['maximum'].utc_strftime('%H:%M') if planet_data['maximum'] is not None\
-                                                                          else '  -'
-            planet_set = planet_data['set'].utc_strftime('%H:%M') if planet_data['set'] is not None else '  -'
+    def get_asters(asters: [Object]) -> str:
+        data = []
+
+        for aster in asters:
+            name = aster.name
+
+            if aster.ephemerides.rise_time is not None:
+                planet_rise = aster.ephemerides.rise_time.utc_strftime('%H:%M')
+            else:
+                planet_rise = '-'
+
+            if aster.ephemerides.maximum_time is not None:
+                planet_maximum = aster.ephemerides.maximum_time.utc_strftime('%H:%M')
+            else:
+                planet_maximum = '-'
+
+            if aster.ephemerides.set_time is not None:
+                planet_set = aster.ephemerides.set_time.utc_strftime('%H:%M')
+            else:
+                planet_set = '-'
 
             data.append([name, planet_rise, planet_maximum, planet_set])
 
-        return tabulate(data, headers=['Planet', 'Rise time', 'Maximum time', 'Set time'], tablefmt='simple',
+        return tabulate(data, headers=['Planet', 'Rise time', 'Culmination time', 'Set time'], tablefmt='simple',
                         stralign='center', colalign=('left',))
 
     @staticmethod
