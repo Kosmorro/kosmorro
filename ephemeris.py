@@ -75,7 +75,7 @@ class Ephemeris:
                          'observer': {'latitude': self.latitude, 'longitude': self.longitude},
                          'year': year, 'month': month, 'day': day})
 
-        with ThreadPool(4) as pool:
+        with ThreadPool() as pool:
             planets = pool.map(Ephemeris.get_planet, args)
 
         obj = {}
