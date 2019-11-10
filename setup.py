@@ -24,5 +24,6 @@ setup(
         'Operating System :: POSIX :: Linux',
         'Environment :: Console',
         'Topic :: Scientific/Engineering :: Astronomy'
-    ]
+    ],
+    python_requires='>=3.7'
 )
