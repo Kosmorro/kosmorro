@@ -8,20 +8,32 @@ Kosmorro is a software that allows you to compute the ephemeris for a date, a mo
 
 ### Requirements
 
-To use this software, you will need the following software:
+Kosmorro requires the following software to work:
 
 - Python ≥ 3.7.0
 - PIP
-- [Pipenv](https://pypi.org/project/pipenv/)
+
+Note: Kosmorro currently only supports Linux operating system. macOS will follow soon. Windows probably.
+
+### Production environment
+
+If you are an end-user, you will prefer running Kosmorro as any other software on your machine.
+
+Install Kosmorro through PIP: `pip install kosmorro`. This will download and configure the last version of Kosmorro.
+You will then be able to run it by invoking `kosmorro` in your terminal!
+
+### Development environment
+
+First, install [Pipenv](https://pypi.org/project/pipenv/).
 
 Clone this repository and run `pipenv sync` to install all the dependencies.
+Then, run Kosmorro by invoking `pipenv run python kosmorro`.
 
-# Running Kosmorro
+For comfort, you may want to invoke `pipenv shell` first and then just `python kosmoro`.
 
-Because it's still on an early-development stage, to run Kosmorro, you will need to prefix your commands `pipenv run`.
-A `setup.py` file will come later to manage installation in the real world.
+## Running Kosmorro
 
-## Usage
+### Usage
 
 ```
 kosmorro.py [-h] [--latitude LATITUDE] [--longitude LONGITUDE]

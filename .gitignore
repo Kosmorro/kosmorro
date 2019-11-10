@@ -1,2 +1,4 @@
-/cache
-/__pycache__
+__pycache__
+/build
+/dist
+kosmorro.egg-info

@@ -20,6 +20,8 @@ from skyfield.api import Loader
 
 from .data import Star, Planet, Satellite
 
+VERSION = '0.1.0'
+
 MONTHS = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
 
 ASTERS = [Star('Sun', 'SUN'),
@@ -35,7 +37,7 @@ ASTERS = [Star('Sun', 'SUN'),
 
 
 def get_loader():
-    return Loader('./cache')
+    return Loader('~/.kosmorro-cache')
 
 
 def get_timescale():
