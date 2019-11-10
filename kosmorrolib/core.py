@@ -20,7 +20,7 @@ from skyfield.api import Loader
 
 from .data import Star, Planet, Satellite
 
-VERSION = '0.1.0'
+VERSION = '0.1.1'
 
 MONTHS = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
 

@@ -1,4 +1,5 @@
 # ![Kosmorro](assets/png/kosmorro-logo.png)
+![PyPI - Status](https://img.shields.io/pypi/status/kosmorro) ![PyPI](https://img.shields.io/pypi/v/kosmorro) ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/kosmorro)
 
 ## About the project
 
