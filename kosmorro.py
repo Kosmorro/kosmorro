@@ -1,4 +1,6 @@
-#    Kosmorro - Compute The Next Ephemeris
+#!/usr/bin/env python3
+
+#    Kosmorro - Compute The Next Ephemerides
 #    Copyright (C) 2019  Jérôme Deuchnord <jerome@deuchnord.fr>
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -17,8 +19,8 @@
 import argparse
 from datetime import date
 import numpy
-import dumper
-from ephemeris import Ephemeris
+from kosmorrolib import dumper
+from kosmorrolib.ephemerides import EphemeridesComputer, Position
 
 
 # Fixes the "TypeError: Object of type int64 is not JSON serializable"
@@ -33,35 +35,42 @@ def main():
     args = get_args()
     year = args.year
     month = args.month
-    day = args.date
-    position = {'lat': args.latitude, 'lon': args.longitude, 'alt': args.altitude}
+    day = args.day
 
     if day is not None and month is None:
         month = date.today().month
 
-    ephemeris = Ephemeris(position)
-    ephemerides = ephemeris.compute_ephemeris(year, month, day)
+    ephemeris = EphemeridesComputer(Position(args.latitude, args.longitude, altitude=args.altitude))
+    ephemerides = ephemeris.compute_ephemerides(year, month, day)
 
     dump = dumper.TextDumper(ephemerides)
     print(dump.to_string())
 
 
 def get_args():
-    parser = argparse.ArgumentParser(description='Compute the ephemeris for a given day/month/year.',
-                                     epilog='By default, the observer will be set at position (0,0) with an altitude'
-                                            ' of 0. You will more likely want to change that.')
-    parser.add_argument('--latitude', '-lat', type=float, default=0., help="The observer's position on Earth"
-                                                                           " (latitude)")
-    parser.add_argument('--longitude', '-lon', type=float, default=0., help="The observer's position on Earth"
-                                                                            " (longitude)")
-    parser.add_argument('--altitude', '-alt', type=float, default=0., help="The observer's position on Earth"
-                                                                           " (altitude)")
-    parser.add_argument('--date', '-d', type=int, help='A number between 1 and 28, 29, 30 or 31 (depending on the'
-                                                       ' month). The date you want to compute the ephemeris for')
-    parser.add_argument('--month', '-m', type=int, help='A number between 1 and 12. The month you want to compute the'
-                                                        ' ephemeris for (defaults to the current month if the day is'
-                                                        ' defined)')
-    parser.add_argument('year', type=int, help='The year you want to compute the ephemeris for')
+    today = date.today()
+
+    parser = argparse.ArgumentParser(description='Compute the ephemerides for a given date, at a given position'
+                                                 ' on Earth.',
+                                     epilog='By default, the ephemerides will be computed for today (%s) for an'
+                                            ' observer positioned at coordinates (0,0), with an altitude of 0.'
+                                     % today.strftime('%a %b %d, %Y'))
+
+    parser.add_argument('--latitude', '-lat', type=float, default=0.,
+                        help="The observer's latitude on Earth")
+    parser.add_argument('--longitude', '-lon', type=float, default=0.,
+                        help="The observer's longitude on Earth")
+    parser.add_argument('--altitude', '-alt', type=float, default=0.,
+                        help="The observer's altitude on Earth")
+    parser.add_argument('--day', '-d', type=int, default=today.day,
+                        help='A number between 1 and 28, 29, 30 or 31 (depending on the month). The day you want to '
+                             ' compute the ephemerides for. Defaults to %d (the current day).' % today.day)
+    parser.add_argument('--month', '-m', type=int, default=today.month,
+                        help='A number between 1 and 12. The month you want to compute the ephemerides for. Defaults to'
+                             ' %d (the current month).' % today.month)
+    parser.add_argument('--year', '-y', type=int, default=today.year,
+                        help='The year you want to compute the ephemerides for.'
+                             ' Defaults to %d (the current year).' % today.year)
 
     return parser.parse_args()
 

@@ -19,4 +19,4 @@ jobs:
         pipenv sync -d
     - name: Lint
       run: |
-        pipenv run pylint *.py
+        pipenv run pylint *.py kosmorrolib/*.py
