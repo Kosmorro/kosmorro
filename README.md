@@ -25,52 +25,53 @@ A `setup.py` file will come later to manage installation in the real world.
 
 ```
 kosmorro.py [-h] [--latitude LATITUDE] [--longitude LONGITUDE]
-            [--altitude ALTITUDE] [--date DATE] [--month MONTH]
-            year
+            [--altitude ALTITUDE] [--day DAY] [--month MONTH]
+            [--year YEAR]
 
-Compute the ephemeris for a given day/month/year.
-
-positional arguments:
-  year                  The year you want to compute the ephemeris for
+Compute the ephemerides for a given date, at a given position on Earth.
 
 optional arguments:
   -h, --help            show this help message and exit
   --latitude LATITUDE, -lat LATITUDE
-                        The observer's position on Earth (latitude)
+                        The observer's latitude on Earth
   --longitude LONGITUDE, -lon LONGITUDE
-                        The observer's position on Earth (longitude)
+                        The observer's longitude on Earth
   --altitude ALTITUDE, -alt ALTITUDE
-                        The observer's position on Earth (altitude)
-  --date DATE, -d DATE  A number between 1 and 28, 29, 30 or 31 (depending on
-                        the month). The date you want to compute the ephemeris
-                        for
+                        The observer's altitude on Earth
+  --day DAY, -d DAY     A number between 1 and 28, 29, 30 or 31 (depending on
+                        the month). The day you want to compute the
+                        ephemerides for. Defaults to 10 (the current day).
   --month MONTH, -m MONTH
                         A number between 1 and 12. The month you want to
-                        compute the ephemeris for (defaults to the current
-                        month if the day is defined)
+                        compute the ephemerides for. Defaults to 11 (the
+                        current month).
+  --year YEAR, -y YEAR  The year you want to compute the ephemerides for.
+                        Defaults to 2019 (the current year).
 
-By default, the observer will be set at position (0,0) with an altitude of 0.
-You will more likely want to change that.
+By default, the ephemerides will be computed for today (Sun Nov 10, 2019) for
+an observer positioned at coordinates (0,0), with an altitude of 0.
 ```
 
 For instance, if you want the ephemeris of October 31th, 2019 in Paris, France:
 
 ```console
-$ python kosmorro.py --latitude 48.8032 --longitude 2.3511 -m 10 -d 31 2019
+$ python kosmorro.py --latitude 48.8032 --longitude 2.3511 -d 11 -m 11 -y 2019
+Ephemerides of Sunday November 10, 2019
+
 Planet     Rise time    Culmination time    Set time
 --------  -----------  ------------------  ----------
-Sun          06:35           11:33           16:32
-Moon         10:21           14:41           19:01
-Mercury      08:37           12:51           17:04
-Venus        08:28           12:56           17:23
-Mars         04:42           10:19           15:55
-Jupiter      10:33           14:42           18:52
-Saturn       12:05           16:18           20:31
-Uranus       16:17             -             06:27
-Neptune      14:47           20:21           02:00
-Pluto        12:29           16:42           20:55
+Sun          06:52           11:34           06:52
+Moon         16:12             -             05:17
+Mercury      06:57           11:36           06:57
+Venus        09:00           13:10           09:00
+Mars         04:38           10:02           04:38
+Jupiter      10:00           14:09           10:00
+Saturn       11:25           15:38           11:25
+Uranus       15:33           22:35           05:41
+Neptune      14:03           19:38           01:16
+Pluto        11:46           15:59           11:46
 
-Moon phase: New Moon
+Moon phase: First Quarter
 
 Note: All the hours are given in UTC.
 ```
