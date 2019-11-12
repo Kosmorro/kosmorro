@@ -20,7 +20,7 @@ import datetime
 from skyfield import almanac
 from skyfield.timelib import Time
 
-from .data import Object, Position, AsterEphemerides
+from .data import Object, Position, AsterEphemerides, skyfield_to_moon_phase
 from .core import get_skf_objects, get_timescale, ASTERS, MONTHS
 
 RISEN_ANGLE = -0.8333
@@ -48,7 +48,7 @@ class EphemeridesComputer:
 
         _, moon_phase = almanac.find_discrete(time1, time2, almanac.moon_phases(get_skf_objects()))
 
-        return {'phase': moon_phase[-1]}
+        return {'phase': skyfield_to_moon_phase(moon_phase[-1])}
 
     @staticmethod
     def get_asters_ephemerides_for_aster(aster, date: datetime.date, position: Position) -> Object:

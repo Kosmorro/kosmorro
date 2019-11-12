@@ -18,9 +18,11 @@
 
 from abc import ABC, abstractmethod
 import datetime
+import json
 from tabulate import tabulate
-from skyfield import almanac
-from .data import Object
+from skyfield.timelib import Time
+from numpy import int64
+from .data import Object, AsterEphemerides, MOON_PHASES
 
 
 class Dumper(ABC):
@@ -31,6 +33,30 @@ class Dumper(ABC):
     @abstractmethod
     def to_string(self):
         pass
+
+
+class JsonDumper(Dumper):
+    def to_string(self):
+        return json.dumps(self.ephemeris,
+                          default=self._json_default,
+                          indent=4)
+
+    @staticmethod
+    def _json_default(obj):
+        # Fixes the "TypeError: Object of type int64 is not JSON serializable"
+        # See https://stackoverflow.com/a/50577730
+        if isinstance(obj, int64):
+            return int(obj)
+        if isinstance(obj, Time):
+            return obj.utc_iso()
+        if isinstance(obj, Object):
+            obj = obj.__dict__
+            obj.pop('skyfield_name')
+            return obj
+        if isinstance(obj, AsterEphemerides):
+            return obj.__dict__
+
+        raise TypeError('Object of type "%s" could not be integrated in the JSON' % str(type(obj)))
 
 
 class TextDumper(Dumper):
@@ -69,4 +95,4 @@ class TextDumper(Dumper):
 
     @staticmethod
     def get_moon(moon):
-        return 'Moon phase: %s' % almanac.MOON_PHASES[moon['phase']]
+        return 'Moon phase: %s' % MOON_PHASES[moon['phase']]
