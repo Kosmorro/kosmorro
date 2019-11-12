@@ -26,7 +26,7 @@ from .data import Object, AsterEphemerides, MOON_PHASES
 
 
 class Dumper(ABC):
-    def __init__(self, ephemeris, date: datetime.date = datetime.date.today()):
+    def __init__(self, ephemeris: dict, date: datetime.date = datetime.date.today()):
         self.ephemeris = ephemeris
         self.date = date
 
@@ -62,7 +62,7 @@ class JsonDumper(Dumper):
 class TextDumper(Dumper):
     def to_string(self):
         return '\n\n'.join(['Ephemerides of %s' % self.date.strftime('%A %B %d, %Y'),
-                            self.get_asters(self.ephemeris['planets']),
+                            self.get_asters(self.ephemeris['details']),
                             self.get_moon(self.ephemeris['moon_phase']),
                             'Note: All the hours are given in UTC.'])
 
@@ -78,21 +78,21 @@ class TextDumper(Dumper):
             else:
                 planet_rise = '-'
 
-            if aster.ephemerides.maximum_time is not None:
-                planet_maximum = aster.ephemerides.maximum_time.utc_strftime('%H:%M')
+            if aster.ephemerides.culmination_time is not None:
+                planet_culmination = aster.ephemerides.culmination_time.utc_strftime('%H:%M')
             else:
-                planet_maximum = '-'
+                planet_culmination = '-'
 
             if aster.ephemerides.set_time is not None:
                 planet_set = aster.ephemerides.set_time.utc_strftime('%H:%M')
             else:
                 planet_set = '-'
 
-            data.append([name, planet_rise, planet_maximum, planet_set])
+            data.append([name, planet_rise, planet_culmination, planet_set])
 
         return tabulate(data, headers=['Planet', 'Rise time', 'Culmination time', 'Set time'], tablefmt='simple',
                         stralign='center', colalign=('left',))
 
     @staticmethod
-    def get_moon(moon):
-        return 'Moon phase: %s' % MOON_PHASES[moon['phase']]
+    def get_moon(moon_phase: str) -> str:
+        return 'Moon phase: %s' % MOON_PHASES[moon_phase]

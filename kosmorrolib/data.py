@@ -55,7 +55,7 @@ class AsterEphemerides:
                  culmination_time: Union[Time, None],
                  set_time: Union[Time, None]):
         self.rise_time = rise_time
-        self.maximum_time = culmination_time
+        self.culmination_time = culmination_time
         self.set_time = set_time
 
 

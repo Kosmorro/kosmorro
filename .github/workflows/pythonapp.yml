@@ -4,7 +4,6 @@ on: [push]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -17,6 +16,9 @@ jobs:
       run: |
         pip install --upgrade pip pipenv
         pipenv sync -d
+    - name: Unit tests
+      run: |
+        pipenv run python -m unittest -v test
     - name: Lint
       run: |
         pipenv run pylint kosmorro *.py kosmorrolib/*.py
