@@ -18,13 +18,15 @@
 
 from abc import ABC, abstractmethod
 import datetime
+import json
 from tabulate import tabulate
-from skyfield import almanac
-from .data import Object
+from skyfield.timelib import Time
+from numpy import int64
+from .data import Object, AsterEphemerides, MOON_PHASES
 
 
 class Dumper(ABC):
-    def __init__(self, ephemeris, date: datetime.date = datetime.date.today()):
+    def __init__(self, ephemeris: dict, date: datetime.date = datetime.date.today()):
         self.ephemeris = ephemeris
         self.date = date
 
@@ -33,10 +35,34 @@ class Dumper(ABC):
         pass
 
 
+class JsonDumper(Dumper):
+    def to_string(self):
+        return json.dumps(self.ephemeris,
+                          default=self._json_default,
+                          indent=4)
+
+    @staticmethod
+    def _json_default(obj):
+        # Fixes the "TypeError: Object of type int64 is not JSON serializable"
+        # See https://stackoverflow.com/a/50577730
+        if isinstance(obj, int64):
+            return int(obj)
+        if isinstance(obj, Time):
+            return obj.utc_iso()
+        if isinstance(obj, Object):
+            obj = obj.__dict__
+            obj.pop('skyfield_name')
+            return obj
+        if isinstance(obj, AsterEphemerides):
+            return obj.__dict__
+
+        raise TypeError('Object of type "%s" could not be integrated in the JSON' % str(type(obj)))
+
+
 class TextDumper(Dumper):
     def to_string(self):
         return '\n\n'.join(['Ephemerides of %s' % self.date.strftime('%A %B %d, %Y'),
-                            self.get_asters(self.ephemeris['planets']),
+                            self.get_asters(self.ephemeris['details']),
                             self.get_moon(self.ephemeris['moon_phase']),
                             'Note: All the hours are given in UTC.'])
 
@@ -52,21 +78,21 @@ class TextDumper(Dumper):
             else:
                 planet_rise = '-'
 
-            if aster.ephemerides.maximum_time is not None:
-                planet_maximum = aster.ephemerides.maximum_time.utc_strftime('%H:%M')
+            if aster.ephemerides.culmination_time is not None:
+                planet_culmination = aster.ephemerides.culmination_time.utc_strftime('%H:%M')
             else:
-                planet_maximum = '-'
+                planet_culmination = '-'
 
             if aster.ephemerides.set_time is not None:
                 planet_set = aster.ephemerides.set_time.utc_strftime('%H:%M')
             else:
                 planet_set = '-'
 
-            data.append([name, planet_rise, planet_maximum, planet_set])
+            data.append([name, planet_rise, planet_culmination, planet_set])
 
         return tabulate(data, headers=['Planet', 'Rise time', 'Culmination time', 'Set time'], tablefmt='simple',
                         stralign='center', colalign=('left',))
 
     @staticmethod
-    def get_moon(moon):
-        return 'Moon phase: %s' % almanac.MOON_PHASES[moon['phase']]
+    def get_moon(moon_phase: str) -> str:
+        return 'Moon phase: %s' % MOON_PHASES[moon_phase]

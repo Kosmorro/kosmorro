@@ -22,6 +22,18 @@ from typing import Union
 from skyfield.api import Topos
 from skyfield.timelib import Time
 
+MOON_PHASES = {
+    'NEW_MOON': 'New Moon',
+    'FIRST_QUARTER': 'First Quarter',
+    'FULL_MOON': 'Full Moon',
+    'LAST_QUARTER': 'Last Quarter'
+}
+
+
+def skyfield_to_moon_phase(val: int) -> str:
+    phases = list(MOON_PHASES.keys())
+    return phases[val]
+
 
 class Position:
     def __init__(self, latitude: float, longitude: float, altitude: float = 0):
@@ -43,7 +55,7 @@ class AsterEphemerides:
                  culmination_time: Union[Time, None],
                  set_time: Union[Time, None]):
         self.rise_time = rise_time
-        self.maximum_time = culmination_time
+        self.culmination_time = culmination_time
         self.set_time = set_time
 
 

@@ -18,21 +18,13 @@
 
 import argparse
 from datetime import date
-import numpy
 from kosmorrolib import dumper
 from kosmorrolib.ephemerides import EphemeridesComputer, Position
 
 
-# Fixes the "TypeError: Object of type int64 is not JSON serializable"
-# See https://stackoverflow.com/a/50577730
-def json_default(obj):
-    if isinstance(obj, numpy.int64):
-        return int(obj)
-    raise TypeError('Object of type ' + str(type(obj)) + ' could not be integrated in the JSON')
-
-
 def main():
-    args = get_args()
+    output_formats = get_dumpers()
+    args = get_args(list(output_formats.keys()))
     year = args.year
     month = args.month
     day = args.day
@@ -43,11 +35,18 @@ def main():
     ephemeris = EphemeridesComputer(Position(args.latitude, args.longitude, altitude=args.altitude))
     ephemerides = ephemeris.compute_ephemerides(year, month, day)
 
-    dump = dumper.TextDumper(ephemerides)
+    dump = output_formats[args.format](ephemerides)
     print(dump.to_string())
 
 
-def get_args():
+def get_dumpers() -> {str: dumper.Dumper}:
+    return {
+        'text': dumper.TextDumper,
+        'json': dumper.JsonDumper
+    }
+
+
+def get_args(output_formats: [str]):
     today = date.today()
 
     parser = argparse.ArgumentParser(description='Compute the ephemerides for a given date, at a given position'
@@ -56,6 +55,8 @@ def get_args():
                                             ' observer positioned at coordinates (0,0), with an altitude of 0.'
                                      % today.strftime('%a %b %d, %Y'))
 
+    parser.add_argument('--format', '-f', type=str, default=output_formats[0], choices=output_formats,
+                        help='The format under which the information have to be output')
     parser.add_argument('--latitude', '-lat', type=float, default=0.,
                         help="The observer's latitude on Earth")
     parser.add_argument('--longitude', '-lon', type=float, default=0.,
