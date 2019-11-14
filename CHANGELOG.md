@@ -9,7 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Update Numpy to v1.17.4
-- Add JSON output (#6)
+- Add JSON output
+- Update PyLint to v2.4.4
 
 ### Changed
 
