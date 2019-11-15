@@ -16,11 +16,14 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+from shutil import rmtree
+from pathlib import Path
 from skyfield.api import Loader
 
 from .data import Star, Planet, Satellite
 
 VERSION = '0.1.1'
+CACHE_FOLDER = str(Path.home()) + '/.kosmorro-cache'
 
 MONTHS = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
 
@@ -37,7 +40,7 @@ ASTERS = [Star('Sun', 'SUN'),
 
 
 def get_loader():
-    return Loader('~/.kosmorro-cache')
+    return Loader(CACHE_FOLDER)
 
 
 def get_timescale():
@@ -46,3 +49,7 @@ def get_timescale():
 
 def get_skf_objects():
     return get_loader()('de421.bsp')
+
+
+def clear_cache():
+    rmtree(CACHE_FOLDER)

@@ -17,14 +17,21 @@
 #    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import argparse
+import sys
 from datetime import date
+
 from kosmorrolib import dumper
+from kosmorrolib import core
 from kosmorrolib.ephemerides import EphemeridesComputer, Position
 
 
 def main():
     output_formats = get_dumpers()
     args = get_args(list(output_formats.keys()))
+
+    if args.special_action is not None:
+        return 0 if args.special_action() else 1
+
     year = args.year
     month = args.month
     day = args.day
@@ -38,12 +45,28 @@ def main():
     dump = output_formats[args.format](ephemerides)
     print(dump.to_string())
 
+    return 0
+
 
 def get_dumpers() -> {str: dumper.Dumper}:
     return {
         'text': dumper.TextDumper,
         'json': dumper.JsonDumper
     }
+
+
+def clear_cache() -> bool:
+    confirm = input("Do you really want to clear Kosmorro's cache? [yN] ").upper()
+    if confirm == 'Y':
+        try:
+            core.clear_cache()
+        except FileNotFoundError:
+            pass
+    elif confirm not in ('N', ''):
+        print('Answer did not match expected options, cache not cleared.')
+        return False
+
+    return True
 
 
 def get_args(output_formats: [str]):
@@ -55,6 +78,8 @@ def get_args(output_formats: [str]):
                                             ' observer positioned at coordinates (0,0), with an altitude of 0.'
                                      % today.strftime('%a %b %d, %Y'))
 
+    parser.add_argument('--clear-cache', dest='special_action', action='store_const', const=clear_cache, default=None,
+                        help='Delete all the files Kosmorro stored in the cache.')
     parser.add_argument('--format', '-f', type=str, default=output_formats[0], choices=output_formats,
                         help='The format under which the information have to be output')
     parser.add_argument('--latitude', '-lat', type=float, default=0.,
@@ -77,4 +102,4 @@ def get_args(output_formats: [str]):
 
 
 if __name__ == '__main__':
-    main()
+    sys.exit(main())
