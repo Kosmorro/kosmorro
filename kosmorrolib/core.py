@@ -22,7 +22,7 @@ from skyfield.api import Loader
 
 from .data import Star, Planet, Satellite
 
-VERSION = '0.1.1'
+VERSION = '0.2.0'
 CACHE_FOLDER = str(Path.home()) + '/.kosmorro-cache'
 
 MONTHS = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']

@@ -8,6 +8,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+### Changed
+
+### Removed
+
+## [0.2.0] - 2019-11-17
+
+### Added
+
 - Add JSON output
 - Add argument to clear the cache
 
