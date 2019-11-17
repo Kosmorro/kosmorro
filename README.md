@@ -1,5 +1,5 @@
 # ![Kosmorro](assets/png/kosmorro-logo.png)
-![PyPI - Status](https://img.shields.io/pypi/status/kosmorro) ![PyPI](https://img.shields.io/pypi/v/kosmorro) ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/kosmorro)
+![PyPI - Status](https://img.shields.io/pypi/status/kosmorro) ![PyPI](https://img.shields.io/pypi/v/kosmorro)
 
 ## About the project
 
@@ -18,10 +18,20 @@ Note: Kosmorro currently only supports Linux operating system. macOS will follow
 
 ### Production environment
 
-If you are an end-user, you will prefer running Kosmorro as any other software on your machine.
+#### Linux
 
-Install Kosmorro through PIP: `pip install kosmorro`. This will download and configure the last version of Kosmorro.
-You will then be able to run it by invoking `kosmorro` in your terminal!
+##### Arch Linux, Manjaro…
+
+Kosmorro is available [in the AUR](https://aur.archlinux.org/packages/kosmorro).
+
+##### Other distributions
+
+Kosmorro is available [on PyPI](https://pypi.org/project/kosmorro/), a repository dedicated to Python.
+First, install `python-pip` on your system and invoke the following command: `pip install kosmorro`.
+
+#### Windows, macOS
+
+Kosmorro being at an early-stage development, Windows and macOS are not supported officially for now.
 
 ### Development environment
 
@@ -37,9 +47,9 @@ For comfort, you may want to invoke `pipenv shell` first and then just `python k
 ### Usage
 
 ```
-kosmorro.py [-h] [--latitude LATITUDE] [--longitude LONGITUDE]
-            [--altitude ALTITUDE] [--day DAY] [--month MONTH]
-            [--year YEAR]
+kosmorro [-h] [--latitude LATITUDE] [--longitude LONGITUDE]
+         [--altitude ALTITUDE] [--day DAY] [--month MONTH]
+         [--year YEAR]
 
 Compute the ephemerides for a given date, at a given position on Earth.
 
