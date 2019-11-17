@@ -19,7 +19,7 @@
 import pathlib
 from setuptools import setup, find_packages
 
-from kosmorrolib.core import VERSION
+from kosmorrolib.version import VERSION
 
 HERE = pathlib.Path(__file__).parent
 README = (HERE / 'README.md').read_text()
