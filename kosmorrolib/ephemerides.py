@@ -74,7 +74,7 @@ class EphemeridesComputer:
 
         if len(rise_times) == 2:
             rise_time = rise_times[0 if arr[0] else 1]
-            set_time = rise_times[0 if not arr[1] else 0]
+            set_time = rise_times[1 if not arr[1] else 0]
         else:
             rise_time = rise_times[0] if arr[0] else None
             set_time = rise_times[0] if not arr[0] else None
