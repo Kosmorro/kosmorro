@@ -20,6 +20,7 @@ import argparse
 import sys
 from datetime import date
 
+from kosmorrolib.version import VERSION
 from kosmorrolib import dumper
 from kosmorrolib import core
 from kosmorrolib.ephemerides import EphemeridesComputer, Position
@@ -55,6 +56,14 @@ def get_dumpers() -> {str: dumper.Dumper}:
     }
 
 
+def output_version() -> bool:
+    python_version = '%d.%d.%d' % (sys.version_info[0], sys.version_info[1], sys.version_info[2])
+    print('Kosmorro %s' % VERSION)
+    print('Running on Python %s' % python_version)
+
+    return True
+
+
 def clear_cache() -> bool:
     confirm = input("Do you really want to clear Kosmorro's cache? [yN] ").upper()
     if confirm == 'Y':
@@ -78,6 +87,8 @@ def get_args(output_formats: [str]):
                                             ' observer positioned at coordinates (0,0), with an altitude of 0.'
                                      % today.strftime('%a %b %d, %Y'))
 
+    parser.add_argument('--version', '-v', dest='special_action', action='store_const', const=output_version,
+                        default=None, help='Show the program version')
     parser.add_argument('--clear-cache', dest='special_action', action='store_const', const=clear_cache, default=None,
                         help='Delete all the files Kosmorro stored in the cache.')
     parser.add_argument('--format', '-f', type=str, default=output_formats[0], choices=output_formats,
