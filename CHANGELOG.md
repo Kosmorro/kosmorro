@@ -17,7 +17,7 @@
 
 * Move version constant to its own file to prevent sgp4 module failing in the AUR ([9a0c9d3](https://github.com/Deuchnord/kosmorro/commit/9a0c9d3ae34c5fa561b5a1b252d39a5ef2a0a4b9))
 
-## [0.2.0] - 2019-11-17
+# [v0.2.0](https://github.com/Deuchnord/kosmorro/compare/v0.1.0...v0.2.0) (2019-11-17)
 
 ### Added
 
@@ -29,10 +29,6 @@
 - Update Numpy to v1.17.4
 - Update PyLint to v2.4.4
 
-### Removed
-
-
-
-## [0.1.0] - 2019-11-10
+# v0.1.0 (2019-11-10)
 
 - First version
