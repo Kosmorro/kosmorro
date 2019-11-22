@@ -1,5 +1,5 @@
 # ![Kosmorro](assets/png/kosmorro-logo.png)
-![PyPI - Status](https://img.shields.io/pypi/status/kosmorro) ![PyPI](https://img.shields.io/pypi/v/kosmorro)
+[![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/Deuchnord/kosmorro.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Deuchnord/kosmorro/context:python) [![Version on PyPI](https://img.shields.io/pypi/v/kosmorro)](https://pypi.org/project/kosmorro)
 
 ## About the project
 
@@ -11,12 +11,12 @@ Kosmorro is a software that allows you to compute the ephemeris for a date, a mo
 
 Kosmorro requires the following software to work:
 
-- Python ≥ 3.7.0
+- Python ≥ 3.5.0
 - PIP
 
-Note: Kosmorro currently only supports Linux operating system. macOS will follow soon. Windows probably.
-
 ### Production environment
+
+Keep in mind that Kosmorro is still in alpha development stage and is not considered as stable.
 
 #### Linux
 
@@ -29,9 +29,17 @@ Kosmorro is available [in the AUR](https://aur.archlinux.org/packages/kosmorro).
 Kosmorro is available [on PyPI](https://pypi.org/project/kosmorro/), a repository dedicated to Python.
 First, install `python-pip` on your system and invoke the following command: `pip install kosmorro`.
 
-#### Windows, macOS
+#### macOS
 
-Kosmorro being at an early-stage development, Windows and macOS are not supported officially for now.
+Currently, macOS does not provide Python 3, so you will first have to install it.
+If you don't have it, first install [HomeBrew](https://formulae.brew.sh), then install Python 3: `brew install python`.
+
+This will install Python 3 and its PIP on your system. Note that their executables are called `python3` and `pip3`.
+Now, you can install Kosmorro with your PIP: `pip3 install kosmorro`.
+
+#### Windows
+
+Kosmorro being at an early-stage development, Windows is not supported officially for now.
 
 ### Development environment
 
@@ -44,57 +52,12 @@ For comfort, you may want to invoke `pipenv shell` first and then just `python k
 
 ## Running Kosmorro
 
-### Usage
+Using Kosmorro is as simple as invoking `kosmorro` in your terminal!
 
-```
-kosmorro [-h] [--latitude LATITUDE] [--longitude LONGITUDE]
-         [--altitude ALTITUDE] [--day DAY] [--month MONTH]
-         [--year YEAR]
+By default, it will compute and display the ephemerides for the current day, for the cordinates `(0;0)`.
+To set your position on Earth, get your coordinates (with [OpenStreetMap](https://www.openstreetmap.org) for instance), and give them to Kosmorro by invoking it with the following parameters: `--latitude=X --longitude=Y` (replace `X` by the latitude and `Y` by the longitude).
 
-Compute the ephemerides for a given date, at a given position on Earth.
+Kosmorro has a lot of available options. To get a list of them, run `kosmorro --help`.
 
-optional arguments:
-  -h, --help            show this help message and exit
-  --latitude LATITUDE, -lat LATITUDE
-                        The observer's latitude on Earth
-  --longitude LONGITUDE, -lon LONGITUDE
-                        The observer's longitude on Earth
-  --altitude ALTITUDE, -alt ALTITUDE
-                        The observer's altitude on Earth
-  --day DAY, -d DAY     A number between 1 and 28, 29, 30 or 31 (depending on
-                        the month). The day you want to compute the
-                        ephemerides for. Defaults to 10 (the current day).
-  --month MONTH, -m MONTH
-                        A number between 1 and 12. The month you want to
-                        compute the ephemerides for. Defaults to 11 (the
-                        current month).
-  --year YEAR, -y YEAR  The year you want to compute the ephemerides for.
-                        Defaults to 2019 (the current year).
+Note: the first time it runs, Kosmorro will download some important files needed to make the computations. They are stored in a cache folder named `.kosmorro-cache` located in your home directory (`/home/<username>` on Linux, `/Users/<username>` on macOS).
 
-By default, the ephemerides will be computed for today (Sun Nov 10, 2019) for
-an observer positioned at coordinates (0,0), with an altitude of 0.
-```
-
-For instance, if you want the ephemeris of October 31th, 2019 in Paris, France:
-
-```console
-$ python kosmorro.py --latitude 48.8032 --longitude 2.3511 -d 11 -m 11 -y 2019
-Ephemerides of Sunday November 10, 2019
-
-Planet     Rise time    Culmination time    Set time
---------  -----------  ------------------  ----------
-Sun          06:52           11:34           06:52
-Moon         16:12             -             05:17
-Mercury      06:57           11:36           06:57
-Venus        09:00           13:10           09:00
-Mars         04:38           10:02           04:38
-Jupiter      10:00           14:09           10:00
-Saturn       11:25           15:38           11:25
-Uranus       15:33           22:35           05:41
-Neptune      14:03           19:38           01:16
-Pluto        11:46           15:59           11:46
-
-Moon phase: First Quarter
-
-Note: All the hours are given in UTC.
-```
