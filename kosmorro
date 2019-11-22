@@ -43,7 +43,7 @@ def main():
     ephemeris = EphemeridesComputer(Position(args.latitude, args.longitude, altitude=args.altitude))
     ephemerides = ephemeris.compute_ephemerides(year, month, day)
 
-    dump = output_formats[args.format](ephemerides)
+    dump = output_formats[args.format](ephemerides, date(year, month, day))
     print(dump.to_string())
 
     return 0
