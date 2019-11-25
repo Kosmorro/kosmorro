@@ -22,7 +22,7 @@ import json
 from tabulate import tabulate
 from skyfield.timelib import Time
 from numpy import int64
-from .data import Object, AsterEphemerides, MOON_PHASES
+from .data import Object, AsterEphemerides, MoonPhase
 
 
 class Dumper(ABC):
@@ -55,6 +55,11 @@ class JsonDumper(Dumper):
             return obj
         if isinstance(obj, AsterEphemerides):
             return obj.__dict__
+        if isinstance(obj, MoonPhase):
+            moon_phase = obj.__dict__
+            moon_phase['phase'] = moon_phase.pop('identifier')
+            moon_phase['date'] = moon_phase.pop('time')
+            return moon_phase
 
         raise TypeError('Object of type "%s" could not be integrated in the JSON' % str(type(obj)))
 
@@ -94,5 +99,8 @@ class TextDumper(Dumper):
                         stralign='center', colalign=('left',))
 
     @staticmethod
-    def get_moon(moon_phase: str) -> str:
-        return 'Moon phase: %s' % MOON_PHASES[moon_phase]
+    def get_moon(moon_phase: MoonPhase) -> str:
+        return 'Moon phase: %s\n' \
+               '%s on %s' % (moon_phase.get_phase(),
+                             moon_phase.get_next_phase(),
+                             moon_phase.next_phase_date.utc_strftime('%a %b %-d, %Y %H:%M'))

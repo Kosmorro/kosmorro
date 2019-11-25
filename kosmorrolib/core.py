@@ -18,9 +18,13 @@
 
 from shutil import rmtree
 from pathlib import Path
-from skyfield.api import Loader
+from typing import Union
 
-from .data import Star, Planet, Satellite
+from skyfield.api import Loader
+from skyfield.timelib import Time
+from skyfield.nutationlib import iau2000b
+
+from .data import Star, Planet, Satellite, MOON_PHASES, MoonPhase
 
 CACHE_FOLDER = str(Path.home()) + '/.kosmorro-cache'
 
@@ -50,5 +54,44 @@ def get_skf_objects():
     return get_loader()('de421.bsp')
 
 
+def get_iau2000b(time: Time):
+    return iau2000b(time.tt)
+
+
 def clear_cache():
     rmtree(CACHE_FOLDER)
+
+
+def skyfield_to_moon_phase(times: [Time], vals: [int], now: Time) -> Union[MoonPhase, None]:
+    tomorrow = get_timescale().utc(now.utc_datetime().year, now.utc_datetime().month, now.utc_datetime().day + 1)
+
+    phases = list(MOON_PHASES.keys())
+    current_phase = None
+    current_phase_time = None
+    next_phase_time = None
+    i = 0
+
+    if len(times) == 0:
+        return None
+
+    for i, time in enumerate(times):
+        if now.utc_iso() <= time.utc_iso():
+            if vals[i] in [0, 2, 4, 6]:
+                if time.utc_datetime() < tomorrow.utc_datetime():
+                    current_phase_time = time
+                    current_phase = phases[vals[i]]
+                else:
+                    i -= 1
+                    current_phase_time = None
+                    current_phase = phases[vals[i]]
+            else:
+                current_phase = phases[vals[i]]
+
+            break
+
+    for j in range(i + 1, len(times)):
+        if vals[j] in [0, 2, 4, 6]:
+            next_phase_time = times[j]
+            break
+
+    return MoonPhase(current_phase, current_phase_time, next_phase_time)
