@@ -1,5 +1,5 @@
 # ![Kosmorro](assets/png/kosmorro-logo.png)
-[![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/Deuchnord/kosmorro.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Deuchnord/kosmorro/context:python) [![Version on PyPI](https://img.shields.io/pypi/v/kosmorro)](https://pypi.org/project/kosmorro)
+[![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/Deuchnord/kosmorro.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Deuchnord/kosmorro/context:python) [![codecov](https://codecov.io/gh/Deuchnord/kosmorro/branch/master/graph/badge.svg)](https://codecov.io/gh/Deuchnord/kosmorro) [![Version on PyPI](https://img.shields.io/pypi/v/kosmorro)](https://pypi.org/project/kosmorro)
 
 ## About the project
 
