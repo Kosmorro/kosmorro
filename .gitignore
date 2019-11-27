@@ -2,3 +2,5 @@ __pycache__
 /build
 /dist
 kosmorro.egg-info
+.coverage
+coverage.xml
