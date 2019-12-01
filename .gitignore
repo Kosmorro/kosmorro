@@ -4,3 +4,5 @@ __pycache__
 kosmorro.egg-info
 .coverage
 coverage.xml
+node_modules/
+package-lock.json
