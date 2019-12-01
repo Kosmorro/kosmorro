@@ -1,3 +1,12 @@
+# [v0.3.1](https://github.com/Deuchnord/kosmorro/compare/v0.3.0...v0.3.1) (2019-12-01)
+
+
+### Bug Fixes
+
+* **moonphase:** fix the Moon phase prediction ([d715746](https://github.com/Deuchnord/kosmorro/commit/d7157466d90c7596a35dce63088b6aacb7c33c3c))
+
+
+
 # [v0.3.0](https://github.com/Deuchnord/kosmorro/compare/v0.2.3...v0.3.0) (2019-12-01)
 
 
