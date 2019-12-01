@@ -61,17 +61,21 @@ class MoonPhase:
 
 
 class Position:
-    def __init__(self, latitude: float, longitude: float, altitude: float = 0):
+    def __init__(self, latitude: float, longitude: float):
         self.latitude = latitude
         self.longitude = longitude
-        self.altitude = altitude
         self.observation_planet = None
+        self._topos = None
 
     def get_planet_topos(self) -> Topos:
         if self.observation_planet is None:
             raise TypeError('Observation planet must be set.')
 
-        return self.observation_planet + Topos(latitude_degrees=self.latitude, longitude_degrees=self.longitude)
+        if self._topos is None:
+            self._topos = self.observation_planet + Topos(latitude_degrees=self.latitude,
+                                                          longitude_degrees=self.longitude)
+
+        return self._topos
 
 
 class AsterEphemerides:

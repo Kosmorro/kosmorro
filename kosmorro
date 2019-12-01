@@ -40,7 +40,7 @@ def main():
     if day is not None and month is None:
         month = date.today().month
 
-    ephemeris = EphemeridesComputer(Position(args.latitude, args.longitude, altitude=args.altitude))
+    ephemeris = EphemeridesComputer(Position(args.latitude, args.longitude))
     ephemerides = ephemeris.compute_ephemerides(year, month, day)
 
     dump = output_formats[args.format](ephemerides, date(year, month, day))
@@ -84,7 +84,7 @@ def get_args(output_formats: [str]):
     parser = argparse.ArgumentParser(description='Compute the ephemerides for a given date, at a given position'
                                                  ' on Earth.',
                                      epilog='By default, the ephemerides will be computed for today (%s) for an'
-                                            ' observer positioned at coordinates (0,0), with an altitude of 0.'
+                                            ' observer positioned at coordinates (0,0).'
                                      % today.strftime('%a %b %d, %Y'))
 
     parser.add_argument('--version', '-v', dest='special_action', action='store_const', const=output_version,
@@ -97,8 +97,6 @@ def get_args(output_formats: [str]):
                         help="The observer's latitude on Earth")
     parser.add_argument('--longitude', '-lon', type=float, default=0.,
                         help="The observer's longitude on Earth")
-    parser.add_argument('--altitude', '-alt', type=float, default=0.,
-                        help="The observer's altitude on Earth")
     parser.add_argument('--day', '-d', type=int, default=today.day,
                         help='A number between 1 and 28, 29, 30 or 31 (depending on the month). The day you want to '
                              ' compute the ephemerides for. Defaults to %d (the current day).' % today.day)
