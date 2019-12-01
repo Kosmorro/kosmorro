@@ -61,10 +61,9 @@ class MoonPhase:
 
 
 class Position:
-    def __init__(self, latitude: float, longitude: float, altitude: float = 0):
+    def __init__(self, latitude: float, longitude: float):
         self.latitude = latitude
         self.longitude = longitude
-        self.altitude = altitude
         self.observation_planet = None
 
     def get_planet_topos(self) -> Topos:
