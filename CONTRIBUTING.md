@@ -39,9 +39,11 @@ The commit messages of this project follow the [Conventional Commits Specificati
 - **`feat: `** if your changes add a new feature.
 
 The message of your commit must start with a lowercase.
-Finally, if your change introduce a BC-break, add an exclamation mark (`!`) before the colon.
+Finally, if your change introduce a BC-break, add a footer beginning with `BREAKING CHANGE:` and explaining precisely the BC-break.
 
 Once your PR is ready to review, please squash your commits so it contains only one commit.
+
+> To ensure your commits follow this convention, you can use [glint](https://github.com/brigand/glint).
 
 The commit messages are then used to generate the changelog using [`conventional-changelog`](https://github.com/conventional-changelog/conventional-changelog):
 
