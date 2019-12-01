@@ -29,7 +29,7 @@ setup(
     version=VERSION,
     author='Jérôme Deuchnord',
     author_email='jerome@deuchnord.fr',
-    url='https://kosmorro.astronewbie.space',
+    url='http://kosmorro.astronewbie.space',
     license='AGPL-3.0',
     description='A program that computes the ephemerides.',
     long_description=README,
@@ -41,6 +41,7 @@ setup(
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Operating System :: POSIX :: Linux',
+        'Operating System :: MacOS :: MacOS X',
         'Environment :: Console',
         'Topic :: Scientific/Engineering :: Astronomy'
     ],
