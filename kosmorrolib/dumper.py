@@ -95,7 +95,7 @@ class TextDumper(Dumper):
 
             data.append([name, planet_rise, planet_culmination, planet_set])
 
-        return tabulate(data, headers=['Planet', 'Rise time', 'Culmination time', 'Set time'], tablefmt='simple',
+        return tabulate(data, headers=['Object', 'Rise time', 'Culmination time', 'Set time'], tablefmt='simple',
                         stralign='center', colalign=('left',))
 
     @staticmethod
