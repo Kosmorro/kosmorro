@@ -1,3 +1,31 @@
+# [v0.3.0](https://github.com/Deuchnord/kosmorro/compare/v0.2.3...v0.3.0) (2019-12-01)
+
+
+### Bug Fixes
+
+* **position:** remove useless altitude argument ([d079fc7](https://github.com/Deuchnord/kosmorro/commit/d079fc7b201c7f5855c05acc80955e3b16c4ef6d))
+* **terminology:** use the "Object" term ([e21f632](https://github.com/Deuchnord/kosmorro/commit/e21f6327f4dc7e5a9d46ccd6ca493207064745f8))
+
+
+### Features
+
+* **moon-phase:** compute more accurate Moon phase ([6856d45](https://github.com/Deuchnord/kosmorro/commit/6856d456439215c7a63432e76318e231fc17870d))
+
+
+### Performance Improvements
+
+* **position:** enhance the position performing ([61536da](https://github.com/Deuchnord/kosmorro/commit/61536da9df4e742e9f7046fb177ecd09fb711b38))
+
+
+### BREAKING CHANGES
+
+* **position:** invoking kosmorro command with the --altitude argument
+will now fail with an "unrecognized arguments" error.
+* **moon-phase:** JSON format now returns the moon phase as an object
+instead of a string
+
+
+
 # [v0.2.3](https://github.com/Deuchnord/kosmorro/compare/v0.2.2...v0.2.3) (2019-11-24)
 
 
