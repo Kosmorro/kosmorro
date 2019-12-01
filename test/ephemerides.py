@@ -1,7 +1,7 @@
 import unittest
 from kosmorrolib.ephemerides import EphemeridesComputer
 from kosmorrolib.core import get_skf_objects
-from kosmorrolib.data import Star, Position
+from kosmorrolib.data import Star, Position, MoonPhase
 from datetime import date
 
 
@@ -80,6 +80,27 @@ class EphemeridesComputerTestCase(unittest.TestCase):
         self.assertEqual('WANING_CRESCENT', phase.identifier)
         self.assertIsNone(phase.time)
         self.assertRegexpMatches(phase.next_phase_date.utc_iso(), '^2019-11-26T')
+
+    def test_moon_phase_prediction(self):
+        phase = MoonPhase('NEW_MOON', None, None)
+        self.assertEqual('First Quarter', phase.get_next_phase())
+        phase = MoonPhase('WAXING_CRESCENT', None, None)
+        self.assertEqual('First Quarter', phase.get_next_phase())
+
+        phase = MoonPhase('FIRST_QUARTER', None, None)
+        self.assertEqual('Full Moon', phase.get_next_phase())
+        phase = MoonPhase('WAXING_GIBBOUS', None, None)
+        self.assertEqual('Full Moon', phase.get_next_phase())
+
+        phase = MoonPhase('FULL_MOON', None, None)
+        self.assertEqual('Last Quarter', phase.get_next_phase())
+        phase = MoonPhase('WANING_GIBBOUS', None, None)
+        self.assertEqual('Last Quarter', phase.get_next_phase())
+
+        phase = MoonPhase('LAST_QUARTER', None, None)
+        self.assertEqual('New Moon', phase.get_next_phase())
+        phase = MoonPhase('WANING_CRESCENT', None, None)
+        self.assertEqual('New Moon', phase.get_next_phase())
 
 
 if __name__ == '__main__':

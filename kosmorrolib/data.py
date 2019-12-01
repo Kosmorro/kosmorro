@@ -48,11 +48,11 @@ class MoonPhase:
         return MOON_PHASES[self.identifier]
 
     def get_next_phase(self):
-        if self.identifier == 'NEW_MOON':
+        if self.identifier == 'NEW_MOON' or self.identifier == 'WAXING_CRESCENT':
             next_identifier = 'FIRST_QUARTER'
-        elif self.identifier == 'FIRST_QUARTER':
+        elif self.identifier == 'FIRST_QUARTER' or self.identifier == 'WAXING_GIBBOUS':
             next_identifier = 'FULL_MOON'
-        elif self.identifier == 'FULL_MOON':
+        elif self.identifier == 'FULL_MOON' or self.identifier == 'WANING_GIBBOUS':
             next_identifier = 'LAST_QUARTER'
         else:
             next_identifier = 'NEW_MOON'
