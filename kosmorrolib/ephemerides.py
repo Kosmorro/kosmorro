@@ -17,11 +17,13 @@
 #    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import datetime
+
 from skyfield import almanac
 from skyfield.timelib import Time
+from skyfield.constants import tau
 
-from .data import Object, Position, AsterEphemerides, skyfield_to_moon_phase
-from .core import get_skf_objects, get_timescale, ASTERS, MONTHS
+from .data import Object, Position, AsterEphemerides, MoonPhase
+from .core import get_skf_objects, get_timescale, get_iau2000b, ASTERS, MONTHS, skyfield_to_moon_phase
 
 RISEN_ANGLE = -0.8333
 
@@ -42,13 +44,27 @@ class EphemeridesComputer:
         return {'rise': sunrise, 'set': sunset}
 
     @staticmethod
-    def get_moon(year, month, day) -> str:
+    def get_moon_phase(year, month, day) -> MoonPhase:
+        earth = get_skf_objects()['earth']
+        moon = get_skf_objects()['moon']
+        sun = get_skf_objects()['sun']
+
+        def moon_phase_at(time: Time):
+            time._nutation_angles = get_iau2000b(time)
+            current_earth = earth.at(time)
+            _, mlon, _ = current_earth.observe(moon).apparent().ecliptic_latlon('date')
+            _, slon, _ = current_earth.observe(sun).apparent().ecliptic_latlon('date')
+            return (((mlon.radians - slon.radians) // (tau / 8)) % 8).astype(int)
+
+        moon_phase_at.rough_period = 7.0  # one lunar phase per week
+
+        today = get_timescale().utc(year, month, day)
         time1 = get_timescale().utc(year, month, day - 10)
-        time2 = get_timescale().utc(year, month, day)
+        time2 = get_timescale().utc(year, month, day + 10)
 
-        _, moon_phase = almanac.find_discrete(time1, time2, almanac.moon_phases(get_skf_objects()))
+        times, phase = almanac.find_discrete(time1, time2, moon_phase_at)
 
-        return skyfield_to_moon_phase(moon_phase[-1])
+        return skyfield_to_moon_phase(times, phase, today)
 
     @staticmethod
     def get_asters_ephemerides_for_aster(aster, date: datetime.date, position: Position) -> Object:
@@ -89,7 +105,7 @@ class EphemeridesComputer:
         return (year % 4 == 0 and year % 100 > 0) or (year % 400 == 0)
 
     def compute_ephemerides_for_day(self, year: int, month: int, day: int) -> dict:
-        return {'moon_phase': self.get_moon(year, month, day),
+        return {'moon_phase': self.get_moon_phase(year, month, day),
                 'details': [self.get_asters_ephemerides_for_aster(aster, datetime.date(year, month, day), self.position)
                             for aster in ASTERS]}
 

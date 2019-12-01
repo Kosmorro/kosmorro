@@ -17,6 +17,70 @@ class EphemeridesComputerTestCase(unittest.TestCase):
         self.assertEqual('2019-11-18T11:45:02Z', star.ephemerides.culmination_time.utc_iso())
         self.assertEqual('2019-11-18T17:48:39Z', star.ephemerides.set_time.utc_iso())
 
+    ###################################################################################################################
+    ###                                             MOON PHASE TESTS                                                ###
+    ###################################################################################################################
+
+    def test_moon_phase_new_moon(self):
+        phase = EphemeridesComputer.get_moon_phase(2019, 11, 25)
+        self.assertEqual('WANING_CRESCENT', phase.identifier)
+        self.assertIsNone(phase.time)
+        self.assertRegexpMatches(phase.next_phase_date.utc_iso(), '^2019-11-26T')
+
+        phase = EphemeridesComputer.get_moon_phase(2019, 11, 26)
+        self.assertEqual('NEW_MOON', phase.identifier)
+        self.assertRegexpMatches(phase.next_phase_date.utc_iso(), '^2019-12-04T')
+
+        phase = EphemeridesComputer.get_moon_phase(2019, 11, 27)
+        self.assertEqual('WAXING_CRESCENT', phase.identifier)
+        self.assertIsNone(phase.time)
+        self.assertRegexpMatches(phase.next_phase_date.utc_iso(), '^2019-12-04T')
+
+    def test_moon_phase_first_crescent(self):
+        phase = EphemeridesComputer.get_moon_phase(2019, 11, 3)
+        self.assertEqual('WAXING_CRESCENT', phase.identifier)
+        self.assertIsNone(phase.time)
+        self.assertRegexpMatches(phase.next_phase_date.utc_iso(), '^2019-11-04T')
+
+        phase = EphemeridesComputer.get_moon_phase(2019, 11, 4)
+        self.assertEqual('FIRST_QUARTER', phase.identifier)
+        self.assertRegexpMatches(phase.next_phase_date.utc_iso(), '^2019-11-12T')
+
+        phase = EphemeridesComputer.get_moon_phase(2019, 11, 5)
+        self.assertEqual('WAXING_GIBBOUS', phase.identifier)
+        self.assertIsNone(phase.time)
+        self.assertRegexpMatches(phase.next_phase_date.utc_iso(), '^2019-11-12T')
+
+    def test_moon_phase_full_moon(self):
+        phase = EphemeridesComputer.get_moon_phase(2019, 11, 11)
+        self.assertEqual('WAXING_GIBBOUS', phase.identifier)
+        self.assertIsNone(phase.time)
+        self.assertRegexpMatches(phase.next_phase_date.utc_iso(), '^2019-11-12T')
+
+        phase = EphemeridesComputer.get_moon_phase(2019, 11, 12)
+        self.assertEqual('FULL_MOON', phase.identifier)
+        self.assertRegexpMatches(phase.next_phase_date.utc_iso(), '^2019-11-19T')
+
+        phase = EphemeridesComputer.get_moon_phase(2019, 11, 13)
+        self.assertEqual('WANING_GIBBOUS', phase.identifier)
+        self.assertIsNone(phase.time)
+        self.assertRegexpMatches(phase.next_phase_date.utc_iso(), '^2019-11-19T')
+
+    def test_moon_phase_last_quarter(self):
+        phase = EphemeridesComputer.get_moon_phase(2019, 11, 18)
+        self.assertEqual('WANING_GIBBOUS', phase.identifier)
+        self.assertIsNone(phase.time)
+        self.assertRegexpMatches(phase.next_phase_date.utc_iso(), '^2019-11-19T')
+
+        phase = EphemeridesComputer.get_moon_phase(2019, 11, 19)
+        self.assertEqual('LAST_QUARTER', phase.identifier)
+        self.assertRegexpMatches(phase.next_phase_date.utc_iso(), '^2019-11-26T')
+
+        phase = EphemeridesComputer.get_moon_phase(2019, 11, 20)
+        self.assertEqual('WANING_CRESCENT', phase.identifier)
+        self.assertIsNone(phase.time)
+        self.assertRegexpMatches(phase.next_phase_date.utc_iso(), '^2019-11-26T')
+
 
 if __name__ == '__main__':
     unittest.main()

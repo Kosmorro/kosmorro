@@ -24,15 +24,40 @@ from skyfield.timelib import Time
 
 MOON_PHASES = {
     'NEW_MOON': 'New Moon',
+    'WAXING_CRESCENT': 'Waxing crescent',
     'FIRST_QUARTER': 'First Quarter',
+    'WAXING_GIBBOUS': 'Waxing gibbous',
     'FULL_MOON': 'Full Moon',
-    'LAST_QUARTER': 'Last Quarter'
+    'WANING_GIBBOUS': 'Waning gibbous',
+    'LAST_QUARTER': 'Last Quarter',
+    'WANING_CRESCENT': 'Waning crescent'
 }
 
 
-def skyfield_to_moon_phase(val: int) -> str:
-    phases = list(MOON_PHASES.keys())
-    return phases[val]
+class MoonPhase:
+    def __init__(self, identifier: str, time: Union[Time, None], next_phase_date: Union[Time, None]):
+        if identifier not in MOON_PHASES.keys():
+            raise ValueError('identifier parameter must be one of %s (got %s)' % (', '.join(MOON_PHASES.keys()),
+                                                                                  identifier))
+
+        self.identifier = identifier
+        self.time = time
+        self.next_phase_date = next_phase_date
+
+    def get_phase(self):
+        return MOON_PHASES[self.identifier]
+
+    def get_next_phase(self):
+        if self.identifier == 'NEW_MOON':
+            next_identifier = 'FIRST_QUARTER'
+        elif self.identifier == 'FIRST_QUARTER':
+            next_identifier = 'FULL_MOON'
+        elif self.identifier == 'FULL_MOON':
+            next_identifier = 'LAST_QUARTER'
+        else:
+            next_identifier = 'NEW_MOON'
+
+        return MOON_PHASES[next_identifier]
 
 
 class Position:
