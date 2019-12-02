@@ -33,6 +33,10 @@ MOON_PHASES = {
     'WANING_CRESCENT': 'Waning crescent'
 }
 
+EVENTS = {
+    'OPPOSITION': {'message': '%s is in opposition'}
+}
+
 
 class MoonPhase:
     def __init__(self, identifier: str, time: Union[Time, None], next_phase_date: Union[Time, None]):
@@ -131,3 +135,20 @@ class DwarfPlanet(Planet):
 class Satellite(Object):
     def get_type(self) -> str:
         return 'satellite'
+
+
+class Event:
+    def __init__(self, event_type: str, aster: [Object], start_time: Time, end_time: Union[Time, None] = None):
+        if event_type not in EVENTS.keys():
+            raise ValueError('event_type parameter must be one of the following: %s (got %s)' % (
+                ', '.join(EVENTS.keys()),
+                event_type)
+                             )
+
+        self.event_type = event_type
+        self.object = aster
+        self.start_time = start_time
+        self.end_time = end_time
+
+    def get_description(self) -> str:
+        return EVENTS[self.event_type]['message'] % self.object.name

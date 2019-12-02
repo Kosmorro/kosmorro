@@ -24,6 +24,7 @@ from kosmorrolib.version import VERSION
 from kosmorrolib import dumper
 from kosmorrolib import core
 from kosmorrolib.ephemerides import EphemeridesComputer, Position
+from kosmorrolib import events
 
 
 def main():
@@ -37,13 +38,17 @@ def main():
     month = args.month
     day = args.day
 
+    compute_date = date(year, month, day)
+
     if day is not None and month is None:
         month = date.today().month
 
     ephemeris = EphemeridesComputer(Position(args.latitude, args.longitude))
     ephemerides = ephemeris.compute_ephemerides(year, month, day)
 
-    dump = output_formats[args.format](ephemerides, date(year, month, day))
+    events_list = events.search_events(compute_date)
+
+    dump = output_formats[args.format](ephemerides, events_list, compute_date)
     print(dump.to_string())
 
     return 0

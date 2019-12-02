@@ -22,12 +22,13 @@ import json
 from tabulate import tabulate
 from skyfield.timelib import Time
 from numpy import int64
-from .data import Object, AsterEphemerides, MoonPhase
+from .data import Object, AsterEphemerides, MoonPhase, Event
 
 
 class Dumper(ABC):
-    def __init__(self, ephemeris: dict, date: datetime.date = datetime.date.today()):
+    def __init__(self, ephemeris: dict, events: [Event], date: datetime.date = datetime.date.today()):
         self.ephemeris = ephemeris
+        self.events = events
         self.date = date
 
     @abstractmethod
@@ -37,6 +38,7 @@ class Dumper(ABC):
 
 class JsonDumper(Dumper):
     def to_string(self):
+        self.ephemeris['events'] = self.events
         return json.dumps(self.ephemeris,
                           default=self._json_default,
                           indent=4)
@@ -60,16 +62,31 @@ class JsonDumper(Dumper):
             moon_phase['phase'] = moon_phase.pop('identifier')
             moon_phase['date'] = moon_phase.pop('time')
             return moon_phase
+        if isinstance(obj, Event):
+            event = obj.__dict__
+            event['object'] = event['object'].name
+            return event
 
         raise TypeError('Object of type "%s" could not be integrated in the JSON' % str(type(obj)))
 
 
 class TextDumper(Dumper):
     def to_string(self):
-        return '\n\n'.join(['Ephemerides of %s' % self.date.strftime('%A %B %d, %Y'),
+        text = 'Ephemerides of %s' % self.date.strftime('%A %B %d, %Y')
+        text = '\n\n'.join([text,
                             self.get_asters(self.ephemeris['details']),
-                            self.get_moon(self.ephemeris['moon_phase']),
-                            'Note: All the hours are given in UTC.'])
+                            self.get_moon(self.ephemeris['moon_phase'])
+                            ])
+
+        if len(self.events) > 0:
+            text = '\n\n'.join([text,
+                                'Expected events:',
+                                self.get_events(self.events)
+                                ])
+
+        text = '\n\n'.join([text, 'Note: All the hours are given in UTC.'])
+
+        return text
 
     @staticmethod
     def get_asters(asters: [Object]) -> str:
@@ -97,6 +114,15 @@ class TextDumper(Dumper):
 
         return tabulate(data, headers=['Object', 'Rise time', 'Culmination time', 'Set time'], tablefmt='simple',
                         stralign='center', colalign=('left',))
+
+    @staticmethod
+    def get_events(events: [Event]) -> str:
+        data = []
+
+        for event in events:
+            data.append([event.start_time.utc_strftime('%H:%M'), event.get_description()])
+
+        return tabulate(data, tablefmt='plain', stralign='left')
 
     @staticmethod
     def get_moon(moon_phase: MoonPhase) -> str:
