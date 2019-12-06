@@ -72,9 +72,14 @@ class JsonDumper(Dumper):
 
 class TextDumper(Dumper):
     def to_string(self):
-        text = 'Ephemerides of %s' % self.date.strftime('%A %B %d, %Y')
+        text = self.date.strftime('%A %B %d, %Y')
+
+        if len(self.ephemeris['details']) > 0:
+            text = '\n\n'.join([text,
+                                self.get_asters(self.ephemeris['details'])
+                                ])
+
         text = '\n\n'.join([text,
-                            self.get_asters(self.ephemeris['details']),
                             self.get_moon(self.ephemeris['moon_phase'])
                             ])
 

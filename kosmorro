@@ -43,7 +43,12 @@ def main():
     if day is not None and month is None:
         month = date.today().month
 
-    ephemeris = EphemeridesComputer(Position(args.latitude, args.longitude))
+    if args.latitude is None or args.longitude is None:
+        position = None
+    else:
+        position = Position(args.latitude, args.longitude)
+
+    ephemeris = EphemeridesComputer(position)
     ephemerides = ephemeris.compute_ephemerides(year, month, day)
 
     events_list = events.search_events(compute_date)
@@ -86,10 +91,11 @@ def clear_cache() -> bool:
 def get_args(output_formats: [str]):
     today = date.today()
 
-    parser = argparse.ArgumentParser(description='Compute the ephemerides for a given date, at a given position'
-                                                 ' on Earth.',
-                                     epilog='By default, the ephemerides will be computed for today (%s) for an'
-                                            ' observer positioned at coordinates (0,0).'
+    parser = argparse.ArgumentParser(description='Compute the ephemerides and the events for a given date,'
+                                                 ' at a given position on Earth.',
+                                     epilog='By default, only the events will be computed for today (%s).\n'
+                                            'To compute also the ephemerides, latitude and longitude arguments'
+                                            ' are needed.'
                                      % today.strftime('%a %b %d, %Y'))
 
     parser.add_argument('--version', '-v', dest='special_action', action='store_const', const=output_version,
@@ -98,9 +104,9 @@ def get_args(output_formats: [str]):
                         help='Delete all the files Kosmorro stored in the cache.')
     parser.add_argument('--format', '-f', type=str, default=output_formats[0], choices=output_formats,
                         help='The format under which the information have to be output')
-    parser.add_argument('--latitude', '-lat', type=float, default=0.,
+    parser.add_argument('--latitude', '-lat', type=float, default=None,
                         help="The observer's latitude on Earth")
-    parser.add_argument('--longitude', '-lon', type=float, default=0.,
+    parser.add_argument('--longitude', '-lon', type=float, default=None,
                         help="The observer's longitude on Earth")
     parser.add_argument('--day', '-d', type=int, default=today.day,
                         help='A number between 1 and 28, 29, 30 or 31 (depending on the month). The day you want to '
