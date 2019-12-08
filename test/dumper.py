@@ -43,7 +43,7 @@ class DumperTestCase(unittest.TestCase):
 
     def test_text_dumper_without_events(self):
         ephemerides = self._get_data()
-        self.assertEqual('Ephemerides of Monday October 14, 2019\n\n'
+        self.assertEqual('Monday October 14, 2019\n\n'
                          'Object     Rise time    Culmination time    Set time\n'
                          '--------  -----------  ------------------  ----------\n'
                          'Mars           -               -               -\n\n'
@@ -54,7 +54,7 @@ class DumperTestCase(unittest.TestCase):
 
     def test_text_dumper_with_events(self):
         ephemerides = self._get_data()
-        self.assertEqual('Ephemerides of Monday October 14, 2019\n\n'
+        self.assertEqual('Monday October 14, 2019\n\n'
                          'Object     Rise time    Culmination time    Set time\n'
                          '--------  -----------  ------------------  ----------\n'
                          'Mars           -               -               -\n\n'
@@ -68,11 +68,24 @@ class DumperTestCase(unittest.TestCase):
                                                         get_timescale().utc(2018, 7, 27, 5, 12))
                                                   ], date=date(2019, 10, 14)).to_string())
 
+    def test_text_dumper_without_ephemerides_and_with_events(self):
+        ephemerides = self._get_data(False)
+        self.assertEqual('Monday October 14, 2019\n\n'
+                         'Moon phase: Full Moon\n'
+                         'Last Quarter on Mon Oct 21, 2019 00:00\n\n'
+                         'Expected events:\n\n'
+                         '05:12  Mars is in opposition\n\n'
+                         'Note: All the hours are given in UTC.',
+                         TextDumper(ephemerides, [Event('OPPOSITION',
+                                                        Planet('Mars', 'MARS'),
+                                                        get_timescale().utc(2018, 7, 27, 5, 12))
+                                                  ], date=date(2019, 10, 14)).to_string())
+
     @staticmethod
-    def _get_data():
+    def _get_data(has_ephemerides: bool = True):
         return {
             'moon_phase': MoonPhase('FULL_MOON', get_timescale().utc(2019, 10, 14), get_timescale().utc(2019, 10, 21)),
-            'details': [Planet('Mars', 'MARS', AsterEphemerides(None, None, None))]
+            'details': [Planet('Mars', 'MARS', AsterEphemerides(None, None, None))] if has_ephemerides else []
         }
 
 

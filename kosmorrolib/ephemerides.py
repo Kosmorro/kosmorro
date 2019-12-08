@@ -17,6 +17,7 @@
 #    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import datetime
+from typing import Union
 
 from skyfield import almanac
 from skyfield.timelib import Time
@@ -29,8 +30,9 @@ RISEN_ANGLE = -0.8333
 
 
 class EphemeridesComputer:
-    def __init__(self, position: Position):
-        position.observation_planet = get_skf_objects()['earth']
+    def __init__(self, position: Union[Position, None]):
+        if position is not None:
+            position.observation_planet = get_skf_objects()['earth']
         self.position = position
 
     def get_sun(self, start_time, end_time) -> dict:
@@ -107,7 +109,7 @@ class EphemeridesComputer:
     def compute_ephemerides_for_day(self, year: int, month: int, day: int) -> dict:
         return {'moon_phase': self.get_moon_phase(year, month, day),
                 'details': [self.get_asters_ephemerides_for_aster(aster, datetime.date(year, month, day), self.position)
-                            for aster in ASTERS]}
+                            for aster in ASTERS] if self.position is not None else []}
 
     def compute_ephemerides_for_month(self, year: int, month: int) -> [dict]:
         if month == 2:
