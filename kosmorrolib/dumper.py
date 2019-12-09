@@ -39,6 +39,7 @@ class Dumper(ABC):
 class JsonDumper(Dumper):
     def to_string(self):
         self.ephemeris['events'] = self.events
+        self.ephemeris['ephemerides'] = self.ephemeris.pop('details')
         return json.dumps(self.ephemeris,
                           default=self._json_default,
                           indent=4)
@@ -54,6 +55,8 @@ class JsonDumper(Dumper):
         if isinstance(obj, Object):
             obj = obj.__dict__
             obj.pop('skyfield_name')
+            obj['object'] = obj.pop('name')
+            obj['details'] = obj.pop('ephemerides')
             return obj
         if isinstance(obj, AsterEphemerides):
             return obj.__dict__
