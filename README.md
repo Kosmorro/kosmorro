@@ -54,8 +54,8 @@ For comfort, you may want to invoke `pipenv shell` first and then just `python k
 
 Using Kosmorro is as simple as invoking `kosmorro` in your terminal!
 
-By default, it will compute and display the ephemerides for the current day, for the cordinates `(0;0)`.
-To set your position on Earth, get your coordinates (with [OpenStreetMap](https://www.openstreetmap.org) for instance), and give them to Kosmorro by invoking it with the following parameters: `--latitude=X --longitude=Y` (replace `X` by the latitude and `Y` by the longitude).
+By default, it will give you the current Moon phase and, if any, the events that will occur today.
+To get the rise, culmination and set of the objects of the Solar system, you will need to give it your position on Earth: get your current coordinates (with [OpenStreetMap](https://www.openstreetmap.org) for instance), and give them to Kosmorro by invoking it with the following parameters: `--latitude=X --longitude=Y` (replace `X` by the latitude and `Y` by the longitude).
 
 Kosmorro has a lot of available options. To get a list of them, run `kosmorro --help`.
 
