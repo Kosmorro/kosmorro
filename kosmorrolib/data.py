@@ -34,7 +34,8 @@ MOON_PHASES = {
 }
 
 EVENTS = {
-    'OPPOSITION': {'message': '%s is in opposition'}
+    'OPPOSITION': {'message': '%s is in opposition'},
+    'CONJUNCTION': {'message': '%s and %s are in conjunction'}
 }
 
 
@@ -138,7 +139,7 @@ class Satellite(Object):
 
 
 class Event:
-    def __init__(self, event_type: str, aster: [Object], start_time: Time, end_time: Union[Time, None] = None):
+    def __init__(self, event_type: str, objects: [Object], start_time: Time, end_time: Union[Time, None] = None):
         if event_type not in EVENTS.keys():
             raise ValueError('event_type parameter must be one of the following: %s (got %s)' % (
                 ', '.join(EVENTS.keys()),
@@ -146,9 +147,15 @@ class Event:
                              )
 
         self.event_type = event_type
-        self.object = aster
+        self.objects = objects
         self.start_time = start_time
         self.end_time = end_time
 
     def get_description(self) -> str:
-        return EVENTS[self.event_type]['message'] % self.object.name
+        return EVENTS[self.event_type]['message'] % self._get_objects_name()
+
+    def _get_objects_name(self):
+        if len(self.objects) == 1:
+            return self.objects[0].name
+
+        return tuple(object.name for object in self.objects)

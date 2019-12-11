@@ -21,7 +21,9 @@ class DumperTestCase(unittest.TestCase):
                          '    "events": [\n'
                          '        {\n'
                          '            "event_type": "OPPOSITION",\n'
-                         '            "object": "Mars",\n'
+                         '            "objects": [\n'
+                         '                "Mars"\n'
+                         '            ],\n'
                          '            "start_time": "2018-07-27T05:12:00Z",\n'
                          '            "end_time": null\n'
                          '        }\n'
@@ -37,7 +39,7 @@ class DumperTestCase(unittest.TestCase):
                          '        }\n'
                          '    ]\n'
                          '}', JsonDumper(data,
-                                         [Event('OPPOSITION', Planet('Mars', 'MARS'),
+                                         [Event('OPPOSITION', [Planet('Mars', 'MARS')],
                                                 get_timescale().utc(2018, 7, 27, 5, 12))]
                                          ).to_string())
 
@@ -64,7 +66,7 @@ class DumperTestCase(unittest.TestCase):
                          '05:12  Mars is in opposition\n\n'
                          'Note: All the hours are given in UTC.',
                          TextDumper(ephemerides, [Event('OPPOSITION',
-                                                        Planet('Mars', 'MARS'),
+                                                        [Planet('Mars', 'MARS')],
                                                         get_timescale().utc(2018, 7, 27, 5, 12))
                                                   ], date=date(2019, 10, 14)).to_string())
 
@@ -77,7 +79,7 @@ class DumperTestCase(unittest.TestCase):
                          '05:12  Mars is in opposition\n\n'
                          'Note: All the hours are given in UTC.',
                          TextDumper(ephemerides, [Event('OPPOSITION',
-                                                        Planet('Mars', 'MARS'),
+                                                        [Planet('Mars', 'MARS')],
                                                         get_timescale().utc(2018, 7, 27, 5, 12))
                                                   ], date=date(2019, 10, 14)).to_string())
 
