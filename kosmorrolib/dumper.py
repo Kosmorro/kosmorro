@@ -67,7 +67,7 @@ class JsonDumper(Dumper):
             return moon_phase
         if isinstance(obj, Event):
             event = obj.__dict__
-            event['object'] = event['object'].name
+            event['objects'] = [object.name for object in event['objects']]
             return event
 
         raise TypeError('Object of type "%s" could not be integrated in the JSON' % str(type(obj)))
