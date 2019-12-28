@@ -1,3 +1,23 @@
+# [v0.4.0](https://github.com/Deuchnord/kosmorro/compare/v0.3.1...v0.4.0) (2019-12-28)
+
+
+### Features
+
+* **events:** add support for conjunctions ([8d60a2a](https://github.com/Deuchnord/kosmorro/commit/8d60a2ad9925a9bd10f070e5df8d5f18cdd0f81b))
+* rename fields in the JSON response for more coherence ([4029ba9](https://github.com/Deuchnord/kosmorro/commit/4029ba9ec208214d24070f99be06bc88d7923210))
+* **ephemerides:** compute ephemerides if the position is set only ([467c822](https://github.com/Deuchnord/kosmorro/commit/467c8227df0460785a2ade87de6a07f4c0ba0fc9))
+* **events:** add support for opposition events ([fa2da9e](https://github.com/Deuchnord/kosmorro/commit/fa2da9e4a9468b4f8ad0fa2b2184fa93c5513fbe))
+
+
+### BREAKING CHANGES
+
+* the fields "details" and "ephemerides" have been switched.
+* **ephemerides:** invoking kosmorro command without --latitude and
+--longitude arguments will now only output the Moon phase and,
+eventually, the events for the given date (or today if date not given).
+
+
+
 # [v0.3.1](https://github.com/Deuchnord/kosmorro/compare/v0.3.0...v0.3.1) (2019-12-01)
 
 
