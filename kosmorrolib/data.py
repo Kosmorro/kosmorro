@@ -22,20 +22,22 @@ from typing import Union
 from skyfield.api import Topos
 from skyfield.timelib import Time
 
+from .i18n import _
+
 MOON_PHASES = {
-    'NEW_MOON': 'New Moon',
-    'WAXING_CRESCENT': 'Waxing crescent',
-    'FIRST_QUARTER': 'First Quarter',
-    'WAXING_GIBBOUS': 'Waxing gibbous',
-    'FULL_MOON': 'Full Moon',
-    'WANING_GIBBOUS': 'Waning gibbous',
-    'LAST_QUARTER': 'Last Quarter',
-    'WANING_CRESCENT': 'Waning crescent'
+    'NEW_MOON': _('New Moon'),
+    'WAXING_CRESCENT': _('Waxing crescent'),
+    'FIRST_QUARTER': _('First Quarter'),
+    'WAXING_GIBBOUS': _('Waxing gibbous'),
+    'FULL_MOON': _('Full Moon'),
+    'WANING_GIBBOUS': _('Waning gibbous'),
+    'LAST_QUARTER': _('Last Quarter'),
+    'WANING_CRESCENT': _('Waning crescent')
 }
 
 EVENTS = {
-    'OPPOSITION': {'message': '%s is in opposition'},
-    'CONJUNCTION': {'message': '%s and %s are in conjunction'}
+    'OPPOSITION': {'message': _('%s is in opposition')},
+    'CONJUNCTION': {'message': _('%s and %s are in conjunction')}
 }
 
 

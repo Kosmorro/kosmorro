@@ -1,0 +1,205 @@
+# Translations template for kosmorro.
+# Copyright (C) 2020 ORGANIZATION
+# This file is distributed under the same license as the kosmorro project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: kosmorro 0.4.0\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2020-01-02 14:05+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.8.0\n"
+
+#: kosmorrolib/core.py:34
+msgid "Sun"
+msgstr ""
+
+#: kosmorrolib/core.py:35
+msgid "Moon"
+msgstr ""
+
+#: kosmorrolib/core.py:36
+msgid "Mercury"
+msgstr ""
+
+#: kosmorrolib/core.py:37
+msgid "Venus"
+msgstr ""
+
+#: kosmorrolib/core.py:38
+msgid "Mars"
+msgstr ""
+
+#: kosmorrolib/core.py:39
+msgid "Jupiter"
+msgstr ""
+
+#: kosmorrolib/core.py:40
+msgid "Saturn"
+msgstr ""
+
+#: kosmorrolib/core.py:41
+msgid "Uranus"
+msgstr ""
+
+#: kosmorrolib/core.py:42
+msgid "Neptune"
+msgstr ""
+
+#: kosmorrolib/core.py:43
+msgid "Pluto"
+msgstr ""
+
+#: kosmorrolib/data.py:28
+msgid "New Moon"
+msgstr ""
+
+#: kosmorrolib/data.py:29
+msgid "Waxing crescent"
+msgstr ""
+
+#: kosmorrolib/data.py:30
+msgid "First Quarter"
+msgstr ""
+
+#: kosmorrolib/data.py:31
+msgid "Waxing gibbous"
+msgstr ""
+
+#: kosmorrolib/data.py:32
+msgid "Full Moon"
+msgstr ""
+
+#: kosmorrolib/data.py:33
+msgid "Waning gibbous"
+msgstr ""
+
+#: kosmorrolib/data.py:34
+msgid "Last Quarter"
+msgstr ""
+
+#: kosmorrolib/data.py:35
+msgid "Waning crescent"
+msgstr ""
+
+#: kosmorrolib/data.py:39
+#, python-format
+msgid "%s is in opposition"
+msgstr ""
+
+#: kosmorrolib/data.py:40
+#, python-format
+msgid "%s and %s are in conjunction"
+msgstr ""
+
+#: kosmorrolib/dumper.py:28
+msgid "{day_of_week} {month} {day_number}, {year}"
+msgstr ""
+
+#: kosmorrolib/dumper.py:30
+msgid "{hours}:{minutes}"
+msgstr ""
+
+#: kosmorrolib/dumper.py:98
+msgid "Expected events:"
+msgstr ""
+
+#: kosmorrolib/dumper.py:102
+msgid "Note: All the hours are given in UTC."
+msgstr ""
+
+#: kosmorrolib/dumper.py:130
+msgid "Object"
+msgstr ""
+
+#: kosmorrolib/dumper.py:130
+msgid "Rise time"
+msgstr ""
+
+#: kosmorrolib/dumper.py:130
+msgid "Culmination time"
+msgstr ""
+
+#: kosmorrolib/dumper.py:130
+msgid "Set time"
+msgstr ""
+
+#: kosmorrolib/dumper.py:144
+msgid "Moon phase: {current_moon_phase}"
+msgstr ""
+
+#: kosmorrolib/dumper.py:147
+msgid "{next_moon_phase} on {next_moon_phase_date} at {next_moon_phase_time}"
+msgstr ""
+
+#: kosmorrolib/main.py:76
+msgid "Running on Python {python_version}"
+msgstr ""
+
+#: kosmorrolib/main.py:82
+msgid "Do you really want to clear Kosmorro's cache? [yN] "
+msgstr ""
+
+#: kosmorrolib/main.py:89
+msgid "Answer did not match expected options, cache not cleared."
+msgstr ""
+
+#: kosmorrolib/main.py:98
+msgid ""
+"Compute the ephemerides and the events for a given date, at a given "
+"position on Earth."
+msgstr ""
+
+#: kosmorrolib/main.py:100
+msgid ""
+"By default, only the events will be computed for today ({date}).\n"
+"To compute also the ephemerides, latitude and longitude arguments are "
+"needed."
+msgstr ""
+
+#: kosmorrolib/main.py:105
+msgid "Show the program version"
+msgstr ""
+
+#: kosmorrolib/main.py:107
+msgid "Delete all the files Kosmorro stored in the cache."
+msgstr ""
+
+#: kosmorrolib/main.py:109
+msgid "The format under which the information have to be output"
+msgstr ""
+
+#: kosmorrolib/main.py:111
+msgid "The observer's latitude on Earth"
+msgstr ""
+
+#: kosmorrolib/main.py:113
+msgid "The observer's longitude on Earth"
+msgstr ""
+
+#: kosmorrolib/main.py:115
+msgid ""
+"A number between 1 and 28, 29, 30 or 31 (depending on the month). The day"
+" you want to  compute the ephemerides for. Defaults to {default_day} (the"
+" current day)."
+msgstr ""
+
+#: kosmorrolib/main.py:119
+msgid ""
+"A number between 1 and 12. The month you want to compute the ephemerides "
+"for. Defaults to {default_month} (the current month)."
+msgstr ""
+
+#: kosmorrolib/main.py:122
+msgid ""
+"The year you want to compute the ephemerides for. Defaults to "
+"{default_year} (the current year)."
+msgstr ""
+

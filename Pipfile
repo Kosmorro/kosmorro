@@ -7,6 +7,7 @@ verify_ssl = true
 pylintfileheader = "*"
 pylint = "*"
 codecov = "*"
+babel = "*"
 
 [packages]
 skyfield = ">=1.13.0,<2.0.0"

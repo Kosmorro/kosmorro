@@ -25,21 +25,22 @@ from skyfield.timelib import Time
 from skyfield.nutationlib import iau2000b
 
 from .data import Star, Planet, Satellite, MOON_PHASES, MoonPhase
+from .i18n import _
 
 CACHE_FOLDER = str(Path.home()) + '/.kosmorro-cache'
 
 MONTHS = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
 
-ASTERS = [Star('Sun', 'SUN'),
-          Satellite('Moon', 'MOON'),
-          Planet('Mercury', 'MERCURY'),
-          Planet('Venus', 'VENUS'),
-          Planet('Mars', 'MARS'),
-          Planet('Jupiter', 'JUPITER BARYCENTER'),
-          Planet('Saturn', 'SATURN BARYCENTER'),
-          Planet('Uranus', 'URANUS BARYCENTER'),
-          Planet('Neptune', 'NEPTUNE BARYCENTER'),
-          Planet('Pluto', 'PLUTO BARYCENTER')]
+ASTERS = [Star(_('Sun'), 'SUN'),
+          Satellite(_('Moon'), 'MOON'),
+          Planet(_('Mercury'), 'MERCURY'),
+          Planet(_('Venus'), 'VENUS'),
+          Planet(_('Mars'), 'MARS'),
+          Planet(_('Jupiter'), 'JUPITER BARYCENTER'),
+          Planet(_('Saturn'), 'SATURN BARYCENTER'),
+          Planet(_('Uranus'), 'URANUS BARYCENTER'),
+          Planet(_('Neptune'), 'NEPTUNE BARYCENTER'),
+          Planet(_('Pluto'), 'PLUTO BARYCENTER')]
 
 
 def get_loader():
