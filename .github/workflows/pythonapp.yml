@@ -26,4 +26,17 @@ jobs:
     - name: Lint
       run: |
         pipenv run pylint kosmorro *.py kosmorrolib/*.py
+    - name: Check i18n
+      run: |
+        pipenv run python setup.py extract_messages --output-file=/tmp/kosmorro-messages.pot > /dev/null
+        n=$(diff -y --suppress-common-lines kosmorrolib/locales/messages.pot /tmp/kosmorro-messages.pot | grep -v -E '^"POT-Creation-Date: ' | wc -l)
 
+        if [ "$n" -ne "0" ]; then
+          echo "❌ The messages file is not up-to-date!"
+          echo "   Please run the following command to fix this:"
+          echo
+          echo "   pipenv run python setup.py extract_messages --output-file=kosmorrolib/locales/messages.pot"
+          exit 1
+        fi
+
+        echo "✔ Messages file up-to-date."

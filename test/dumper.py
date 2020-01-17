@@ -50,7 +50,7 @@ class DumperTestCase(unittest.TestCase):
                          '--------  -----------  ------------------  ----------\n'
                          'Mars           -               -               -\n\n'
                          'Moon phase: Full Moon\n'
-                         'Last Quarter on Mon Oct 21, 2019 00:00\n\n'
+                         'Last Quarter on Monday October 21, 2019 at 00:00\n\n'
                          'Note: All the hours are given in UTC.',
                          TextDumper(ephemerides, [], date=date(2019, 10, 14)).to_string())
 
@@ -61,7 +61,7 @@ class DumperTestCase(unittest.TestCase):
                          '--------  -----------  ------------------  ----------\n'
                          'Mars           -               -               -\n\n'
                          'Moon phase: Full Moon\n'
-                         'Last Quarter on Mon Oct 21, 2019 00:00\n\n'
+                         'Last Quarter on Monday October 21, 2019 at 00:00\n\n'
                          'Expected events:\n\n'
                          '05:12  Mars is in opposition\n\n'
                          'Note: All the hours are given in UTC.',
@@ -74,7 +74,7 @@ class DumperTestCase(unittest.TestCase):
         ephemerides = self._get_data(False)
         self.assertEqual('Monday October 14, 2019\n\n'
                          'Moon phase: Full Moon\n'
-                         'Last Quarter on Mon Oct 21, 2019 00:00\n\n'
+                         'Last Quarter on Monday October 21, 2019 at 00:00\n\n'
                          'Expected events:\n\n'
                          '05:12  Mars is in opposition\n\n'
                          'Note: All the hours are given in UTC.',

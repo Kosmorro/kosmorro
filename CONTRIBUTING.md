@@ -15,12 +15,43 @@ If it is not, [create a bug report](https://github.com/Deuchnord/kosmorro/issues
 Have an idea of feature you think would be nice on Kosmorro? Time to suggest it!
 First, please check someone didn't suggest your next revolution in the _Issues_ tab. If it's not, [create a feature request](https://github.com/Deuchnord/kosmorro/issues/new/choose) and fill in the templace that offers to you.
 
+## Translating
+
+If you speak another language than English, another nice way to enhance Kosmorro is to translate its messages. The recommended way to begin translating Kosmorro is to [join the POEditor team](https://poeditor.com/join/project/GXuhLpdaoh).
+
 ## Writing code
 
 First of all, if you are fixing an opened issue, check that nobody is already working on it — if someone seems to be but their Pull Request seems stuck, please ask them first if you can continue the development. If you retake the code they produced, **don't change the author of the commits**.
 
 Before writing the code, first create a fork of the repository and clone it. You may also want to add the original repository (`Deuchnord/kosmorro`), so you can update your fork with the last upstream commits.
 Then create a new branch and start coding. Finally, commit and push, then open a PR on this project. If your project is not complete, feel free to open it as Draft (if you forgot to activate the Draft status, just edit the first comment to say it), then mark it as ready for review when you're done.
+
+### Dealing with the translations
+
+The messages file contains all the messages Kosmorro can display, in order to make them translatable. When you change code, you may change also the messages displayed by the software.
+
+When you add a new string that will be displayed to the end user, please pass it to the `_()` function made available in the `kosmorrolib.i18n` package, for instance:
+
+```python
+# Dont:
+print('Note: All the hours are given in UTC.')
+
+# Do:
+from kosmorrolib.i18n import _
+print(_('Note: All the hours are given in UTC.'))
+```
+
+This will allow Python's internationalization tool to translate the string in any available language.
+
+Once you have done your work, please remember to tell [Babel](http://babel.pocoo.org) to extract the new strings:
+
+```console
+$ pipenv run python setup.py extract_messages --output-file=kosmorrolib/locales/messages.pot
+```
+
+> If the `setup.py` script tells you that the `extract_messages` command does not exist, then run `kosmorro sync` to ensure all the dev dependencies are installed and try again.
+
+Note that if you forget to update the messages file, the CI will fail.
 
 ### Matching the coding standards
 

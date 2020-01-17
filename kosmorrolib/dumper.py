@@ -23,6 +23,11 @@ from tabulate import tabulate
 from skyfield.timelib import Time
 from numpy import int64
 from .data import Object, AsterEphemerides, MoonPhase, Event
+from .i18n import _
+
+FULL_DATE_FORMAT = _('{day_of_week} {month} {day_number}, {year}').format(day_of_week='%A', month='%B',
+                                                                          day_number='%d', year='%Y')
+TIME_FORMAT = _('{hours}:{minutes}').format(hours='%H', minutes='%M')
 
 
 class Dumper(ABC):
@@ -75,7 +80,9 @@ class JsonDumper(Dumper):
 
 class TextDumper(Dumper):
     def to_string(self):
-        text = self.date.strftime('%A %B %d, %Y')
+        text = self.date.strftime(FULL_DATE_FORMAT)
+        # Always capitalize the first character
+        text = ''.join([text[0].upper(), text[1:]])
 
         if len(self.ephemeris['details']) > 0:
             text = '\n\n'.join([text,
@@ -88,11 +95,11 @@ class TextDumper(Dumper):
 
         if len(self.events) > 0:
             text = '\n\n'.join([text,
-                                'Expected events:',
+                                _('Expected events:'),
                                 self.get_events(self.events)
                                 ])
 
-        text = '\n\n'.join([text, 'Note: All the hours are given in UTC.'])
+        text = '\n\n'.join([text, _('Note: All the hours are given in UTC.')])
 
         return text
 
@@ -104,37 +111,43 @@ class TextDumper(Dumper):
             name = aster.name
 
             if aster.ephemerides.rise_time is not None:
-                planet_rise = aster.ephemerides.rise_time.utc_strftime('%H:%M')
+                planet_rise = aster.ephemerides.rise_time.utc_strftime(TIME_FORMAT)
             else:
                 planet_rise = '-'
 
             if aster.ephemerides.culmination_time is not None:
-                planet_culmination = aster.ephemerides.culmination_time.utc_strftime('%H:%M')
+                planet_culmination = aster.ephemerides.culmination_time.utc_strftime(TIME_FORMAT)
             else:
                 planet_culmination = '-'
 
             if aster.ephemerides.set_time is not None:
-                planet_set = aster.ephemerides.set_time.utc_strftime('%H:%M')
+                planet_set = aster.ephemerides.set_time.utc_strftime(TIME_FORMAT)
             else:
                 planet_set = '-'
 
             data.append([name, planet_rise, planet_culmination, planet_set])
 
-        return tabulate(data, headers=['Object', 'Rise time', 'Culmination time', 'Set time'], tablefmt='simple',
-                        stralign='center', colalign=('left',))
+        return tabulate(data, headers=[_('Object'), _('Rise time'), _('Culmination time'), _('Set time')],
+                        tablefmt='simple', stralign='center', colalign=('left',))
 
     @staticmethod
     def get_events(events: [Event]) -> str:
         data = []
 
         for event in events:
-            data.append([event.start_time.utc_strftime('%H:%M'), event.get_description()])
+            data.append([event.start_time.utc_strftime(TIME_FORMAT), event.get_description()])
 
         return tabulate(data, tablefmt='plain', stralign='left')
 
     @staticmethod
     def get_moon(moon_phase: MoonPhase) -> str:
-        return 'Moon phase: %s\n' \
-               '%s on %s' % (moon_phase.get_phase(),
-                             moon_phase.get_next_phase(),
-                             moon_phase.next_phase_date.utc_strftime('%a %b %-d, %Y %H:%M'))
+        current_moon_phase = _('Moon phase: {current_moon_phase}').format(
+            current_moon_phase=moon_phase.get_phase()
+        )
+        new_moon_phase = _('{next_moon_phase} on {next_moon_phase_date} at {next_moon_phase_time}').format(
+            next_moon_phase=moon_phase.get_next_phase(),
+            next_moon_phase_date=moon_phase.next_phase_date.utc_strftime(FULL_DATE_FORMAT),
+            next_moon_phase_time=moon_phase.next_phase_date.utc_strftime(TIME_FORMAT)
+        )
+
+        return '\n'.join([current_moon_phase, new_moon_phase])

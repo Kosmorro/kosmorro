@@ -6,3 +6,7 @@ kosmorro.egg-info
 coverage.xml
 node_modules/
 package-lock.json
+
+# Translation files are taken care on https://poeditor.com/join/project/GXuhLpdaoh
+*.mo
+*.po

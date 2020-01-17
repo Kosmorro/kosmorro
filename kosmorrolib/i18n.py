@@ -16,11 +16,15 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-import sys
-import locale
-from kosmorrolib.main import main
+import gettext
+import os
 
-locale.setlocale(locale.LC_ALL, '')
+_LOCALE_DIR = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'locales')
+_TRANSLATION = gettext.translation('messages', localedir=_LOCALE_DIR, fallback=True)
 
-if __name__ == '__main__':
-    sys.exit(main())
+_ = _TRANSLATION.gettext
+
+
+def ngettext(msgid1, msgid2, number):
+    # Not using ngettext = _TRANSLATION.ngettext because the linter will give an invalid-name error otherwise
+    return _TRANSLATION.ngettext(msgid1, msgid2, number)
