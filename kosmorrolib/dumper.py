@@ -22,6 +22,7 @@ import json
 from tabulate import tabulate
 from skyfield.timelib import Time
 from numpy import int64
+from termcolor import colored
 from .data import Object, AsterEphemerides, MoonPhase, Event
 from .i18n import _
 
@@ -31,10 +32,12 @@ TIME_FORMAT = _('{hours}:{minutes}').format(hours='%H', minutes='%M')
 
 
 class Dumper(ABC):
-    def __init__(self, ephemeris: dict, events: [Event], date: datetime.date = datetime.date.today()):
+    def __init__(self, ephemeris: dict, events: [Event], date: datetime.date = datetime.date.today(),
+                 with_colors: bool = True):
         self.ephemeris = ephemeris
         self.events = events
         self.date = date
+        self.with_colors = with_colors
 
     @abstractmethod
     def to_string(self):
@@ -80,35 +83,45 @@ class JsonDumper(Dumper):
 
 class TextDumper(Dumper):
     def to_string(self):
-        text = self.date.strftime(FULL_DATE_FORMAT)
-        # Always capitalize the first character
-        text = ''.join([text[0].upper(), text[1:]])
+        text = [self.style(self.get_date(), 'h1')]
 
         if len(self.ephemeris['details']) > 0:
-            text = '\n\n'.join([text,
-                                self.get_asters(self.ephemeris['details'])
-                                ])
+            text.append(self.get_asters(self.ephemeris['details']))
 
-        text = '\n\n'.join([text,
-                            self.get_moon(self.ephemeris['moon_phase'])
-                            ])
+        text.append(self.get_moon(self.ephemeris['moon_phase']))
 
         if len(self.events) > 0:
-            text = '\n\n'.join([text,
-                                _('Expected events:'),
-                                self.get_events(self.events)
-                                ])
+            text.append('\n'.join([self.style(_('Expected events:'), 'h2'),
+                                   self.get_events(self.events)]))
 
-        text = '\n\n'.join([text, _('Note: All the hours are given in UTC.')])
+        text.append(self.style(_('Note: All the hours are given in UTC.'), 'em'))
 
-        return text
+        return '\n\n'.join(text)
 
-    @staticmethod
-    def get_asters(asters: [Object]) -> str:
+    def style(self, text: str, tag: str) -> str:
+        if not self.with_colors:
+            return text
+
+        styles = {
+            'h1': lambda t: colored(t, 'yellow', attrs=['bold']),
+            'h2': lambda t: colored(t, 'magenta', attrs=['bold']),
+            'th': lambda t: colored(t, 'white', attrs=['bold']),
+            'strong': lambda t: colored(t, attrs=['bold']),
+            'em': lambda t: colored(t, attrs=['dark'])
+        }
+
+        return styles[tag](text)
+
+    def get_date(self) -> str:
+        date = self.date.strftime(FULL_DATE_FORMAT)
+
+        return ''.join([date[0].upper(), date[1:]])
+
+    def get_asters(self, asters: [Object]) -> str:
         data = []
 
         for aster in asters:
-            name = aster.name
+            name = self.style(aster.name, 'th')
 
             if aster.ephemerides.rise_time is not None:
                 planet_rise = aster.ephemerides.rise_time.utc_strftime(TIME_FORMAT)
@@ -127,23 +140,23 @@ class TextDumper(Dumper):
 
             data.append([name, planet_rise, planet_culmination, planet_set])
 
-        return tabulate(data, headers=[_('Object'), _('Rise time'), _('Culmination time'), _('Set time')],
+        return tabulate(data, headers=[self.style(_('Object'), 'th'),
+                                       self.style(_('Rise time'), 'th'),
+                                       self.style(_('Culmination time'), 'th'),
+                                       self.style(_('Set time'), 'th')],
                         tablefmt='simple', stralign='center', colalign=('left',))
 
-    @staticmethod
-    def get_events(events: [Event]) -> str:
+    def get_events(self, events: [Event]) -> str:
         data = []
 
         for event in events:
-            data.append([event.start_time.utc_strftime(TIME_FORMAT), event.get_description()])
+            data.append([self.style(event.start_time.utc_strftime(TIME_FORMAT), 'th'),
+                         event.get_description()])
 
         return tabulate(data, tablefmt='plain', stralign='left')
 
-    @staticmethod
-    def get_moon(moon_phase: MoonPhase) -> str:
-        current_moon_phase = _('Moon phase: {current_moon_phase}').format(
-            current_moon_phase=moon_phase.get_phase()
-        )
+    def get_moon(self, moon_phase: MoonPhase) -> str:
+        current_moon_phase = ' '.join([self.style(_('Moon phase:'), 'strong'), moon_phase.get_phase()])
         new_moon_phase = _('{next_moon_phase} on {next_moon_phase_date} at {next_moon_phase_time}').format(
             next_moon_phase=moon_phase.get_next_phase(),
             next_moon_phase_date=moon_phase.next_phase_date.utc_strftime(FULL_DATE_FORMAT),

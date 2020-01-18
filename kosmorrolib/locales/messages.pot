@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kosmorro 0.4.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-01-02 14:05+0100\n"
+"POT-Creation-Date: 2020-01-19 10:39+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -99,43 +99,43 @@ msgstr ""
 msgid "%s and %s are in conjunction"
 msgstr ""
 
-#: kosmorrolib/dumper.py:28
+#: kosmorrolib/dumper.py:29
 msgid "{day_of_week} {month} {day_number}, {year}"
 msgstr ""
 
-#: kosmorrolib/dumper.py:30
+#: kosmorrolib/dumper.py:31
 msgid "{hours}:{minutes}"
 msgstr ""
 
-#: kosmorrolib/dumper.py:98
+#: kosmorrolib/dumper.py:94
 msgid "Expected events:"
 msgstr ""
 
-#: kosmorrolib/dumper.py:102
+#: kosmorrolib/dumper.py:97
 msgid "Note: All the hours are given in UTC."
 msgstr ""
 
-#: kosmorrolib/dumper.py:130
+#: kosmorrolib/dumper.py:143
 msgid "Object"
 msgstr ""
 
-#: kosmorrolib/dumper.py:130
+#: kosmorrolib/dumper.py:144
 msgid "Rise time"
 msgstr ""
 
-#: kosmorrolib/dumper.py:130
+#: kosmorrolib/dumper.py:145
 msgid "Culmination time"
 msgstr ""
 
-#: kosmorrolib/dumper.py:130
+#: kosmorrolib/dumper.py:146
 msgid "Set time"
 msgstr ""
 
-#: kosmorrolib/dumper.py:144
-msgid "Moon phase: {current_moon_phase}"
+#: kosmorrolib/dumper.py:159
+msgid "Moon phase:"
 msgstr ""
 
-#: kosmorrolib/dumper.py:147
+#: kosmorrolib/dumper.py:160
 msgid "{next_moon_phase} on {next_moon_phase_date} at {next_moon_phase_time}"
 msgstr ""
 
@@ -201,5 +201,9 @@ msgstr ""
 msgid ""
 "The year you want to compute the ephemerides for. Defaults to "
 "{default_year} (the current year)."
+msgstr ""
+
+#: kosmorrolib/main.py:125
+msgid "Disable the colors in the console."
 msgstr ""
 
