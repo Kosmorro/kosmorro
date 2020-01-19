@@ -18,9 +18,6 @@ jobs:
         pipenv sync -d
     - name: Unit tests
       run: |
-        pipenv run python -m unittest -v test
-    - name: Code coverage
-      run: |
         pipenv run python -m coverage run -m unittest test
         pipenv run codecov --token=${{ secrets.CODECOV_TOKEN }}
     - name: Lint
