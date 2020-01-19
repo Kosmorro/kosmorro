@@ -57,7 +57,7 @@ def main():
 
     events_list = events.search_events(compute_date)
 
-    dump = output_formats[args.format](ephemerides, events_list, compute_date)
+    dump = output_formats[args.format](ephemerides, events_list, compute_date, args.colors)
     print(dump.to_string())
 
     return 0
@@ -121,5 +121,7 @@ def get_args(output_formats: [str]):
     parser.add_argument('--year', '-y', type=int, default=today.year,
                         help=_('The year you want to compute the ephemerides for.'
                                ' Defaults to {default_year} (the current year).').format(default_year=today.year))
+    parser.add_argument('--no-colors', dest='colors', action='store_false',
+                        help=_('Disable the colors in the console.'))
 
     return parser.parse_args()
