@@ -34,3 +34,51 @@ jobs:
         python .scripts/build/getlangs.py
         python setup.py compile_catalog sdist bdist_wheel
         twine upload dist/*
+
+  aur:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup AUR connection
+        env:
+          AUR_PRIVATE_KEY: ${{ secrets.AUR_PRIVATE_KEY }}
+        run: |
+          echo "$AUR_PRIVATE_KEY" > ~/.ssh/aur
+          cat .github/assets/release/aur/.ssh/config >> ~/.ssh/config
+          git config --global user.name "AUR Releaser on GitHub Action"
+          git config --global user.email "jerome@deuchnord.fr"
+
+      - name: Clone AUR package
+        run: |
+          git clone ssh://aur@aur.archlinux.org/kosmorro.git /tmp/aur-kosmorro
+
+      - name: Prepare locales archive
+        env:
+            POEDITOR_API_ACCESS: ${{ POEDITOR_API_ACCESS }}
+            POEDITOR_PROJECT_ID: 306433
+        run: |
+            POEDITOR_API_ACCESS=${POEDITOR_API_ACCESS} POEDITOR_PROJECT_ID=${POEDITOR_PROJECT_ID} python .scripts/build/getlangs.py
+            tar czf locales.tar.xz
+            cp locales.tar.xz /tmp/aur-kosmorro/locales.tar.xz
+
+      - name: Update version
+        run: |
+          hashProgram=$(curl https://codeload.github.com/Deuchnord/kosmorro/tar.gz/$GITHUB_REF | sha256sum)
+          hashLocales=$(sha256sum locales.tar.xz)
+
+          cp .github/assets/release/aur/PKGBUILD.template.sh /tmp/aur-kosmorro/PKGBUILD
+          cp .github/assets/release/aur/SRCINFO.template.sh /tmp/aur-kosmorro/.SRCINFO
+
+          sed "s/___VERSION___/$GITHUB_REF" /tmp/aur-kosmorro/PKGBUILD
+          sed "s/___HASH_PROGRAM___/$hashProgram" /tmp/aur-kosmorro/PKGBUILD
+          sed "s/___HASH_LOCALES___/$hashLocales" /tmp/aur-kosmorro/PKGBUILD
+
+          sed "s/___VERSION___/$GITHUB_REF" /tmp/aur-kosmorro/.SRCINFO
+          sed "s/___HASH_PROGRAM___/$hashProgram" /tmp/aur-kosmorro/.SRCINFO
+          sed "s/___HASH_LOCALES___/$hashLocales" /tmp/aur-kosmorro/.SRCINFO
+
+      - name: Push to AUR
+        run: |
+          cd /tmp/aur-kosmorro
+          git add PKGBUILD .SRCINFO locales.tar.xz
+          git commit -m "Release version $GITHUB_REF"
+          git push origin master
