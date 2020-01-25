@@ -25,5 +25,5 @@ jobs:
         POEDITOR_PROJECT_ID: 306433
       run: |
         python .scripts/build/getlangs.py
-        python setup.py sdist bdist_wheel
+        python setup.py compile_catalog sdist bdist_wheel
         twine upload dist/*
