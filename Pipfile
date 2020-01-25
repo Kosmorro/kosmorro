@@ -14,6 +14,7 @@ skyfield = ">=1.13.0,<2.0.0"
 tabulate = "*"
 numpy = ">=1.17.0,<2.0.0"
 termcolor = "*"
+latex = "*"
 
 [requires]
 python_version = "3"

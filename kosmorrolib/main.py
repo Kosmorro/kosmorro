@@ -22,6 +22,7 @@ import re
 import sys
 
 from datetime import date
+from termcolor import colored
 
 from kosmorrolib.version import VERSION
 from kosmorrolib import dumper
@@ -29,6 +30,7 @@ from kosmorrolib import core
 from kosmorrolib import events
 from kosmorrolib.i18n import _
 from .ephemerides import EphemeridesComputer, Position
+from .exceptions import UnavailableFeatureError
 
 
 def main():
@@ -52,13 +54,38 @@ def main():
     else:
         position = Position(args.latitude, args.longitude)
 
-    ephemeris = EphemeridesComputer(position)
-    ephemerides = ephemeris.compute_ephemerides(year, month, day)
+    if args.format == 'pdf':
+        print(_('Save the planet and paper!\n'
+                'Consider printing you PDF document only if really necessary, and use the other side of the sheet.'))
+        if position is None:
+            print()
+            print(colored(_("PDF output will not contain the ephemerides, because you didn't provide the observation "
+                            "coordinate."), 'yellow'))
 
-    events_list = events.search_events(compute_date)
+    try:
+        ephemeris = EphemeridesComputer(position)
+        ephemerides = ephemeris.compute_ephemerides(year, month, day)
 
-    dump = output_formats[args.format](ephemerides, events_list, compute_date, args.colors)
-    print(dump.to_string())
+        events_list = events.search_events(compute_date)
+
+        selected_dumper = output_formats[args.format](ephemerides, events_list, compute_date, args.colors)
+        output = selected_dumper.to_string()
+    except UnavailableFeatureError as error:
+        print(colored(error.msg, 'red'))
+        return 2
+
+    if args.output is not None:
+        try:
+            with open(args.output, 'wb') as output_file:
+                output_file.write(output)
+        except OSError as error:
+            print(_('Could not save the output in "{path}": {error}').format(path=args.output,
+                                                                             error=error.strerror))
+    elif not selected_dumper.is_file_output_needed():
+        print(output)
+    else:
+        print(_('Selected output format needs an output file (--output).'))
+        return 1
 
     return 0
 
@@ -66,7 +93,8 @@ def main():
 def get_dumpers() -> {str: dumper.Dumper}:
     return {
         'text': dumper.TextDumper,
-        'json': dumper.JsonDumper
+        'json': dumper.JsonDumper,
+        'pdf': dumper.PdfDumper
     }
 
 
@@ -123,5 +151,8 @@ def get_args(output_formats: [str]):
                                ' Defaults to {default_year} (the current year).').format(default_year=today.year))
     parser.add_argument('--no-colors', dest='colors', action='store_false',
                         help=_('Disable the colors in the console.'))
+    parser.add_argument('--output', '-o', type=str, default=None,
+                        help=_('A file to export the output to. If not given, the standard output is used. '
+                               'This argument is needed for PDF format.'))
 
     return parser.parse_args()

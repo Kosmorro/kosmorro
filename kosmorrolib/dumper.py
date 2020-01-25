@@ -19,12 +19,19 @@
 from abc import ABC, abstractmethod
 import datetime
 import json
+import os
 from tabulate import tabulate
 from skyfield.timelib import Time
 from numpy import int64
 from termcolor import colored
 from .data import Object, AsterEphemerides, MoonPhase, Event
 from .i18n import _
+from .version import VERSION
+from .exceptions import UnavailableFeatureError
+try:
+    from latex import build_pdf
+except ImportError:
+    build_pdf = None
 
 FULL_DATE_FORMAT = _('{day_of_week} {month} {day_number}, {year}').format(day_of_week='%A', month='%B',
                                                                           day_number='%d', year='%Y')
@@ -39,9 +46,21 @@ class Dumper(ABC):
         self.date = date
         self.with_colors = with_colors
 
+    def get_date_as_string(self, capitalized: bool = False) -> str:
+        date = self.date.strftime(FULL_DATE_FORMAT)
+
+        if capitalized:
+            return ''.join([date[0].upper(), date[1:]])
+
+        return date
+
     @abstractmethod
     def to_string(self):
         pass
+
+    @staticmethod
+    def is_file_output_needed() -> bool:
+        return False
 
 
 class JsonDumper(Dumper):
@@ -83,7 +102,7 @@ class JsonDumper(Dumper):
 
 class TextDumper(Dumper):
     def to_string(self):
-        text = [self.style(self.get_date(), 'h1')]
+        text = [self.style(self.get_date_as_string(capitalized=True), 'h1')]
 
         if len(self.ephemeris['details']) > 0:
             text.append(self.get_asters(self.ephemeris['details']))
@@ -111,11 +130,6 @@ class TextDumper(Dumper):
         }
 
         return styles[tag](text)
-
-    def get_date(self) -> str:
-        date = self.date.strftime(FULL_DATE_FORMAT)
-
-        return ''.join([date[0].upper(), date[1:]])
 
     def get_asters(self, asters: [Object]) -> str:
         data = []
@@ -164,3 +178,132 @@ class TextDumper(Dumper):
         )
 
         return '\n'.join([current_moon_phase, new_moon_phase])
+
+
+class _LatexDumper(Dumper):
+    def to_string(self):
+        template_path = os.path.join(os.path.abspath(os.path.dirname(__file__)),
+                                     'assets', 'pdf', 'template.tex')
+
+        with open(template_path, mode='r') as file:
+            template = file.read()
+
+        return self._make_document(template)
+
+    def _make_document(self, template: str) -> str:
+        kosmorro_logo_path = os.path.join(os.path.abspath(os.path.dirname(__file__)),
+                                          'assets', 'png', 'kosmorro-logo.png')
+        moon_phase_graphics = os.path.join(os.path.abspath(os.path.dirname(__file__)),
+                                           'assets', 'moonphases', 'png',
+                                           '.'.join([self.ephemeris['moon_phase'].identifier.lower().replace('_', '-'),
+                                                     'png']))
+
+        document = template
+
+        if len(self.ephemeris['details']) == 0:
+            document = self._remove_section(document, 'ephemerides')
+
+        if len(self.events) == 0:
+            document = self._remove_section(document, 'events')
+
+        document = document \
+            .replace('+++KOSMORRO-VERSION+++', VERSION) \
+            .replace('+++KOSMORRO-LOGO+++', kosmorro_logo_path) \
+            .replace('+++DOCUMENT-TITLE+++', _('A Summary of your Sky')) \
+            .replace('+++DOCUMENT-DATE+++', self.get_date_as_string(capitalized=True)) \
+            .replace('+++INTRODUCTION+++',
+                     '\n\n'.join([
+                         _("This document summarizes the ephemerides and the events of {date}. "
+                           "It aims to help you to prepare your observation session.").format(
+                               date=self.get_date_as_string()),
+                         _("Don't forget to check the weather forecast before you go out with your material.")
+                     ])) \
+            .replace('+++SECTION-EPHEMERIDES+++', _('Ephemerides of the day')) \
+            .replace('+++EPHEMERIDES-OBJECT+++', _('Object')) \
+            .replace('+++EPHEMERIDES-RISE-TIME+++', _('Rise time')) \
+            .replace('+++EPHEMERIDES-CULMINATION-TIME+++', _('Culmination time')) \
+            .replace('+++EPHEMERIDES-SET-TIME+++', _('Set time')) \
+            .replace('+++EPHEMERIDES+++', self._make_ephemerides()) \
+            .replace('+++MOON-PHASE-GRAPHICS+++', moon_phase_graphics) \
+            .replace('+++CURRENT-MOON-PHASE-TITLE+++', _('Moon phase:')) \
+            .replace('+++CURRENT-MOON-PHASE+++', self.ephemeris['moon_phase'].get_phase()) \
+            .replace('+++SECTION-EVENTS+++', _('Expected events')) \
+            .replace('+++EVENTS+++', self._make_events())
+
+        return document
+
+    def _make_ephemerides(self) -> str:
+        latex = []
+
+        for aster in self.ephemeris['details']:
+            if aster.ephemerides.rise_time is not None:
+                aster_rise = aster.ephemerides.rise_time.utc_strftime(TIME_FORMAT)
+            else:
+                aster_rise = '-'
+
+            if aster.ephemerides.culmination_time is not None:
+                aster_culmination = aster.ephemerides.culmination_time.utc_strftime(TIME_FORMAT)
+            else:
+                aster_culmination = '-'
+
+            if aster.ephemerides.set_time is not None:
+                aster_set = aster.ephemerides.set_time.utc_strftime(TIME_FORMAT)
+            else:
+                aster_set = '-'
+
+            latex.append(r'\object{%s}{%s}{%s}{%s}' % (aster.name,
+                                                       aster_rise,
+                                                       aster_culmination,
+                                                       aster_set))
+
+        return ''.join(latex)
+
+    def _make_events(self) -> str:
+        latex = []
+
+        for event in self.events:
+            latex.append(r'\event{%s}{%s}' % (event.start_time.utc_strftime(TIME_FORMAT),
+                                              event.get_description()))
+
+        return ''.join(latex)
+
+    @staticmethod
+    def _remove_section(document: str, section: str):
+        begin_section_tag = '%%%%%% BEGIN-%s-SECTION' % section.upper()
+        end_section_tag = '%%%%%% END-%s-SECTION' % section.upper()
+
+        document = document.split('\n')
+        new_document = []
+
+        ignore_line = False
+        for line in document:
+            if begin_section_tag in line or end_section_tag in line:
+                ignore_line = not ignore_line
+                continue
+            if ignore_line:
+                continue
+            new_document.append(line)
+
+        return '\n'.join(new_document)
+
+
+class PdfDumper(Dumper):
+    def to_string(self):
+        try:
+            latex_dumper = _LatexDumper(self.ephemeris, self.events, self.date, self.with_colors)
+            return self._compile(latex_dumper.to_string())
+        except RuntimeError:
+            raise UnavailableFeatureError(_("Building PDFs was not possible, because some dependencies are not"
+                                            " installed.\nPlease look at the documentation at http://kosmorro.space "
+                                            "for more information."))
+
+    @staticmethod
+    def is_file_output_needed() -> bool:
+        return True
+
+    @staticmethod
+    def _compile(latex_input) -> bytes:
+        if build_pdf is None:
+            raise RuntimeError('Python latex module not found')
+
+        return bytes(build_pdf(latex_input))
