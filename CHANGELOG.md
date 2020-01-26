@@ -1,3 +1,14 @@
+# [v0.5.0](https://github.com/Deuchnord/kosmorro/compare/v0.4.0...v0.5.0) (2020-01-26)
+
+
+### Features
+
+* add colors in the text return ([38fc066](https://github.com/Deuchnord/kosmorro/commit/38fc06657fb7452e35e81e61fb2b8990bf341f72))
+* **i18n:** make the strings translatable ([c4f07a1](https://github.com/Deuchnord/kosmorro/commit/c4f07a1d647a6829bdc1ed7afe85462093203ef7))
+    * Kosmorro is now available in French and German!
+
+
+
 # [v0.4.0](https://github.com/Deuchnord/kosmorro/compare/v0.3.1...v0.4.0) (2019-12-28)
 
 
