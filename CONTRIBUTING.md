@@ -24,7 +24,18 @@ If you speak another language than English, another nice way to enhance Kosmorro
 First of all, if you are fixing an opened issue, check that nobody is already working on it — if someone seems to be but their Pull Request seems stuck, please ask them first if you can continue the development. If you retake the code they produced, **don't change the author of the commits**.
 
 Before writing the code, first create a fork of the repository and clone it. You may also want to add the original repository (`Deuchnord/kosmorro`), so you can update your fork with the last upstream commits.
+
 Then create a new branch and start coding. Finally, commit and push, then open a PR on this project. If your project is not complete, feel free to open it as Draft (if you forgot to activate the Draft status, just edit the first comment to say it), then mark it as ready for review when you're done.
+
+### Choosing the right target branch
+
+Whatever you are doing, always base your working branch on `master`.
+When you create your PR, please consider selecting the right target branch:
+
+- If you are fixing a bug or optimizing something, then target the `master` branch.
+- If you are doing anything else, then target the `feature` branch.
+
+This allows to make easier to publish patch releases, which have a higher priority than the minor releases.
 
 ### Dealing with the translations
 
