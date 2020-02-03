@@ -1,3 +1,12 @@
+# [v0.5.1](https://github.com/Deuchnord/kosmorro/compare/v0.5.0...v0.5.1) (2020-02-03)
+
+
+### Bug Fixes
+
+* add compatibility for Skyfield 1.17 ([081aab1](https://github.com/Deuchnord/kosmorro/commit/081aab129e8245e795e569f38f139285a697777a))
+
+
+
 # [v0.5.0](https://github.com/Deuchnord/kosmorro/compare/v0.4.0...v0.5.0) (2020-01-26)
 
 

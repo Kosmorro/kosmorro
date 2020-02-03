@@ -38,7 +38,7 @@ setup(
     packages=find_packages(),
     scripts=['kosmorro'],
     include_package_data=True,
-    install_requires=['skyfield>=1.13.0,<2.0.0', 'tabulate', 'numpy>=1.17.0,<2.0.0'],
+    install_requires=['skyfield>=1.17.0,<2.0.0', 'tabulate', 'numpy>=1.17.0,<2.0.0'],
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Operating System :: POSIX :: Linux',
