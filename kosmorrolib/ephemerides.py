@@ -20,6 +20,7 @@ import datetime
 from typing import Union
 
 from skyfield import almanac
+from skyfield.searchlib import find_discrete, find_maxima
 from skyfield.timelib import Time
 from skyfield.constants import tau
 
@@ -36,9 +37,9 @@ class EphemeridesComputer:
         self.position = position
 
     def get_sun(self, start_time, end_time) -> dict:
-        times, is_risen = almanac.find_discrete(start_time,
-                                                end_time,
-                                                almanac.sunrise_sunset(get_skf_objects(), self.position))
+        times, is_risen = find_discrete(start_time,
+                                        end_time,
+                                        almanac.sunrise_sunset(get_skf_objects(), self.position))
 
         sunrise = times[0] if is_risen[0] else times[1]
         sunset = times[1] if not is_risen[1] else times[0]
@@ -64,7 +65,7 @@ class EphemeridesComputer:
         time1 = get_timescale().utc(year, month, day - 10)
         time2 = get_timescale().utc(year, month, day + 10)
 
-        times, phase = almanac.find_discrete(time1, time2, moon_phase_at)
+        times, phase = find_discrete(time1, time2, moon_phase_at)
 
         return skyfield_to_moon_phase(times, phase, today)
 
@@ -84,9 +85,9 @@ class EphemeridesComputer:
         start_time = get_timescale().utc(date.year, date.month, date.day)
         end_time = get_timescale().utc(date.year, date.month, date.day, 23, 59, 59)
 
-        rise_times, arr = almanac.find_discrete(start_time, end_time, is_risen)
+        rise_times, arr = find_discrete(start_time, end_time, is_risen)
         try:
-            culmination_time, _ = almanac._find_maxima(start_time, end_time, get_angle, epsilon=1./3600/24)
+            culmination_time, _ = find_maxima(start_time, end_time, f=get_angle, epsilon=1./3600/24, num=12)
         except ValueError:
             culmination_time = None
 
@@ -138,7 +139,7 @@ class EphemeridesComputer:
     def get_seasons(year: int) -> dict:
         start_time = get_timescale().utc(year, 1, 1)
         end_time = get_timescale().utc(year, 12, 31)
-        times, almanac_seasons = almanac.find_discrete(start_time, end_time, almanac.seasons(get_skf_objects()))
+        times, almanac_seasons = find_discrete(start_time, end_time, almanac.seasons(get_skf_objects()))
 
         seasons = {}
         for time, almanac_season in zip(times, almanac_seasons):
