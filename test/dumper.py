@@ -42,12 +42,53 @@ class DumperTestCase(unittest.TestCase):
                                          self._get_events()
                                          ).to_string())
 
+        data = self._get_data(aster_rise_set=True)
+        self.assertEqual('{\n'
+                         '    "moon_phase": {\n'
+                         '        "next_phase_date": "2019-10-21T00:00:00Z",\n'
+                         '        "phase": "FULL_MOON",\n'
+                         '        "date": "2019-10-14T00:00:00Z"\n'
+                         '    },\n'
+                         '    "events": [\n'
+                         '        {\n'
+                         '            "event_type": "OPPOSITION",\n'
+                         '            "objects": [\n'
+                         '                "Mars"\n'
+                         '            ],\n'
+                         '            "start_time": "2018-07-27T05:12:00Z",\n'
+                         '            "end_time": null\n'
+                         '        }\n'
+                         '    ],\n'
+                         '    "ephemerides": [\n'
+                         '        {\n'
+                         '            "object": "Mars",\n'
+                         '            "details": {\n'
+                         '                "rise_time": "2019-10-14T08:00:00Z",\n'
+                         '                "culmination_time": "2019-10-14T13:00:00Z",\n'
+                         '                "set_time": "2019-10-14T23:00:00Z"\n'
+                         '            }\n'
+                         '        }\n'
+                         '    ]\n'
+                         '}', JsonDumper(data,
+                                         self._get_events()
+                                         ).to_string())
+
     def test_text_dumper_without_events(self):
         ephemerides = self._get_data()
         self.assertEqual('Monday October 14, 2019\n\n'
                          'Object     Rise time    Culmination time    Set time\n'
                          '--------  -----------  ------------------  ----------\n'
                          'Mars           -               -               -\n\n'
+                         'Moon phase: Full Moon\n'
+                         'Last Quarter on Monday October 21, 2019 at 00:00\n\n'
+                         'Note: All the hours are given in UTC.',
+                         TextDumper(ephemerides, [], date=date(2019, 10, 14), with_colors=False).to_string())
+
+        ephemerides = self._get_data(aster_rise_set=True)
+        self.assertEqual('Monday October 14, 2019\n\n'
+                         'Object     Rise time    Culmination time    Set time\n'
+                         '--------  -----------  ------------------  ----------\n'
+                         'Mars         08:00           13:00           23:00\n\n'
                          'Moon phase: Full Moon\n'
                          'Last Quarter on Monday October 21, 2019 at 00:00\n\n'
                          'Note: All the hours are given in UTC.',
