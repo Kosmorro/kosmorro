@@ -84,7 +84,7 @@ def main():
     elif not selected_dumper.is_file_output_needed():
         print(output)
     else:
-        print(_('Selected output format needs an output file (--output).'))
+        print(colored(_('Selected output format needs an output file (--output).'), color='red'))
         return 1
 
     return 0
