@@ -6,6 +6,8 @@ kosmorro.egg-info
 coverage.xml
 node_modules/
 package-lock.json
+/kosmorrolib/assets/pdf/*
+!/assets/pdf/*.tex
 
 # Translation files are taken care on https://poeditor.com/join/project/GXuhLpdaoh
 *.mo

@@ -1,0 +1,90 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=25mm]{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+% Fix non-break spaces issues
+\DeclareUnicodeCharacter{202F}{~}
+
+\hypersetup{pdfinfo={
+    Title={+++DOCUMENT-TITLE+++},
+    Creator={Kosmorro v+++KOSMORRO-VERSION+++}
+}}
+
+\pagenumbering{gobble}
+\setcounter{secnumdepth}{0}
+
+\title{\sffamily\href{http://kosmorro.space}{\includegraphics[width=5cm]{+++KOSMORRO-LOGO+++}}\\+++DOCUMENT-TITLE+++}
+\date{\vspace{-11mm}\sffamily +++DOCUMENT-DATE+++}
+
+\begin{document}
+
+    \newcommand{\object}[4]{
+        \hline
+        \textbf{#1} & {#2} & {#3} & {#4}\\
+    }
+
+    \newcommand{\moonphase}[2]{
+        \begin{center}
+            \begin{minipage}{2cm}
+                \includegraphics[width=\linewidth]{#1}
+            \end{minipage}
+            \hspace{5mm}
+            \begin{minipage}{7cm}
+                \textbf{+++CURRENT-MOON-PHASE-TITLE+++}\\#2
+            \end{minipage}
+        \end{center}
+}
+
+    \newenvironment{ephemerides}{
+        \begin{table}[h]
+            \centering
+            \begin{tabular}{lccc}
+                \textbf{+++EPHEMERIDES-OBJECT+++} &
+                \textbf{+++EPHEMERIDES-RISE-TIME+++} &
+                \textbf{+++EPHEMERIDES-CULMINATION-TIME+++} &
+                \textbf{+++EPHEMERIDES-SET-TIME+++}\\
+    \hline
+    }{
+            \end{tabular}
+        \end{table}
+    }
+
+    \newcommand{\event}[2]{
+        \textbf{#1} & {#2}\\
+    }
+
+    \newenvironment{events}{
+        \begin{table}[h]
+            \begin{tabular}{ll}
+    }{
+            \end{tabular}
+        \end{table}
+    }
+
+    \maketitle
+
+    +++INTRODUCTION+++
+
+    \moonphase{+++MOON-PHASE-GRAPHICS+++}{+++CURRENT-MOON-PHASE+++}
+
+    %%% BEGIN-EPHEMERIDES-SECTION
+    \section{\sffamily +++SECTION-EPHEMERIDES+++}
+
+    \begin{ephemerides}
+        +++EPHEMERIDES+++
+    \end{ephemerides}
+    %%% END-EPHEMERIDES-SECTION
+
+    %%% BEGIN-EVENTS-SECTION
+    \section{\sffamily +++SECTION-EVENTS+++}
+
+    \begin{events}
+        +++EVENTS+++
+    \end{events}
+    %%% END-EVENTS-SECTION
+
+\end{document}
