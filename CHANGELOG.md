@@ -1,3 +1,12 @@
+# [v0.5.2](https://github.com/Deuchnord/kosmorro/compare/v0.5.1...v0.5.2) (2020-02-04)
+
+
+### Bug Fixes
+
+* add missing dependency for PIP ([906a592](https://github.com/Deuchnord/kosmorro/commit/906a5924a2cbdca71da793b355880571072aa81c))
+
+
+
 # [v0.5.1](https://github.com/Deuchnord/kosmorro/compare/v0.5.0...v0.5.1) (2020-02-03)
 
 
