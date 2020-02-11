@@ -70,8 +70,31 @@ Kosmorro's source code follows the major coding standards of Python (PEPs). Befo
 
 ### Testing the code
 
-Sadly, Kosmorro currently has a poor code coverage, but feel free to add new unit tests to enhance its stability.
-Any new Pull requests should have at least one new unit test that checks the new development is correct.
+There are two kinds of tests on this project: **unit tests** and **end-to-end tests** (sometimes abbreviated to _E2E tests_). 
+
+#### Unit tests
+
+[Unit tests](https://en.wikipedia.org/wiki/Unit_testing) check that every little piece of code (any _unit_) does exactly what it is supposed to do. They have several advantages, like proving that new things in the codebase works exactly as they should, and making sure that future changes done later won't break them.
+ 
+Kosmorro's unit tests use Python's official `unittest` module. They live in the `/test` folder of the repository. Whenever you write a new feature or a bug fix, please write the unit tests that will make sure it works.
+You can also run them by invoking the following command:
+
+```shell
+pipenv run python -m unittest test
+```
+
+Note: there are currently some memory leaks in the unit tests, making the result quite difficult to read. I am working to fix this.
+If you have troubles reading them, feel free to ask.
+
+#### End-to-end tests
+
+If unit tests are really good at checking that every individual parts of code work well, they fail at checking that so does the _whole_ program as a finished product. That is the job of end-to-end tests.
+
+The goal here is to make sure that if you install Kosmorro from scratch, it will work without any problem. If a mandatory dependency has not been installed, or if something goes wrong in the main program (which is not possible to unit test), the E2E tests will fail.
+
+Kosmorro's 2E2 tests are a Bash script living in the `/.scripts/tests-e2e.sh` file. You should only add tests here if you add new ways to interact with Kosmorro itself (e.g. adding a new argument in the command line).
+
+Fore security purpose, it is not recommended running E2E tests locally, because some tests need the root privilege to pass (e.g. installing optional dependencies). They are run on the CI.
 
 ### Commiting
 
