@@ -18,9 +18,9 @@
 
 from abc import ABC, abstractmethod
 from typing import Union
+from datetime import datetime
 
 from skyfield.api import Topos
-from skyfield.timelib import Time
 
 from .i18n import _
 
@@ -42,7 +42,7 @@ EVENTS = {
 
 
 class MoonPhase:
-    def __init__(self, identifier: str, time: Union[Time, None], next_phase_date: Union[Time, None]):
+    def __init__(self, identifier: str, time: Union[datetime, None], next_phase_date: Union[datetime, None]):
         if identifier not in MOON_PHASES.keys():
             raise ValueError('identifier parameter must be one of %s (got %s)' % (', '.join(MOON_PHASES.keys()),
                                                                                   identifier))
@@ -87,9 +87,9 @@ class Position:
 
 class AsterEphemerides:
     def __init__(self,
-                 rise_time: Union[Time, None],
-                 culmination_time: Union[Time, None],
-                 set_time: Union[Time, None]):
+                 rise_time: Union[datetime, None],
+                 culmination_time: Union[datetime, None],
+                 set_time: Union[datetime, None]):
         self.rise_time = rise_time
         self.culmination_time = culmination_time
         self.set_time = set_time
@@ -141,7 +141,8 @@ class Satellite(Object):
 
 
 class Event:
-    def __init__(self, event_type: str, objects: [Object], start_time: Time, end_time: Union[Time, None] = None):
+    def __init__(self, event_type: str, objects: [Object], start_time: datetime,
+                 end_time: Union[datetime, None] = None):
         if event_type not in EVENTS.keys():
             raise ValueError('event_type parameter must be one of the following: %s (got %s)' % (
                 ', '.join(EVENTS.keys()),

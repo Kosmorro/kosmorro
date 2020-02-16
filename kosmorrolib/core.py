@@ -95,7 +95,9 @@ def skyfield_to_moon_phase(times: [Time], vals: [int], now: Time) -> Union[MoonP
             next_phase_time = times[j]
             break
 
-    return MoonPhase(current_phase, current_phase_time, next_phase_time)
+    return MoonPhase(current_phase,
+                     current_phase_time.utc_datetime() if current_phase_time is not None else None,
+                     next_phase_time.utc_datetime() if next_phase_time is not None else None)
 
 
 def flatten_list(the_list: list):

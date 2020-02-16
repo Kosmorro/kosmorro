@@ -1,9 +1,8 @@
 import unittest
-from datetime import date
+from datetime import date, datetime
 
 from kosmorrolib.data import AsterEphemerides, Planet, MoonPhase, Event
 from kosmorrolib.dumper import JsonDumper, TextDumper, _LatexDumper
-from kosmorrolib.core import get_timescale
 
 
 class DumperTestCase(unittest.TestCase):
@@ -11,12 +10,11 @@ class DumperTestCase(unittest.TestCase):
         self.maxDiff = None
 
     def test_json_dumper_returns_correct_json(self):
-        data = self._get_data()
         self.assertEqual('{\n'
                          '    "moon_phase": {\n'
-                         '        "next_phase_date": "2019-10-21T00:00:00Z",\n'
+                         '        "next_phase_date": "2019-10-21T00:00:00",\n'
                          '        "phase": "FULL_MOON",\n'
-                         '        "date": "2019-10-14T00:00:00Z"\n'
+                         '        "date": "2019-10-14T00:00:00"\n'
                          '    },\n'
                          '    "events": [\n'
                          '        {\n'
@@ -24,7 +22,7 @@ class DumperTestCase(unittest.TestCase):
                          '            "objects": [\n'
                          '                "Mars"\n'
                          '            ],\n'
-                         '            "start_time": "2018-07-27T05:12:00Z",\n'
+                         '            "start_time": "2019-10-14T23:00:00",\n'
                          '            "end_time": null\n'
                          '        }\n'
                          '    ],\n'
@@ -38,16 +36,14 @@ class DumperTestCase(unittest.TestCase):
                          '            }\n'
                          '        }\n'
                          '    ]\n'
-                         '}', JsonDumper(data,
-                                         self._get_events()
-                                         ).to_string())
+                         '}', JsonDumper(self._get_data(), self._get_events()).to_string())
 
         data = self._get_data(aster_rise_set=True)
         self.assertEqual('{\n'
                          '    "moon_phase": {\n'
-                         '        "next_phase_date": "2019-10-21T00:00:00Z",\n'
+                         '        "next_phase_date": "2019-10-21T00:00:00",\n'
                          '        "phase": "FULL_MOON",\n'
-                         '        "date": "2019-10-14T00:00:00Z"\n'
+                         '        "date": "2019-10-14T00:00:00"\n'
                          '    },\n'
                          '    "events": [\n'
                          '        {\n'
@@ -55,7 +51,7 @@ class DumperTestCase(unittest.TestCase):
                          '            "objects": [\n'
                          '                "Mars"\n'
                          '            ],\n'
-                         '            "start_time": "2018-07-27T05:12:00Z",\n'
+                         '            "start_time": "2019-10-14T23:00:00",\n'
                          '            "end_time": null\n'
                          '        }\n'
                          '    ],\n'
@@ -63,9 +59,9 @@ class DumperTestCase(unittest.TestCase):
                          '        {\n'
                          '            "object": "Mars",\n'
                          '            "details": {\n'
-                         '                "rise_time": "2019-10-14T08:00:00Z",\n'
-                         '                "culmination_time": "2019-10-14T13:00:00Z",\n'
-                         '                "set_time": "2019-10-14T23:00:00Z"\n'
+                         '                "rise_time": "2019-10-14T08:00:00",\n'
+                         '                "culmination_time": "2019-10-14T13:00:00",\n'
+                         '                "set_time": "2019-10-14T23:00:00"\n'
                          '            }\n'
                          '        }\n'
                          '    ]\n'
@@ -103,7 +99,7 @@ class DumperTestCase(unittest.TestCase):
                          'Moon phase: Full Moon\n'
                          'Last Quarter on Monday October 21, 2019 at 00:00\n\n'
                          'Expected events:\n'
-                         '05:12  Mars is in opposition\n\n'
+                         '23:00  Mars is in opposition\n\n'
                          'Note: All the hours are given in UTC.',
                          TextDumper(ephemerides, self._get_events(), date=date(2019, 10, 14), with_colors=False).to_string())
 
@@ -113,9 +109,34 @@ class DumperTestCase(unittest.TestCase):
                          'Moon phase: Full Moon\n'
                          'Last Quarter on Monday October 21, 2019 at 00:00\n\n'
                          'Expected events:\n'
-                         '05:12  Mars is in opposition\n\n'
+                         '23:00  Mars is in opposition\n\n'
                          'Note: All the hours are given in UTC.',
                          TextDumper(ephemerides, self._get_events(), date=date(2019, 10, 14), with_colors=False).to_string())
+
+    def test_timezone_is_taken_in_account(self):
+        ephemerides = self._get_data(aster_rise_set=True)
+        self.assertEqual('Monday October 14, 2019\n\n'
+                         'Object     Rise time    Culmination time     Set time\n'
+                         '--------  -----------  ------------------  -------------\n'
+                         'Mars         09:00           14:00         Oct 15, 00:00\n\n'
+                         'Moon phase: Full Moon\n'
+                         'Last Quarter on Monday October 21, 2019 at 01:00\n\n'
+                         'Expected events:\n'
+                         'Oct 15, 00:00  Mars is in opposition\n\n'
+                         'Note: All the hours are given in the UTC+1 timezone.',
+                         TextDumper(ephemerides, self._get_events(), date=date(2019, 10, 14), with_colors=False, timezone=1).to_string())
+
+        ephemerides = self._get_data(aster_rise_set=True)
+        self.assertEqual('Monday October 14, 2019\n\n'
+                         'Object     Rise time    Culmination time    Set time\n'
+                         '--------  -----------  ------------------  ----------\n'
+                         'Mars         07:00           12:00           22:00\n\n'
+                         'Moon phase: Full Moon\n'
+                         'Last Quarter on Sunday October 20, 2019 at 23:00\n\n'
+                         'Expected events:\n'
+                         '22:00  Mars is in opposition\n\n'
+                         'Note: All the hours are given in the UTC-1 timezone.',
+                         TextDumper(ephemerides, self._get_events(), date=date(2019, 10, 14), with_colors=False, timezone=-1).to_string())
 
     def test_latex_dumper(self):
         latex = _LatexDumper(self._get_data(), self._get_events(), date=date(2019, 10, 14)).to_string()
@@ -124,7 +145,7 @@ class DumperTestCase(unittest.TestCase):
         self.assertRegex(latex, r'\\section{\\sffamily Expected events}')
         self.assertRegex(latex, r'\\section{\\sffamily Ephemerides of the day}')
         self.assertRegex(latex, r'\\object\{Mars\}\{-\}\{-\}\{-\}')
-        self.assertRegex(latex, r'\\event\{05:12\}\{Mars is in opposition\}')
+        self.assertRegex(latex, r'\\event\{23:00\}\{Mars is in opposition\}')
 
         latex = _LatexDumper(self._get_data(aster_rise_set=True),
                              self._get_events(), date=date(2019, 10, 14)).to_string()
@@ -135,7 +156,7 @@ class DumperTestCase(unittest.TestCase):
         self.assertRegex(latex, 'Monday October 14, 2019')
         self.assertRegex(latex, 'Full Moon')
         self.assertRegex(latex, r'\\section{\\sffamily Expected events}')
-        self.assertRegex(latex, r'\\event\{05:12\}\{Mars is in opposition\}')
+        self.assertRegex(latex, r'\\event\{23:00\}\{Mars is in opposition\}')
 
         self.assertNotRegex(latex, r'\\object\{Mars\}\{-\}\{-\}\{-\}')
         self.assertNotRegex(latex, r'\\section{\\sffamily Ephemerides of the day}')
@@ -151,12 +172,12 @@ class DumperTestCase(unittest.TestCase):
 
     @staticmethod
     def _get_data(has_ephemerides: bool = True, aster_rise_set=False):
-        rise_time = get_timescale().utc(2019, 10, 14, 8) if aster_rise_set else None
-        culmination_time = get_timescale().utc(2019, 10, 14, 13) if aster_rise_set else None
-        set_time = get_timescale().utc(2019, 10, 14, 23) if aster_rise_set else None
+        rise_time = datetime(2019, 10, 14, 8) if aster_rise_set else None
+        culmination_time = datetime(2019, 10, 14, 13) if aster_rise_set else None
+        set_time = datetime(2019, 10, 14, 23) if aster_rise_set else None
 
         return {
-            'moon_phase': MoonPhase('FULL_MOON', get_timescale().utc(2019, 10, 14), get_timescale().utc(2019, 10, 21)),
+            'moon_phase': MoonPhase('FULL_MOON', datetime(2019, 10, 14), datetime(2019, 10, 21)),
             'details': [Planet('Mars', 'MARS',
                                AsterEphemerides(rise_time, culmination_time, set_time))] if has_ephemerides else []
         }
@@ -165,7 +186,7 @@ class DumperTestCase(unittest.TestCase):
     def _get_events():
         return [Event('OPPOSITION',
                       [Planet('Mars', 'MARS')],
-                      get_timescale().utc(2018, 7, 27, 5, 12))
+                      datetime(2019, 10, 14, 23, 00))
                 ]
 
 

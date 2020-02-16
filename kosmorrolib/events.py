@@ -57,7 +57,7 @@ def _search_conjunction(start_time: Time, end_time: Time) -> [Event]:
             times, _ = find_discrete(start_time, end_time, is_in_conjunction)
 
             for time in times:
-                conjunctions.append(Event('CONJUNCTION', [aster1, aster2], time))
+                conjunctions.append(Event('CONJUNCTION', [aster1, aster2], time.utc_datetime()))
 
         computed.append(aster1)
 
@@ -86,7 +86,7 @@ def _search_oppositions(start_time: Time, end_time: Time) -> [Event]:
 
         times, _ = find_discrete(start_time, end_time, is_oppositing)
         for time in times:
-            events.append(Event('OPPOSITION', [aster], time))
+            events.append(Event('OPPOSITION', [aster], time.utc_datetime()))
 
     return events
 
@@ -98,4 +98,4 @@ def search_events(date: date_type) -> [Event]:
     return sorted(flatten_list([
         _search_oppositions(start_time, end_time),
         _search_conjunction(start_time, end_time)
-    ]), key=lambda event: event.start_time.utc_datetime())
+    ]), key=lambda event: event.start_time)
