@@ -79,6 +79,8 @@ assertSuccess "$PIP_BIN install dist/kosmorro-$VERSION.tar.gz" "CI"
 assertSuccess kosmorro
 assertSuccess "kosmorro --latitude=50.5876 --longitude=3.0624"
 assertSuccess "kosmorro --latitude=50.5876 --longitude=3.0624 -d 27 -m 1 -y 2020"
+assertSuccess "kosmorro --latitude=50.5876 --longitude=3.0624 -d 27 -m 1 -y 2020 --timezone=1"
+assertSuccess "kosmorro --latitude=50.5876 --longitude=3.0624 -d 27 -m 1 -y 2020 --timezone=-1"
 assertSuccess "kosmorro --latitude=50.5876 --longitude=3.0624 -d 27 -m 1 -y 2020 --format=json"
 assertFailure "kosmorro --latitude=50.5876 --longitude=3.0624 -d 27 -m 1 -y 2020 --format=pdf"
 # Missing dependencies, should fail

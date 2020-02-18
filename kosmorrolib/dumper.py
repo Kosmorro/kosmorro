@@ -21,7 +21,6 @@ import datetime
 import json
 import os
 from tabulate import tabulate
-from skyfield.timelib import Time
 from numpy import int64
 from termcolor import colored
 from .data import Object, AsterEphemerides, MoonPhase, Event
@@ -35,16 +34,51 @@ except ImportError:
 
 FULL_DATE_FORMAT = _('{day_of_week} {month} {day_number}, {year}').format(day_of_week='%A', month='%B',
                                                                           day_number='%d', year='%Y')
+SHORT_DATETIME_FORMAT = _('{month} {day_number}, {hours}:{minutes}').format(month='%b', day_number='%d',
+                                                                            hours='%H', minutes='%M')
 TIME_FORMAT = _('{hours}:{minutes}').format(hours='%H', minutes='%M')
 
 
 class Dumper(ABC):
-    def __init__(self, ephemeris: dict, events: [Event], date: datetime.date = datetime.date.today(),
+    def __init__(self, ephemeris: dict, events: [Event], date: datetime.date = datetime.date.today(), timezone: int = 0,
                  with_colors: bool = True):
         self.ephemeris = ephemeris
         self.events = events
         self.date = date
+        self.timezone = timezone
         self.with_colors = with_colors
+
+        if self.timezone != 0:
+            self._convert_dates_to_timezones()
+
+    def _convert_dates_to_timezones(self):
+        if self.ephemeris['moon_phase'].time is not None:
+            self.ephemeris['moon_phase'].time = self._datetime_to_timezone(self.ephemeris['moon_phase'].time)
+        if self.ephemeris['moon_phase'].next_phase_date is not None:
+            self.ephemeris['moon_phase'].next_phase_date = self._datetime_to_timezone(
+                self.ephemeris['moon_phase'].next_phase_date)
+
+        for aster in self.ephemeris['details']:
+            if aster.ephemerides.rise_time is not None:
+                aster.ephemerides.rise_time = self._datetime_to_timezone(aster.ephemerides.rise_time)
+            if aster.ephemerides.culmination_time is not None:
+                aster.ephemerides.culmination_time = self._datetime_to_timezone(aster.ephemerides.culmination_time)
+            if aster.ephemerides.set_time is not None:
+                aster.ephemerides.set_time = self._datetime_to_timezone(aster.ephemerides.set_time)
+
+        for event in self.events:
+            event.start_time = self._datetime_to_timezone(event.start_time)
+            if event.end_time is not None:
+                event.end_time = self._datetime_to_timezone(event.end_time)
+
+    def _datetime_to_timezone(self, time: datetime.datetime):
+        return time.replace(tzinfo=datetime.timezone.utc).astimezone(
+            tz=datetime.timezone(
+                datetime.timedelta(
+                    hours=self.timezone
+                )
+            )
+        )
 
     def get_date_as_string(self, capitalized: bool = False) -> str:
         date = self.date.strftime(FULL_DATE_FORMAT)
@@ -77,8 +111,8 @@ class JsonDumper(Dumper):
         # See https://stackoverflow.com/a/50577730
         if isinstance(obj, int64):
             return int(obj)
-        if isinstance(obj, Time):
-            return obj.utc_iso()
+        if isinstance(obj, datetime.datetime):
+            return obj.isoformat()
         if isinstance(obj, Object):
             obj = obj.__dict__
             obj.pop('skyfield_name')
@@ -113,7 +147,14 @@ class TextDumper(Dumper):
             text.append('\n'.join([self.style(_('Expected events:'), 'h2'),
                                    self.get_events(self.events)]))
 
-        text.append(self.style(_('Note: All the hours are given in UTC.'), 'em'))
+        if self.timezone == 0:
+            text.append(self.style(_('Note: All the hours are given in UTC.'), 'em'))
+        else:
+            tz_offset = str(self.timezone)
+            if self.timezone > 0:
+                tz_offset = ''.join(['+', tz_offset])
+            text.append(self.style(_('Note: All the hours are given in the UTC{offset} timezone.').format(
+                offset=tz_offset), 'em'))
 
         return '\n\n'.join(text)
 
@@ -138,17 +179,21 @@ class TextDumper(Dumper):
             name = self.style(aster.name, 'th')
 
             if aster.ephemerides.rise_time is not None:
-                planet_rise = aster.ephemerides.rise_time.utc_strftime(TIME_FORMAT)
+                time_fmt = TIME_FORMAT if aster.ephemerides.rise_time.day == self.date.day else SHORT_DATETIME_FORMAT
+                planet_rise = aster.ephemerides.rise_time.strftime(time_fmt)
             else:
                 planet_rise = '-'
 
             if aster.ephemerides.culmination_time is not None:
-                planet_culmination = aster.ephemerides.culmination_time.utc_strftime(TIME_FORMAT)
+                time_fmt = TIME_FORMAT if aster.ephemerides.culmination_time.day == self.date.day \
+                    else SHORT_DATETIME_FORMAT
+                planet_culmination = aster.ephemerides.culmination_time.strftime(time_fmt)
             else:
                 planet_culmination = '-'
 
             if aster.ephemerides.set_time is not None:
-                planet_set = aster.ephemerides.set_time.utc_strftime(TIME_FORMAT)
+                time_fmt = TIME_FORMAT if aster.ephemerides.set_time.day == self.date.day else SHORT_DATETIME_FORMAT
+                planet_set = aster.ephemerides.set_time.strftime(time_fmt)
             else:
                 planet_set = '-'
 
@@ -164,7 +209,8 @@ class TextDumper(Dumper):
         data = []
 
         for event in events:
-            data.append([self.style(event.start_time.utc_strftime(TIME_FORMAT), 'th'),
+            time_fmt = TIME_FORMAT if event.start_time.day == self.date.day else SHORT_DATETIME_FORMAT
+            data.append([self.style(event.start_time.strftime(time_fmt), 'th'),
                          event.get_description()])
 
         return tabulate(data, tablefmt='plain', stralign='left')
@@ -173,8 +219,8 @@ class TextDumper(Dumper):
         current_moon_phase = ' '.join([self.style(_('Moon phase:'), 'strong'), moon_phase.get_phase()])
         new_moon_phase = _('{next_moon_phase} on {next_moon_phase_date} at {next_moon_phase_time}').format(
             next_moon_phase=moon_phase.get_next_phase(),
-            next_moon_phase_date=moon_phase.next_phase_date.utc_strftime(FULL_DATE_FORMAT),
-            next_moon_phase_time=moon_phase.next_phase_date.utc_strftime(TIME_FORMAT)
+            next_moon_phase_date=moon_phase.next_phase_date.strftime(FULL_DATE_FORMAT),
+            next_moon_phase_time=moon_phase.next_phase_date.strftime(TIME_FORMAT)
         )
 
         return '\n'.join([current_moon_phase, new_moon_phase])
@@ -214,8 +260,11 @@ class _LatexDumper(Dumper):
             .replace('+++INTRODUCTION+++',
                      '\n\n'.join([
                          _("This document summarizes the ephemerides and the events of {date}. "
-                           "It aims to help you to prepare your observation session.").format(
-                               date=self.get_date_as_string()),
+                           "It aims to help you to prepare your observation session. "
+                           "All the hours are given in {timezone}.").format(
+                               date=self.get_date_as_string(),
+                               timezone='UTC+%d timezone' % self.timezone if self.timezone != 0 else 'UTC'
+                           ),
                          _("Don't forget to check the weather forecast before you go out with your material.")
                      ])) \
             .replace('+++SECTION-EPHEMERIDES+++', _('Ephemerides of the day')) \
@@ -237,17 +286,21 @@ class _LatexDumper(Dumper):
 
         for aster in self.ephemeris['details']:
             if aster.ephemerides.rise_time is not None:
-                aster_rise = aster.ephemerides.rise_time.utc_strftime(TIME_FORMAT)
+                time_fmt = TIME_FORMAT if aster.ephemerides.rise_time.day == self.date.day else SHORT_DATETIME_FORMAT
+                aster_rise = aster.ephemerides.rise_time.strftime(time_fmt)
             else:
                 aster_rise = '-'
 
             if aster.ephemerides.culmination_time is not None:
-                aster_culmination = aster.ephemerides.culmination_time.utc_strftime(TIME_FORMAT)
+                time_fmt = TIME_FORMAT if aster.ephemerides.culmination_time.day == self.date.day\
+                    else SHORT_DATETIME_FORMAT
+                aster_culmination = aster.ephemerides.culmination_time.strftime(time_fmt)
             else:
                 aster_culmination = '-'
 
             if aster.ephemerides.set_time is not None:
-                aster_set = aster.ephemerides.set_time.utc_strftime(TIME_FORMAT)
+                time_fmt = TIME_FORMAT if aster.ephemerides.set_time.day == self.date.day else SHORT_DATETIME_FORMAT
+                aster_set = aster.ephemerides.set_time.strftime(time_fmt)
             else:
                 aster_set = '-'
 
@@ -262,7 +315,7 @@ class _LatexDumper(Dumper):
         latex = []
 
         for event in self.events:
-            latex.append(r'\event{%s}{%s}' % (event.start_time.utc_strftime(TIME_FORMAT),
+            latex.append(r'\event{%s}{%s}' % (event.start_time.strftime(TIME_FORMAT),
                                               event.get_description()))
 
         return ''.join(latex)
@@ -288,9 +341,14 @@ class _LatexDumper(Dumper):
 
 
 class PdfDumper(Dumper):
+    def __init__(self, ephemerides, events, date=datetime.datetime.now(), timezone=0, with_colors=True):
+        super(PdfDumper, self).__init__(ephemerides, events, date=date, timezone=0, with_colors=with_colors)
+        self.timezone = timezone
+
     def to_string(self):
         try:
-            latex_dumper = _LatexDumper(self.ephemeris, self.events, self.date, self.with_colors)
+            latex_dumper = _LatexDumper(self.ephemeris, self.events,
+                                        date=self.date, timezone=self.timezone, with_colors=self.with_colors)
             return self._compile(latex_dumper.to_string())
         except RuntimeError:
             raise UnavailableFeatureError(_("Building PDFs was not possible, because some dependencies are not"

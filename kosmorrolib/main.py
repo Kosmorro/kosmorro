@@ -68,7 +68,9 @@ def main():
 
         events_list = events.search_events(compute_date)
 
-        selected_dumper = output_formats[args.format](ephemerides, events_list, compute_date, args.colors)
+        selected_dumper = output_formats[args.format](ephemerides, events_list,
+                                                      date=compute_date, timezone=args.timezone,
+                                                      with_colors=args.colors)
         output = selected_dumper.to_string()
     except UnavailableFeatureError as error:
         print(colored(error.msg, 'red'))
@@ -149,6 +151,8 @@ def get_args(output_formats: [str]):
     parser.add_argument('--year', '-y', type=int, default=today.year,
                         help=_('The year you want to compute the ephemerides for.'
                                ' Defaults to {default_year} (the current year).').format(default_year=today.year))
+    parser.add_argument('--timezone', '-t', type=int, default=0,
+                        help=_('The timezone to display the hours in (e.g. 2 for UTC+2 or -3 for UTC-3).'))
     parser.add_argument('--no-colors', dest='colors', action='store_false',
                         help=_('Disable the colors in the console.'))
     parser.add_argument('--output', '-o', type=str, default=None,

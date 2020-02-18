@@ -100,6 +100,11 @@ class EphemeridesComputer:
 
         culmination_time = culmination_time[0] if culmination_time is not None else None
 
+        # Convert the Time instances to Python datetime objects
+        rise_time = rise_time.utc_datetime().replace(microsecond=0)
+        culmination_time = culmination_time.utc_datetime().replace(microsecond=0)
+        set_time = set_time.utc_datetime().replace(microsecond=0)
+
         aster.ephemerides = AsterEphemerides(rise_time, culmination_time, set_time)
         return aster
 

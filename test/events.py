@@ -24,7 +24,7 @@ class MyTestCase(unittest.TestCase):
             self.assertEqual(1, len(o), 'Expected 1 event for %s, got %d' % (expected_date, len(o)))
             self.assertEqual('OPPOSITION', o[0].event_type)
             self.assertEqual('MARS', o[0].objects[0].skyfield_name)
-            self.assertRegex(o[0].start_time.utc_iso(), expected_date)
+            self.assertRegex(o[0].start_time.isoformat(), expected_date)
             self.assertIsNone(o[0].end_time)
             self.assertEqual('Mars is in opposition', o[0].get_description())
 
@@ -45,7 +45,7 @@ class MyTestCase(unittest.TestCase):
                 objects, expected_date = expected_dates[i]
 
                 j = 0
-                self.assertRegex(conjunction.start_time.utc_iso(), expected_date)
+                self.assertRegex(conjunction.start_time.isoformat(), expected_date)
                 for object in objects:
                     self.assertEqual(object, conjunction.objects[j].skyfield_name)
                     j += 1
