@@ -19,10 +19,10 @@
 from datetime import date as date_type
 
 from skyfield.timelib import Time
-from skyfield.almanac import find_discrete
+from skyfield.searchlib import find_discrete, find_maxima
 
-from .data import Event, Planet
-from .core import get_timescale, get_skf_objects, ASTERS, flatten_list
+from .data import Event, Planet, ASTERS
+from .core import get_timescale, get_skf_objects, flatten_list
 
 
 def _search_conjunction(start_time: Time, end_time: Time) -> [Event]:
@@ -91,11 +91,41 @@ def _search_oppositions(start_time: Time, end_time: Time) -> [Event]:
     return events
 
 
+def _search_maximal_elongations(start_time: Time, end_time: Time) -> [Event]:
+    earth = get_skf_objects()['earth']
+    sun = get_skf_objects()['sun']
+    aster = None
+
+    def get_elongation(time: Time):
+        sun_pos = (sun - earth).at(time)
+        aster_pos = (aster.get_skyfield_object() - earth).at(time)
+        separation = sun_pos.separation_from(aster_pos)
+        return separation.degrees
+
+    get_elongation.rough_period = 1.0
+
+    events = []
+
+    for aster in ASTERS:
+        if aster.skyfield_name not in ['MERCURY', 'VENUS']:
+            continue
+
+        times, elongations = find_maxima(start_time, end_time, f=get_elongation, epsilon=1./24/3600, num=12)
+
+        for i, time in enumerate(times):
+            elongation = elongations[i]
+            events.append(Event('MAXIMAL_ELONGATION', [aster], time.utc_datetime(),
+                                details='{:.3n}°'.format(elongation)))
+
+    return events
+
+
 def search_events(date: date_type) -> [Event]:
     start_time = get_timescale().utc(date.year, date.month, date.day)
     end_time = get_timescale().utc(date.year, date.month, date.day + 1)
 
     return sorted(flatten_list([
         _search_oppositions(start_time, end_time),
-        _search_conjunction(start_time, end_time)
+        _search_conjunction(start_time, end_time),
+        _search_maximal_elongations(start_time, end_time)
     ]), key=lambda event: event.start_time)

@@ -23,7 +23,17 @@ class DumperTestCase(unittest.TestCase):
                          '                "Mars"\n'
                          '            ],\n'
                          '            "start_time": "2019-10-14T23:00:00",\n'
-                         '            "end_time": null\n'
+                         '            "end_time": null,\n'
+                         '            "details": null\n'
+                         '        },\n'
+                         '        {\n'
+                         '            "event_type": "MAXIMAL_ELONGATION",\n'
+                         '            "objects": [\n'
+                         '                "Venus"\n'
+                         '            ],\n'
+                         '            "start_time": "2019-10-14T12:00:00",\n'
+                         '            "end_time": null,\n'
+                         '            "details": "42.0\\u00b0"\n'
                          '        }\n'
                          '    ],\n'
                          '    "ephemerides": [\n'
@@ -52,7 +62,17 @@ class DumperTestCase(unittest.TestCase):
                          '                "Mars"\n'
                          '            ],\n'
                          '            "start_time": "2019-10-14T23:00:00",\n'
-                         '            "end_time": null\n'
+                         '            "end_time": null,\n'
+                         '            "details": null\n'
+                         '        },\n'
+                         '        {\n'
+                         '            "event_type": "MAXIMAL_ELONGATION",\n'
+                         '            "objects": [\n'
+                         '                "Venus"\n'
+                         '            ],\n'
+                         '            "start_time": "2019-10-14T12:00:00",\n'
+                         '            "end_time": null,\n'
+                         '            "details": "42.0\\u00b0"\n'
                          '        }\n'
                          '    ],\n'
                          '    "ephemerides": [\n'
@@ -92,15 +112,16 @@ class DumperTestCase(unittest.TestCase):
 
     def test_text_dumper_with_events(self):
         ephemerides = self._get_data()
-        self.assertEqual('Monday October 14, 2019\n\n'
-                         'Object     Rise time    Culmination time    Set time\n'
-                         '--------  -----------  ------------------  ----------\n'
-                         'Mars           -               -               -\n\n'
-                         'Moon phase: Full Moon\n'
-                         'Last Quarter on Monday October 21, 2019 at 00:00\n\n'
-                         'Expected events:\n'
-                         '23:00  Mars is in opposition\n\n'
-                         'Note: All the hours are given in UTC.',
+        self.assertEqual("Monday October 14, 2019\n\n"
+                         "Object     Rise time    Culmination time    Set time\n"
+                         "--------  -----------  ------------------  ----------\n"
+                         "Mars           -               -               -\n\n"
+                         "Moon phase: Full Moon\n"
+                         "Last Quarter on Monday October 21, 2019 at 00:00\n\n"
+                         "Expected events:\n"
+                         "23:00  Mars is in opposition\n"
+                         "12:00  Venus's largest elongation (42.0°)\n\n"
+                         "Note: All the hours are given in UTC.",
                          TextDumper(ephemerides, self._get_events(), date=date(2019, 10, 14), with_colors=False).to_string())
 
     def test_text_dumper_without_ephemerides_and_with_events(self):
@@ -109,7 +130,8 @@ class DumperTestCase(unittest.TestCase):
                          'Moon phase: Full Moon\n'
                          'Last Quarter on Monday October 21, 2019 at 00:00\n\n'
                          'Expected events:\n'
-                         '23:00  Mars is in opposition\n\n'
+                         '23:00  Mars is in opposition\n'
+                         "12:00  Venus's largest elongation (42.0°)\n\n"
                          'Note: All the hours are given in UTC.',
                          TextDumper(ephemerides, self._get_events(), date=date(2019, 10, 14), with_colors=False).to_string())
 
@@ -122,7 +144,8 @@ class DumperTestCase(unittest.TestCase):
                          'Moon phase: Full Moon\n'
                          'Last Quarter on Monday October 21, 2019 at 01:00\n\n'
                          'Expected events:\n'
-                         'Oct 15, 00:00  Mars is in opposition\n\n'
+                         'Oct 15, 00:00  Mars is in opposition\n'
+                         "13:00          Venus's largest elongation (42.0°)\n\n"
                          'Note: All the hours are given in the UTC+1 timezone.',
                          TextDumper(ephemerides, self._get_events(), date=date(2019, 10, 14), with_colors=False, timezone=1).to_string())
 
@@ -134,7 +157,8 @@ class DumperTestCase(unittest.TestCase):
                          'Moon phase: Full Moon\n'
                          'Last Quarter on Sunday October 20, 2019 at 23:00\n\n'
                          'Expected events:\n'
-                         '22:00  Mars is in opposition\n\n'
+                         '22:00  Mars is in opposition\n'
+                         "11:00  Venus's largest elongation (42.0°)\n\n"
                          'Note: All the hours are given in the UTC-1 timezone.',
                          TextDumper(ephemerides, self._get_events(), date=date(2019, 10, 14), with_colors=False, timezone=-1).to_string())
 
@@ -146,6 +170,7 @@ class DumperTestCase(unittest.TestCase):
         self.assertRegex(latex, r'\\section{\\sffamily Ephemerides of the day}')
         self.assertRegex(latex, r'\\object\{Mars\}\{-\}\{-\}\{-\}')
         self.assertRegex(latex, r'\\event\{23:00\}\{Mars is in opposition\}')
+        self.assertRegex(latex, r"\\event\{12:00\}\{Venus's largest elongation \(42.0°\)\}")
 
         latex = _LatexDumper(self._get_data(aster_rise_set=True),
                              self._get_events(), date=date(2019, 10, 14)).to_string()
@@ -157,6 +182,7 @@ class DumperTestCase(unittest.TestCase):
         self.assertRegex(latex, 'Full Moon')
         self.assertRegex(latex, r'\\section{\\sffamily Expected events}')
         self.assertRegex(latex, r'\\event\{23:00\}\{Mars is in opposition\}')
+        self.assertRegex(latex, r"\\event\{12:00\}\{Venus's largest elongation \(42.0°\)\}")
 
         self.assertNotRegex(latex, r'\\object\{Mars\}\{-\}\{-\}\{-\}')
         self.assertNotRegex(latex, r'\\section{\\sffamily Ephemerides of the day}')
@@ -186,7 +212,10 @@ class DumperTestCase(unittest.TestCase):
     def _get_events():
         return [Event('OPPOSITION',
                       [Planet('Mars', 'MARS')],
-                      datetime(2019, 10, 14, 23, 00))
+                      datetime(2019, 10, 14, 23, 00)),
+                Event('MAXIMAL_ELONGATION',
+                      [Planet('Venus', 'VENUS')],
+                      datetime(2019, 10, 14, 12, 00), details='42.0°'),
                 ]
 
 
