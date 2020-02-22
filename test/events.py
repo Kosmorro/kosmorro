@@ -55,6 +55,33 @@ class MyTestCase(unittest.TestCase):
 
                 i += 1
 
+    def test_find_maximal_elongation(self):
+        e = events.search_events(date(2020, 2, 10))
+        self.assertEquals(1, len(e), 'Expected 1 events, got %d.' % len(e))
+        e = e[0]
+        self.assertEquals('MAXIMAL_ELONGATION', e.event_type)
+        self.assertEquals(1, len(e.objects))
+        self.assertEquals('MERCURY', e.objects[0].skyfield_name)
+        self.assertEqual('18.2°', e.details)
+        self.assertEquals((2020, 2, 10, 13, 46), (e.start_time.year, e.start_time.month, e.start_time.day,
+                                                  e.start_time.hour, e.start_time.minute))
+
+        e = events.search_events(date(2020, 3, 24))
+        self.assertEquals(2, len(e), 'Expected 2 events, got %d.' % len(e))
+        self.assertEquals('MAXIMAL_ELONGATION', e[0].event_type)
+        self.assertEquals(1, len(e[0].objects))
+        self.assertEquals('MERCURY', e[0].objects[0].skyfield_name)
+        self.assertEqual('27.8°', e[0].details)
+        self.assertEquals((2020, 3, 24, 1, 56), (e[0].start_time.year, e[0].start_time.month, e[0].start_time.day,
+                                                 e[0].start_time.hour, e[0].start_time.minute))
+
+        self.assertEquals('MAXIMAL_ELONGATION', e[1].event_type)
+        self.assertEquals(1, len(e[1].objects))
+        self.assertEquals('VENUS', e[1].objects[0].skyfield_name)
+        self.assertEqual('46.1°', e[1].details)
+        self.assertEquals((2020, 3, 24, 21, 58), (e[1].start_time.year, e[1].start_time.month, e[1].start_time.day,
+                                                  e[1].start_time.hour, e[1].start_time.minute))
+
 
 if __name__ == '__main__':
     unittest.main()

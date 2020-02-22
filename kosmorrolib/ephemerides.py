@@ -24,8 +24,8 @@ from skyfield.searchlib import find_discrete, find_maxima
 from skyfield.timelib import Time
 from skyfield.constants import tau
 
-from .data import Object, Position, AsterEphemerides, MoonPhase
-from .core import get_skf_objects, get_timescale, get_iau2000b, ASTERS, MONTHS, skyfield_to_moon_phase
+from .data import Object, Position, AsterEphemerides, MoonPhase, ASTERS, MONTHS, skyfield_to_moon_phase
+from .core import get_skf_objects, get_timescale, get_iau2000b
 
 RISEN_ANGLE = -0.8333
 
@@ -88,6 +88,7 @@ class EphemeridesComputer:
         rise_times, arr = find_discrete(start_time, end_time, is_risen)
         try:
             culmination_time, _ = find_maxima(start_time, end_time, f=get_angle, epsilon=1./3600/24, num=12)
+            culmination_time = culmination_time[0] if len(culmination_time) > 0 else None
         except ValueError:
             culmination_time = None
 
@@ -98,12 +99,15 @@ class EphemeridesComputer:
             rise_time = rise_times[0] if arr[0] else None
             set_time = rise_times[0] if not arr[0] else None
 
-        culmination_time = culmination_time[0] if culmination_time is not None else None
-
         # Convert the Time instances to Python datetime objects
-        rise_time = rise_time.utc_datetime().replace(microsecond=0)
-        culmination_time = culmination_time.utc_datetime().replace(microsecond=0)
-        set_time = set_time.utc_datetime().replace(microsecond=0)
+        if rise_time is not None:
+            rise_time = rise_time.utc_datetime().replace(microsecond=0)
+
+        if culmination_time is not None:
+            culmination_time = culmination_time.utc_datetime().replace(microsecond=0)
+
+        if set_time is not None:
+            set_time = set_time.utc_datetime().replace(microsecond=0) if set_time is not None else None
 
         aster.ephemerides = AsterEphemerides(rise_time, culmination_time, set_time)
         return aster

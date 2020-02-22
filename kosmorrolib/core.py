@@ -18,29 +18,12 @@
 
 from shutil import rmtree
 from pathlib import Path
-from typing import Union
 
 from skyfield.api import Loader
 from skyfield.timelib import Time
 from skyfield.nutationlib import iau2000b
 
-from .data import Star, Planet, Satellite, MOON_PHASES, MoonPhase
-from .i18n import _
-
 CACHE_FOLDER = str(Path.home()) + '/.kosmorro-cache'
-
-MONTHS = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
-
-ASTERS = [Star(_('Sun'), 'SUN'),
-          Satellite(_('Moon'), 'MOON'),
-          Planet(_('Mercury'), 'MERCURY'),
-          Planet(_('Venus'), 'VENUS'),
-          Planet(_('Mars'), 'MARS'),
-          Planet(_('Jupiter'), 'JUPITER BARYCENTER'),
-          Planet(_('Saturn'), 'SATURN BARYCENTER'),
-          Planet(_('Uranus'), 'URANUS BARYCENTER'),
-          Planet(_('Neptune'), 'NEPTUNE BARYCENTER'),
-          Planet(_('Pluto'), 'PLUTO BARYCENTER')]
 
 
 def get_loader():
@@ -61,43 +44,6 @@ def get_iau2000b(time: Time):
 
 def clear_cache():
     rmtree(CACHE_FOLDER)
-
-
-def skyfield_to_moon_phase(times: [Time], vals: [int], now: Time) -> Union[MoonPhase, None]:
-    tomorrow = get_timescale().utc(now.utc_datetime().year, now.utc_datetime().month, now.utc_datetime().day + 1)
-
-    phases = list(MOON_PHASES.keys())
-    current_phase = None
-    current_phase_time = None
-    next_phase_time = None
-    i = 0
-
-    if len(times) == 0:
-        return None
-
-    for i, time in enumerate(times):
-        if now.utc_iso() <= time.utc_iso():
-            if vals[i] in [0, 2, 4, 6]:
-                if time.utc_datetime() < tomorrow.utc_datetime():
-                    current_phase_time = time
-                    current_phase = phases[vals[i]]
-                else:
-                    i -= 1
-                    current_phase_time = None
-                    current_phase = phases[vals[i]]
-            else:
-                current_phase = phases[vals[i]]
-
-            break
-
-    for j in range(i + 1, len(times)):
-        if vals[j] in [0, 2, 4, 6]:
-            next_phase_time = times[j]
-            break
-
-    return MoonPhase(current_phase,
-                     current_phase_time.utc_datetime() if current_phase_time is not None else None,
-                     next_phase_time.utc_datetime() if next_phase_time is not None else None)
 
 
 def flatten_list(the_list: list):
