@@ -38,6 +38,9 @@ setup(
     packages=find_packages(),
     scripts=['kosmorro'],
     include_package_data=True,
+    data_files=[
+        ('man/man1', ['manpage/kosmorro.1'])
+    ],
     install_requires=['skyfield>=1.17.0,<2.0.0', 'tabulate', 'numpy>=1.17.0,<2.0.0', 'termcolor'],
     classifiers=[
         'Development Status :: 3 - Alpha',

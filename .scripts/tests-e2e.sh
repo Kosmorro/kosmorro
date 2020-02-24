@@ -92,6 +92,9 @@ assertSuccess "$PIP_BIN install latex" "CI"
 # Dependencies installed, should not fail
 assertSuccess "kosmorro --latitude=50.5876 --longitude=3.0624 -d 27 -m 1 -y 2020 --format=pdf -o /tmp/document.pdf"
 
+# man page
+assertSuccess "man --pager=cat kosmorro"
+
 if [ "$failures" != "" ]; then
     echo -e "\n$failures"
     exit 2

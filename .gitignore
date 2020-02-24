@@ -9,6 +9,9 @@ package-lock.json
 /kosmorrolib/assets/pdf/*
 !/assets/pdf/*.tex
 
+/manpage/*
+!/manpage/*.md
+
 # Translation files are taken care on https://poeditor.com/join/project/GXuhLpdaoh
 *.mo
 *.po
