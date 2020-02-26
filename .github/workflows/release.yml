@@ -13,6 +13,11 @@ jobs:
       uses: actions/setup-python@v1
       with:
         python-version: '3.7'
+    - name: Setup environment
+      run: |
+        sudo apt update
+        sudo apt install ruby
+        sudo gem install ronn
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
@@ -24,6 +29,8 @@ jobs:
         POEDITOR_API_ACCESS: ${{ secrets.POEDITOR_API_ACCESS }}
         POEDITOR_PROJECT_ID: 306433
       run: |
+        cd manpage && ronn kosmorro.md && cd ..
+
         python .scripts/build/getlangs.py
         python setup.py compile_catalog sdist bdist_wheel
         twine upload dist/*

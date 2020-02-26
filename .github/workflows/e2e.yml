@@ -16,9 +16,13 @@ jobs:
 
     - name: Prepare tests
       run: |
+        sudo apt install ruby
+        sudo gem install ronn
         pip install -U setuptools pip
+        cd manpage && ronn kosmorro.1.md && cd ..
 
     - name: E2E tests
       run: |
         export ENVIRONMENT="CI"
         bash .scripts/tests-e2e.sh
+

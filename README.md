@@ -50,14 +50,26 @@ Then, run Kosmorro by invoking `pipenv run python kosmorro`.
 
 For comfort, you may want to invoke `pipenv shell` first and then just `python kosmoro`.
 
-## Running Kosmorro
+## Using Kosmorro
 
 Using Kosmorro is as simple as invoking `kosmorro` in your terminal!
 
 By default, it will give you the current Moon phase and, if any, the events that will occur today.
 To get the rise, culmination and set of the objects of the Solar system, you will need to give it your position on Earth: get your current coordinates (with [OpenStreetMap](https://www.openstreetmap.org) for instance), and give them to Kosmorro by invoking it with the following parameters: `--latitude=X --longitude=Y` (replace `X` by the latitude and `Y` by the longitude).
 
-Kosmorro has a lot of available options. To get a list of them, run `kosmorro --help`.
+Kosmorro has a lot of available options. To get a list of them, run `kosmorro --help`, or read its manual with `man kosmorro`.
 
 Note: the first time it runs, Kosmorro will download some important files needed to make the computations. They are stored in a cache folder named `.kosmorro-cache` located in your home directory (`/home/<username>` on Linux, `/Users/<username>` on macOS).
 
+### Exporting to PDF
+
+Kosmorro can export the computation results to PDF files, but this feature requires first that you install some additional dependencies. Before you use this feature, please check these packages are installed:
+
+- **A LaTeX distribution:**
+    - Linux: install TeXLive through your packages manager. Kosmorro just needs the minimal installation, you don't need any extension.
+    - macOS: install [MacTeX](https://www.tug.org/mactex/)
+- **The `latex` Python library:**
+    - Arch Linux: the library is available [on the AUR](https://aur.archlinux.org/packages/python-latex)
+    - Any other systems: install it through PyPI: `pip install latex`
+
+These dependencies are not installed by default, because they take a lot of place and are not necessary if you are not interested in generating PDF files.
