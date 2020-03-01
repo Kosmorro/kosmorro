@@ -29,7 +29,7 @@ jobs:
         POEDITOR_API_ACCESS: ${{ secrets.POEDITOR_API_ACCESS }}
         POEDITOR_PROJECT_ID: 306433
       run: |
-        cd manpage && ronn kosmorro.md && cd ..
+        cd manpage && ronn kosmorro.1.md && cd ..
 
         python .scripts/build/getlangs.py
         python setup.py compile_catalog sdist bdist_wheel
