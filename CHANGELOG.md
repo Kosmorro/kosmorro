@@ -1,3 +1,14 @@
+# [v0.6.0](https://github.com/Deuchnord/kosmorro/compare/v0.5.2...v0.6.0) (2020-03-01)
+
+
+### Features
+
+* add ability to save PDF file ([2fadc2a](https://github.com/Deuchnord/kosmorro/commit/2fadc2a95ebd7b8e72633d4a7209a08bcb0dfebc))
+* add support for maximal elongations of Mercury and Venus ([9dbc093](https://github.com/Deuchnord/kosmorro/commit/9dbc09363134f6b4647d07cb54aea387e1a36fab))
+* add support for timezones ([d7730bd](https://github.com/Deuchnord/kosmorro/commit/d7730bd2ad5e1bd0d28de759c674e0c799c0bb06))
+
+
+
 # [v0.5.2](https://github.com/Deuchnord/kosmorro/compare/v0.5.1...v0.5.2) (2020-02-04)
 
 

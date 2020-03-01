@@ -13,9 +13,9 @@ class EphemeridesComputerTestCase(unittest.TestCase):
                                                                     date=date(2019, 11, 18),
                                                                     position=position)
 
-        self.assertEqual('2019-11-18T05:41:30+00:00', star.ephemerides.rise_time.isoformat())
-        self.assertEqual('2019-11-18T11:45:02+00:00', star.ephemerides.culmination_time.isoformat())
-        self.assertEqual('2019-11-18T17:48:39+00:00', star.ephemerides.set_time.isoformat())
+        self.assertRegex(star.ephemerides.rise_time.isoformat(), '^2019-11-18T05:41:')
+        self.assertRegex(star.ephemerides.culmination_time.isoformat(), '^2019-11-18T11:45:')
+        self.assertRegex(star.ephemerides.set_time.isoformat(), '^2019-11-18T17:48:')
 
     ###################################################################################################################
     ###                                             MOON PHASE TESTS                                                ###
