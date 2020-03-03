@@ -22,14 +22,8 @@
 `--longitude=`_LONGITUDE_, `-lon` _LONGITUDE_  
     the observer's longitude on Earth
 
-`--day=`_DAY_, `-d` _DAY_  
-    a number between 1 and 28, 29, 30 or 31 (depending on the month); the day you want to compute the ephemerides for, defaults to the current day
-
-`--month=`_MONTH_, `-m` _MONTH_  
-    a number between 1 and 12; the month you want to compute the ephemerides for, defaults to the current month
-
-`--year=`_YEAR_, `-y` _YEAR_  
-    the year you want to compute the ephemerides for; defaults to the current year
+`--date=`_DATE_, `-d` _DATE_  
+    The date for which the ephemerides must be computed (in the YYYY-MM-DD format); defaults to the current date
 
 `--timezone=`_TIMEZONE_, `-t` _TIMEZONE_  
     the timezone to display the hours in; e.g. 2 for UTC+2 or -3 for UTC-3
@@ -43,18 +37,24 @@
 `--format=`_FORMAT_, `-f` _FORMAT_  
     the format under which the information have to be output; one of the following: text, json, pdf
 
-## EXAMPLE
+## EXAMPLES
+
+Compute the events only for the current date:
+
+```
+kosmorro
+```
 
 Compute the ephemerides for Lille, France, on April 1st, 2022:
 
 ```
-kosmorro --latitude=50.5876 --longitude=3.0624 -d 1 -m 4 -y 2022
+kosmorro --latitude=50.5876 --longitude=3.0624 --date=2022-04-01
 ```
 
 Compute the ephemerides for Lille, France, on April 1st, 2022, and export them in a PDF document:
 
 ```
-kosmorro --latitude=50.5876 --longitude=3.0624 -d 1 -m 4 -y 2022 --format=pdf --output=file.pdf
+kosmorro --latitude=50.5876 --longitude=3.0624 -date=2022-04-01 --format=pdf --output=file.pdf
 ```
 
 ## AUTHOR

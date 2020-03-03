@@ -47,7 +47,7 @@ class EphemeridesComputer:
         return {'rise': sunrise, 'set': sunset}
 
     @staticmethod
-    def get_moon_phase(year, month, day) -> MoonPhase:
+    def get_moon_phase(compute_date: datetime.date) -> MoonPhase:
         earth = get_skf_objects()['earth']
         moon = get_skf_objects()['moon']
         sun = get_skf_objects()['sun']
@@ -61,9 +61,9 @@ class EphemeridesComputer:
 
         moon_phase_at.rough_period = 7.0  # one lunar phase per week
 
-        today = get_timescale().utc(year, month, day)
-        time1 = get_timescale().utc(year, month, day - 10)
-        time2 = get_timescale().utc(year, month, day + 10)
+        today = get_timescale().utc(compute_date.year, compute_date.month, compute_date.day)
+        time1 = get_timescale().utc(compute_date.year, compute_date.month, compute_date.day - 10)
+        time2 = get_timescale().utc(compute_date.year, compute_date.month, compute_date.day + 10)
 
         times, phase = find_discrete(time1, time2, moon_phase_at)
 
@@ -116,9 +116,9 @@ class EphemeridesComputer:
     def is_leap_year(year: int) -> bool:
         return (year % 4 == 0 and year % 100 > 0) or (year % 400 == 0)
 
-    def compute_ephemerides_for_day(self, year: int, month: int, day: int) -> dict:
-        return {'moon_phase': self.get_moon_phase(year, month, day),
-                'details': [self.get_asters_ephemerides_for_aster(aster, datetime.date(year, month, day), self.position)
+    def compute_ephemerides_for_day(self, compute_date: datetime.date) -> dict:
+        return {'moon_phase': self.get_moon_phase(compute_date),
+                'details': [self.get_asters_ephemerides_for_aster(aster, compute_date, self.position)
                             for aster in ASTERS] if self.position is not None else []}
 
     def compute_ephemerides_for_month(self, year: int, month: int) -> [dict]:
@@ -167,11 +167,5 @@ class EphemeridesComputer:
 
         return seasons
 
-    def compute_ephemerides(self, year: int, month: int, day: int):
-        if day is not None:
-            return self.compute_ephemerides_for_day(year, month, day)
-
-        if month is not None:
-            return self.compute_ephemerides_for_month(year, month)
-
-        return self.compute_ephemerides_for_year(year)
+    def compute_ephemerides(self, compute_date: datetime.date):
+        return self.compute_ephemerides_for_day(compute_date)
