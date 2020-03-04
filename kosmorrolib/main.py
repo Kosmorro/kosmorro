@@ -151,7 +151,7 @@ def get_args(output_formats: [str]):
     parser.add_argument('--date', '-d', type=str, default=today.strftime('%Y-%m-%d'),
                         help=_('The date for which the ephemerides must be computed (in the YYYY-MM-DD format). '
                                'Defaults to the current date ({default_date})').format(
-                            default_date=today.strftime('%Y-%m-%d')))
+                                   default_date=today.strftime('%Y-%m-%d')))
     parser.add_argument('--timezone', '-t', type=int, default=0,
                         help=_('The timezone to display the hours in (e.g. 2 for UTC+2 or -3 for UTC-3).'))
     parser.add_argument('--no-colors', dest='colors', action='store_false',
