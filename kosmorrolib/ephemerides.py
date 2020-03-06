@@ -24,7 +24,7 @@ from skyfield.searchlib import find_discrete, find_maxima
 from skyfield.timelib import Time
 from skyfield.constants import tau
 
-from .data import Object, Position, AsterEphemerides, MoonPhase, ASTERS, MONTHS, skyfield_to_moon_phase
+from .data import Object, Position, AsterEphemerides, MoonPhase, ASTERS, skyfield_to_moon_phase
 from .core import get_skf_objects, get_timescale, get_iau2000b
 
 RISEN_ANGLE = -0.8333
@@ -47,7 +47,7 @@ class EphemeridesComputer:
         return {'rise': sunrise, 'set': sunset}
 
     @staticmethod
-    def get_moon_phase(year, month, day) -> MoonPhase:
+    def get_moon_phase(compute_date: datetime.date) -> MoonPhase:
         earth = get_skf_objects()['earth']
         moon = get_skf_objects()['moon']
         sun = get_skf_objects()['sun']
@@ -61,9 +61,9 @@ class EphemeridesComputer:
 
         moon_phase_at.rough_period = 7.0  # one lunar phase per week
 
-        today = get_timescale().utc(year, month, day)
-        time1 = get_timescale().utc(year, month, day - 10)
-        time2 = get_timescale().utc(year, month, day + 10)
+        today = get_timescale().utc(compute_date.year, compute_date.month, compute_date.day)
+        time1 = get_timescale().utc(compute_date.year, compute_date.month, compute_date.day - 10)
+        time2 = get_timescale().utc(compute_date.year, compute_date.month, compute_date.day + 10)
 
         times, phase = find_discrete(time1, time2, moon_phase_at)
 
@@ -116,33 +116,10 @@ class EphemeridesComputer:
     def is_leap_year(year: int) -> bool:
         return (year % 4 == 0 and year % 100 > 0) or (year % 400 == 0)
 
-    def compute_ephemerides_for_day(self, year: int, month: int, day: int) -> dict:
-        return {'moon_phase': self.get_moon_phase(year, month, day),
-                'details': [self.get_asters_ephemerides_for_aster(aster, datetime.date(year, month, day), self.position)
+    def compute_ephemerides(self, compute_date: datetime.date) -> dict:
+        return {'moon_phase': self.get_moon_phase(compute_date),
+                'details': [self.get_asters_ephemerides_for_aster(aster, compute_date, self.position)
                             for aster in ASTERS] if self.position is not None else []}
-
-    def compute_ephemerides_for_month(self, year: int, month: int) -> [dict]:
-        if month == 2:
-            max_day = 29 if self.is_leap_year(year) else 28
-        elif month < 8:
-            max_day = 30 if month % 2 == 0 else 31
-        else:
-            max_day = 31 if month % 2 == 0 else 30
-
-        ephemerides = []
-
-        for day in range(1, max_day + 1):
-            ephemerides.append(self.compute_ephemerides_for_day(year, month, day))
-
-        return ephemerides
-
-    def compute_ephemerides_for_year(self, year: int) -> [dict]:
-        ephemerides = {'seasons': self.get_seasons(year)}
-
-        for month in range(0, 12):
-            ephemerides[MONTHS[month]] = self.compute_ephemerides_for_month(year, month + 1)
-
-        return ephemerides
 
     @staticmethod
     def get_seasons(year: int) -> dict:
@@ -166,12 +143,3 @@ class EphemeridesComputer:
             seasons[season] = time.utc_iso()
 
         return seasons
-
-    def compute_ephemerides(self, year: int, month: int, day: int):
-        if day is not None:
-            return self.compute_ephemerides_for_day(year, month, day)
-
-        if month is not None:
-            return self.compute_ephemerides_for_month(year, month)
-
-        return self.compute_ephemerides_for_year(year)

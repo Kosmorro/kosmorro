@@ -22,61 +22,61 @@ class EphemeridesComputerTestCase(unittest.TestCase):
     ###################################################################################################################
 
     def test_moon_phase_new_moon(self):
-        phase = EphemeridesComputer.get_moon_phase(2019, 11, 25)
+        phase = EphemeridesComputer.get_moon_phase(date(2019, 11, 25))
         self.assertEqual('WANING_CRESCENT', phase.identifier)
         self.assertIsNone(phase.time)
         self.assertRegexpMatches(phase.next_phase_date.isoformat(), '^2019-11-26T')
 
-        phase = EphemeridesComputer.get_moon_phase(2019, 11, 26)
+        phase = EphemeridesComputer.get_moon_phase(date(2019, 11, 26))
         self.assertEqual('NEW_MOON', phase.identifier)
         self.assertRegexpMatches(phase.next_phase_date.isoformat(), '^2019-12-04T')
 
-        phase = EphemeridesComputer.get_moon_phase(2019, 11, 27)
+        phase = EphemeridesComputer.get_moon_phase(date(2019, 11, 27))
         self.assertEqual('WAXING_CRESCENT', phase.identifier)
         self.assertIsNone(phase.time)
         self.assertRegexpMatches(phase.next_phase_date.isoformat(), '^2019-12-04T')
 
     def test_moon_phase_first_crescent(self):
-        phase = EphemeridesComputer.get_moon_phase(2019, 11, 3)
+        phase = EphemeridesComputer.get_moon_phase(date(2019, 11, 3))
         self.assertEqual('WAXING_CRESCENT', phase.identifier)
         self.assertIsNone(phase.time)
         self.assertRegexpMatches(phase.next_phase_date.isoformat(), '^2019-11-04T')
 
-        phase = EphemeridesComputer.get_moon_phase(2019, 11, 4)
+        phase = EphemeridesComputer.get_moon_phase(date(2019, 11, 4))
         self.assertEqual('FIRST_QUARTER', phase.identifier)
         self.assertRegexpMatches(phase.next_phase_date.isoformat(), '^2019-11-12T')
 
-        phase = EphemeridesComputer.get_moon_phase(2019, 11, 5)
+        phase = EphemeridesComputer.get_moon_phase(date(2019, 11, 5))
         self.assertEqual('WAXING_GIBBOUS', phase.identifier)
         self.assertIsNone(phase.time)
         self.assertRegexpMatches(phase.next_phase_date.isoformat(), '^2019-11-12T')
 
     def test_moon_phase_full_moon(self):
-        phase = EphemeridesComputer.get_moon_phase(2019, 11, 11)
+        phase = EphemeridesComputer.get_moon_phase(date(2019, 11, 11))
         self.assertEqual('WAXING_GIBBOUS', phase.identifier)
         self.assertIsNone(phase.time)
         self.assertRegexpMatches(phase.next_phase_date.isoformat(), '^2019-11-12T')
 
-        phase = EphemeridesComputer.get_moon_phase(2019, 11, 12)
+        phase = EphemeridesComputer.get_moon_phase(date(2019, 11, 12))
         self.assertEqual('FULL_MOON', phase.identifier)
         self.assertRegexpMatches(phase.next_phase_date.isoformat(), '^2019-11-19T')
 
-        phase = EphemeridesComputer.get_moon_phase(2019, 11, 13)
+        phase = EphemeridesComputer.get_moon_phase(date(2019, 11, 13))
         self.assertEqual('WANING_GIBBOUS', phase.identifier)
         self.assertIsNone(phase.time)
         self.assertRegexpMatches(phase.next_phase_date.isoformat(), '^2019-11-19T')
 
     def test_moon_phase_last_quarter(self):
-        phase = EphemeridesComputer.get_moon_phase(2019, 11, 18)
+        phase = EphemeridesComputer.get_moon_phase(date(2019, 11, 18))
         self.assertEqual('WANING_GIBBOUS', phase.identifier)
         self.assertIsNone(phase.time)
         self.assertRegexpMatches(phase.next_phase_date.isoformat(), '^2019-11-19T')
 
-        phase = EphemeridesComputer.get_moon_phase(2019, 11, 19)
+        phase = EphemeridesComputer.get_moon_phase(date(2019, 11, 19))
         self.assertEqual('LAST_QUARTER', phase.identifier)
         self.assertRegexpMatches(phase.next_phase_date.isoformat(), '^2019-11-26T')
 
-        phase = EphemeridesComputer.get_moon_phase(2019, 11, 20)
+        phase = EphemeridesComputer.get_moon_phase(date(2019, 11, 20))
         self.assertEqual('WANING_CRESCENT', phase.identifier)
         self.assertIsNone(phase.time)
         self.assertRegexpMatches(phase.next_phase_date.isoformat(), '^2019-11-26T')

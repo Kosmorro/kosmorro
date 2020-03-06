@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kosmorro 0.6.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-03-01 14:20+0100\n"
+"POT-Creation-Date: 2020-03-04 08:05+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -185,100 +185,95 @@ msgid ""
 "information."
 msgstr ""
 
-#: kosmorrolib/main.py:58
+#: kosmorrolib/main.py:55
 msgid ""
 "Save the planet and paper!\n"
 "Consider printing you PDF document only if really necessary, and use the "
 "other side of the sheet."
 msgstr ""
 
-#: kosmorrolib/main.py:62
+#: kosmorrolib/main.py:59
 msgid ""
 "PDF output will not contain the ephemerides, because you didn't provide "
 "the observation coordinate."
 msgstr ""
 
-#: kosmorrolib/main.py:84
+#: kosmorrolib/main.py:81
 msgid "Could not save the output in \"{path}\": {error}"
 msgstr ""
 
-#: kosmorrolib/main.py:89
+#: kosmorrolib/main.py:86
 msgid "Selected output format needs an output file (--output)."
 msgstr ""
 
-#: kosmorrolib/main.py:106
+#: kosmorrolib/main.py:94
+msgid "The date {date} does not match the required YYYY-MM-DD format."
+msgstr ""
+
+#: kosmorrolib/main.py:99
+msgid "The date {date} is not valid: {error}"
+msgstr ""
+
+#: kosmorrolib/main.py:113
 msgid "Running on Python {python_version}"
 msgstr ""
 
-#: kosmorrolib/main.py:112
+#: kosmorrolib/main.py:119
 msgid "Do you really want to clear Kosmorro's cache? [yN] "
 msgstr ""
 
-#: kosmorrolib/main.py:119
+#: kosmorrolib/main.py:126
 msgid "Answer did not match expected options, cache not cleared."
 msgstr ""
 
-#: kosmorrolib/main.py:128
+#: kosmorrolib/main.py:135
 msgid ""
 "Compute the ephemerides and the events for a given date, at a given "
 "position on Earth."
 msgstr ""
 
-#: kosmorrolib/main.py:130
+#: kosmorrolib/main.py:137
 msgid ""
 "By default, only the events will be computed for today ({date}).\n"
 "To compute also the ephemerides, latitude and longitude arguments are "
 "needed."
 msgstr ""
 
-#: kosmorrolib/main.py:135
+#: kosmorrolib/main.py:142
 msgid "Show the program version"
 msgstr ""
 
-#: kosmorrolib/main.py:137
+#: kosmorrolib/main.py:144
 msgid "Delete all the files Kosmorro stored in the cache."
 msgstr ""
 
-#: kosmorrolib/main.py:139
+#: kosmorrolib/main.py:146
 msgid "The format under which the information have to be output"
 msgstr ""
 
-#: kosmorrolib/main.py:141
+#: kosmorrolib/main.py:148
 msgid "The observer's latitude on Earth"
 msgstr ""
 
-#: kosmorrolib/main.py:143
+#: kosmorrolib/main.py:150
 msgid "The observer's longitude on Earth"
-msgstr ""
-
-#: kosmorrolib/main.py:145
-msgid ""
-"A number between 1 and 28, 29, 30 or 31 (depending on the month). The day"
-" you want to  compute the ephemerides for. Defaults to {default_day} (the"
-" current day)."
-msgstr ""
-
-#: kosmorrolib/main.py:149
-msgid ""
-"A number between 1 and 12. The month you want to compute the ephemerides "
-"for. Defaults to {default_month} (the current month)."
 msgstr ""
 
 #: kosmorrolib/main.py:152
 msgid ""
-"The year you want to compute the ephemerides for. Defaults to "
-"{default_year} (the current year)."
+"The date for which the ephemerides must be computed (in the YYYY-MM-DD "
+"format). Defaults to the current date ({default_date})"
 msgstr ""
 
-#: kosmorrolib/main.py:155
+#: kosmorrolib/main.py:156
 msgid "The timezone to display the hours in (e.g. 2 for UTC+2 or -3 for UTC-3)."
 msgstr ""
 
-#: kosmorrolib/main.py:157
+#: kosmorrolib/main.py:158
 msgid "Disable the colors in the console."
 msgstr ""
 
-#: kosmorrolib/main.py:159
+#: kosmorrolib/main.py:160
 msgid ""
 "A file to export the output to. If not given, the standard output is "
 "used. This argument is needed for PDF format."

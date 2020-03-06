@@ -40,14 +40,11 @@ def main():
     if args.special_action is not None:
         return 0 if args.special_action() else 1
 
-    year = args.year
-    month = args.month
-    day = args.day
-
-    compute_date = date(year, month, day)
-
-    if day is not None and month is None:
-        month = date.today().month
+    try:
+        compute_date = get_date(args.date)
+    except ValueError as error:
+        print(colored(error.args[0], color='red', attrs=['bold']))
+        return -1
 
     if args.latitude is None or args.longitude is None:
         position = None
@@ -64,7 +61,7 @@ def main():
 
     try:
         ephemeris = EphemeridesComputer(position)
-        ephemerides = ephemeris.compute_ephemerides(year, month, day)
+        ephemerides = ephemeris.compute_ephemerides(compute_date)
 
         events_list = events.search_events(compute_date)
 
@@ -90,6 +87,16 @@ def main():
         return 1
 
     return 0
+
+
+def get_date(yyyymmdd: str) -> date:
+    if not re.match(r'^\d{4}-\d{2}-\d{2}$', yyyymmdd):
+        raise ValueError(_('The date {date} does not match the required YYYY-MM-DD format.').format(date=yyyymmdd))
+
+    try:
+        return date.fromisoformat(yyyymmdd)
+    except ValueError as error:
+        raise ValueError(_('The date {date} is not valid: {error}').format(date=yyyymmdd, error=error.args[0]))
 
 
 def get_dumpers() -> {str: dumper.Dumper}:
@@ -141,16 +148,10 @@ def get_args(output_formats: [str]):
                         help=_("The observer's latitude on Earth"))
     parser.add_argument('--longitude', '-lon', type=float, default=None,
                         help=_("The observer's longitude on Earth"))
-    parser.add_argument('--day', '-d', type=int, default=today.day,
-                        help=_('A number between 1 and 28, 29, 30 or 31 (depending on the month). The day you want to '
-                               ' compute the ephemerides for. Defaults to {default_day} (the current day).').format(
-                                   default_day=today.day))
-    parser.add_argument('--month', '-m', type=int, default=today.month,
-                        help=_('A number between 1 and 12. The month you want to compute the ephemerides for.'
-                               ' Defaults to {default_month} (the current month).').format(default_month=today.month))
-    parser.add_argument('--year', '-y', type=int, default=today.year,
-                        help=_('The year you want to compute the ephemerides for.'
-                               ' Defaults to {default_year} (the current year).').format(default_year=today.year))
+    parser.add_argument('--date', '-d', type=str, default=today.strftime('%Y-%m-%d'),
+                        help=_('The date for which the ephemerides must be computed (in the YYYY-MM-DD format). '
+                               'Defaults to the current date ({default_date})').format(
+                                   default_date=today.strftime('%Y-%m-%d')))
     parser.add_argument('--timezone', '-t', type=int, default=0,
                         help=_('The timezone to display the hours in (e.g. 2 for UTC+2 or -3 for UTC-3).'))
     parser.add_argument('--no-colors', dest='colors', action='store_false',

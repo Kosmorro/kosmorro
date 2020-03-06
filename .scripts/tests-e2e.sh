@@ -77,20 +77,24 @@ assertSuccess "$PYTHON_BIN setup.py sdist"
 assertSuccess "$PIP_BIN install dist/kosmorro-$VERSION.tar.gz" "CI"
 
 assertSuccess kosmorro
+assertSuccess "kosmorro -h"
+assertSuccess "kosmorro -d 2020-01-27"
+assertFailure "kosmorro -d yolo-yo-lo"
+assertFailure "kosmorro -d 2020-13-32"
 assertSuccess "kosmorro --latitude=50.5876 --longitude=3.0624"
-assertSuccess "kosmorro --latitude=50.5876 --longitude=3.0624 -d 27 -m 1 -y 2020"
-assertSuccess "kosmorro --latitude=50.5876 --longitude=3.0624 -d 27 -m 1 -y 2020 --timezone=1"
-assertSuccess "kosmorro --latitude=50.5876 --longitude=3.0624 -d 27 -m 1 -y 2020 --timezone=-1"
-assertSuccess "kosmorro --latitude=50.5876 --longitude=3.0624 -d 27 -m 1 -y 2020 --format=json"
-assertFailure "kosmorro --latitude=50.5876 --longitude=3.0624 -d 27 -m 1 -y 2020 --format=pdf"
+assertSuccess "kosmorro --latitude=50.5876 --longitude=3.0624 -d 2020-01-27"
+assertSuccess "kosmorro --latitude=50.5876 --longitude=3.0624 -d 2020-01-27 --timezone=1"
+assertSuccess "kosmorro --latitude=50.5876 --longitude=3.0624 -d 2020-01-27 --timezone=-1"
+assertSuccess "kosmorro --latitude=50.5876 --longitude=3.0624 -d 2020-01-27 --format=json"
+assertFailure "kosmorro --latitude=50.5876 --longitude=3.0624 -d 2020-01-27 --format=pdf"
 # Missing dependencies, should fail
-assertFailure "kosmorro --latitude=50.5876 --longitude=3.0624 -d 27 -m 1 -y 2020 --format=pdf -o /tmp/document.pdf"
+assertFailure "kosmorro --latitude=50.5876 --longitude=3.0624 -d 2020-01-27 --format=pdf -o /tmp/document.pdf"
 
 assertSuccess "sudo apt-get install -y texlive" "CI"
 assertSuccess "$PIP_BIN install latex" "CI"
 
 # Dependencies installed, should not fail
-assertSuccess "kosmorro --latitude=50.5876 --longitude=3.0624 -d 27 -m 1 -y 2020 --format=pdf -o /tmp/document.pdf"
+assertSuccess "kosmorro --latitude=50.5876 --longitude=3.0624 -d 2020-01-27 --format=pdf -o /tmp/document.pdf"
 
 # man page
 assertSuccess "man --pager=cat kosmorro"
