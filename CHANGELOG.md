@@ -1,3 +1,14 @@
+# [v0.6.1](https://github.com/Deuchnord/kosmorro/compare/v0.6.0...v0.6.1) (2020-03-08)
+
+
+### Bug Fixes
+
+* **events:** prevent false detection of conjunctions ([c7bc757](https://github.com/Deuchnord/kosmorro/commit/c7bc7574df1b0469aad1226887495ce013b615f1))
+* handle KeyboardInterrupt exception ([a7cb46e](https://github.com/Deuchnord/kosmorro/commit/a7cb46e857e2ca8e55c61fba522b911fcabdc86c))
+* remove the "timezone" word in the PDF output’s introduction ([5ec56c4](https://github.com/Deuchnord/kosmorro/commit/5ec56c40b1ad80c81a7f5c4e1f63d099403f0a5d))
+
+
+
 # [v0.6.0](https://github.com/Deuchnord/kosmorro/compare/v0.5.2...v0.6.0) (2020-03-01)
 
 
