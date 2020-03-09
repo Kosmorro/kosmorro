@@ -20,6 +20,7 @@ from datetime import date as date_type
 
 from skyfield.timelib import Time
 from skyfield.searchlib import find_discrete, find_maxima
+from numpy import pi
 
 from .data import Event, Planet, ASTERS
 from .core import get_timescale, get_skf_objects, flatten_list
@@ -32,15 +33,12 @@ def _search_conjunction(start_time: Time, end_time: Time) -> [Event]:
 
     def is_in_conjunction(time: Time):
         earth_pos = earth.at(time)
-        aster1_pos = earth_pos.observe(get_skf_objects()[aster1.skyfield_name]).apparent()
-        aster2_pos = earth_pos.observe(get_skf_objects()[aster2.skyfield_name]).apparent()
+        _, aster1_lon, _ = earth_pos.observe(aster1.get_skyfield_object()).apparent().ecliptic_latlon()
+        _, aster2_lon, _ = earth_pos.observe(aster2.get_skyfield_object()).apparent().ecliptic_latlon()
 
-        aster_1_right_ascension, _, _ = aster1_pos.radec()
-        aster_2_right_ascension, _, _ = aster2_pos.radec()
+        return ((aster1_lon.radians - aster2_lon.radians) / pi % 2.0).astype('int8') == 0
 
-        return aster_1_right_ascension.hours - aster_2_right_ascension.hours < 0
-
-    is_in_conjunction.rough_period = 1.0
+    is_in_conjunction.rough_period = 60.0
 
     computed = []
     conjunctions = []
@@ -54,10 +52,11 @@ def _search_conjunction(start_time: Time, end_time: Time) -> [Event]:
             if not isinstance(aster2, Planet) or aster2 == aster1 or aster2 in computed:
                 continue
 
-            times, _ = find_discrete(start_time, end_time, is_in_conjunction)
+            times, is_conjs = find_discrete(start_time, end_time, is_in_conjunction)
 
-            for time in times:
-                conjunctions.append(Event('CONJUNCTION', [aster1, aster2], time.utc_datetime()))
+            for i, time in enumerate(times):
+                if is_conjs[i]:
+                    conjunctions.append(Event('CONJUNCTION', [aster1, aster2], time.utc_datetime()))
 
         computed.append(aster1)
 

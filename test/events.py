@@ -29,11 +29,16 @@ class MyTestCase(unittest.TestCase):
             self.assertEqual('Mars is in opposition', o[0].get_description())
 
     def test_find_conjunctions(self):
-        # Test case: Mars opposition
-        # Source of the information: https://promenade.imcce.fr/en/pages6/887.html#mar
-        c1 = (events.search_events(date(2020, 1, 2)), [(['MERCURY', 'JUPITER BARYCENTER'], '^2020-01-02T15:20')])
-        c2 = (events.search_events(date(2020, 1, 12)), [(['MERCURY', 'SATURN BARYCENTER'], '^2020-01-12T04:34'),
-                                                        (['MERCURY', 'PLUTO BARYCENTER'], '^2020-01-12T06:56')])
+        MERCURY = 'MERCURY'
+        JUPITER = 'JUPITER BARYCENTER'
+        SATURN = 'SATURN BARYCENTER'
+        PLUTO = 'PLUTO BARYCENTER'
+
+        c1 = (events.search_events(date(2020, 1, 2)), [([MERCURY, JUPITER], '^2020-01-02T16:41')])
+        c2 = (events.search_events(date(2020, 1, 12)), [([MERCURY, SATURN], '^2020-01-12T09:51'),
+                                                        ([MERCURY, PLUTO], '^2020-01-12T10:13'),
+                                                        ([SATURN, PLUTO], '^2020-01-12T16:57')])
+        c3 = (events.search_events(date(2020, 2, 7)), [])
 
         for (c, expected_dates) in [c1, c2]:
             self.assertEqual(len(expected_dates), len(c),
