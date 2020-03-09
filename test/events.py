@@ -1,91 +1,63 @@
 import unittest
 
-from datetime import date
+from datetime import date, datetime
 
 from kosmorrolib import events
-from kosmorrolib.data import Event
+from kosmorrolib.data import Event, ASTERS
 from kosmorrolib.core import get_timescale
+from unittest_data_provider import data_provider
 
 
-class MyTestCase(unittest.TestCase):
+class EventTestCase(unittest.TestCase):
+    def setUp(self) -> None:
+        self.maxDiff = None
+
     def test_event_only_accepts_valid_values(self):
         with self.assertRaises(ValueError):
             Event('SUPERNOVA', None, get_timescale().now())
 
-    def test_find_oppositions(self):
-        # Test case: Mars opposition
-        # Source of the information: https://promenade.imcce.fr/en/pages6/887.html#mar
-        o1 = (events.search_events(date(2020, 10, 13)), '^2020-10-13T23:25')
-        o2 = (events.search_events(date(2022, 12, 8)), '^2022-12-08T05:41')
-        o3 = (events.search_events(date(2025, 1, 16)), '^2025-01-16T02:38')
-        o4 = (events.search_events(date(2027, 2, 19)), '^2027-02-19T15:50')
+    expected_events_provider = lambda: (
+        (date(2020, 2, 7), []),
 
-        for (o, expected_date) in [o1, o2, o3, o4]:
-            self.assertEqual(1, len(o), 'Expected 1 event for %s, got %d' % (expected_date, len(o)))
-            self.assertEqual('OPPOSITION', o[0].event_type)
-            self.assertEqual('MARS', o[0].objects[0].skyfield_name)
-            self.assertRegex(o[0].start_time.isoformat(), expected_date)
-            self.assertIsNone(o[0].end_time)
-            self.assertEqual('Mars is in opposition', o[0].get_description())
+        (date(2020, 10, 13), [Event('OPPOSITION', [ASTERS[4]], datetime(2020, 10, 13, 23, 25))]),
 
-    def test_find_conjunctions(self):
-        MERCURY = 'MERCURY'
-        JUPITER = 'JUPITER BARYCENTER'
-        SATURN = 'SATURN BARYCENTER'
-        PLUTO = 'PLUTO BARYCENTER'
+        (date(2022, 12, 8), [Event('CONJUNCTION', [ASTERS[1], ASTERS[4]], datetime(2022, 12, 8, 4, 18)),
+                             Event('OPPOSITION', [ASTERS[4]], datetime(2022, 12, 8, 5, 41))]),
 
-        c1 = (events.search_events(date(2020, 1, 2)), [([MERCURY, JUPITER], '^2020-01-02T16:41')])
-        c2 = (events.search_events(date(2020, 1, 12)), [([MERCURY, SATURN], '^2020-01-12T09:51'),
-                                                        ([MERCURY, PLUTO], '^2020-01-12T10:13'),
-                                                        ([SATURN, PLUTO], '^2020-01-12T16:57')])
-        c3 = (events.search_events(date(2020, 2, 7)), [])
+        (date(2025, 1, 16), [Event('OPPOSITION', [ASTERS[4]], datetime(2025, 1, 16, 2, 38))]),
 
-        for (c, expected_dates) in [c1, c2]:
-            self.assertEqual(len(expected_dates), len(c),
-                             'Expected %d event(s) for %s, got %d' % (len(expected_dates), expected_dates, len(c)))
+        (date(2027, 2, 19), [Event('OPPOSITION', [ASTERS[4]], datetime(2027, 2, 19, 15, 50))]),
 
-            i = 0
-            for conjunction in c:
-                self.assertEqual('CONJUNCTION', conjunction.event_type)
-                objects, expected_date = expected_dates[i]
+        (date(2020, 1, 2), [Event('CONJUNCTION', [ASTERS[2], ASTERS[5]], datetime(2020, 1, 2, 16, 41))]),
 
-                j = 0
-                self.assertRegex(conjunction.start_time.isoformat(), expected_date)
-                for object in objects:
-                    self.assertEqual(object, conjunction.objects[j].skyfield_name)
-                    j += 1
+        (date(2020, 1, 12), [Event('CONJUNCTION', [ASTERS[2], ASTERS[6]], datetime(2020, 1, 12, 9, 51)),
+                             Event('CONJUNCTION', [ASTERS[2], ASTERS[9]], datetime(2020, 1, 12, 10, 13)),
+                             Event('CONJUNCTION', [ASTERS[6], ASTERS[9]], datetime(2020, 1, 12, 16, 57))]),
 
-                self.assertIsNone(conjunction.end_time)
-                self.assertRegex(conjunction.get_description(), ' are in conjunction$')
+        (date(2020, 2, 10), [Event('MAXIMAL_ELONGATION', [ASTERS[2]], datetime(2020, 2, 10, 13, 46), details='18.2°')]),
 
-                i += 1
+        (date(2020, 3, 24), [Event('MAXIMAL_ELONGATION', [ASTERS[2]], datetime(2020, 3, 24, 1, 56), details='27.8°'),
+                             Event('MAXIMAL_ELONGATION', [ASTERS[3]], datetime(2020, 3, 24, 21, 58), details='46.1°')]),
+    )
 
-    def test_find_maximal_elongation(self):
-        e = events.search_events(date(2020, 2, 10))
-        self.assertEquals(1, len(e), 'Expected 1 events, got %d.' % len(e))
-        e = e[0]
-        self.assertEquals('MAXIMAL_ELONGATION', e.event_type)
-        self.assertEquals(1, len(e.objects))
-        self.assertEquals('MERCURY', e.objects[0].skyfield_name)
-        self.assertEqual('18.2°', e.details)
-        self.assertEquals((2020, 2, 10, 13, 46), (e.start_time.year, e.start_time.month, e.start_time.day,
-                                                  e.start_time.hour, e.start_time.minute))
+    @data_provider(expected_events_provider)
+    def test_search_events(self, d: date, expected_events: [Event]):
+        actual_events = events.search_events(d)
+        self.assertEqual(len(expected_events), len(actual_events),
+                         'Expected %d elements, got %d for date %s.' % (len(expected_events),
+                                                                        len(actual_events),
+                                                                        d.isoformat()))
 
-        e = events.search_events(date(2020, 3, 24))
-        self.assertEquals(2, len(e), 'Expected 2 events, got %d.' % len(e))
-        self.assertEquals('MAXIMAL_ELONGATION', e[0].event_type)
-        self.assertEquals(1, len(e[0].objects))
-        self.assertEquals('MERCURY', e[0].objects[0].skyfield_name)
-        self.assertEqual('27.8°', e[0].details)
-        self.assertEquals((2020, 3, 24, 1, 56), (e[0].start_time.year, e[0].start_time.month, e[0].start_time.day,
-                                                 e[0].start_time.hour, e[0].start_time.minute))
+        for i, expected_event in enumerate(expected_events):
+            actual_event = actual_events[i]
+            # Remove unnecessary precision (seconds and microseconds)
+            actual_event.start_time = datetime(actual_event.start_time.year,
+                                               actual_event.start_time.month,
+                                               actual_event.start_time.day,
+                                               actual_event.start_time.hour,
+                                               actual_event.start_time.minute)
 
-        self.assertEquals('MAXIMAL_ELONGATION', e[1].event_type)
-        self.assertEquals(1, len(e[1].objects))
-        self.assertEquals('VENUS', e[1].objects[0].skyfield_name)
-        self.assertEqual('46.1°', e[1].details)
-        self.assertEquals((2020, 3, 24, 21, 58), (e[1].start_time.year, e[1].start_time.month, e[1].start_time.day,
-                                                  e[1].start_time.hour, e[1].start_time.minute))
+            self.assertEqual(expected_event.__dict__, actual_event.__dict__)
 
 
 if __name__ == '__main__':
