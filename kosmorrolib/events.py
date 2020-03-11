@@ -22,7 +22,7 @@ from skyfield.timelib import Time
 from skyfield.searchlib import find_discrete, find_maxima
 from numpy import pi
 
-from .data import Event, Planet, ASTERS
+from .data import Event, Star, Planet, ASTERS
 from .core import get_timescale, get_skf_objects, flatten_list
 
 
@@ -45,11 +45,11 @@ def _search_conjunction(start_time: Time, end_time: Time) -> [Event]:
 
     for aster1 in ASTERS:
         # Ignore the Sun
-        if not isinstance(aster1, Planet):
+        if isinstance(aster1, Star):
             continue
 
         for aster2 in ASTERS:
-            if not isinstance(aster2, Planet) or aster2 == aster1 or aster2 in computed:
+            if isinstance(aster2, Star) or aster2 == aster1 or aster2 in computed:
                 continue
 
             times, is_conjs = find_discrete(start_time, end_time, is_in_conjunction)

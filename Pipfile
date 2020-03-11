@@ -8,6 +8,7 @@ pylintfileheader = "*"
 pylint = "*"
 codecov = "*"
 babel = "*"
+unittest-data-provider = "*"
 
 [packages]
 skyfield = ">=1.13.0,<2.0.0"
