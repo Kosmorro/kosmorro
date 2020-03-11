@@ -21,7 +21,7 @@ import locale
 import re
 import sys
 
-from datetime import date
+from datetime import date, timedelta
 from termcolor import colored
 
 from kosmorrolib.version import VERSION
@@ -41,7 +41,12 @@ def main():
         return 0 if args.special_action() else 1
 
     try:
-        compute_date = get_date(args.date)
+        if args.until_date is None:
+            from_date = get_date(args.date)
+            until_date = from_date
+        else:
+            until_date = get_date(args.until_date)
+            from_date = get_date(args.from_date) if args.from_date is not None else date.today()
     except ValueError as error:
         print(colored(error.args[0], color='red', attrs=['bold']))
         return -1
@@ -60,15 +65,24 @@ def main():
                             "coordinate."), 'yellow'))
 
     try:
-        ephemeris = EphemeridesComputer(position)
-        ephemerides = ephemeris.compute_ephemerides(compute_date)
-
-        events_list = events.search_events(compute_date)
-
-        selected_dumper = output_formats[args.format](ephemerides, events_list,
-                                                      date=compute_date, timezone=args.timezone,
+        compute_date = from_date
+        selected_dumper = output_formats[args.format](None, None, date=None, timezone=args.timezone,
                                                       with_colors=args.colors)
-        output = selected_dumper.to_string()
+        ephemeris = EphemeridesComputer(position)
+
+        output = []
+        while compute_date <= until_date:
+            ephemerides = ephemeris.compute_ephemerides(compute_date)
+            events_list = events.search_events(compute_date)
+
+            selected_dumper.date = compute_date
+            selected_dumper.ephemeris = ephemerides
+            selected_dumper.events = events_list
+
+            output.append(selected_dumper.to_string())
+
+            compute_date = compute_date + timedelta(days=1)
+
     except UnavailableFeatureError as error:
         print(colored(error.msg, 'red'))
         return 2
@@ -81,7 +95,7 @@ def main():
             print(_('Could not save the output in "{path}": {error}').format(path=args.output,
                                                                              error=error.strerror))
     elif not selected_dumper.is_file_output_needed():
-        print(output)
+        print('\n\n'.join(output))
     else:
         print(colored(_('Selected output format needs an output file (--output).'), color='red'))
         return 1
@@ -150,8 +164,15 @@ def get_args(output_formats: [str]):
                         help=_("The observer's longitude on Earth"))
     parser.add_argument('--date', '-d', type=str, default=today.strftime('%Y-%m-%d'),
                         help=_('The date for which the ephemerides must be computed (in the YYYY-MM-DD format). '
-                               'Defaults to the current date ({default_date})').format(
-                                   default_date=today.strftime('%Y-%m-%d')))
+                               'Defaults to the current date ({default_date}). Ignored if the --from and --to are '
+                               'used.').format(default_date=today.strftime('%Y-%m-%d')))
+    parser.add_argument('--from', type=str, default=None, dest='from_date',
+                        help=_('The first of the set of dates the computations must be done for. If this argument '
+                               'is set, then the --until argument is mandatory. Defaults to the current date if only '
+                               'the --until argument is set.'))
+    parser.add_argument('--until', type=str, default=None, dest='until_date',
+                        help=_('The last of the set of dates the computations must be done for. Mandatory '
+                               'if the --from argument is set, then this argument is mandatory.'))
     parser.add_argument('--timezone', '-t', type=int, default=0,
                         help=_('The timezone to display the hours in (e.g. 2 for UTC+2 or -3 for UTC-3).'))
     parser.add_argument('--no-colors', dest='colors', action='store_false',
