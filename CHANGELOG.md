@@ -1,3 +1,12 @@
+# [v0.6.2](https://github.com/Deuchnord/kosmorro/compare/v0.6.1...v0.6.2) (2020-03-19)
+
+
+### Bug Fixes
+
+* remove Mercury and Venus opposition ([1b4c499](https://github.com/Deuchnord/kosmorro/commit/1b4c4991274503663ace52c02fd46a19bef6b718))
+
+
+
 # [v0.6.1](https://github.com/Deuchnord/kosmorro/compare/v0.6.0...v0.6.1) (2020-03-08)
 
 
