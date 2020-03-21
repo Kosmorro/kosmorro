@@ -80,7 +80,7 @@ def _search_oppositions(start_time: Time, end_time: Time) -> [Event]:
     events = []
 
     for aster in ASTERS:
-        if not isinstance(aster, Planet) or aster.name in ['Mercury', 'Venus']:
+        if not isinstance(aster, Planet) or aster.skyfield_name in ['MERCURY', 'VENUS']:
             continue
 
         times, _ = find_discrete(start_time, end_time, is_oppositing)
