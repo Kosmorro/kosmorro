@@ -31,11 +31,28 @@
 `--no-colors`  
     disable the colors in the console
 
-`--output=`_OUTPUT_, `-o` _OUTPUT_
+`--output=`_OUTPUT_, `-o` _OUTPUT_  
     a file to export the output to; if not given, the standard output is used
 
 `--format=`_FORMAT_, `-f` _FORMAT_  
     the format under which the information have to be output; one of the following: text, json, pdf
+
+## ENVIRONMENT VARIABLES
+
+The environment variable listed below may be used instead of the options.
+The options have a higher priority than the environment variable.
+As a consequence, any option that would be given to `kosmorro` will override its corresponding environment variable.
+
+Available environment variables are:
+
+`KOSMORRO_LATITUDE`  
+    the observer's latitude on Earth (alternative to `--latitude`)
+    
+`KOSMORRO_LONGITUDE`  
+    the observer's longitude on Earth (alternative to `--longitude`)
+    
+`KOSMORRO_TIMEZONE`  
+    the observer's timezone (alternative to `--timezone`)
 
 ## EXAMPLES
 

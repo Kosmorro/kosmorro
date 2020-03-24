@@ -16,6 +16,8 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import os
+import re
 from shutil import rmtree
 from pathlib import Path
 
@@ -25,6 +27,33 @@ from skyfield.nutationlib import iau2000b
 
 CACHE_FOLDER = str(Path.home()) + '/.kosmorro-cache'
 
+class Environment:
+    def __init__(self):
+        self._vars = {}
+
+    def __set__(self, key, value):
+        self._vars[key] = value
+
+    def __getattr__(self, key):
+        return self._vars[key] if key in self._vars else None
+
+    def __str__(self):
+        return self._vars.__str__()
+
+    def __len__(self):
+        return len(self._vars)
+
+def get_env() -> Environment:
+    environment = Environment()
+
+    for var in os.environ:
+        if not re.search('^KOSMORRO_', var):
+            continue
+
+        [_, env] = var.split('_', 1)
+        environment.__set__(env.lower(), os.getenv(var))
+
+    return environment
 
 def get_loader():
     return Loader(CACHE_FOLDER)

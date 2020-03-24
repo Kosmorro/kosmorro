@@ -87,6 +87,11 @@ assertSuccess "kosmorro --latitude=50.5876 --longitude=3.0624 -d 2020-01-27 --ti
 assertSuccess "kosmorro --latitude=50.5876 --longitude=3.0624 -d 2020-01-27 --timezone=-1"
 assertSuccess "kosmorro --latitude=50.5876 --longitude=3.0624 -d 2020-01-27 --format=json"
 assertFailure "kosmorro --latitude=50.5876 --longitude=3.0624 -d 2020-01-27 --format=pdf"
+
+# Environment variables
+assertSuccess "LATITUDE=50.5876 LONGITUDE=3.0624 TIMEZONE=1 kosmorro -d 2020-01-27"
+assertSuccess "LATITUDE=50.5876 LONGITUDE=3.0624 TIMEZONE=-1 kosmorro -d 2020-01-27"
+
 # Missing dependencies, should fail
 assertFailure "kosmorro --latitude=50.5876 --longitude=3.0624 -d 2020-01-27 --format=pdf -o /tmp/document.pdf"
 
