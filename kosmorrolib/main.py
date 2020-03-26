@@ -34,6 +34,7 @@ from .exceptions import UnavailableFeatureError
 
 
 def main():
+    environment = core.get_env()
     output_formats = get_dumpers()
     args = get_args(list(output_formats.keys()))
 
@@ -46,10 +47,12 @@ def main():
         print(colored(error.args[0], color='red', attrs=['bold']))
         return -1
 
-    if args.latitude is None or args.longitude is None:
-        position = None
-    else:
+    position = None
+
+    if args.latitude is not None or args.longitude is not None:
         position = Position(args.latitude, args.longitude)
+    elif environment.latitude is not None and environment.longitude is not None:
+        position = Position(float(environment.latitude), float(environment.longitude))
 
     if args.format == 'pdf':
         print(_('Save the planet and paper!\n'
@@ -65,8 +68,15 @@ def main():
 
         events_list = events.search_events(compute_date)
 
+        timezone = args.timezone
+
+        if timezone is None and environment.timezone is not None:
+            timezone = int(environment.timezone)
+        elif timezone is None:
+            timezone = 0
+
         selected_dumper = output_formats[args.format](ephemerides, events_list,
-                                                      date=compute_date, timezone=args.timezone,
+                                                      date=compute_date, timezone=timezone,
                                                       with_colors=args.colors)
         output = selected_dumper.to_string()
     except UnavailableFeatureError as error:
@@ -145,15 +155,18 @@ def get_args(output_formats: [str]):
     parser.add_argument('--format', '-f', type=str, default=output_formats[0], choices=output_formats,
                         help=_('The format under which the information have to be output'))
     parser.add_argument('--latitude', '-lat', type=float, default=None,
-                        help=_("The observer's latitude on Earth"))
+                        help=_("The observer's latitude on Earth. Can also be set in the KOSMORRO_LATITUDE environment "
+                               "variable."))
     parser.add_argument('--longitude', '-lon', type=float, default=None,
-                        help=_("The observer's longitude on Earth"))
+                        help=_("The observer's longitude on Earth. Can also be set in the KOSMORRO_LONGITUDE "
+                               "environment variable."))
     parser.add_argument('--date', '-d', type=str, default=today.strftime('%Y-%m-%d'),
                         help=_('The date for which the ephemerides must be computed (in the YYYY-MM-DD format). '
                                'Defaults to the current date ({default_date})').format(
                                    default_date=today.strftime('%Y-%m-%d')))
-    parser.add_argument('--timezone', '-t', type=int, default=0,
-                        help=_('The timezone to display the hours in (e.g. 2 for UTC+2 or -3 for UTC-3).'))
+    parser.add_argument('--timezone', '-t', type=int, default=None,
+                        help=_('The timezone to display the hours in (e.g. 2 for UTC+2 or -3 for UTC-3). '
+                               'Can also be set in the KOSMORRO_TIMEZONE environment variable.'))
     parser.add_argument('--no-colors', dest='colors', action='store_false',
                         help=_('Disable the colors in the console.'))
     parser.add_argument('--output', '-o', type=str, default=None,
