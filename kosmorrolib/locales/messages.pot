@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kosmorro 0.6.2\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-03-24 13:44+0100\n"
+"POT-Creation-Date: 2020-03-29 14:06+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,90 +17,95 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.8.0\n"
 
-#: kosmorrolib/data.py:30
+#: kosmorrolib/data.py:32
 msgid "New Moon"
 msgstr ""
 
-#: kosmorrolib/data.py:31
+#: kosmorrolib/data.py:33
 msgid "Waxing crescent"
 msgstr ""
 
-#: kosmorrolib/data.py:32
+#: kosmorrolib/data.py:34
 msgid "First Quarter"
 msgstr ""
 
-#: kosmorrolib/data.py:33
+#: kosmorrolib/data.py:35
 msgid "Waxing gibbous"
 msgstr ""
 
-#: kosmorrolib/data.py:34
+#: kosmorrolib/data.py:36
 msgid "Full Moon"
 msgstr ""
 
-#: kosmorrolib/data.py:35
+#: kosmorrolib/data.py:37
 msgid "Waning gibbous"
 msgstr ""
 
-#: kosmorrolib/data.py:36
+#: kosmorrolib/data.py:38
 msgid "Last Quarter"
 msgstr ""
 
-#: kosmorrolib/data.py:37
+#: kosmorrolib/data.py:39
 msgid "Waning crescent"
-msgstr ""
-
-#: kosmorrolib/data.py:41
-#, python-format
-msgid "%s is in opposition"
-msgstr ""
-
-#: kosmorrolib/data.py:42
-#, python-format
-msgid "%s and %s are in conjunction"
 msgstr ""
 
 #: kosmorrolib/data.py:43
 #, python-format
+msgid "%s is in opposition"
+msgstr ""
+
+#: kosmorrolib/data.py:44
+#, python-format
+msgid "%s and %s are in conjunction"
+msgstr ""
+
+#: kosmorrolib/data.py:45
+#, python-format
+msgid "%s occults %s"
+msgstr ""
+
+#: kosmorrolib/data.py:46
+#, python-format
 msgid "%s's largest elongation"
 msgstr ""
 
-#: kosmorrolib/data.py:215
+#: kosmorrolib/data.py:233
 msgid "Sun"
 msgstr ""
 
-#: kosmorrolib/data.py:216
+#: kosmorrolib/data.py:234
 msgid "Moon"
 msgstr ""
 
-#: kosmorrolib/data.py:217
+#: kosmorrolib/data.py:235
 msgid "Mercury"
 msgstr ""
 
-#: kosmorrolib/data.py:218
+#: kosmorrolib/data.py:236
 msgid "Venus"
 msgstr ""
 
-#: kosmorrolib/data.py:219
+#: kosmorrolib/data.py:237
 msgid "Mars"
 msgstr ""
 
-#: kosmorrolib/data.py:220
+#: kosmorrolib/data.py:238
 msgid "Jupiter"
 msgstr ""
 
-#: kosmorrolib/data.py:221
+#: kosmorrolib/data.py:239
 msgid "Saturn"
 msgstr ""
 
-#: kosmorrolib/data.py:222
+#: kosmorrolib/data.py:240
 msgid "Uranus"
 msgstr ""
 
-#: kosmorrolib/data.py:223
+#: kosmorrolib/data.py:241
 msgid "Neptune"
 msgstr ""
 
-#: kosmorrolib/data.py:224
+#: kosmorrolib/data.py:242
 msgid "Pluto"
 msgstr ""
 
@@ -116,68 +121,68 @@ msgstr ""
 msgid "{hours}:{minutes}"
 msgstr ""
 
-#: kosmorrolib/dumper.py:147
+#: kosmorrolib/dumper.py:148
 msgid "Expected events:"
 msgstr ""
 
-#: kosmorrolib/dumper.py:151
+#: kosmorrolib/dumper.py:152
 msgid "Note: All the hours are given in UTC."
 msgstr ""
 
-#: kosmorrolib/dumper.py:156
+#: kosmorrolib/dumper.py:157
 msgid "Note: All the hours are given in the UTC{offset} timezone."
 msgstr ""
 
-#: kosmorrolib/dumper.py:202 kosmorrolib/dumper.py:271
+#: kosmorrolib/dumper.py:203 kosmorrolib/dumper.py:272
 msgid "Object"
 msgstr ""
 
-#: kosmorrolib/dumper.py:203 kosmorrolib/dumper.py:272
+#: kosmorrolib/dumper.py:204 kosmorrolib/dumper.py:273
 msgid "Rise time"
 msgstr ""
 
-#: kosmorrolib/dumper.py:204 kosmorrolib/dumper.py:273
+#: kosmorrolib/dumper.py:205 kosmorrolib/dumper.py:274
 msgid "Culmination time"
 msgstr ""
 
-#: kosmorrolib/dumper.py:205 kosmorrolib/dumper.py:274
+#: kosmorrolib/dumper.py:206 kosmorrolib/dumper.py:275
 msgid "Set time"
 msgstr ""
 
-#: kosmorrolib/dumper.py:219 kosmorrolib/dumper.py:277
+#: kosmorrolib/dumper.py:220 kosmorrolib/dumper.py:278
 msgid "Moon phase:"
 msgstr ""
 
-#: kosmorrolib/dumper.py:220
+#: kosmorrolib/dumper.py:221
 msgid "{next_moon_phase} on {next_moon_phase_date} at {next_moon_phase_time}"
 msgstr ""
 
-#: kosmorrolib/dumper.py:258
+#: kosmorrolib/dumper.py:259
 msgid "A Summary of your Sky"
 msgstr ""
 
-#: kosmorrolib/dumper.py:262
+#: kosmorrolib/dumper.py:263
 msgid ""
 "This document summarizes the ephemerides and the events of {date}. It "
 "aims to help you to prepare your observation session. All the hours are "
 "given in {timezone}."
 msgstr ""
 
-#: kosmorrolib/dumper.py:268
+#: kosmorrolib/dumper.py:269
 msgid ""
 "Don't forget to check the weather forecast before you go out with your "
 "material."
 msgstr ""
 
-#: kosmorrolib/dumper.py:270
+#: kosmorrolib/dumper.py:271
 msgid "Ephemerides of the day"
 msgstr ""
 
-#: kosmorrolib/dumper.py:279
+#: kosmorrolib/dumper.py:280
 msgid "Expected events"
 msgstr ""
 
-#: kosmorrolib/dumper.py:354
+#: kosmorrolib/dumper.py:355
 msgid ""
 "Building PDFs was not possible, because some dependencies are not "
 "installed.\n"
