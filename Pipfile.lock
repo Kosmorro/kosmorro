@@ -44,9 +44,9 @@
         },
         "jplephem": {
             "hashes": [
-                "sha256:17685ac008cfc35e1fdde33477eca730dad75c8cd3e1505aedf49ac3e322cecc"
+                "sha256:316aa8ebb6d13fd2158c06b2709bcde382d04bf63bb1e48d0bce89937088c6e3"
             ],
-            "version": "==2.13"
+            "version": "==2.14"
         },
         "latex": {
             "hashes": [
@@ -132,10 +132,10 @@
         },
         "skyfield": {
             "hashes": [
-                "sha256:b035c5e8bf778711a74e64a9d313563310d0b609b35f69c0e2395af96dd5c319"
+                "sha256:5ea2c35a8c186b29aee38422f4e2e138a7fbe1395d7c566550b1ee8185e15e14"
             ],
             "index": "pypi",
-            "version": "==1.17"
+            "version": "==1.18"
         },
         "tabulate": {
             "hashes": [
