@@ -116,6 +116,7 @@ class JsonDumper(Dumper):
         if isinstance(obj, Object):
             obj = obj.__dict__
             obj.pop('skyfield_name')
+            obj.pop('radius')
             obj['object'] = obj.pop('name')
             obj['details'] = obj.pop('ephemerides')
             return obj

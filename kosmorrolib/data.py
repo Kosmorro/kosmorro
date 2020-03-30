@@ -20,6 +20,8 @@ from abc import ABC, abstractmethod
 from typing import Union
 from datetime import datetime
 
+from numpy import pi, arcsin
+
 from skyfield.api import Topos, Time
 from skyfield.vectorlib import VectorSum as SkfPlanet
 
@@ -40,6 +42,7 @@ MOON_PHASES = {
 EVENTS = {
     'OPPOSITION': {'message': _('%s is in opposition')},
     'CONJUNCTION': {'message': _('%s and %s are in conjunction')},
+    'OCCULTATION': {'message': _('%s occults %s')},
     'MAXIMAL_ELONGATION': {'message': _("%s's largest elongation")}
 }
 
@@ -106,16 +109,19 @@ class Object(ABC):
     def __init__(self,
                  name: str,
                  skyfield_name: str,
-                 ephemerides: AsterEphemerides or None = None):
+                 ephemerides: AsterEphemerides or None = None,
+                 radius: float = None):
         """
         Initialize an astronomical object
 
         :param str name: the official name of the object (may be internationalized)
         :param str skyfield_name: the internal name of the object in Skyfield library
+        :param float radius: the radius (in km) of the object
         :param AsterEphemerides ephemerides: the ephemerides associated to the object
         """
         self.name = name
         self.skyfield_name = skyfield_name
+        self.radius = radius
         self.ephemerides = ephemerides
 
     def get_skyfield_object(self) -> SkfPlanet:
@@ -124,6 +130,18 @@ class Object(ABC):
     @abstractmethod
     def get_type(self) -> str:
         pass
+
+    def get_apparent_radius(self, time: Time, from_place) -> float:
+        """
+        Calculate the apparent radius, in degrees, of the object from the given place at a given time.
+        :param time:
+        :param from_place:
+        :return:
+        """
+        if self.radius is None:
+            raise ValueError('Missing radius for %s object' % self.name)
+
+        return 360 / pi * arcsin(self.radius / from_place.at(time).observe(self.get_skyfield_object()).distance().km)
 
 
 class Star(Object):
@@ -212,13 +230,13 @@ def skyfield_to_moon_phase(times: [Time], vals: [int], now: Time) -> Union[MoonP
 
 MONTHS = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
 
-ASTERS = [Star(_('Sun'), 'SUN'),
-          Satellite(_('Moon'), 'MOON'),
-          Planet(_('Mercury'), 'MERCURY'),
-          Planet(_('Venus'), 'VENUS'),
-          Planet(_('Mars'), 'MARS'),
-          Planet(_('Jupiter'), 'JUPITER BARYCENTER'),
-          Planet(_('Saturn'), 'SATURN BARYCENTER'),
-          Planet(_('Uranus'), 'URANUS BARYCENTER'),
-          Planet(_('Neptune'), 'NEPTUNE BARYCENTER'),
-          Planet(_('Pluto'), 'PLUTO BARYCENTER')]
+ASTERS = [Star(_('Sun'), 'SUN', radius=696342),
+          Satellite(_('Moon'), 'MOON', radius=1737.4),
+          Planet(_('Mercury'), 'MERCURY', radius=2439.7),
+          Planet(_('Venus'), 'VENUS', radius=6051.8),
+          Planet(_('Mars'), 'MARS', radius=3396.2),
+          Planet(_('Jupiter'), 'JUPITER BARYCENTER', radius=71492),
+          Planet(_('Saturn'), 'SATURN BARYCENTER', radius=60268),
+          Planet(_('Uranus'), 'URANUS BARYCENTER', radius=25559),
+          Planet(_('Neptune'), 'NEPTUNE BARYCENTER', radius=24764),
+          Planet(_('Pluto'), 'PLUTO BARYCENTER', radius=1185)]

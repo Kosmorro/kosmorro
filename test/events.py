@@ -38,6 +38,8 @@ class EventTestCase(unittest.TestCase):
 
         (date(2020, 3, 24), [Event('MAXIMAL_ELONGATION', [ASTERS[2]], datetime(2020, 3, 24, 1, 56), details='27.8°'),
                              Event('MAXIMAL_ELONGATION', [ASTERS[3]], datetime(2020, 3, 24, 21, 58), details='46.1°')]),
+
+        (date(2005, 6, 16), [Event('OCCULTATION', [ASTERS[1], ASTERS[5]], datetime(2005, 6, 16, 6, 31))])
     )
 
     @data_provider(expected_events_provider)

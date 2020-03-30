@@ -56,7 +56,18 @@ def _search_conjunction(start_time: Time, end_time: Time) -> [Event]:
 
             for i, time in enumerate(times):
                 if is_conjs[i]:
-                    conjunctions.append(Event('CONJUNCTION', [aster1, aster2], time.utc_datetime()))
+                    aster1_pos = (aster1.get_skyfield_object() - earth).at(time)
+                    aster2_pos = (aster2.get_skyfield_object() - earth).at(time)
+                    distance = aster1_pos.separation_from(aster2_pos).degrees
+
+                    if distance - aster2.get_apparent_radius(time, earth) < aster1.get_apparent_radius(time, earth):
+                        occulting_aster = [aster1,
+                                           aster2] if aster1_pos.distance().km < aster2_pos.distance().km else [aster2,
+                                                                                                                aster1]
+
+                        conjunctions.append(Event('OCCULTATION', occulting_aster, time.utc_datetime()))
+                    else:
+                        conjunctions.append(Event('CONJUNCTION', [aster1, aster2], time.utc_datetime()))
 
         computed.append(aster1)
 
