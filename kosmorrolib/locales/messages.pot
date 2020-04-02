@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kosmorro 0.6.2\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-03-29 14:06+0200\n"
+"POT-Creation-Date: 2020-04-02 12:44+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -171,7 +171,7 @@ msgstr ""
 #: kosmorrolib/dumper.py:269
 msgid ""
 "Don't forget to check the weather forecast before you go out with your "
-"material."
+"equipment."
 msgstr ""
 
 #: kosmorrolib/dumper.py:271

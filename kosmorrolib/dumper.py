@@ -266,7 +266,7 @@ class _LatexDumper(Dumper):
                                date=self.get_date_as_string(),
                                timezone='UTC+%d' % self.timezone if self.timezone != 0 else 'UTC'
                            ),
-                         _("Don't forget to check the weather forecast before you go out with your material.")
+                         _("Don't forget to check the weather forecast before you go out with your equipment.")
                      ])) \
             .replace('+++SECTION-EPHEMERIDES+++', _('Ephemerides of the day')) \
             .replace('+++EPHEMERIDES-OBJECT+++', _('Object')) \
