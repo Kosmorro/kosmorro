@@ -1,3 +1,21 @@
+# [v0.7.0](https://github.com/Deuchnord/kosmorro/compare/v0.6.2...v0.7.0) (2020-04-05)
+
+
+### Features
+
+* add support for environment variables ([5dec0dc](https://github.com/Deuchnord/kosmorro/commit/5dec0dcc4cb3483ee4962a4ae7e86135e4bded06))
+* add support for Moon conjunctions ([c063f6e](https://github.com/Deuchnord/kosmorro/commit/c063f6e0f50e0c11c0e77c9fe16dedef0133a9af))
+* add support for occultations ([b8d6ae2](https://github.com/Deuchnord/kosmorro/commit/b8d6ae2f510b384ecbc0a960bea764e96ec656a0))
+* move the date to a single argument ([32489ae](https://github.com/Deuchnord/kosmorro/commit/32489ae355bba4facb6202eed929dfe4639cb632))
+
+
+### BREAKING CHANGES
+
+* the --day, --month and --year arguments have been removed in the
+favor of a single one.
+
+
+
 # [v0.6.2](https://github.com/Deuchnord/kosmorro/compare/v0.6.1...v0.6.2) (2020-03-19)
 
 
