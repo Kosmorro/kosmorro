@@ -22,6 +22,7 @@ import re
 import sys
 
 from datetime import date
+from dateutil.relativedelta import relativedelta
 from termcolor import colored
 
 from kosmorrolib.version import VERSION
@@ -99,14 +100,32 @@ def main():
     return 0
 
 
-def get_date(yyyymmdd: str) -> date:
-    if not re.match(r'^\d{4}-\d{2}-\d{2}$', yyyymmdd):
-        raise ValueError(_('The date {date} does not match the required YYYY-MM-DD format.').format(date=yyyymmdd))
+def get_date(date_arg: str) -> date:
+    if re.match(r'^\d{4}-\d{2}-\d{2}$', date_arg):
+        try:
+            return date.fromisoformat(date_arg)
+        except ValueError as error:
+            raise ValueError(_('The date {date} is not valid: {error}').format(date=date_arg, error=error.args[0]))
+    elif re.match(r'^([+-])(([0-9]+)y)?[ ]?(([0-9]+)m)?[ ]?(([0-9]+)d)?$', date_arg):
+        def get_offset(date_arg: str, signifier: str):
+            if re.search(r'([0-9]+)' + signifier, date_arg):
+                return int(re.search(r'[+-]?([0-9]+)' + signifier, date_arg).group(0)[:-1])
+            else:
+                return 0
 
-    try:
-        return date.fromisoformat(yyyymmdd)
-    except ValueError as error:
-        raise ValueError(_('The date {date} is not valid: {error}').format(date=yyyymmdd, error=error.args[0]))
+        days = get_offset(date_arg, 'd')
+        months = get_offset(date_arg, 'm')
+        years = get_offset(date_arg, 'y')
+
+
+        if date_arg[0] == '+':
+            return date.today() + relativedelta(days=days, months=months, years=years)
+        else:
+            return date.today() - relativedelta(days=days, months=months, years=years)
+
+    else:
+        raise ValueError(_('The date {date} does not match the required YYYY-MM-DD format or the offset format.').format(date=date_arg))
+
 
 
 def get_dumpers() -> {str: dumper.Dumper}:
