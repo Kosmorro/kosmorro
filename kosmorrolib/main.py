@@ -42,7 +42,7 @@ def main():
         return 0 if args.special_action() else 1
 
     try:
-        compute_date = get_date(args.date)
+        compute_date = core.get_date(args.date)
     except ValueError as error:
         print(colored(error.args[0], color='red', attrs=['bold']))
         return -1
@@ -99,14 +99,6 @@ def main():
     return 0
 
 
-def get_date(yyyymmdd: str) -> date:
-    if not re.match(r'^\d{4}-\d{2}-\d{2}$', yyyymmdd):
-        raise ValueError(_('The date {date} does not match the required YYYY-MM-DD format.').format(date=yyyymmdd))
-
-    try:
-        return date.fromisoformat(yyyymmdd)
-    except ValueError as error:
-        raise ValueError(_('The date {date} is not valid: {error}').format(date=yyyymmdd, error=error.args[0]))
 
 
 def get_dumpers() -> {str: dumper.Dumper}:
