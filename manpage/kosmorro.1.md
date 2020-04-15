@@ -23,7 +23,7 @@
     the observer's longitude on Earth
 
 `--date=`_DATE_, `-d` _DATE_  
-    The date for which the ephemerides must be computed (in the YYYY-MM-DD format); defaults to the current date
+    The date for which the ephemerides must be computed, either in in the YYYY-MM-DD format or as an interval formatted like [+-]YyMmDd; defaults to the current date
 
 `--timezone=`_TIMEZONE_, `-t` _TIMEZONE_  
     the timezone to display the hours in; e.g. 2 for UTC+2 or -3 for UTC-3

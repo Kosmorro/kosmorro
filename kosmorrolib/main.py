@@ -109,7 +109,7 @@ def get_date(date_arg: str) -> date:
     elif re.match(r'^([+-])(([0-9]+)y)?[ ]?(([0-9]+)m)?[ ]?(([0-9]+)d)?$', date_arg):
         def get_offset(date_arg: str, signifier: str):
             if re.search(r'([0-9]+)' + signifier, date_arg):
-                return int(re.search(r'[+-]?([0-9]+)' + signifier, date_arg).group(0)[:-1])
+                return abs(int(re.search(r'[+-]?([0-9]+)' + signifier, date_arg).group(0)[:-1]))
             else:
                 return 0
 
@@ -124,7 +124,7 @@ def get_date(date_arg: str) -> date:
             return date.today() - relativedelta(days=days, months=months, years=years)
 
     else:
-        raise ValueError(_('The date {date} does not match the required YYYY-MM-DD format or the offset format.').format(date=date_arg))
+        raise ValueError(_('The date {date} does not match the YYYY-MM-DD format or the relativedate format.').format(date=date_arg))
 
 
 
