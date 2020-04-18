@@ -47,7 +47,13 @@ EVENTS = {
 }
 
 
-class MoonPhase:
+class Serializable(ABC):
+    @abstractmethod
+    def serialize(self) -> dict:
+        pass
+
+
+class MoonPhase(Serializable):
     def __init__(self, identifier: str, time: Union[datetime, None], next_phase_date: Union[datetime, None]):
         if identifier not in MOON_PHASES.keys():
             raise ValueError('identifier parameter must be one of %s (got %s)' % (', '.join(MOON_PHASES.keys()),
@@ -60,6 +66,11 @@ class MoonPhase:
     def get_phase(self):
         return MOON_PHASES[self.identifier]
 
+    def get_next_phase_name(self):
+        next_identifier = self.get_next_phase()
+
+        return MOON_PHASES[next_identifier]
+
     def get_next_phase(self):
         if self.identifier == 'NEW_MOON' or self.identifier == 'WAXING_CRESCENT':
             next_identifier = 'FIRST_QUARTER'
@@ -69,39 +80,20 @@ class MoonPhase:
             next_identifier = 'LAST_QUARTER'
         else:
             next_identifier = 'NEW_MOON'
+        return next_identifier
 
-        return MOON_PHASES[next_identifier]
-
-
-class Position:
-    def __init__(self, latitude: float, longitude: float):
-        self.latitude = latitude
-        self.longitude = longitude
-        self.observation_planet = None
-        self._topos = None
-
-    def get_planet_topos(self) -> Topos:
-        if self.observation_planet is None:
-            raise TypeError('Observation planet must be set.')
-
-        if self._topos is None:
-            self._topos = self.observation_planet + Topos(latitude_degrees=self.latitude,
-                                                          longitude_degrees=self.longitude)
-
-        return self._topos
+    def serialize(self) -> dict:
+        return {
+            'phase': self.identifier,
+            'time': self.time.isoformat() if self.time is not None else None,
+            'next': {
+                'phase': self.get_next_phase(),
+                'time': self.next_phase_date.isoformat()
+            }
+        }
 
 
-class AsterEphemerides:
-    def __init__(self,
-                 rise_time: Union[datetime, None],
-                 culmination_time: Union[datetime, None],
-                 set_time: Union[datetime, None]):
-        self.rise_time = rise_time
-        self.culmination_time = culmination_time
-        self.set_time = set_time
-
-
-class Object(ABC):
+class Object(Serializable):
     """
     An astronomical object.
     """
@@ -109,7 +101,6 @@ class Object(ABC):
     def __init__(self,
                  name: str,
                  skyfield_name: str,
-                 ephemerides: AsterEphemerides or None = None,
                  radius: float = None):
         """
         Initialize an astronomical object
@@ -122,7 +113,6 @@ class Object(ABC):
         self.name = name
         self.skyfield_name = skyfield_name
         self.radius = radius
-        self.ephemerides = ephemerides
 
     def get_skyfield_object(self) -> SkfPlanet:
         return get_skf_objects()[self.skyfield_name]
@@ -142,6 +132,13 @@ class Object(ABC):
             raise ValueError('Missing radius for %s object' % self.name)
 
         return 360 / pi * arcsin(self.radius / from_place.at(time).observe(self.get_skyfield_object()).distance().km)
+
+    def serialize(self) -> dict:
+        return {
+            'name': self.name,
+            'type': self.get_type(),
+            'radius': self.radius,
+        }
 
 
 class Star(Object):
@@ -164,7 +161,7 @@ class Satellite(Object):
         return 'satellite'
 
 
-class Event:
+class Event(Serializable):
     def __init__(self, event_type: str, objects: [Object], start_time: datetime,
                  end_time: Union[datetime, None] = None, details: str = None):
         if event_type not in EVENTS.keys():
@@ -189,6 +186,15 @@ class Event:
             return self.objects[0].name
 
         return tuple(object.name for object in self.objects)
+
+    def serialize(self) -> dict:
+        return {
+            'objects': [object.serialize() for object in self.objects],
+            'event': self.event_type,
+            'starts_at': self.start_time.isoformat(),
+            'ends_at': self.end_time.isoformat() if self.end_time is not None else None,
+            'details': self.details
+        }
 
 
 def skyfield_to_moon_phase(times: [Time], vals: [int], now: Time) -> Union[MoonPhase, None]:
@@ -228,7 +234,29 @@ def skyfield_to_moon_phase(times: [Time], vals: [int], now: Time) -> Union[MoonP
                      next_phase_time.utc_datetime() if next_phase_time is not None else None)
 
 
+class AsterEphemerides(Serializable):
+    def __init__(self,
+                 rise_time: Union[datetime, None],
+                 culmination_time: Union[datetime, None],
+                 set_time: Union[datetime, None],
+                 aster: Object):
+        self.rise_time = rise_time
+        self.culmination_time = culmination_time
+        self.set_time = set_time
+        self.object = aster
+
+    def serialize(self) -> dict:
+        return {
+            'object': self.object.serialize(),
+            'rise_time': self.rise_time.isoformat() if self.rise_time is not None else None,
+            'culmination_time': self.culmination_time.isoformat() if self.culmination_time is not None else None,
+            'set_time': self.set_time.isoformat() if self.set_time is not None else None
+        }
+
+
 MONTHS = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
+
+EARTH = Planet('Earth', 'EARTH')
 
 ASTERS = [Star(_('Sun'), 'SUN', radius=696342),
           Satellite(_('Moon'), 'MOON', radius=1737.4),
@@ -240,3 +268,21 @@ ASTERS = [Star(_('Sun'), 'SUN', radius=696342),
           Planet(_('Uranus'), 'URANUS BARYCENTER', radius=25559),
           Planet(_('Neptune'), 'NEPTUNE BARYCENTER', radius=24764),
           Planet(_('Pluto'), 'PLUTO BARYCENTER', radius=1185)]
+
+
+class Position:
+    def __init__(self, latitude: float, longitude: float, aster: Object):
+        self.latitude = latitude
+        self.longitude = longitude
+        self.aster = aster
+        self._topos = None
+
+    def get_planet_topos(self) -> Topos:
+        if self.aster is None:
+            raise TypeError('Observation planet must be set.')
+
+        if self._topos is None:
+            self._topos = self.aster.get_skyfield_object() + Topos(latitude_degrees=self.latitude,
+                                                                   longitude_degrees=self.longitude)
+
+        return self._topos

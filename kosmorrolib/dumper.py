@@ -40,9 +40,10 @@ TIME_FORMAT = _('{hours}:{minutes}').format(hours='%H', minutes='%M')
 
 
 class Dumper(ABC):
-    def __init__(self, ephemeris: dict, events: [Event], date: datetime.date = datetime.date.today(), timezone: int = 0,
-                 with_colors: bool = True):
-        self.ephemeris = ephemeris
+    def __init__(self, ephemerides: [AsterEphemerides] = None, moon_phase: MoonPhase = None, events: [Event] = None,
+                 date: datetime.date = datetime.date.today(), timezone: int = 0, with_colors: bool = True):
+        self.ephemerides = ephemerides
+        self.moon_phase = moon_phase
         self.events = events
         self.date = date
         self.timezone = timezone
@@ -52,19 +53,20 @@ class Dumper(ABC):
             self._convert_dates_to_timezones()
 
     def _convert_dates_to_timezones(self):
-        if self.ephemeris['moon_phase'].time is not None:
-            self.ephemeris['moon_phase'].time = self._datetime_to_timezone(self.ephemeris['moon_phase'].time)
-        if self.ephemeris['moon_phase'].next_phase_date is not None:
-            self.ephemeris['moon_phase'].next_phase_date = self._datetime_to_timezone(
-                self.ephemeris['moon_phase'].next_phase_date)
+        if self.moon_phase.time is not None:
+            self.moon_phase.time = self._datetime_to_timezone(self.moon_phase.time)
+        if self.moon_phase.next_phase_date is not None:
+            self.moon_phase.next_phase_date = self._datetime_to_timezone(
+                self.moon_phase.next_phase_date)
 
-        for aster in self.ephemeris['details']:
-            if aster.ephemerides.rise_time is not None:
-                aster.ephemerides.rise_time = self._datetime_to_timezone(aster.ephemerides.rise_time)
-            if aster.ephemerides.culmination_time is not None:
-                aster.ephemerides.culmination_time = self._datetime_to_timezone(aster.ephemerides.culmination_time)
-            if aster.ephemerides.set_time is not None:
-                aster.ephemerides.set_time = self._datetime_to_timezone(aster.ephemerides.set_time)
+        if self.ephemerides is not None:
+            for ephemeris in self.ephemerides:
+                if ephemeris.rise_time is not None:
+                    ephemeris.rise_time = self._datetime_to_timezone(ephemeris.rise_time)
+                if ephemeris.culmination_time is not None:
+                    ephemeris.culmination_time = self._datetime_to_timezone(ephemeris.culmination_time)
+                if ephemeris.set_time is not None:
+                    ephemeris.set_time = self._datetime_to_timezone(ephemeris.set_time)
 
         for event in self.events:
             event.start_time = self._datetime_to_timezone(event.start_time)
@@ -99,11 +101,11 @@ class Dumper(ABC):
 
 class JsonDumper(Dumper):
     def to_string(self):
-        self.ephemeris['events'] = self.events
-        self.ephemeris['ephemerides'] = self.ephemeris.pop('details')
-        return json.dumps(self.ephemeris,
-                          default=self._json_default,
-                          indent=4)
+        return json.dumps({
+            'ephemerides': [ephemeris.serialize() for ephemeris in self.ephemerides],
+            'moon_phase': self.moon_phase.serialize(),
+            'events': [event.serialize() for event in self.events]
+        }, indent=4)
 
     @staticmethod
     def _json_default(obj):
@@ -139,10 +141,10 @@ class TextDumper(Dumper):
     def to_string(self):
         text = [self.style(self.get_date_as_string(capitalized=True), 'h1')]
 
-        if len(self.ephemeris['details']) > 0:
-            text.append(self.get_asters(self.ephemeris['details']))
+        if self.ephemerides is not None:
+            text.append(self.stringify_ephemerides())
 
-        text.append(self.get_moon(self.ephemeris['moon_phase']))
+        text.append(self.get_moon(self.moon_phase))
 
         if len(self.events) > 0:
             text.append('\n'.join([self.style(_('Expected events:'), 'h2'),
@@ -173,28 +175,28 @@ class TextDumper(Dumper):
 
         return styles[tag](text)
 
-    def get_asters(self, asters: [Object]) -> str:
+    def stringify_ephemerides(self) -> str:
         data = []
 
-        for aster in asters:
-            name = self.style(aster.name, 'th')
+        for ephemeris in self.ephemerides:
+            name = self.style(ephemeris.object.name, 'th')
 
-            if aster.ephemerides.rise_time is not None:
-                time_fmt = TIME_FORMAT if aster.ephemerides.rise_time.day == self.date.day else SHORT_DATETIME_FORMAT
-                planet_rise = aster.ephemerides.rise_time.strftime(time_fmt)
+            if ephemeris.rise_time is not None:
+                time_fmt = TIME_FORMAT if ephemeris.rise_time.day == self.date.day else SHORT_DATETIME_FORMAT
+                planet_rise = ephemeris.rise_time.strftime(time_fmt)
             else:
                 planet_rise = '-'
 
-            if aster.ephemerides.culmination_time is not None:
-                time_fmt = TIME_FORMAT if aster.ephemerides.culmination_time.day == self.date.day \
+            if ephemeris.culmination_time is not None:
+                time_fmt = TIME_FORMAT if ephemeris.culmination_time.day == self.date.day \
                     else SHORT_DATETIME_FORMAT
-                planet_culmination = aster.ephemerides.culmination_time.strftime(time_fmt)
+                planet_culmination = ephemeris.culmination_time.strftime(time_fmt)
             else:
                 planet_culmination = '-'
 
-            if aster.ephemerides.set_time is not None:
-                time_fmt = TIME_FORMAT if aster.ephemerides.set_time.day == self.date.day else SHORT_DATETIME_FORMAT
-                planet_set = aster.ephemerides.set_time.strftime(time_fmt)
+            if ephemeris.set_time is not None:
+                time_fmt = TIME_FORMAT if ephemeris.set_time.day == self.date.day else SHORT_DATETIME_FORMAT
+                planet_set = ephemeris.set_time.strftime(time_fmt)
             else:
                 planet_set = '-'
 
@@ -219,7 +221,7 @@ class TextDumper(Dumper):
     def get_moon(self, moon_phase: MoonPhase) -> str:
         current_moon_phase = ' '.join([self.style(_('Moon phase:'), 'strong'), moon_phase.get_phase()])
         new_moon_phase = _('{next_moon_phase} on {next_moon_phase_date} at {next_moon_phase_time}').format(
-            next_moon_phase=moon_phase.get_next_phase(),
+            next_moon_phase=moon_phase.get_next_phase_name(),
             next_moon_phase_date=moon_phase.next_phase_date.strftime(FULL_DATE_FORMAT),
             next_moon_phase_time=moon_phase.next_phase_date.strftime(TIME_FORMAT)
         )
@@ -242,12 +244,12 @@ class _LatexDumper(Dumper):
                                           'assets', 'png', 'kosmorro-logo.png')
         moon_phase_graphics = os.path.join(os.path.abspath(os.path.dirname(__file__)),
                                            'assets', 'moonphases', 'png',
-                                           '.'.join([self.ephemeris['moon_phase'].identifier.lower().replace('_', '-'),
+                                           '.'.join([self.moon_phase.identifier.lower().replace('_', '-'),
                                                      'png']))
 
         document = template
 
-        if len(self.ephemeris['details']) == 0:
+        if self.ephemerides is None:
             document = self._remove_section(document, 'ephemerides')
 
         if len(self.events) == 0:
@@ -276,7 +278,7 @@ class _LatexDumper(Dumper):
             .replace('+++EPHEMERIDES+++', self._make_ephemerides()) \
             .replace('+++MOON-PHASE-GRAPHICS+++', moon_phase_graphics) \
             .replace('+++CURRENT-MOON-PHASE-TITLE+++', _('Moon phase:')) \
-            .replace('+++CURRENT-MOON-PHASE+++', self.ephemeris['moon_phase'].get_phase()) \
+            .replace('+++CURRENT-MOON-PHASE+++', self.moon_phase.get_phase()) \
             .replace('+++SECTION-EVENTS+++', _('Expected events')) \
             .replace('+++EVENTS+++', self._make_events())
 
@@ -285,30 +287,31 @@ class _LatexDumper(Dumper):
     def _make_ephemerides(self) -> str:
         latex = []
 
-        for aster in self.ephemeris['details']:
-            if aster.ephemerides.rise_time is not None:
-                time_fmt = TIME_FORMAT if aster.ephemerides.rise_time.day == self.date.day else SHORT_DATETIME_FORMAT
-                aster_rise = aster.ephemerides.rise_time.strftime(time_fmt)
-            else:
-                aster_rise = '-'
+        if self.ephemerides is not None:
+            for ephemeris in self.ephemerides:
+                if ephemeris.rise_time is not None:
+                    time_fmt = TIME_FORMAT if ephemeris.rise_time.day == self.date.day else SHORT_DATETIME_FORMAT
+                    aster_rise = ephemeris.rise_time.strftime(time_fmt)
+                else:
+                    aster_rise = '-'
 
-            if aster.ephemerides.culmination_time is not None:
-                time_fmt = TIME_FORMAT if aster.ephemerides.culmination_time.day == self.date.day\
-                    else SHORT_DATETIME_FORMAT
-                aster_culmination = aster.ephemerides.culmination_time.strftime(time_fmt)
-            else:
-                aster_culmination = '-'
+                if ephemeris.culmination_time is not None:
+                    time_fmt = TIME_FORMAT if ephemeris.culmination_time.day == self.date.day\
+                        else SHORT_DATETIME_FORMAT
+                    aster_culmination = ephemeris.culmination_time.strftime(time_fmt)
+                else:
+                    aster_culmination = '-'
 
-            if aster.ephemerides.set_time is not None:
-                time_fmt = TIME_FORMAT if aster.ephemerides.set_time.day == self.date.day else SHORT_DATETIME_FORMAT
-                aster_set = aster.ephemerides.set_time.strftime(time_fmt)
-            else:
-                aster_set = '-'
+                if ephemeris.set_time is not None:
+                    time_fmt = TIME_FORMAT if ephemeris.set_time.day == self.date.day else SHORT_DATETIME_FORMAT
+                    aster_set = ephemeris.set_time.strftime(time_fmt)
+                else:
+                    aster_set = '-'
 
-            latex.append(r'\object{%s}{%s}{%s}{%s}' % (aster.name,
-                                                       aster_rise,
-                                                       aster_culmination,
-                                                       aster_set))
+                latex.append(r'\object{%s}{%s}{%s}{%s}' % (ephemeris.object.name,
+                                                           aster_rise,
+                                                           aster_culmination,
+                                                           aster_set))
 
         return ''.join(latex)
 
@@ -342,13 +345,9 @@ class _LatexDumper(Dumper):
 
 
 class PdfDumper(Dumper):
-    def __init__(self, ephemerides, events, date=datetime.datetime.now(), timezone=0, with_colors=True):
-        super(PdfDumper, self).__init__(ephemerides, events, date=date, timezone=0, with_colors=with_colors)
-        self.timezone = timezone
-
     def to_string(self):
         try:
-            latex_dumper = _LatexDumper(self.ephemeris, self.events,
+            latex_dumper = _LatexDumper(self.ephemerides, self.moon_phase, self.events,
                                         date=self.date, timezone=self.timezone, with_colors=self.with_colors)
             return self._compile(latex_dumper.to_string())
         except RuntimeError:
