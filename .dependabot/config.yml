@@ -9,5 +9,5 @@ update_configs:
           include_scope: true
       target_branch: master
 
-default_reviewers:
-    - Deuchnord
+      default_reviewers:
+          - Deuchnord
