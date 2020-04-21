@@ -7,5 +7,7 @@ update_configs:
       commit_message:
           prefix: "chore"
           include_scope: true
-      target_branch: features
+      target_branch: master
 
+default_reviewers:
+    - Deuchnord
