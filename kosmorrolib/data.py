@@ -43,7 +43,8 @@ EVENTS = {
     'OPPOSITION': {'message': _('%s is in opposition')},
     'CONJUNCTION': {'message': _('%s and %s are in conjunction')},
     'OCCULTATION': {'message': _('%s occults %s')},
-    'MAXIMAL_ELONGATION': {'message': _("%s's largest elongation")}
+    'MAXIMAL_ELONGATION': {'message': _("%s's largest elongation")},
+    'PARTIAL_SOLAR_ECLIPSE': {'message': _('Partial solar eclipse')},
 }
 
 

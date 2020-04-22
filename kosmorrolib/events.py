@@ -22,7 +22,7 @@ from skyfield.timelib import Time
 from skyfield.searchlib import find_discrete, find_maxima
 from numpy import pi
 
-from .data import Event, Star, Planet, ASTERS
+from .data import Event, Object, Star, Planet, ASTERS
 from .core import get_timescale, get_skf_objects, flatten_list
 
 
@@ -72,6 +72,37 @@ def _search_conjunction(start_time: Time, end_time: Time) -> [Event]:
         computed.append(aster1)
 
     return conjunctions
+
+
+def _search_solar_eclipse(start_time: Time, end_time: Time):
+    earth = get_skf_objects()['earth']
+    sun = ASTERS[0]
+    moon = ASTERS[1]
+
+    def is_eclipsing(time: Time):
+        aster1_pos = (moon.get_skyfield_object() - earth).at(time)
+        aster2_pos = (sun.get_skyfield_object() - earth).at(time)
+        distance = aster1_pos.separation_from(aster2_pos).degrees
+
+        return distance - moon.get_apparent_radius(time, earth) < sun.get_apparent_radius(time, earth)
+
+    is_eclipsing.rough_period = 60.0
+
+    times, val = find_discrete(start_time, end_time, is_eclipsing)
+    # moon_pos = (moon.get_skyfield_object() - earth).at(time)
+    # sun_pos = (sun.get_skyfield_object() - earth).at(time)
+    # distance = moon_pos.separation_from(sun_pos).degrees
+
+    print(times)
+    print(val)
+
+    start = times[0] if val[0] else val[1]
+    end = times[1] if not val[1] else val[0]
+
+
+    # if distance != 0:
+    return Event('PARTIAL_SOLAR_ECLIPSE', [moon, sun],
+                 start.utc_datetime(), end.utc_datetime())
 
 
 def _search_oppositions(start_time: Time, end_time: Time) -> [Event]:
@@ -137,5 +168,6 @@ def search_events(date: date_type) -> [Event]:
     return sorted(flatten_list([
         _search_oppositions(start_time, end_time),
         _search_conjunction(start_time, end_time),
-        _search_maximal_elongations(start_time, end_time)
+        _search_maximal_elongations(start_time, end_time),
+        _search_solar_eclipse(start_time, end_time)
     ]), key=lambda event: event.start_time)
