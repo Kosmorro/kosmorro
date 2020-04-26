@@ -79,7 +79,8 @@ def main():
             timezone = 0
 
         format_dumper = output_formats[output_format](ephemerides=eph, moon_phase=moon_phase, events=events_list,
-                                                      date=compute_date, timezone=timezone, with_colors=args.colors)
+                                                      date=compute_date, timezone=timezone, with_colors=args.colors,
+                                                      show_graph=args.show_graph)
         output = format_dumper.to_string()
     except UnavailableFeatureError as error:
         print(colored(error.msg, 'red'))
@@ -101,13 +102,11 @@ def main():
     return 0
 
 
-
-
 def get_dumpers() -> {str: dumper.Dumper}:
     return {
         'text': dumper.TextDumper,
         'json': dumper.JsonDumper,
-        'pdf': dumper.PdfDumper
+        'pdf': dumper.PdfDumper,
     }
 
 
@@ -166,5 +165,8 @@ def get_args(output_formats: [str]):
     parser.add_argument('--output', '-o', type=str, default=None,
                         help=_('A file to export the output to. If not given, the standard output is used. '
                                'This argument is needed for PDF format.'))
+    parser.add_argument('--no-graph', dest='show_graph', action='store_false',
+                        help=_('Generate a graph instead of a table to show the rise, culmination set times '
+                               '(PDF only)'))
 
     return parser.parse_args()
