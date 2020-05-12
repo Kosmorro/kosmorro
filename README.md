@@ -67,9 +67,13 @@ Kosmorro can export the computation results to PDF files, but this feature requi
 
 - **A LaTeX distribution:**
     - Linux: install TeXLive through your packages manager. Kosmorro just needs the minimal installation, you don't need any extension.
-    - macOS: install [MacTeX](https://www.tug.org/mactex/)
+    - macOS: install [MacTeX](https://www.tug.org/mactex/), the basic version will suffice:
+        - from the official website, choose the _smaller download_
+        - with Brew: `brew install basictex`
 - **The `latex` Python library:**
     - Arch Linux: the library is available [on the AUR](https://aur.archlinux.org/packages/python-latex)
     - Any other systems: install it through PyPI: `pip install latex`
 
 These dependencies are not installed by default, because they take a lot of place and are not necessary if you are not interested in generating PDF files.
+The first time you ask Kosmorro to create a PDF, it may be a little verbose. You can ignore its blahblah.
+
