@@ -37,6 +37,9 @@
 `--format=`_FORMAT_, `-f` _FORMAT_  
     the format under which the information have to be output; one of the following: text, json, pdf
 
+`--no-graph`  
+    present the ephemerides in a table instead of a graph; PDF output format only
+
 ## ENVIRONMENT VARIABLES
 
 The environment variable listed below may be used instead of the options.

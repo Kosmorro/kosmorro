@@ -20,6 +20,7 @@ from abc import ABC, abstractmethod
 import datetime
 import json
 import os
+from pathlib import Path
 from tabulate import tabulate
 from numpy import int64
 from termcolor import colored
@@ -41,13 +42,15 @@ TIME_FORMAT = _('{hours}:{minutes}').format(hours='%H', minutes='%M')
 
 class Dumper(ABC):
     def __init__(self, ephemerides: [AsterEphemerides] = None, moon_phase: MoonPhase = None, events: [Event] = None,
-                 date: datetime.date = datetime.date.today(), timezone: int = 0, with_colors: bool = True):
+                 date: datetime.date = datetime.date.today(), timezone: int = 0, with_colors: bool = True,
+                 show_graph: bool = False):
         self.ephemerides = ephemerides
         self.moon_phase = moon_phase
         self.events = events
         self.date = date
         self.timezone = timezone
         self.with_colors = with_colors
+        self.show_graph = show_graph
 
         if self.timezone != 0:
             self._convert_dates_to_timezones()
@@ -282,10 +285,17 @@ class _LatexDumper(Dumper):
             .replace('+++SECTION-EVENTS+++', _('Expected events')) \
             .replace('+++EVENTS+++', self._make_events())
 
+        if self.show_graph:
+            # The graphephemerides environment beginning tag must end with a percent symbol to ensure
+            # that no extra space will interfere with the graph.
+            document = document.replace(r'\begin{ephemerides}', r'\begin{graphephemerides}%')\
+                .replace(r'\end{ephemerides}', r'\end{graphephemerides}')
+
         return document
 
     def _make_ephemerides(self) -> str:
         latex = []
+        graph_y_component = 18
 
         if self.ephemerides is not None:
             for ephemeris in self.ephemerides:
@@ -308,10 +318,46 @@ class _LatexDumper(Dumper):
                 else:
                     aster_set = '-'
 
-                latex.append(r'\object{%s}{%s}{%s}{%s}' % (ephemeris.object.name,
-                                                           aster_rise,
-                                                           aster_culmination,
-                                                           aster_set))
+                if not self.show_graph:
+                    latex.append(r'\object{%s}{%s}{%s}{%s}' % (ephemeris.object.name,
+                                                               aster_rise,
+                                                               aster_culmination,
+                                                               aster_set))
+                else:
+                    if ephemeris.rise_time is not None:
+                        raise_hour = ephemeris.rise_time.hour
+                        raise_minute = ephemeris.rise_time.minute
+                    else:
+                        raise_hour = raise_minute = 0
+                        aster_rise = ''
+
+                    if ephemeris.set_time is not None:
+                        set_hour = ephemeris.set_time.hour
+                        set_minute = ephemeris.set_time.minute
+                    else:
+                        set_hour = 24
+                        set_minute = 0
+                        aster_set = ''
+                    sets_after_end = set_hour > raise_hour
+
+                    if not sets_after_end:
+                        latex.append(r'\graphobject{%d}{gray}{0}{0}{%d}{%d}{}{%s}' % (graph_y_component,
+                                                                                      set_hour,
+                                                                                      set_minute,
+                                                                                      aster_set))
+                        set_hour = 24
+                        set_minute = 0
+
+                    latex.append(r'\graphobject{%d}{gray}{%d}{%d}{%d}{%d}{%s}{%s}' % (
+                        graph_y_component,
+                        raise_hour,
+                        raise_minute,
+                        set_hour,
+                        set_minute,
+                        aster_rise,
+                        aster_set if sets_after_end else ''
+                    ))
+                    graph_y_component -= 2
 
         return ''.join(latex)
 
@@ -345,10 +391,15 @@ class _LatexDumper(Dumper):
 
 
 class PdfDumper(Dumper):
+    def _convert_dates_to_timezones(self):
+        """This method is disabled in this dumper, because the timezone is already converted
+         in :class:`_LatexDumper`."""
+
     def to_string(self):
         try:
             latex_dumper = _LatexDumper(self.ephemerides, self.moon_phase, self.events,
-                                        date=self.date, timezone=self.timezone, with_colors=self.with_colors)
+                                        date=self.date, timezone=self.timezone, with_colors=self.with_colors,
+                                        show_graph=self.show_graph)
             return self._compile(latex_dumper.to_string())
         except RuntimeError:
             raise UnavailableFeatureError(_("Building PDFs was not possible, because some dependencies are not"
@@ -364,4 +415,6 @@ class PdfDumper(Dumper):
         if build_pdf is None:
             raise RuntimeError('Python latex module not found')
 
-        return bytes(build_pdf(latex_input))
+        package = str(Path(__file__).parent.absolute()) + '/assets/pdf/'
+
+        return bytes(build_pdf(latex_input, [package]))

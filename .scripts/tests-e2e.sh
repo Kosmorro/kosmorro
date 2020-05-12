@@ -104,6 +104,7 @@ assertSuccess "$PIP_BIN install latex" "CI"
 
 # Dependencies installed, should not fail
 assertSuccess "kosmorro --latitude=50.5876 --longitude=3.0624 -d 2020-01-27 --format=pdf -o /tmp/document.pdf"
+assertSuccess "kosmorro --latitude=50.5876 --longitude=3.0624 -d 2020-01-27 --format=pdf -o /tmp/document.pdf --no-graph"
 
 # man page
 assertSuccess "man --pager=cat kosmorro"

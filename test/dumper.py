@@ -229,6 +229,77 @@ class DumperTestCase(unittest.TestCase):
 
         self.assertNotRegex(latex, r'\\section{\\sffamily Expected events}')
 
+    def test_latex_dumper_with_graph(self):
+        latex = _LatexDumper(self._get_ephemerides(True), self._get_moon_phase(), self._get_events(),
+                             date=date(2019, 10, 14), show_graph=True).to_string()
+
+        self.assertRegex(latex, 'Monday October 14, 2019')
+        self.assertRegex(latex, 'Full Moon')
+        self.assertRegex(latex, r'\\section{\\sffamily Expected events}')
+        self.assertRegex(latex, r'\\section{\\sffamily Ephemerides of the day}')
+        self.assertRegex(latex, r'\\graphobject\{18\}\{gray\}\{8\}\{0\}\{23\}\{0\}\{08:00\}\{23:00\}')
+        self.assertRegex(latex, r'\\event\{23:00\}\{Mars is in opposition\}')
+        self.assertRegex(latex, r"\\event\{12:00\}\{Venus's largest elongation \(42.0°\)\}")
+
+        latex = _LatexDumper(self._get_ephemerides(aster_rise_set=True), self._get_moon_phase(),
+                             self._get_events(), date=date(2019, 10, 14)).to_string()
+        self.assertRegex(latex, r'\\object\{Mars\}\{08:00\}\{13:00\}\{23:00\}')
+
+    def test_latex_dumper_with_graph_but_without_rise_time(self):
+        ephemerides = self._get_ephemerides(True)
+        ephemerides[0].rise_time = None
+        latex = _LatexDumper(ephemerides, self._get_moon_phase(), self._get_events(),
+                             date=date(2019, 10, 14), show_graph=True).to_string()
+
+        self.assertRegex(latex, 'Monday October 14, 2019')
+        self.assertRegex(latex, 'Full Moon')
+        self.assertRegex(latex, r'\\section{\\sffamily Expected events}')
+        self.assertRegex(latex, r'\\section{\\sffamily Ephemerides of the day}')
+        self.assertRegex(latex, r'\\graphobject\{18\}\{gray\}\{0\}\{0\}\{23\}\{0\}\{\}\{23:00\}')
+        self.assertRegex(latex, r'\\event\{23:00\}\{Mars is in opposition\}')
+        self.assertRegex(latex, r"\\event\{12:00\}\{Venus's largest elongation \(42.0°\)\}")
+
+        latex = _LatexDumper(self._get_ephemerides(aster_rise_set=True), self._get_moon_phase(),
+                             self._get_events(), date=date(2019, 10, 14)).to_string()
+        self.assertRegex(latex, r'\\object\{Mars\}\{08:00\}\{13:00\}\{23:00\}')
+
+    def test_latex_dumper_with_graph_but_without_set_time(self):
+        ephemerides = self._get_ephemerides(True)
+        ephemerides[0].set_time = None
+        latex = _LatexDumper(ephemerides, self._get_moon_phase(), self._get_events(),
+                             date=date(2019, 10, 14), show_graph=True).to_string()
+
+        self.assertRegex(latex, 'Monday October 14, 2019')
+        self.assertRegex(latex, 'Full Moon')
+        self.assertRegex(latex, r'\\section{\\sffamily Expected events}')
+        self.assertRegex(latex, r'\\section{\\sffamily Ephemerides of the day}')
+        self.assertRegex(latex, r'\\graphobject\{18\}\{gray\}\{8\}\{0\}\{24\}\{0\}\{08:00\}\{\}')
+        self.assertRegex(latex, r'\\event\{23:00\}\{Mars is in opposition\}')
+        self.assertRegex(latex, r"\\event\{12:00\}\{Venus's largest elongation \(42.0°\)\}")
+
+        latex = _LatexDumper(self._get_ephemerides(aster_rise_set=True), self._get_moon_phase(),
+                             self._get_events(), date=date(2019, 10, 14)).to_string()
+        self.assertRegex(latex, r'\\object\{Mars\}\{08:00\}\{13:00\}\{23:00\}')
+
+    def test_latex_dumper_with_graph_but_mars_sets_tomorrow(self):
+        ephemerides = self._get_ephemerides(True)
+        ephemerides[0].set_time = datetime(2019, 10, 15, 1)
+        latex = _LatexDumper(ephemerides, self._get_moon_phase(), self._get_events(),
+                             date=date(2019, 10, 14), show_graph=True).to_string()
+
+        self.assertRegex(latex, 'Monday October 14, 2019')
+        self.assertRegex(latex, 'Full Moon')
+        self.assertRegex(latex, r'\\section{\\sffamily Expected events}')
+        self.assertRegex(latex, r'\\section{\\sffamily Ephemerides of the day}')
+        self.assertRegex(latex, r'\\graphobject\{18\}\{gray\}\{8\}\{0\}\{24\}\{0\}\{08:00\}\{\}')
+        self.assertRegex(latex, r'\\graphobject\{18\}\{gray\}\{0\}\{0\}\{1\}\{0\}\{\}\{Oct 15, 01:00\}')
+        self.assertRegex(latex, r'\\event\{23:00\}\{Mars is in opposition\}')
+        self.assertRegex(latex, r"\\event\{12:00\}\{Venus's largest elongation \(42.0°\)\}")
+
+        latex = _LatexDumper(self._get_ephemerides(aster_rise_set=True), self._get_moon_phase(),
+                             self._get_events(), date=date(2019, 10, 14)).to_string()
+        self.assertRegex(latex, r'\\object\{Mars\}\{08:00\}\{13:00\}\{23:00\}')
+
     @staticmethod
     def _get_ephemerides(aster_rise_set=False) -> [AsterEphemerides]:
         rise_time = datetime(2019, 10, 14, 8) if aster_rise_set else None
