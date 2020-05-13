@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kosmorro 0.7.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-12 13:42+0200\n"
+"POT-Creation-Date: 2020-05-13 13:11+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -143,23 +143,23 @@ msgstr ""
 msgid "Note: All the hours are given in the UTC{offset} timezone."
 msgstr ""
 
-#: kosmorrolib/dumper.py:208 kosmorrolib/dumper.py:277
+#: kosmorrolib/dumper.py:208 kosmorrolib/dumper.py:288
 msgid "Object"
 msgstr ""
 
-#: kosmorrolib/dumper.py:209 kosmorrolib/dumper.py:278
+#: kosmorrolib/dumper.py:209 kosmorrolib/dumper.py:289
 msgid "Rise time"
 msgstr ""
 
-#: kosmorrolib/dumper.py:210 kosmorrolib/dumper.py:279
+#: kosmorrolib/dumper.py:210 kosmorrolib/dumper.py:290
 msgid "Culmination time"
 msgstr ""
 
-#: kosmorrolib/dumper.py:211 kosmorrolib/dumper.py:280
+#: kosmorrolib/dumper.py:211 kosmorrolib/dumper.py:291
 msgid "Set time"
 msgstr ""
 
-#: kosmorrolib/dumper.py:225 kosmorrolib/dumper.py:283
+#: kosmorrolib/dumper.py:225 kosmorrolib/dumper.py:295
 msgid "Moon phase:"
 msgstr ""
 
@@ -167,32 +167,36 @@ msgstr ""
 msgid "{next_moon_phase} on {next_moon_phase_date} at {next_moon_phase_time}"
 msgstr ""
 
-#: kosmorrolib/dumper.py:264
+#: kosmorrolib/dumper.py:275
 msgid "A Summary of your Sky"
 msgstr ""
 
-#: kosmorrolib/dumper.py:268
+#: kosmorrolib/dumper.py:279
 msgid ""
 "This document summarizes the ephemerides and the events of {date}. It "
 "aims to help you to prepare your observation session. All the hours are "
 "given in {timezone}."
 msgstr ""
 
-#: kosmorrolib/dumper.py:274
+#: kosmorrolib/dumper.py:285
 msgid ""
 "Don't forget to check the weather forecast before you go out with your "
 "equipment."
 msgstr ""
 
-#: kosmorrolib/dumper.py:276
+#: kosmorrolib/dumper.py:287
 msgid "Ephemerides of the day"
 msgstr ""
 
-#: kosmorrolib/dumper.py:285
+#: kosmorrolib/dumper.py:293
+msgid "hours"
+msgstr ""
+
+#: kosmorrolib/dumper.py:297
 msgid "Expected events"
 msgstr ""
 
-#: kosmorrolib/dumper.py:405
+#: kosmorrolib/dumper.py:415
 msgid ""
 "Building PDFs was not possible, because some dependencies are not "
 "installed.\n"

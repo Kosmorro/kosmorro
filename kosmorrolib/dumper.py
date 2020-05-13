@@ -24,7 +24,7 @@ from pathlib import Path
 from tabulate import tabulate
 from numpy import int64
 from termcolor import colored
-from .data import Object, AsterEphemerides, MoonPhase, Event
+from .data import ASTERS, Object, AsterEphemerides, MoonPhase, Event
 from .i18n import _
 from .version import VERSION
 from .exceptions import UnavailableFeatureError
@@ -258,6 +258,17 @@ class _LatexDumper(Dumper):
         if len(self.events) == 0:
             document = self._remove_section(document, 'events')
 
+        document = self.add_strings(document, kosmorro_logo_path, moon_phase_graphics)
+
+        if self.show_graph:
+            # The graphephemerides environment beginning tag must end with a percent symbol to ensure
+            # that no extra space will interfere with the graph.
+            document = document.replace(r'\begin{ephemerides}', r'\begin{graphephemerides}%')\
+                .replace(r'\end{ephemerides}', r'\end{graphephemerides}')
+
+        return document
+
+    def add_strings(self, document, kosmorro_logo_path, moon_phase_graphics) -> str:
         document = document \
             .replace('+++KOSMORRO-VERSION+++', VERSION) \
             .replace('+++KOSMORRO-LOGO+++', kosmorro_logo_path) \
@@ -279,17 +290,16 @@ class _LatexDumper(Dumper):
             .replace('+++EPHEMERIDES-CULMINATION-TIME+++', _('Culmination time')) \
             .replace('+++EPHEMERIDES-SET-TIME+++', _('Set time')) \
             .replace('+++EPHEMERIDES+++', self._make_ephemerides()) \
+            .replace('+++GRAPH_LABEL_HOURS+++', _('hours')) \
             .replace('+++MOON-PHASE-GRAPHICS+++', moon_phase_graphics) \
             .replace('+++CURRENT-MOON-PHASE-TITLE+++', _('Moon phase:')) \
             .replace('+++CURRENT-MOON-PHASE+++', self.moon_phase.get_phase()) \
             .replace('+++SECTION-EVENTS+++', _('Expected events')) \
             .replace('+++EVENTS+++', self._make_events())
 
-        if self.show_graph:
-            # The graphephemerides environment beginning tag must end with a percent symbol to ensure
-            # that no extra space will interfere with the graph.
-            document = document.replace(r'\begin{ephemerides}', r'\begin{graphephemerides}%')\
-                .replace(r'\end{ephemerides}', r'\end{graphephemerides}')
+        for aster in ASTERS:
+            document = document.replace('+++ASTER_%s+++' % aster.skyfield_name.upper().split(' ')[0],
+                                        aster.name)
 
         return document
 
