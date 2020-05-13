@@ -1,3 +1,14 @@
+build:
+	ronn --roff manpage/kosmorro.1.md
+	ronn --roff manpage/kosmorro.7.md
+
+	if [ "$$POEDITOR_API_ACCESS" != "" ]; then \
+		python3 .scripts/build/getlangs.py; \
+		python3 setup.py compile_catalog; \
+	fi
+
+	python3 setup.py sdist bdist_wheel
+
 env:
 	@if [[ "$$RELEASE_NUMBER" == "" ]]; \
 		then echo "Missing environment variable: RELEASE_NUMBER."; \
@@ -27,9 +38,9 @@ finish-release: env
 	git add CHANGELOG.md kosmorrolib/version.py kosmorrolib/locales/messages.pot
 	git commit -m "build: bump version $$RELEASE_NUMBER"
 	git tag "v$$RELEASE_NUMBER"
-    git checkout features
-    git merge master
-    git checkout master
+	git checkout features
+	git merge master
+	git checkout master
 
 	@echo
 	@echo -e "\e[1mVersion \e[36m$$RELEASE_NUMBER\e[39m successfully tagged!"

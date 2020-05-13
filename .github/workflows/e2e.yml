@@ -18,11 +18,17 @@ jobs:
       run: |
         sudo apt install ruby
         sudo gem install ronn
-        pip install -U setuptools pip
-        cd manpage && ronn kosmorro.1.md && cd ..
+        pip install -U setuptools pip requests wheel Babel
 
     - name: E2E tests
       run: |
         export ENVIRONMENT="CI"
         bash .scripts/tests-e2e.sh
 
+    - name: manpage (section 1)
+      run: |
+        man -P $(which cat) kosmorro
+
+    - name: manpage (section 7)
+      run: |
+        man -P $(which cat) 7 kosmorro
