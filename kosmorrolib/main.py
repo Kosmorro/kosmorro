@@ -24,25 +24,28 @@ import sys
 from datetime import date
 from termcolor import colored
 
-from kosmorrolib.version import VERSION
-from kosmorrolib import dumper
-from kosmorrolib import core
-from kosmorrolib import events
-from kosmorrolib.i18n import _
-from .ephemerides import EphemeridesComputer, Position
+from . import dumper
+from . import core
+from . import events
+
+from .data import Position, EARTH
 from .exceptions import UnavailableFeatureError
+from .i18n import _
+from . import ephemerides
+from .version import VERSION
 
 
 def main():
     environment = core.get_env()
     output_formats = get_dumpers()
     args = get_args(list(output_formats.keys()))
+    output_format = args.format
 
     if args.special_action is not None:
         return 0 if args.special_action() else 1
 
     try:
-        compute_date = get_date(args.date)
+        compute_date = core.get_date(args.date)
     except ValueError as error:
         print(colored(error.args[0], color='red', attrs=['bold']))
         return -1
@@ -50,11 +53,11 @@ def main():
     position = None
 
     if args.latitude is not None or args.longitude is not None:
-        position = Position(args.latitude, args.longitude)
+        position = Position(args.latitude, args.longitude, EARTH)
     elif environment.latitude is not None and environment.longitude is not None:
-        position = Position(float(environment.latitude), float(environment.longitude))
+        position = Position(float(environment.latitude), float(environment.longitude), EARTH)
 
-    if args.format == 'pdf':
+    if output_format == 'pdf':
         print(_('Save the planet and paper!\n'
                 'Consider printing you PDF document only if really necessary, and use the other side of the sheet.'))
         if position is None:
@@ -63,8 +66,8 @@ def main():
                             "coordinate."), 'yellow'))
 
     try:
-        ephemeris = EphemeridesComputer(position)
-        ephemerides = ephemeris.compute_ephemerides(compute_date)
+        eph = ephemerides.get_ephemerides(date=compute_date, position=position) if position is not None else None
+        moon_phase = ephemerides.get_moon_phase(compute_date)
 
         events_list = events.search_events(compute_date)
 
@@ -75,10 +78,10 @@ def main():
         elif timezone is None:
             timezone = 0
 
-        selected_dumper = output_formats[args.format](ephemerides, events_list,
-                                                      date=compute_date, timezone=timezone,
-                                                      with_colors=args.colors)
-        output = selected_dumper.to_string()
+        format_dumper = output_formats[output_format](ephemerides=eph, moon_phase=moon_phase, events=events_list,
+                                                      date=compute_date, timezone=timezone, with_colors=args.colors,
+                                                      show_graph=args.show_graph)
+        output = format_dumper.to_string()
     except UnavailableFeatureError as error:
         print(colored(error.msg, 'red'))
         return 2
@@ -90,7 +93,7 @@ def main():
         except OSError as error:
             print(_('Could not save the output in "{path}": {error}').format(path=args.output,
                                                                              error=error.strerror))
-    elif not selected_dumper.is_file_output_needed():
+    elif not format_dumper.is_file_output_needed():
         print(output)
     else:
         print(colored(_('Selected output format needs an output file (--output).'), color='red'))
@@ -99,21 +102,11 @@ def main():
     return 0
 
 
-def get_date(yyyymmdd: str) -> date:
-    if not re.match(r'^\d{4}-\d{2}-\d{2}$', yyyymmdd):
-        raise ValueError(_('The date {date} does not match the required YYYY-MM-DD format.').format(date=yyyymmdd))
-
-    try:
-        return date.fromisoformat(yyyymmdd)
-    except ValueError as error:
-        raise ValueError(_('The date {date} is not valid: {error}').format(date=yyyymmdd, error=error.args[0]))
-
-
 def get_dumpers() -> {str: dumper.Dumper}:
     return {
         'text': dumper.TextDumper,
         'json': dumper.JsonDumper,
-        'pdf': dumper.PdfDumper
+        'pdf': dumper.PdfDumper,
     }
 
 
@@ -172,5 +165,8 @@ def get_args(output_formats: [str]):
     parser.add_argument('--output', '-o', type=str, default=None,
                         help=_('A file to export the output to. If not given, the standard output is used. '
                                'This argument is needed for PDF format.'))
+    parser.add_argument('--no-graph', dest='show_graph', action='store_false',
+                        help=_('Generate a graph instead of a table to show the rise, culmination set times '
+                               '(PDF only)'))
 
     return parser.parse_args()

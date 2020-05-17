@@ -3,6 +3,9 @@ import unittest
 import os
 import kosmorrolib.core as core
 
+from datetime import date
+from dateutil.relativedelta import relativedelta
+
 
 class CoreTestCase(unittest.TestCase):
     def test_flatten_list(self):
@@ -27,6 +30,10 @@ class CoreTestCase(unittest.TestCase):
 
         self.assertEqual("{'great_variable': 'value', 'another_variable': 'another value'}", str(env))
 
+    def test_date_arg_parsing(self):
+        self.assertEqual(core.get_date("+1y 2m3d"), date.today() + relativedelta(years=1, months=2, days=3))
+        self.assertEqual(core.get_date("-1y2d"), date.today() - relativedelta(years=1, days=2))
+        self.assertEqual(core.get_date("1111-11-13"), date(1111, 11, 13))
 
 if __name__ == '__main__':
     unittest.main()

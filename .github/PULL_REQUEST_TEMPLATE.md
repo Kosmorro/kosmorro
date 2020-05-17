@@ -7,7 +7,7 @@
 | License        | GNU AGPL-v3
 
 **Checklist:**
-- [ ] I have updated the manpage
+- [ ] I have updated the manpages
 
 <!--
     Replace this notice by a short README for your feature/bugfix.

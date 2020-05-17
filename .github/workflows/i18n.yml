@@ -1,4 +1,4 @@
-name: Python application
+name: Internationalization check
 
 on: [push, pull_request]
 
@@ -16,13 +16,6 @@ jobs:
       run: |
         pip install --upgrade pip pipenv
         pipenv sync -d
-    - name: Unit tests
-      run: |
-        pipenv run python -m coverage run -m unittest test
-        pipenv run codecov --token=${{ secrets.CODECOV_TOKEN }}
-    - name: Lint
-      run: |
-        pipenv run pylint kosmorro *.py kosmorrolib/*.py
     - name: Check i18n
       run: |
         pipenv run python setup.py extract_messages --output-file=/tmp/kosmorro-messages.pot > /dev/null

@@ -16,6 +16,7 @@ tabulate = "*"
 numpy = ">=1.17.0,<2.0.0"
 termcolor = "*"
 latex = "*"
+python-dateutil = "*"
 
 [requires]
 python_version = "3"

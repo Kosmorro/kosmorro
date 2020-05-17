@@ -5,12 +5,31 @@
 \usepackage[margin=25mm]{geometry}
 \usepackage{graphicx}
 \usepackage{hyperref}
+\usepackage{kosmorro}
+
+\newcommand{\currentmoonphasetitle}{+++CURRENT-MOON-PHASE-TITLE+++}
+\newcommand{\ephemeridesobjecttitle}{+++EPHEMERIDES-OBJECT+++}
+\newcommand{\ephemeridesrisetimetitle}{+++EPHEMERIDES-RISE-TIME+++}
+\newcommand{\ephemeridesculminationtimetitle}{+++EPHEMERIDES-CULMINATION-TIME+++}
+\newcommand{\ephemeridessettimetitle}{+++EPHEMERIDES-SET-TIME+++}
+\newcommand{\hourslabel}{+++GRAPH_LABEL_HOURS+++}
+
+\newcommand{\Pluto}{+++ASTER_PLUTO+++}
+\newcommand{\Neptune}{+++ASTER_NEPTUNE+++}
+\newcommand{\Uranus}{+++ASTER_URANUS+++}
+\newcommand{\Saturn}{+++ASTER_SATURN+++}
+\newcommand{\Jupiter}{+++ASTER_JUPITER+++}
+\newcommand{\Mars}{+++ASTER_MARS+++}
+\newcommand{\Venus}{+++ASTER_VENUS+++}
+\newcommand{\Mercury}{+++ASTER_MERCURY+++}
+\newcommand{\Moon}{+++ASTER_MOON+++}
+\newcommand{\Sun}{+++ASTER_SUN+++}
 
 % Fix Unicode issues
 \DeclareUnicodeCharacter{202F}{~}
 \DeclareUnicodeCharacter{00B0}{$^\circ$}
 
-\hypersetup{pdfinfo={
+\hypersetup{pdfinfo={%
     Title={+++DOCUMENT-TITLE+++},
     Creator={Kosmorro v+++KOSMORRO-VERSION+++}
 }}
@@ -23,49 +42,6 @@
 
 \begin{document}
 
-    \newcommand{\object}[4]{
-        \hline
-        \textbf{#1} & {#2} & {#3} & {#4}\\
-    }
-
-    \newcommand{\moonphase}[2]{
-        \begin{center}
-            \begin{minipage}{2cm}
-                \includegraphics[width=\linewidth]{#1}
-            \end{minipage}
-            \hspace{5mm}
-            \begin{minipage}{7cm}
-                \textbf{+++CURRENT-MOON-PHASE-TITLE+++}\\#2
-            \end{minipage}
-        \end{center}
-}
-
-    \newenvironment{ephemerides}{
-        \begin{table}[h]
-            \centering
-            \begin{tabular}{lccc}
-                \textbf{+++EPHEMERIDES-OBJECT+++} &
-                \textbf{+++EPHEMERIDES-RISE-TIME+++} &
-                \textbf{+++EPHEMERIDES-CULMINATION-TIME+++} &
-                \textbf{+++EPHEMERIDES-SET-TIME+++}\\
-    \hline
-    }{
-            \end{tabular}
-        \end{table}
-    }
-
-    \newcommand{\event}[2]{
-        \textbf{#1} & {#2}\\
-    }
-
-    \newenvironment{events}{
-        \begin{table}[h]
-            \begin{tabular}{ll}
-    }{
-            \end{tabular}
-        \end{table}
-    }
-
     \maketitle
 
     +++INTRODUCTION+++
@@ -76,7 +52,7 @@
     \section{\sffamily +++SECTION-EPHEMERIDES+++}
 
     \begin{ephemerides}
-        +++EPHEMERIDES+++
++++EPHEMERIDES+++
     \end{ephemerides}
     %%% END-EPHEMERIDES-SECTION
 

@@ -1,0 +1,21 @@
+name: PyLint
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up Python
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.8
+    - name: Install dependencies
+      run: |
+        pip install --upgrade pip pipenv
+        pipenv sync -d
+    - name: Lint
+      run: |
+        pipenv run pylint kosmorro *.py kosmorrolib/*.py

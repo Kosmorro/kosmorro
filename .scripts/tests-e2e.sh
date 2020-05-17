@@ -73,7 +73,7 @@ echo "==== RUNNING E2E TESTS ===="
 echo
 
 # Create the package and install it
-assertSuccess "$PYTHON_BIN setup.py sdist"
+assertSuccess "make build"
 assertSuccess "$PIP_BIN install dist/kosmorro-$VERSION.tar.gz" "CI"
 
 assertSuccess kosmorro
@@ -81,6 +81,10 @@ assertSuccess "kosmorro -h"
 assertSuccess "kosmorro -d 2020-01-27"
 assertFailure "kosmorro -d yolo-yo-lo"
 assertFailure "kosmorro -d 2020-13-32"
+assertSuccess "kosmorro --date='+3y 5m3d'"
+assertSuccess "kosmorro --date='-1y3d'"
+assertFailure "kosmorro --date='+3d4m"
+assertFailure "kosmorro -date='3y'"
 assertSuccess "kosmorro --latitude=50.5876 --longitude=3.0624"
 assertSuccess "kosmorro --latitude=50.5876 --longitude=3.0624 -d 2020-01-27"
 assertSuccess "kosmorro --latitude=50.5876 --longitude=3.0624 -d 2020-01-27 --timezone=1"
@@ -100,6 +104,7 @@ assertSuccess "$PIP_BIN install latex" "CI"
 
 # Dependencies installed, should not fail
 assertSuccess "kosmorro --latitude=50.5876 --longitude=3.0624 -d 2020-01-27 --format=pdf -o /tmp/document.pdf"
+assertSuccess "kosmorro --latitude=50.5876 --longitude=3.0624 -d 2020-01-27 --format=pdf -o /tmp/document.pdf --no-graph"
 
 # man page
 assertSuccess "man --pager=cat kosmorro"
