@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kosmorro 0.7.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-13 13:11+0200\n"
+"POT-Creation-Date: 2020-05-17 10:04+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -277,28 +277,29 @@ msgstr ""
 #: kosmorrolib/main.py:157
 msgid ""
 "The date for which the ephemerides must be computed (in the YYYY-MM-DD "
-"format). Defaults to the current date ({default_date})"
+"format), or as an interval in the \"[+-]YyMmDd\" format (with Y, M, and D"
+" numbers). Defaults to the current date ({default_date})"
 msgstr ""
 
-#: kosmorrolib/main.py:161
+#: kosmorrolib/main.py:162
 msgid ""
 "The timezone to display the hours in (e.g. 2 for UTC+2 or -3 for UTC-3). "
 "Can also be set in the KOSMORRO_TIMEZONE environment variable."
 msgstr ""
 
-#: kosmorrolib/main.py:164
+#: kosmorrolib/main.py:165
 msgid "Disable the colors in the console."
 msgstr ""
 
-#: kosmorrolib/main.py:166
+#: kosmorrolib/main.py:167
 msgid ""
 "A file to export the output to. If not given, the standard output is "
 "used. This argument is needed for PDF format."
 msgstr ""
 
-#: kosmorrolib/main.py:169
+#: kosmorrolib/main.py:170
 msgid ""
-"Generate a graph instead of a table to show the rise, culmination set "
-"times (PDF only)"
+"Do not generate a graph to represent the rise and set times in the PDF "
+"format."
 msgstr ""
 

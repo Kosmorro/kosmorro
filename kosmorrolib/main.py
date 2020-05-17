@@ -154,7 +154,8 @@ def get_args(output_formats: [str]):
                         help=_("The observer's longitude on Earth. Can also be set in the KOSMORRO_LONGITUDE "
                                "environment variable."))
     parser.add_argument('--date', '-d', type=str, default=today.strftime('%Y-%m-%d'),
-                        help=_('The date for which the ephemerides must be computed (in the YYYY-MM-DD format). '
+                        help=_('The date for which the ephemerides must be computed (in the YYYY-MM-DD format), '
+                               'or as an interval in the "[+-]YyMmDd" format (with Y, M, and D numbers). '
                                'Defaults to the current date ({default_date})').format(
                                    default_date=today.strftime('%Y-%m-%d')))
     parser.add_argument('--timezone', '-t', type=int, default=None,
@@ -166,7 +167,6 @@ def get_args(output_formats: [str]):
                         help=_('A file to export the output to. If not given, the standard output is used. '
                                'This argument is needed for PDF format.'))
     parser.add_argument('--no-graph', dest='show_graph', action='store_false',
-                        help=_('Generate a graph instead of a table to show the rise, culmination set times '
-                               '(PDF only)'))
+                        help=_('Do not generate a graph to represent the rise and set times in the PDF format.'))
 
     return parser.parse_args()
