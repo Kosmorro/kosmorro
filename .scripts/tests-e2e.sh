@@ -73,7 +73,7 @@ echo "==== RUNNING E2E TESTS ===="
 echo
 
 # Create the package and install it
-assertSuccess "$PYTHON_BIN setup.py sdist"
+assertSuccess "make build"
 assertSuccess "$PIP_BIN install dist/kosmorro-$VERSION.tar.gz" "CI"
 
 assertSuccess kosmorro
