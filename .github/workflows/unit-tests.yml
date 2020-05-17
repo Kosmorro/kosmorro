@@ -17,6 +17,8 @@ jobs:
         pip install --upgrade pip pipenv
         pipenv sync -d
     - name: Unit tests
+      env:
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
       run: |
         pipenv run python -m coverage run -m unittest test
-        pipenv run codecov --token=${{ secrets.CODECOV_TOKEN }}
+        pipenv run codecov --token=$CODECOV_TOKEN
