@@ -1,3 +1,23 @@
+# [v0.8.0](https://github.com/Deuchnord/kosmorro/compare/v0.7.0...v0.8.0) (2020-05-22)
+
+
+### Code Refactoring
+
+* simplify ephemerides, remove dead code ([6618712](https://github.com/Deuchnord/kosmorro/commit/6618712030432d992f957f34e522b792ee74ecc0))
+
+
+### Features
+
+* add support for relative dates on --date argument ([b9454be](https://github.com/Deuchnord/kosmorro/commit/b9454be45941ce2b271959f9873692516c555c88)) (thanks @Brainface1!)
+* display a graph in the PDF output for the ephemerides ([4ea148e](https://github.com/Deuchnord/kosmorro/commit/4ea148e8d1a31ad6d369ace1b5bdaa9b0440be3b))
+
+
+### BREAKING CHANGES
+
+* the JSON format has deeply changed to enhance its consistency
+
+
+
 # [v0.7.0](https://github.com/Deuchnord/kosmorro/compare/v0.6.2...v0.7.0) (2020-04-05)
 
 
