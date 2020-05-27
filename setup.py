@@ -20,6 +20,7 @@ import pathlib
 from setuptools import setup, find_packages
 
 from kosmorrolib.version import VERSION
+from kosmorrolib.dependencies import get_dependencies
 
 HERE = pathlib.Path(__file__).parent
 README = (HERE / 'README.md').read_text()
@@ -42,7 +43,7 @@ setup(
         ('man/man1', ['manpage/kosmorro.1']),
         ('man/man7', ['manpage/kosmorro.7'])
     ],
-    install_requires=['skyfield>=1.17.0,<2.0.0', 'tabulate', 'numpy>=1.17.0,<2.0.0', 'termcolor', 'python-dateutil'],
+    install_requires=[dependency.get_setup_format() for dependency in get_dependencies()],
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Operating System :: POSIX :: Linux',

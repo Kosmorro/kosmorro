@@ -18,7 +18,7 @@ jobs:
       run: |
         sudo apt install ruby
         sudo gem install ronn
-        pip install -U setuptools pip requests wheel Babel
+        pip install -U setuptools pip requests wheel Babel toml
 
     - name: E2E tests
       run: |
