@@ -66,17 +66,21 @@ def main():
                             "coordinate."), 'yellow'))
 
     try:
-        eph = ephemerides.get_ephemerides(date=compute_date, position=position) if position is not None else None
-        moon_phase = ephemerides.get_moon_phase(compute_date)
-
-        events_list = events.search_events(compute_date)
-
         timezone = args.timezone
 
         if timezone is None and environment.timezone is not None:
             timezone = int(environment.timezone)
         elif timezone is None:
             timezone = 0
+
+        if position is not None:
+            eph = ephemerides.get_ephemerides(date=compute_date, position=position, timezone=timezone)
+        else:
+            eph = None
+
+        moon_phase = ephemerides.get_moon_phase(compute_date)
+
+        events_list = events.search_events(compute_date, timezone)
 
         format_dumper = output_formats[output_format](ephemerides=eph, moon_phase=moon_phase, events=events_list,
                                                       date=compute_date, timezone=timezone, with_colors=args.colors,

@@ -23,6 +23,7 @@ from skyfield.timelib import Time
 from skyfield.constants import tau
 
 from .data import Position, AsterEphemerides, MoonPhase, Object, ASTERS, skyfield_to_moon_phase
+from .dateutil import translate_to_timezone
 from .core import get_skf_objects, get_timescale, get_iau2000b
 
 RISEN_ANGLE = -0.8333
@@ -51,7 +52,7 @@ def get_moon_phase(compute_date: datetime.date) -> MoonPhase:
     return skyfield_to_moon_phase(times, phase, today)
 
 
-def get_ephemerides(date: datetime.date, position: Position) -> [AsterEphemerides]:
+def get_ephemerides(date: datetime.date, position: Position, timezone: int = 0) -> [AsterEphemerides]:
     ephemerides = []
 
     def get_angle(for_aster: Object):
@@ -67,8 +68,8 @@ def get_ephemerides(date: datetime.date, position: Position) -> [AsterEphemeride
         fun.rough_period = 0.5
         return fun
 
-    start_time = get_timescale().utc(date.year, date.month, date.day)
-    end_time = get_timescale().utc(date.year, date.month, date.day, 23, 59, 59)
+    start_time = get_timescale().utc(date.year, date.month, date.day, -timezone)
+    end_time = get_timescale().utc(date.year, date.month, date.day, 23 - timezone, 59, 59)
 
     for aster in ASTERS:
         rise_times, arr = find_discrete(start_time, end_time, is_risen(aster))
@@ -87,13 +88,16 @@ def get_ephemerides(date: datetime.date, position: Position) -> [AsterEphemeride
 
         # Convert the Time instances to Python datetime objects
         if rise_time is not None:
-            rise_time = rise_time.utc_datetime().replace(microsecond=0)
+            rise_time = translate_to_timezone(rise_time.utc_datetime().replace(microsecond=0),
+                                              to_tz=timezone)
 
         if culmination_time is not None:
-            culmination_time = culmination_time.utc_datetime().replace(microsecond=0)
+            culmination_time = translate_to_timezone(culmination_time.utc_datetime().replace(microsecond=0),
+                                                     to_tz=timezone)
 
         if set_time is not None:
-            set_time = set_time.utc_datetime().replace(microsecond=0) if set_time is not None else None
+            set_time = translate_to_timezone(set_time.utc_datetime().replace(microsecond=0),
+                                             to_tz=timezone)
 
         ephemerides.append(AsterEphemerides(rise_time, culmination_time, set_time, aster=aster))
 

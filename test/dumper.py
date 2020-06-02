@@ -159,37 +159,6 @@ class DumperTestCase(unittest.TestCase):
                          TextDumper(None, self._get_moon_phase(), self._get_events(),
                                     date=date(2019, 10, 14), with_colors=False).to_string())
 
-    def test_timezone_is_taken_in_account(self):
-        ephemerides = self._get_ephemerides(aster_rise_set=True)
-
-        self.assertEqual('Monday October 14, 2019\n\n'
-                         'Object     Rise time    Culmination time     Set time\n'
-                         '--------  -----------  ------------------  -------------\n'
-                         'Mars         09:00           14:00         Oct 15, 00:00\n\n'
-                         'Moon phase: Full Moon\n'
-                         'Last Quarter on Monday October 21, 2019 at 01:00\n\n'
-                         'Expected events:\n'
-                         'Oct 15, 00:00  Mars is in opposition\n'
-                         "13:00          Venus's largest elongation (42.0°)\n\n"
-                         'Note: All the hours are given in the UTC+1 timezone.',
-                         TextDumper(ephemerides, self._get_moon_phase(), self._get_events(), date=date(2019, 10, 14),
-                                    with_colors=False, timezone=1).to_string())
-
-        ephemerides = self._get_ephemerides(aster_rise_set=True)
-
-        self.assertEqual('Monday October 14, 2019\n\n'
-                         'Object     Rise time    Culmination time    Set time\n'
-                         '--------  -----------  ------------------  ----------\n'
-                         'Mars         07:00           12:00           22:00\n\n'
-                         'Moon phase: Full Moon\n'
-                         'Last Quarter on Sunday October 20, 2019 at 23:00\n\n'
-                         'Expected events:\n'
-                         '22:00  Mars is in opposition\n'
-                         "11:00  Venus's largest elongation (42.0°)\n\n"
-                         'Note: All the hours are given in the UTC-1 timezone.',
-                         TextDumper(ephemerides, self._get_moon_phase(), self._get_events(), date=date(2019, 10, 14),
-                                    with_colors=False, timezone=-1).to_string())
-
     def test_latex_dumper(self):
         latex = _LatexDumper(self._get_ephemerides(), self._get_moon_phase(), self._get_events(),
                              date=date(2019, 10, 14)).to_string()

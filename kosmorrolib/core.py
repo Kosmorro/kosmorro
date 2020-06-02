@@ -109,7 +109,6 @@ def get_date(date_arg: str) -> date:
         months = get_offset(date_arg, 'm')
         years = get_offset(date_arg, 'y')
 
-
         if date_arg[0] == '+':
             return date.today() + relativedelta(days=days, months=months, years=years)
         return date.today() - relativedelta(days=days, months=months, years=years)
