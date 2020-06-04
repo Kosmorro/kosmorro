@@ -23,10 +23,11 @@ from skyfield.searchlib import find_discrete, find_maxima
 from numpy import pi
 
 from .data import Event, Star, Planet, ASTERS
+from .dateutil import translate_to_timezone
 from .core import get_timescale, get_skf_objects, flatten_list
 
 
-def _search_conjunction(start_time: Time, end_time: Time) -> [Event]:
+def _search_conjunction(start_time: Time, end_time: Time, timezone: int) -> [Event]:
     earth = get_skf_objects()['earth']
     aster1 = None
     aster2 = None
@@ -65,16 +66,18 @@ def _search_conjunction(start_time: Time, end_time: Time) -> [Event]:
                                            aster2] if aster1_pos.distance().km < aster2_pos.distance().km else [aster2,
                                                                                                                 aster1]
 
-                        conjunctions.append(Event('OCCULTATION', occulting_aster, time.utc_datetime()))
+                        conjunctions.append(Event('OCCULTATION', occulting_aster,
+                                                  translate_to_timezone(time.utc_datetime(), timezone)))
                     else:
-                        conjunctions.append(Event('CONJUNCTION', [aster1, aster2], time.utc_datetime()))
+                        conjunctions.append(Event('CONJUNCTION', [aster1, aster2],
+                                                  translate_to_timezone(time.utc_datetime(), timezone)))
 
         computed.append(aster1)
 
     return conjunctions
 
 
-def _search_oppositions(start_time: Time, end_time: Time) -> [Event]:
+def _search_oppositions(start_time: Time, end_time: Time, timezone: int) -> [Event]:
     earth = get_skf_objects()['earth']
     sun = get_skf_objects()['sun']
     aster = None
@@ -96,12 +99,12 @@ def _search_oppositions(start_time: Time, end_time: Time) -> [Event]:
 
         times, _ = find_discrete(start_time, end_time, is_oppositing)
         for time in times:
-            events.append(Event('OPPOSITION', [aster], time.utc_datetime()))
+            events.append(Event('OPPOSITION', [aster], translate_to_timezone(time.utc_datetime(), timezone)))
 
     return events
 
 
-def _search_maximal_elongations(start_time: Time, end_time: Time) -> [Event]:
+def _search_maximal_elongations(start_time: Time, end_time: Time, timezone: int) -> [Event]:
     earth = get_skf_objects()['earth']
     sun = get_skf_objects()['sun']
     aster = None
@@ -124,18 +127,18 @@ def _search_maximal_elongations(start_time: Time, end_time: Time) -> [Event]:
 
         for i, time in enumerate(times):
             elongation = elongations[i]
-            events.append(Event('MAXIMAL_ELONGATION', [aster], time.utc_datetime(),
+            events.append(Event('MAXIMAL_ELONGATION', [aster], translate_to_timezone(time.utc_datetime(), timezone),
                                 details='{:.3n}°'.format(elongation)))
 
     return events
 
 
-def search_events(date: date_type) -> [Event]:
-    start_time = get_timescale().utc(date.year, date.month, date.day)
-    end_time = get_timescale().utc(date.year, date.month, date.day + 1)
+def search_events(date: date_type, timezone: int = 0) -> [Event]:
+    start_time = get_timescale().utc(date.year, date.month, date.day, -timezone)
+    end_time = get_timescale().utc(date.year, date.month, date.day + 1, -timezone)
 
     return sorted(flatten_list([
-        _search_oppositions(start_time, end_time),
-        _search_conjunction(start_time, end_time),
-        _search_maximal_elongations(start_time, end_time)
+        _search_oppositions(start_time, end_time, timezone),
+        _search_conjunction(start_time, end_time, timezone),
+        _search_maximal_elongations(start_time, end_time, timezone)
     ]), key=lambda event: event.start_time)

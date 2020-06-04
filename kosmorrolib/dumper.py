@@ -52,39 +52,6 @@ class Dumper(ABC):
         self.with_colors = with_colors
         self.show_graph = show_graph
 
-        if self.timezone != 0:
-            self._convert_dates_to_timezones()
-
-    def _convert_dates_to_timezones(self):
-        if self.moon_phase.time is not None:
-            self.moon_phase.time = self._datetime_to_timezone(self.moon_phase.time)
-        if self.moon_phase.next_phase_date is not None:
-            self.moon_phase.next_phase_date = self._datetime_to_timezone(
-                self.moon_phase.next_phase_date)
-
-        if self.ephemerides is not None:
-            for ephemeris in self.ephemerides:
-                if ephemeris.rise_time is not None:
-                    ephemeris.rise_time = self._datetime_to_timezone(ephemeris.rise_time)
-                if ephemeris.culmination_time is not None:
-                    ephemeris.culmination_time = self._datetime_to_timezone(ephemeris.culmination_time)
-                if ephemeris.set_time is not None:
-                    ephemeris.set_time = self._datetime_to_timezone(ephemeris.set_time)
-
-        for event in self.events:
-            event.start_time = self._datetime_to_timezone(event.start_time)
-            if event.end_time is not None:
-                event.end_time = self._datetime_to_timezone(event.end_time)
-
-    def _datetime_to_timezone(self, time: datetime.datetime):
-        return time.replace(tzinfo=datetime.timezone.utc).astimezone(
-            tz=datetime.timezone(
-                datetime.timedelta(
-                    hours=self.timezone
-                )
-            )
-        )
-
     def get_date_as_string(self, capitalized: bool = False) -> str:
         date = self.date.strftime(FULL_DATE_FORMAT)
 
@@ -401,10 +368,6 @@ class _LatexDumper(Dumper):
 
 
 class PdfDumper(Dumper):
-    def _convert_dates_to_timezones(self):
-        """This method is disabled in this dumper, because the timezone is already converted
-         in :class:`_LatexDumper`."""
-
     def to_string(self):
         try:
             latex_dumper = _LatexDumper(self.ephemerides, self.moon_phase, self.events,
