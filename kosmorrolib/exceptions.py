@@ -16,8 +16,21 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+from datetime import date
+from .i18n import _, SHORT_DATE_FORMAT
+
 
 class UnavailableFeatureError(RuntimeError):
     def __init__(self, msg: str):
         super(UnavailableFeatureError, self).__init__()
         self.msg = msg
+
+
+class OutOfRangeDateError(RuntimeError):
+    def __init__(self, min_date: date, max_date: date):
+        super(OutOfRangeDateError, self).__init__()
+        self.min_date = min_date
+        self.max_date = max_date
+        self.msg = _('The date must be between {minimum_date}'
+                     ' and {maximum_date}').format(minimum_date=min_date.strftime(SHORT_DATE_FORMAT),
+                                                   maximum_date=max_date.strftime(SHORT_DATE_FORMAT))

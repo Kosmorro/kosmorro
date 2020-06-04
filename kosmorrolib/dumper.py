@@ -25,19 +25,13 @@ from tabulate import tabulate
 from numpy import int64
 from termcolor import colored
 from .data import ASTERS, Object, AsterEphemerides, MoonPhase, Event
-from .i18n import _
+from .i18n import _, FULL_DATE_FORMAT, SHORT_DATETIME_FORMAT, TIME_FORMAT
 from .version import VERSION
 from .exceptions import UnavailableFeatureError
 try:
     from latex import build_pdf
 except ImportError:
     build_pdf = None
-
-FULL_DATE_FORMAT = _('{day_of_week} {month} {day_number}, {year}').format(day_of_week='%A', month='%B',
-                                                                          day_number='%d', year='%Y')
-SHORT_DATETIME_FORMAT = _('{month} {day_number}, {hours}:{minutes}').format(month='%b', day_number='%d',
-                                                                            hours='%H', minutes='%M')
-TIME_FORMAT = _('{hours}:{minutes}').format(hours='%H', minutes='%M')
 
 
 class Dumper(ABC):
@@ -59,6 +53,9 @@ class Dumper(ABC):
             return ''.join([date[0].upper(), date[1:]])
 
         return date
+
+    def __str__(self):
+        return self.to_string()
 
     @abstractmethod
     def to_string(self):
@@ -189,6 +186,9 @@ class TextDumper(Dumper):
         return tabulate(data, tablefmt='plain', stralign='left')
 
     def get_moon(self, moon_phase: MoonPhase) -> str:
+        if moon_phase is None:
+            return _('Moon phase is unavailable for this date.')
+
         current_moon_phase = ' '.join([self.style(_('Moon phase:'), 'strong'), moon_phase.get_phase()])
         new_moon_phase = _('{next_moon_phase} on {next_moon_phase_date} at {next_moon_phase_time}').format(
             next_moon_phase=moon_phase.get_next_phase_name(),
@@ -212,6 +212,10 @@ class _LatexDumper(Dumper):
     def _make_document(self, template: str) -> str:
         kosmorro_logo_path = os.path.join(os.path.abspath(os.path.dirname(__file__)),
                                           'assets', 'png', 'kosmorro-logo.png')
+
+        if self.moon_phase is None:
+            self.moon_phase = MoonPhase('UNKNOWN')
+
         moon_phase_graphics = os.path.join(os.path.abspath(os.path.dirname(__file__)),
                                            'assets', 'moonphases', 'png',
                                            '.'.join([self.moon_phase.identifier.lower().replace('_', '-'),

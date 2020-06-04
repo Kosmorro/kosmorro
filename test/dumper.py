@@ -269,6 +269,10 @@ class DumperTestCase(unittest.TestCase):
                              self._get_events(), date=date(2019, 10, 14)).to_string()
         self.assertRegex(latex, r'\\object\{Mars\}\{08:00\}\{13:00\}\{23:00\}')
 
+    def test_get_moon_with_moon_phase_none(self):
+        dumper = TextDumper()
+        self.assertEqual('Moon phase is unavailable for this date.', dumper.get_moon(None))
+
     @staticmethod
     def _get_ephemerides(aster_rise_set=False) -> [AsterEphemerides]:
         rise_time = datetime(2019, 10, 14, 8) if aster_rise_set else None

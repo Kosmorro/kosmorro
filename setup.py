@@ -42,7 +42,7 @@ setup(
         ('man/man1', ['manpage/kosmorro.1']),
         ('man/man7', ['manpage/kosmorro.7'])
     ],
-    install_requires=['skyfield>=1.17.0,<2.0.0', 'tabulate', 'numpy>=1.17.0,<2.0.0', 'termcolor', 'python-dateutil'],
+    install_requires=['skyfield>=1.21.0,<2.0.0', 'tabulate', 'numpy>=1.17.0,<2.0.0', 'termcolor', 'python-dateutil'],
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Operating System :: POSIX :: Linux',
