@@ -6,9 +6,9 @@ verify_ssl = true
 [dev-packages]
 pylintfileheader = "*"
 pylint = "*"
-codecov = "*"
 babel = "*"
 unittest-data-provider = "*"
+coveralls = "*"
 
 [packages]
 skyfield = ">=1.13.0,<2.0.0"
