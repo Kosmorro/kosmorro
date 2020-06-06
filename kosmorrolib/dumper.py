@@ -22,9 +22,8 @@ import json
 import os
 from pathlib import Path
 from tabulate import tabulate
-from numpy import int64
 from termcolor import colored
-from .data import ASTERS, Object, AsterEphemerides, MoonPhase, Event
+from .data import ASTERS, AsterEphemerides, MoonPhase, Event
 from .i18n import _, FULL_DATE_FORMAT, SHORT_DATETIME_FORMAT, TIME_FORMAT
 from .version import VERSION
 from .exceptions import UnavailableFeatureError
@@ -73,35 +72,6 @@ class JsonDumper(Dumper):
             'moon_phase': self.moon_phase.serialize(),
             'events': [event.serialize() for event in self.events]
         }, indent=4)
-
-    @staticmethod
-    def _json_default(obj):
-        # Fixes the "TypeError: Object of type int64 is not JSON serializable"
-        # See https://stackoverflow.com/a/50577730
-        if isinstance(obj, int64):
-            return int(obj)
-        if isinstance(obj, datetime.datetime):
-            return obj.isoformat()
-        if isinstance(obj, Object):
-            obj = obj.__dict__
-            obj.pop('skyfield_name')
-            obj.pop('radius')
-            obj['object'] = obj.pop('name')
-            obj['details'] = obj.pop('ephemerides')
-            return obj
-        if isinstance(obj, AsterEphemerides):
-            return obj.__dict__
-        if isinstance(obj, MoonPhase):
-            moon_phase = obj.__dict__
-            moon_phase['phase'] = moon_phase.pop('identifier')
-            moon_phase['date'] = moon_phase.pop('time')
-            return moon_phase
-        if isinstance(obj, Event):
-            event = obj.__dict__
-            event['objects'] = [object.name for object in event['objects']]
-            return event
-
-        raise TypeError('Object of type "%s" could not be integrated in the JSON' % str(type(obj)))
 
 
 class TextDumper(Dumper):

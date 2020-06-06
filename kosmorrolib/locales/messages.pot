@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kosmorro 0.8.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-06-06 16:43+0200\n"
+"POT-Creation-Date: 2020-06-06 16:51+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -123,76 +123,76 @@ msgstr ""
 msgid "Pluto"
 msgstr ""
 
-#: kosmorrolib/dumper.py:117
+#: kosmorrolib/dumper.py:87
 msgid "Expected events:"
 msgstr ""
 
-#: kosmorrolib/dumper.py:121
+#: kosmorrolib/dumper.py:91
 msgid "Note: All the hours are given in UTC."
 msgstr ""
 
-#: kosmorrolib/dumper.py:126
+#: kosmorrolib/dumper.py:96
 msgid "Note: All the hours are given in the UTC{offset} timezone."
 msgstr ""
 
-#: kosmorrolib/dumper.py:172 kosmorrolib/dumper.py:259
+#: kosmorrolib/dumper.py:142 kosmorrolib/dumper.py:229
 msgid "Object"
 msgstr ""
 
-#: kosmorrolib/dumper.py:173 kosmorrolib/dumper.py:260
+#: kosmorrolib/dumper.py:143 kosmorrolib/dumper.py:230
 msgid "Rise time"
 msgstr ""
 
-#: kosmorrolib/dumper.py:174 kosmorrolib/dumper.py:261
+#: kosmorrolib/dumper.py:144 kosmorrolib/dumper.py:231
 msgid "Culmination time"
 msgstr ""
 
-#: kosmorrolib/dumper.py:175 kosmorrolib/dumper.py:262
+#: kosmorrolib/dumper.py:145 kosmorrolib/dumper.py:232
 msgid "Set time"
 msgstr ""
 
-#: kosmorrolib/dumper.py:190
+#: kosmorrolib/dumper.py:160
 msgid "Moon phase is unavailable for this date."
 msgstr ""
 
-#: kosmorrolib/dumper.py:192 kosmorrolib/dumper.py:266
+#: kosmorrolib/dumper.py:162 kosmorrolib/dumper.py:236
 msgid "Moon phase:"
 msgstr ""
 
-#: kosmorrolib/dumper.py:193
+#: kosmorrolib/dumper.py:163
 msgid "{next_moon_phase} on {next_moon_phase_date} at {next_moon_phase_time}"
 msgstr ""
 
-#: kosmorrolib/dumper.py:246
+#: kosmorrolib/dumper.py:216
 msgid "A Summary of your Sky"
 msgstr ""
 
-#: kosmorrolib/dumper.py:250
+#: kosmorrolib/dumper.py:220
 msgid ""
 "This document summarizes the ephemerides and the events of {date}. It "
 "aims to help you to prepare your observation session. All the hours are "
 "given in {timezone}."
 msgstr ""
 
-#: kosmorrolib/dumper.py:256
+#: kosmorrolib/dumper.py:226
 msgid ""
 "Don't forget to check the weather forecast before you go out with your "
 "equipment."
 msgstr ""
 
-#: kosmorrolib/dumper.py:258
+#: kosmorrolib/dumper.py:228
 msgid "Ephemerides of the day"
 msgstr ""
 
-#: kosmorrolib/dumper.py:264
+#: kosmorrolib/dumper.py:234
 msgid "hours"
 msgstr ""
 
-#: kosmorrolib/dumper.py:268
+#: kosmorrolib/dumper.py:238
 msgid "Expected events"
 msgstr ""
 
-#: kosmorrolib/dumper.py:382
+#: kosmorrolib/dumper.py:352
 msgid ""
 "Building PDFs was not possible, because some dependencies are not "
 "installed.\n"
