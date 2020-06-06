@@ -18,12 +18,14 @@
 
 from datetime import date as date_type
 
+from skyfield.errors import EphemerisRangeError
 from skyfield.timelib import Time
 from skyfield.searchlib import find_discrete, find_maxima
 from numpy import pi
 
 from .data import Event, Star, Planet, ASTERS
 from .dateutil import translate_to_timezone
+from .exceptions import OutOfRangeDateError
 from .core import get_timescale, get_skf_objects, flatten_list
 
 
@@ -137,8 +139,17 @@ def search_events(date: date_type, timezone: int = 0) -> [Event]:
     start_time = get_timescale().utc(date.year, date.month, date.day, -timezone)
     end_time = get_timescale().utc(date.year, date.month, date.day + 1, -timezone)
 
-    return sorted(flatten_list([
-        _search_oppositions(start_time, end_time, timezone),
-        _search_conjunction(start_time, end_time, timezone),
-        _search_maximal_elongations(start_time, end_time, timezone)
-    ]), key=lambda event: event.start_time)
+    try:
+        return sorted(flatten_list([
+            _search_oppositions(start_time, end_time, timezone),
+            _search_conjunction(start_time, end_time, timezone),
+            _search_maximal_elongations(start_time, end_time, timezone)
+        ]), key=lambda event: event.start_time)
+    except EphemerisRangeError as error:
+        start_date = translate_to_timezone(error.start_time.utc_datetime(), timezone)
+        end_date = translate_to_timezone(error.end_time.utc_datetime(), timezone)
+
+        start_date = date_type(start_date.year, start_date.month, start_date.day)
+        end_date = date_type(end_date.year, end_date.month, end_date.day)
+
+        raise OutOfRangeDateError(start_date, end_date)

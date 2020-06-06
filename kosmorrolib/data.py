@@ -36,7 +36,8 @@ MOON_PHASES = {
     'FULL_MOON': _('Full Moon'),
     'WANING_GIBBOUS': _('Waning gibbous'),
     'LAST_QUARTER': _('Last Quarter'),
-    'WANING_CRESCENT': _('Waning crescent')
+    'WANING_CRESCENT': _('Waning crescent'),
+    'UNKNOWN': _('Unavailable')
 }
 
 EVENTS = {
@@ -54,7 +55,7 @@ class Serializable(ABC):
 
 
 class MoonPhase(Serializable):
-    def __init__(self, identifier: str, time: Union[datetime, None], next_phase_date: Union[datetime, None]):
+    def __init__(self, identifier: str, time: datetime = None, next_phase_date: datetime = None):
         if identifier not in MOON_PHASES.keys():
             raise ValueError('identifier parameter must be one of %s (got %s)' % (', '.join(MOON_PHASES.keys()),
                                                                                   identifier))

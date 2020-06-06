@@ -1,3 +1,11 @@
+.PHONY: test
+
+test:
+	unset KOSMORRO_LATITUDE; \
+	unset KOSMORRO_LONGITUDE; \
+	unset KOSMORRO_TIMEZONE; \
+	LANG=C pipenv run python3 -m coverage run -m unittest test
+
 build:
 	ronn --roff manpage/kosmorro.1.md
 	ronn --roff manpage/kosmorro.7.md

@@ -3,6 +3,7 @@ from .testutils import expect_assertions
 from kosmorrolib import ephemerides
 from kosmorrolib.data import EARTH, Position, MoonPhase
 from datetime import date
+from kosmorrolib.exceptions import OutOfRangeDateError
 
 
 class EphemeridesTestCase(unittest.TestCase):
@@ -106,6 +107,14 @@ class EphemeridesTestCase(unittest.TestCase):
         self.assertEqual('New Moon', phase.get_next_phase_name())
         phase = MoonPhase('WANING_CRESCENT', None, None)
         self.assertEqual('New Moon', phase.get_next_phase_name())
+
+    def test_get_ephemerides_raises_exception_on_out_of_date_range(self):
+        with self.assertRaises(OutOfRangeDateError):
+            ephemerides.get_ephemerides(date(1789, 5, 5), Position(0, 0, EARTH))
+
+    def test_get_moon_phase_raises_exception_on_out_of_date_range(self):
+        with self.assertRaises(OutOfRangeDateError):
+            ephemerides.get_moon_phase(date(1789, 5, 5))
 
 
 if __name__ == '__main__':

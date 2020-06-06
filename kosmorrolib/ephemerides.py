@@ -21,15 +21,17 @@ import datetime
 from skyfield.searchlib import find_discrete, find_maxima
 from skyfield.timelib import Time
 from skyfield.constants import tau
+from skyfield.errors import EphemerisRangeError
 
 from .data import Position, AsterEphemerides, MoonPhase, Object, ASTERS, skyfield_to_moon_phase
 from .dateutil import translate_to_timezone
 from .core import get_skf_objects, get_timescale, get_iau2000b
+from .exceptions import OutOfRangeDateError
 
 RISEN_ANGLE = -0.8333
 
 
-def get_moon_phase(compute_date: datetime.date) -> MoonPhase:
+def get_moon_phase(compute_date: datetime.date, timezone: int = 0) -> MoonPhase:
     earth = get_skf_objects()['earth']
     moon = get_skf_objects()['moon']
     sun = get_skf_objects()['sun']
@@ -47,7 +49,16 @@ def get_moon_phase(compute_date: datetime.date) -> MoonPhase:
     time1 = get_timescale().utc(compute_date.year, compute_date.month, compute_date.day - 10)
     time2 = get_timescale().utc(compute_date.year, compute_date.month, compute_date.day + 10)
 
-    times, phase = find_discrete(time1, time2, moon_phase_at)
+    try:
+        times, phase = find_discrete(time1, time2, moon_phase_at)
+    except EphemerisRangeError as error:
+        start = translate_to_timezone(error.start_time.utc_datetime(), timezone)
+        end = translate_to_timezone(error.end_time.utc_datetime(), timezone)
+
+        start = datetime.date(start.year, start.month, start.day) + datetime.timedelta(days=12)
+        end = datetime.date(end.year, end.month, end.day) - datetime.timedelta(days=12)
+
+        raise OutOfRangeDateError(start, end)
 
     return skyfield_to_moon_phase(times, phase, today)
 
@@ -71,34 +82,43 @@ def get_ephemerides(date: datetime.date, position: Position, timezone: int = 0) 
     start_time = get_timescale().utc(date.year, date.month, date.day, -timezone)
     end_time = get_timescale().utc(date.year, date.month, date.day, 23 - timezone, 59, 59)
 
-    for aster in ASTERS:
-        rise_times, arr = find_discrete(start_time, end_time, is_risen(aster))
-        try:
-            culmination_time, _ = find_maxima(start_time, end_time, f=get_angle(aster), epsilon=1./3600/24, num=12)
-            culmination_time = culmination_time[0] if len(culmination_time) > 0 else None
-        except ValueError:
-            culmination_time = None
+    try:
+        for aster in ASTERS:
+            rise_times, arr = find_discrete(start_time, end_time, is_risen(aster))
+            try:
+                culmination_time, _ = find_maxima(start_time, end_time, f=get_angle(aster), epsilon=1./3600/24, num=12)
+                culmination_time = culmination_time[0] if len(culmination_time) > 0 else None
+            except ValueError:
+                culmination_time = None
 
-        if len(rise_times) == 2:
-            rise_time = rise_times[0 if arr[0] else 1]
-            set_time = rise_times[1 if not arr[1] else 0]
-        else:
-            rise_time = rise_times[0] if arr[0] else None
-            set_time = rise_times[0] if not arr[0] else None
+            if len(rise_times) == 2:
+                rise_time = rise_times[0 if arr[0] else 1]
+                set_time = rise_times[1 if not arr[1] else 0]
+            else:
+                rise_time = rise_times[0] if arr[0] else None
+                set_time = rise_times[0] if not arr[0] else None
 
-        # Convert the Time instances to Python datetime objects
-        if rise_time is not None:
-            rise_time = translate_to_timezone(rise_time.utc_datetime().replace(microsecond=0),
-                                              to_tz=timezone)
+            # Convert the Time instances to Python datetime objects
+            if rise_time is not None:
+                rise_time = translate_to_timezone(rise_time.utc_datetime().replace(microsecond=0),
+                                                  to_tz=timezone)
 
-        if culmination_time is not None:
-            culmination_time = translate_to_timezone(culmination_time.utc_datetime().replace(microsecond=0),
-                                                     to_tz=timezone)
+            if culmination_time is not None:
+                culmination_time = translate_to_timezone(culmination_time.utc_datetime().replace(microsecond=0),
+                                                         to_tz=timezone)
 
-        if set_time is not None:
-            set_time = translate_to_timezone(set_time.utc_datetime().replace(microsecond=0),
-                                             to_tz=timezone)
+            if set_time is not None:
+                set_time = translate_to_timezone(set_time.utc_datetime().replace(microsecond=0),
+                                                 to_tz=timezone)
 
-        ephemerides.append(AsterEphemerides(rise_time, culmination_time, set_time, aster=aster))
+            ephemerides.append(AsterEphemerides(rise_time, culmination_time, set_time, aster=aster))
+    except EphemerisRangeError as error:
+        start = translate_to_timezone(error.start_time.utc_datetime(), timezone)
+        end = translate_to_timezone(error.end_time.utc_datetime(), timezone)
+
+        start = datetime.date(start.year, start.month, start.day + 1)
+        end = datetime.date(end.year, end.month, end.day - 1)
+
+        raise OutOfRangeDateError(start, end)
 
     return ephemerides

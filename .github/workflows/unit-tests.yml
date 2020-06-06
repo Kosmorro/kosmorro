@@ -20,5 +20,5 @@ jobs:
       env:
         COVERALLS_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
       run: |
-        pipenv run python -m coverage run -m unittest test
+        make test
         COVERALLS_REPO_TOKEN=$COVERALLS_TOKEN pipenv run coveralls

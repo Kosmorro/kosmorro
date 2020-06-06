@@ -29,7 +29,7 @@ from . import core
 from . import events
 
 from .data import Position, EARTH
-from .exceptions import UnavailableFeatureError
+from .exceptions import UnavailableFeatureError, OutOfRangeDateError
 from .i18n import _
 from . import ephemerides
 from .version import VERSION
@@ -65,45 +65,59 @@ def main():
             print(colored(_("PDF output will not contain the ephemerides, because you didn't provide the observation "
                             "coordinate."), 'yellow'))
 
+    timezone = args.timezone
+
+    if timezone is None and environment.timezone is not None:
+        timezone = int(environment.timezone)
+    elif timezone is None:
+        timezone = 0
+
     try:
-        timezone = args.timezone
-
-        if timezone is None and environment.timezone is not None:
-            timezone = int(environment.timezone)
-        elif timezone is None:
-            timezone = 0
-
-        if position is not None:
-            eph = ephemerides.get_ephemerides(date=compute_date, position=position, timezone=timezone)
-        else:
-            eph = None
-
-        moon_phase = ephemerides.get_moon_phase(compute_date)
-
-        events_list = events.search_events(compute_date, timezone)
-
-        format_dumper = output_formats[output_format](ephemerides=eph, moon_phase=moon_phase, events=events_list,
-                                                      date=compute_date, timezone=timezone, with_colors=args.colors,
-                                                      show_graph=args.show_graph)
-        output = format_dumper.to_string()
+        output = get_information(compute_date, position, timezone, output_format,
+                                 args.colors, args.show_graph)
     except UnavailableFeatureError as error:
         print(colored(error.msg, 'red'))
         return 2
+    except OutOfRangeDateError as error:
+        print(colored(error.msg, 'red'))
+        return 1
 
     if args.output is not None:
         try:
             with open(args.output, 'wb') as output_file:
-                output_file.write(output)
+                output_file.write(output.to_string())
         except OSError as error:
             print(_('Could not save the output in "{path}": {error}').format(path=args.output,
                                                                              error=error.strerror))
-    elif not format_dumper.is_file_output_needed():
+    elif not output.is_file_output_needed():
         print(output)
     else:
         print(colored(_('Selected output format needs an output file (--output).'), color='red'))
         return 1
 
     return 0
+
+
+def get_information(compute_date: date, position: Position, timezone: int,
+                    output_format: str, colors: bool, show_graph: bool) -> dumper.Dumper:
+    if position is not None:
+        eph = ephemerides.get_ephemerides(date=compute_date, position=position, timezone=timezone)
+    else:
+        eph = None
+
+    try:
+        moon_phase = ephemerides.get_moon_phase(compute_date)
+    except OutOfRangeDateError as error:
+        moon_phase = None
+        print(colored(_('Moon phase can only be displayed'
+                        ' between {min_date} and {max_date}').format(min_date=error.min_date,
+                                                                     max_date=error.max_date), 'yellow'))
+
+    events_list = events.search_events(compute_date, timezone)
+
+    return get_dumpers()[output_format](ephemerides=eph, moon_phase=moon_phase, events=events_list,
+                                        date=compute_date, timezone=timezone, with_colors=colors,
+                                        show_graph=show_graph)
 
 
 def get_dumpers() -> {str: dumper.Dumper}:

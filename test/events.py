@@ -6,6 +6,7 @@ from kosmorrolib import events
 from kosmorrolib.data import Event, ASTERS
 from kosmorrolib.core import get_timescale
 from unittest_data_provider import data_provider
+from kosmorrolib.exceptions import OutOfRangeDateError
 
 
 class EventTestCase(unittest.TestCase):
@@ -60,6 +61,10 @@ class EventTestCase(unittest.TestCase):
                                                actual_event.start_time.minute)
 
             self.assertEqual(expected_event.__dict__, actual_event.__dict__)
+
+    def test_get_events_raises_exception_on_out_of_date_range(self):
+        with self.assertRaises(OutOfRangeDateError):
+            events.search_events(date(1789, 5, 5))
 
 
 if __name__ == '__main__':
