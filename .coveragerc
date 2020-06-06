@@ -1,4 +1,6 @@
 [run]
 branch = true
+source =
+    kosmorrolib
 omit =
     test/*

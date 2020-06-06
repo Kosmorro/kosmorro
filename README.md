@@ -1,5 +1,5 @@
 # ![Kosmorro](kosmorrolib/assets/png/kosmorro-logo.png)
-[![codecov](https://codecov.io/gh/Deuchnord/kosmorro/branch/master/graph/badge.svg)](https://codecov.io/gh/Deuchnord/kosmorro) [![Version on PyPI](https://img.shields.io/pypi/v/kosmorro)](https://pypi.org/project/kosmorro) [![Discord](https://img.shields.io/discord/650237632533757965?logo=discord&label=%23kosmorro)](https://discord.gg/nyemBqE)
+[![Coverage Status](https://coveralls.io/repos/github/Deuchnord/kosmorro/badge.svg)](https://coveralls.io/github/Deuchnord/kosmorro) [![Version on PyPI](https://img.shields.io/pypi/v/kosmorro)](https://pypi.org/project/kosmorro) [![Discord](https://img.shields.io/discord/650237632533757965?logo=discord&label=%23kosmorro)](https://discord.gg/nyemBqE)
 
 ## About the project
 
