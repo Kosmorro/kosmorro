@@ -6,7 +6,10 @@ test:
 	unset KOSMORRO_TIMEZONE; \
 	LANG=C pipenv run python3 -m coverage run -m unittest test
 
-build:
+build: i18n
+	python3 setup.py sdist bdist_wheel
+
+i18n:
 	ronn --roff manpage/kosmorro.1.md
 	ronn --roff manpage/kosmorro.7.md
 
@@ -14,8 +17,6 @@ build:
 		python3 .scripts/build/getlangs.py; \
 		python3 setup.py compile_catalog; \
 	fi
-
-	python3 setup.py sdist bdist_wheel
 
 env:
 	@if [[ "$$RELEASE_NUMBER" == "" ]]; \
