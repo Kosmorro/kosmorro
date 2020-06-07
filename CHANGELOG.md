@@ -1,3 +1,13 @@
+# [v0.8.1](https://github.com/Deuchnord/kosmorro/compare/v0.8.0...v0.8.1) (2020-06-07)
+
+
+### Bug Fixes
+
+* avoid returning ephemerides for yesterday or tomorrow ([75eba49](https://github.com/Deuchnord/kosmorro/commit/75eba4977c7ea928e76a99710041f01c2f500972))
+* handle out of range date error ([c39cd3a](https://github.com/Deuchnord/kosmorro/commit/c39cd3aefa263eef9d2a4f42717e0eb05d3e0920))
+
+
+
 # [v0.8.0](https://github.com/Deuchnord/kosmorro/compare/v0.7.0...v0.8.0) (2020-05-22)
 
 
