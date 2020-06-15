@@ -147,10 +147,10 @@
         },
         "skyfield": {
             "hashes": [
-                "sha256:14991dde6464dfa1c34479f6b274c07f2e84323b3a751faed62dd676b7bf69ce"
+                "sha256:0adba64a9216ce606036bdf37eab10e0a7e5197e208707c3160427aa4c96f4d2"
             ],
             "index": "pypi",
-            "version": "==1.21"
+            "version": "==1.22"
         },
         "tabulate": {
             "hashes": [
