@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Kosmorro
+Comment=Ephemerides computer
+Comment[fr]=Calculateur d'éphémérides
+Comment[de]=Ephemeriden-Rechner
+Exec=kosmorro --gui
+Icon=kosmorro
+Terminal=false
+Categories=Astronomy;Science;
+keywords=ephemerides;

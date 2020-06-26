@@ -4,3 +4,4 @@ source =
     kosmorrolib
 omit =
     test/*
+    kosmorrolib/gui/*

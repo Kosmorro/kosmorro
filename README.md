@@ -77,3 +77,16 @@ Kosmorro can export the computation results to PDF files, but this feature requi
 These dependencies are not installed by default, because they take a lot of place and are not necessary if you are not interested in generating PDF files.
 The first time you ask Kosmorro to create a PDF, it may be a little verbose. You can ignore its blahblah.
 
+### Opening the GUI
+
+![Screenshot](.github/assets/gui-screenshot.png)
+
+Kosmorro provides a graphical user interface that can be easily launched by invoking the `kosmorro --gui` command.
+
+To run it, you will have to install the `wxpython` package:
+
+- **On Linux**, wxPython is most likely provided by your packages manager.
+- **On Mac**, install wxPython by invoking `pip3 install wxPython`.
+
+  Alternatively, you may download the DMG file on the release page (note that you won't be able to use the command
+  line in this case).

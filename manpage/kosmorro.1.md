@@ -39,6 +39,9 @@
 
 `--no-graph`  
     present the ephemerides in a table instead of a graph; PDF output format only
+    
+`--gui`, `-g`  
+    open the graphical user interface
 
 ## ENVIRONMENT VARIABLES
 

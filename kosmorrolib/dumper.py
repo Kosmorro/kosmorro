@@ -348,10 +348,10 @@ class PdfDumper(Dumper):
                                         date=self.date, timezone=self.timezone, with_colors=self.with_colors,
                                         show_graph=self.show_graph)
             return self._compile(latex_dumper.to_string())
-        except RuntimeError:
+        except RuntimeError as error:
             raise UnavailableFeatureError(_("Building PDFs was not possible, because some dependencies are not"
                                             " installed.\nPlease look at the documentation at http://kosmorro.space "
-                                            "for more information."))
+                                            "for more information.")) from error
 
     @staticmethod
     def is_file_output_needed() -> bool:

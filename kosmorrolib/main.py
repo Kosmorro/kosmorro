@@ -34,6 +34,11 @@ from .i18n import _
 from . import ephemerides
 from .version import VERSION
 
+try:
+    from .gui import mainwindow
+except ModuleNotFoundError:
+    mainwindow = None
+
 
 def main():
     environment = core.get_env()
@@ -150,6 +155,14 @@ def clear_cache() -> bool:
     return True
 
 
+def open_gui() -> bool:
+    if mainwindow is None:
+        print("Starting Kosmorro's GUI requires you to install wxPython.")
+        return False
+
+    return mainwindow.start()
+
+
 def get_args(output_formats: [str]):
     today = date.today()
 
@@ -161,6 +174,8 @@ def get_args(output_formats: [str]):
 
     parser.add_argument('--version', '-v', dest='special_action', action='store_const', const=output_version,
                         default=None, help=_('Show the program version'))
+    parser.add_argument('--gui', '-g', dest='special_action', action='store_const', const=open_gui,
+                        default=None, help=_("Open Kosmorro's GUI"))
     parser.add_argument('--clear-cache', dest='special_action', action='store_const', const=clear_cache, default=None,
                         help=_('Delete all the files Kosmorro stored in the cache.'))
     parser.add_argument('--format', '-f', type=str, default=output_formats[0], choices=output_formats,

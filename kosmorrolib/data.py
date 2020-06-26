@@ -272,7 +272,7 @@ ASTERS = [Star(_('Sun'), 'SUN', radius=696342),
 
 
 class Position:
-    def __init__(self, latitude: float, longitude: float, aster: Object):
+    def __init__(self, latitude: float, longitude: float, aster: Object = EARTH):
         self.latitude = latitude
         self.longitude = longitude
         self.aster = aster
@@ -287,3 +287,6 @@ class Position:
                                                                    longitude_degrees=self.longitude)
 
         return self._topos
+
+    def __str__(self):
+        return 'lat. %.3f, lon. %.3f' % (self.latitude, self.longitude)

@@ -6,6 +6,7 @@ test:
 	unset KOSMORRO_TIMEZONE; \
 	LANG=C pipenv run python3 -m coverage run -m unittest test
 
+.PHONY: build
 build: i18n
 	python3 setup.py sdist bdist_wheel
 
@@ -54,3 +55,30 @@ finish-release: env
 	@echo
 	@echo -e "\e[1mVersion \e[36m$$RELEASE_NUMBER\e[39m successfully tagged!"
 	@echo -e "Invoke \e[33mgit push origin master features v$$RELEASE_NUMBER\e[39m to finish."
+
+distapp = dist/Kosmorro.app
+distrib-mac: env
+	@if [ -e $(distapp) ]; then echo "Deleting the existing app."; rm -rf $(distapp); fi
+
+	mkdir -p "$(distapp)/Contents/MacOS" "$(distapp)/Contents/Resources"
+
+	# Add application files
+	cp "kosmorro" "$(distapp)/Contents/MacOS/kosmorro"
+	cp -r "kosmorrolib" "$(distapp)/Contents/MacOS/kosmorrolib"
+	cp "Pipfile" "$(distapp)/Contents/MacOS/Pipfile"
+	cp "Pipfile.lock" "$(distapp)/Contents/MacOS/Pipfile.lock"
+
+	# Install dependencies
+	cd $(distapp)/Contents/MacOS && PIPENV_VENV_IN_PROJECT=1 pipenv sync
+	cd $(distapp)/Contents/MacOS && source .venv/bin/activate && pip install wxPython
+
+	# Add Mac-specific files
+	cp "build/distrib/darwin/Info.plist" "$(distapp)/Contents/Info.plist"
+	cp "build/distrib/darwin/launch-kosmorro.sh" "$(distapp)/Contents/MacOS/launch-kosmorro"
+	cp "build/distrib/darwin/icon.icns" "$(distapp)/Contents/Resources/icon.icns"
+
+	sed "s/{{app_version}}/$$RELEASE_NUMBER/" "build/distrib/darwin/Info.plist" > "$(distapp)/Contents/Info.plist"
+
+	chmod +x "$(distapp)/Contents/MacOS/launch-kosmorro"
+
+	echo "Application created."

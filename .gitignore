@@ -1,6 +1,8 @@
 __pycache__
-/build
+/build/*
+!/build/distrib
 /dist
+
 kosmorro.egg-info
 .coverage
 coverage.xml

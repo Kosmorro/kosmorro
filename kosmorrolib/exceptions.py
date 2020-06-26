@@ -22,13 +22,13 @@ from .i18n import _, SHORT_DATE_FORMAT
 
 class UnavailableFeatureError(RuntimeError):
     def __init__(self, msg: str):
-        super(UnavailableFeatureError, self).__init__()
+        super().__init__()
         self.msg = msg
 
 
 class OutOfRangeDateError(RuntimeError):
     def __init__(self, min_date: date, max_date: date):
-        super(OutOfRangeDateError, self).__init__()
+        super().__init__()
         self.min_date = min_date
         self.max_date = max_date
         self.msg = _('The date must be between {minimum_date}'

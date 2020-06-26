@@ -28,7 +28,7 @@ function canRun() {
     return 0
 }
 
-# Asserts that command $1 has finished with sucess
+# Asserts that command $1 has finished with success
 # $1: the command to run
 function assertSuccess() {
     if ! canRun "$2"; then
@@ -48,7 +48,7 @@ function assertSuccess() {
     echo -n '.'
 }
 
-# Asserts that command $1 has finished with sucess
+# Asserts that command $1 has finished with failure
 # $1: the command to run
 function assertFailure() {
     if ! canRun "$2"; then
