@@ -297,6 +297,7 @@ class MainWindow(wx.Frame):
 
 def start() -> bool:
     app = wx.App()
+    app.SetAppName('Kosmorro')
     window = MainWindow()
 
     window.Show()
