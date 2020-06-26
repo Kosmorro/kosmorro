@@ -56,29 +56,55 @@ finish-release: env
 	@echo -e "\e[1mVersion \e[36m$$RELEASE_NUMBER\e[39m successfully tagged!"
 	@echo -e "Invoke \e[33mgit push origin master features v$$RELEASE_NUMBER\e[39m to finish."
 
-distapp = dist/Kosmorro.app
-distrib-mac: env
-	@if [ -e $(distapp) ]; then echo "Deleting the existing app."; rm -rf $(distapp); fi
-
-	mkdir -p "$(distapp)/Contents/MacOS" "$(distapp)/Contents/Resources"
+distmacapp = dist/Kosmorro.app
+dist-mac-app: env
+	@if [ -e $(distmacapp) ]; then echo "Deleting the existing app."; rm -rf $(distmacapp); fi
+	mkdir -p "$(distmacapp)/Contents/MacOS" "$(distmacapp)/Contents/Resources"
 
 	# Add application files
-	cp "kosmorro" "$(distapp)/Contents/MacOS/kosmorro"
-	cp -r "kosmorrolib" "$(distapp)/Contents/MacOS/kosmorrolib"
-	cp "Pipfile" "$(distapp)/Contents/MacOS/Pipfile"
-	cp "Pipfile.lock" "$(distapp)/Contents/MacOS/Pipfile.lock"
+	cp "kosmorro" "$(distmacapp)/Contents/MacOS/kosmorro"
+	cp -r "kosmorrolib" "$(distmacapp)/Contents/MacOS/kosmorrolib"
+	cp "Pipfile" "$(distmacapp)/Contents/MacOS/Pipfile"
+	cp "Pipfile.lock" "$(distmacapp)/Contents/MacOS/Pipfile.lock"
 
 	# Install dependencies
-	cd $(distapp)/Contents/MacOS && PIPENV_VENV_IN_PROJECT=1 pipenv sync
-	cd $(distapp)/Contents/MacOS && source .venv/bin/activate && pip install wxPython
+	cd $(distmacapp)/Contents/MacOS && PIPENV_VENV_IN_PROJECT=1 pipenv sync
+	cd $(distmacapp)/Contents/MacOS && source .venv/bin/activate && pip install wxPython latex
+
+	# Add Python binaries and remove the links in the virtualenv
+	cp -r "$$(dirname $$(realpath $$(which python3)))/.." $(distmacapp)/Contents/MacOS/python
+	rm $(distmacapp)/Contents/MacOS/.venv/bin/python{,3,3.9}
 
 	# Add Mac-specific files
-	cp "build/distrib/darwin/Info.plist" "$(distapp)/Contents/Info.plist"
-	cp "build/distrib/darwin/launch-kosmorro.sh" "$(distapp)/Contents/MacOS/launch-kosmorro"
-	cp "build/distrib/darwin/icon.icns" "$(distapp)/Contents/Resources/icon.icns"
+	cp "build/distrib/darwin/Info.plist" "$(distmacapp)/Contents/Info.plist"
+	cp "build/distrib/darwin/launch-kosmorro.sh" "$(distmacapp)/Contents/MacOS/launch-kosmorro"
+	cp "build/distrib/darwin/icon.icns" "$(distmacapp)/Contents/Resources/icon.icns"
 
-	sed "s/{{app_version}}/$$RELEASE_NUMBER/" "build/distrib/darwin/Info.plist" > "$(distapp)/Contents/Info.plist"
+	sed "s/{{app_version}}/$$RELEASE_NUMBER/" "build/distrib/darwin/Info.plist" > "$(distmacapp)/Contents/Info.plist"
+	chmod +x "$(distmacapp)/Contents/MacOS/launch-kosmorro"
 
-	chmod +x "$(distapp)/Contents/MacOS/launch-kosmorro"
+	# Clean package
+	rm "$(distmacapp)/Contents/MacOS/Pipfile" "$(distmacapp)/Contents/MacOS/Pipfile.lock"
 
-	echo "Application created."
+	@echo "Application created."
+
+distmacdmg = dist/Kosmorro.dmg
+dist-mac-dmg: dist-mac-app
+	@if [ -e $(distmacdmg) ]; then echo "Deleting the existing DMG."; rm -rf $(distmacdmg); fi
+	mkdir -p "$(distmacapp)/Contents/MacOS"
+	mkdir -p dist/dmg
+	cp -r $(distmacapp) dist/dmg
+	create-dmg --volname "Kosmorro installer" \
+	           --volicon build/distrib/darwin/dmg.icns \
+	           --background build/distrib/darwin/dmg-background.png \
+	           --icon-size 72 \
+	           --icon Kosmorro.app 140 120 \
+	           --window-size 640 365 \
+	           --app-drop-link 475 120 \
+	           --eula LICENSE.md \
+	           $(distmacdmg) \
+	           dist/dmg
+
+	rm -rf dist/dmg
+
+dist: dist-mac-dmg

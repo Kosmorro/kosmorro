@@ -4,4 +4,4 @@
 cd $(dirname "$0")
 
 source .venv/bin/activate
-.venv/bin/python kosmorro --gui
+./python/bin/python3 kosmorro --gui

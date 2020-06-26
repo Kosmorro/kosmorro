@@ -1,4 +1,7 @@
-import wx
+try:
+    import wx
+except ModuleNotFoundError:
+    raise ImportError('Module wxPython missing')
 
 import platform
 from typing import Union
@@ -16,7 +19,9 @@ from ..version import VERSION
 from ..dumper import PdfDumper
 from ..i18n import _
 
-MIN_SIZE = wx.Size(700, 0)
+OS_DARWIN = 'Darwin'
+WINDOW_TITLE = 'Kosmorro'
+MIN_SIZE = wx.Size(700, 200) if platform.system() != OS_DARWIN else wx.Size(700, 160)
 
 # Events definitions
 
@@ -98,14 +103,16 @@ class MainWindow(wx.Frame):
     events: [Event]
     moon_phase: Union[None, MoonPhase]
 
+    _progress_bar: wx.Gauge
+
     def __init__(self):
-        super(MainWindow, self).__init__(None, title='Kosmorro',
-                                         style=wx.DEFAULT_FRAME_STYLE ^ wx.RESIZE_BORDER)
+        super(MainWindow, self).__init__(None, title=WINDOW_TITLE,
+                                         style=wx.DEFAULT_FRAME_STYLE & ~(wx.RESIZE_BORDER | wx.MAXIMIZE_BOX))
 
         self.export_path = None
         self.config_panel = panel.ConfigPanel(self)
         self.Bind(panel.EVT_COMPUTE_BUTTON, self.compute)
-        self.Bind(panel.EVT_EXPORT_BUTTON, self.export)
+        self.Bind(panel.EVT_EXPORT_BUTTON, self.export_button_clicked)
 
         self.result_presenter = panel.ResultPanel(self)
 
@@ -113,31 +120,24 @@ class MainWindow(wx.Frame):
         self.sizer.AddMany([(self.config_panel, 0, wx.EXPAND | wx.ALL, 5),
                             (self.result_presenter, 0, wx.EXPAND | wx.ALL, 5)])
 
-        self.SetSizer(self.sizer)
-        self.make_menu_bar()
+        self.SetMinSize(MIN_SIZE)
 
+        self.make_menu_bar()
+        self.make_status_bar()
+        self._progress_bar.Hide()
+
+        self.SetSizer(self.sizer)
+        self.resize(center=True)
+
+    def make_status_bar(self):
         status_bar = self.CreateStatusBar()
         status_bar.SetFieldsCount(2)
         status_bar.SetStatusWidths([-2, -1])
-        self.progress_bar = wx.Gauge(status_bar, -1, style=wx.GA_HORIZONTAL | wx.GA_SMOOTH)
+        self._progress_bar = wx.Gauge(status_bar, -1, style=wx.GA_HORIZONTAL | wx.GA_SMOOTH)
         rect = status_bar.GetFieldRect(1)
-        self.progress_bar.SetPosition((rect.x + 2, rect.y + 2))
-        self.progress_bar.SetSize((rect.width - 4, rect.height - 4))
+        self._progress_bar.SetPosition((rect.x + 2, rect.y + 2))
+        self._progress_bar.SetSize((rect.width - 4, rect.height - 4))
         self.result_presenter.Hide()
-
-        self.SetMinSize(MIN_SIZE)
-
-        self.Fit()
-        self.Center()
-        self.progress_bar.Hide()
-
-    def resize(self, width: int, height: int, center: bool = False):
-        self.resize(wx.Size(width, height), center)
-
-    def resize(self, size: wx.Size, center: bool = False):
-        self.Size = size
-        if center:
-            self.Center()
 
     def resize(self, center: bool = False):
         self.Fit()
@@ -147,7 +147,7 @@ class MainWindow(wx.Frame):
     def make_menu_bar(self):
         menu_bar = wx.MenuBar()
 
-        if platform.system() != 'Darwin':
+        if platform.system() != OS_DARWIN:
             # "Application" menu
             app_menu = wx.Menu()
             exit_item = app_menu.Append(wx.ID_EXIT)
@@ -194,8 +194,8 @@ class MainWindow(wx.Frame):
         self.SetCursor(wx.Cursor(wx.CURSOR_WAIT))
 
         self.SetStatusText(_('Computing…'))
-        self.progress_bar.SetValue(0)
-        self.progress_bar.Show()
+        self._progress_bar.SetValue(0)
+        self._progress_bar.Show()
 
         thread_moon_phase = MoonPhaseComputer(self, self.config_panel.compute_date)
         thread_ephemerides = EphemeridesComputer(self, self.config_panel.compute_date, self.config_panel.position,
@@ -212,11 +212,11 @@ class MainWindow(wx.Frame):
             thread_ephemerides.start()
         else:
             self.ephemerides = []
-            self.progress_bar.SetValue(50)
+            self._progress_bar.SetValue(50)
 
         thread_events.start()
 
-    def export(self, __):
+    def export_button_clicked(self, __):
         self.export_path = self.get_export_file_path()
         if self.export_path is None:
             self.SetStatusText('Aborted.')
@@ -226,58 +226,65 @@ class MainWindow(wx.Frame):
 
     def on_moon_phase_computed(self, event):
         self.moon_phase = event.value
-        self.progress_bar.SetValue(self.progress_bar.GetValue() + 10)
+        self._progress_bar.SetValue(self._progress_bar.GetValue() + 10)
 
         if self.is_all_computed():
-            self.show_results()
+            self.process_results()
 
     def on_ephemerides_computed(self, event):
         self.ephemerides = event.value
-        self.progress_bar.SetValue(self.progress_bar.GetValue() + 50)
+        self._progress_bar.SetValue(self._progress_bar.GetValue() + 50)
 
         if self.is_all_computed():
-            self.show_results()
+            self.process_results()
 
     def on_events_computed(self, event):
         self.events = event.value
-        self.progress_bar.SetValue(self.progress_bar.GetValue() + 40)
+        self._progress_bar.SetValue(self._progress_bar.GetValue() + 40)
 
         if self.is_all_computed():
-            self.config_panel.enable_buttons()
-            self.SetStatusText('')
-            self.progress_bar.Hide()
-            self.SetCursor(wx.Cursor(wx.CURSOR_ARROW))
-
-            if self.export_path is not None:
-                ephemerides = self.ephemerides if len(self.ephemerides) > 0 else None
-                dumper = PdfDumper(date=self.config_panel.compute_date, ephemerides=ephemerides,
-                                   events=self.events, moon_phase=self.moon_phase, timezone=self.config_panel.timezone,
-                                   show_graph=True)
-
-                try:
-                    with open(self.export_path, 'wb') as file:
-                        file.write(dumper.to_string())
-                    self.SetStatusText(_('PDF export saved in "{path}"!').format(path=self.export_path))
-                except UnavailableFeatureError as error:
-                    wx.MessageDialog(self, error.msg, caption=_('Error while exporting your document'),
-                                     style=wx.OK | wx.ICON_ERROR).ShowModal()
-                finally:
-                    self.export_path = None
-
-                return
-
-            self.show_results()
-            self.result_presenter.Show()
-            self.resize(center=True)
+            self.process_results()
 
     def is_all_computed(self) -> bool:
-        return self.moon_phase is not None and self.ephemerides is not None and self.events is not None
+        return self.moon_phase is not None and \
+               self.ephemerides is not None and \
+               self.events is not None
+
+    def process_results(self):
+        self.config_panel.enable_buttons()
+        self.SetStatusText('')
+        self._progress_bar.Hide()
+        self.SetCursor(wx.Cursor(wx.CURSOR_ARROW))
+
+        if self.export_path is not None:
+            self.export()
+        else:
+            self.show_results()
+
+    def export(self, dumper_class = PdfDumper):
+        ephemerides = self.ephemerides if len(self.ephemerides) > 0 else None
+        dumper = dumper_class(date=self.config_panel.compute_date, ephemerides=ephemerides,
+                              events=self.events, moon_phase=self.moon_phase, timezone=self.config_panel.timezone,
+                              show_graph=True)
+
+        try:
+            with open(self.export_path, 'wb') as file:
+                file.write(dumper.to_string())
+            self.SetStatusText(_('PDF export saved in "{path}"!').format(path=self.export_path))
+        except UnavailableFeatureError as error:
+            wx.MessageDialog(self, error.msg, caption=_('Error while exporting your document'),
+                             style=wx.OK | wx.ICON_ERROR).ShowModal()
+        finally:
+            self.export_path = None
 
     def show_results(self):
         self.result_presenter.moon_phase = self.moon_phase
         self.result_presenter.ephemerides = self.ephemerides
         self.result_presenter.events = self.events
+
         self.result_presenter.render()
+        self.result_presenter.Show()
+        self.resize(center=True)
 
     def get_export_file_path(self) -> Union[None, str]:
         dialog = wx.FileDialog(parent=self, message=_('Please select an export file location'),

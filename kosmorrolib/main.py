@@ -36,7 +36,7 @@ from .version import VERSION
 
 try:
     from .gui import mainwindow
-except ModuleNotFoundError:
+except ImportError:
     mainwindow = None
 
 
@@ -157,7 +157,8 @@ def clear_cache() -> bool:
 
 def open_gui() -> bool:
     if mainwindow is None:
-        print("Starting Kosmorro's GUI requires you to install wxPython.")
+        print("Starting Kosmorro's GUI requires you to install wxPython.\n"
+              "Please check the documentation at http://kosmorro.space for more information.")
         return False
 
     return mainwindow.start()

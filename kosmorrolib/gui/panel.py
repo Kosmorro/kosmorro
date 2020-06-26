@@ -53,8 +53,8 @@ class ConfigPanel(wx.Panel):
         self._timezone_spin = wx.SpinCtrl(self, min=-23, max=23, value=str(timezone))
         self.Bind(wx.EVT_SPINCTRL, self.timezone_changed, self._timezone_spin)
 
-        sizer = wx.FlexGridSizer(2, 5, 5)
-        sizer.AddGrowableCol(1, 1)
+        params_sizer = wx.FlexGridSizer(2, 5, 5)
+        params_sizer.AddGrowableCol(1, 1)
 
         self._compute_button = wx.Button(self, label=_('&Compute'))
         self._export_button = wx.Button(self, label=_('E&xport PDF…'))
@@ -62,17 +62,17 @@ class ConfigPanel(wx.Panel):
         self.Bind(wx.EVT_BUTTON, self.compute_button_clicked, self._compute_button)
         self.Bind(wx.EVT_BUTTON, self.export_button_clicked, self._export_button)
 
-        sizer.AddMany([(self._position_checkbox, 0, wx.EXPAND),
-                       (self._position_change_btn, 0, wx.EXPAND),
-                       (date_lbl, 0, wx.EXPAND),
-                       (self._date_picker, 0, wx.EXPAND),
-                       (timezone_lbl, 0, wx.EXPAND),
-                       (self._timezone_spin, 0, wx.EXPAND)])
+        params_sizer.AddMany([(self._position_checkbox, 0, wx.EXPAND),
+                              (self._position_change_btn, 0, wx.EXPAND),
+                              (date_lbl, 0, wx.EXPAND),
+                              (self._date_picker, 0, wx.EXPAND),
+                              (timezone_lbl, 0, wx.EXPAND),
+                              (self._timezone_spin, 0, wx.EXPAND)])
 
         main_sizer = wx.FlexGridSizer(3, 5, 5)
         main_sizer.AddGrowableCol(0, 2)
 
-        main_sizer.AddMany([(sizer, 0, wx.EXPAND),
+        main_sizer.AddMany([(params_sizer, 0, wx.EXPAND),
                             (self._compute_button, 0, wx.EXPAND),
                             (self._export_button, 0, wx.EXPAND)])
 

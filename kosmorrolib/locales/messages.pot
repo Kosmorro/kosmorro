@@ -8,20 +8,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kosmorro 0.8.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-06-07 11:13+0200\n"
+"POT-Creation-Date: 2020-11-18 21:56+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.8.0\n"
+"Generated-By: Babel 2.9.0\n"
 
 #: kosmorrolib/core.py:101
 msgid "The date {date} is not valid: {error}"
 msgstr ""
 
-#: kosmorrolib/core.py:117
+#: kosmorrolib/core.py:119
 msgid ""
 "The date {date} does not match the required YYYY-MM-DD format or the "
 "offset format."
@@ -140,14 +140,17 @@ msgid "Object"
 msgstr ""
 
 #: kosmorrolib/dumper.py:143 kosmorrolib/dumper.py:230
+#: kosmorrolib/gui/panel.py:183
 msgid "Rise time"
 msgstr ""
 
 #: kosmorrolib/dumper.py:144 kosmorrolib/dumper.py:231
+#: kosmorrolib/gui/panel.py:184
 msgid "Culmination time"
 msgstr ""
 
 #: kosmorrolib/dumper.py:145 kosmorrolib/dumper.py:232
+#: kosmorrolib/gui/panel.py:185
 msgid "Set time"
 msgstr ""
 
@@ -159,7 +162,7 @@ msgstr ""
 msgid "Moon phase:"
 msgstr ""
 
-#: kosmorrolib/dumper.py:163
+#: kosmorrolib/dumper.py:163 kosmorrolib/gui/panel.py:156
 msgid "{next_moon_phase} on {next_moon_phase_date} at {next_moon_phase_time}"
 msgstr ""
 
@@ -220,106 +223,204 @@ msgstr ""
 msgid "{hours}:{minutes}"
 msgstr ""
 
-#: kosmorrolib/main.py:61
+#: kosmorrolib/main.py:66
 msgid ""
 "Save the planet and paper!\n"
 "Consider printing you PDF document only if really necessary, and use the "
 "other side of the sheet."
 msgstr ""
 
-#: kosmorrolib/main.py:65
+#: kosmorrolib/main.py:70
 msgid ""
 "PDF output will not contain the ephemerides, because you didn't provide "
 "the observation coordinate."
 msgstr ""
 
-#: kosmorrolib/main.py:90
+#: kosmorrolib/main.py:95
 msgid "Could not save the output in \"{path}\": {error}"
 msgstr ""
 
-#: kosmorrolib/main.py:95
+#: kosmorrolib/main.py:100
 msgid "Selected output format needs an output file (--output)."
 msgstr ""
 
-#: kosmorrolib/main.py:112
+#: kosmorrolib/main.py:117
 msgid "Moon phase can only be displayed between {min_date} and {max_date}"
 msgstr ""
 
-#: kosmorrolib/main.py:134
+#: kosmorrolib/main.py:139
 msgid "Running on Python {python_version}"
 msgstr ""
 
-#: kosmorrolib/main.py:140
+#: kosmorrolib/main.py:145
 msgid "Do you really want to clear Kosmorro's cache? [yN] "
 msgstr ""
 
-#: kosmorrolib/main.py:147
+#: kosmorrolib/main.py:152
 msgid "Answer did not match expected options, cache not cleared."
 msgstr ""
 
-#: kosmorrolib/main.py:156
+#: kosmorrolib/main.py:170
 msgid ""
 "Compute the ephemerides and the events for a given date, at a given "
 "position on Earth."
 msgstr ""
 
-#: kosmorrolib/main.py:158
+#: kosmorrolib/main.py:172
 msgid ""
 "By default, only the events will be computed for today ({date}).\n"
 "To compute also the ephemerides, latitude and longitude arguments are "
 "needed."
 msgstr ""
 
-#: kosmorrolib/main.py:163
+#: kosmorrolib/main.py:177
 msgid "Show the program version"
 msgstr ""
 
-#: kosmorrolib/main.py:165
+#: kosmorrolib/main.py:179
+msgid "Open Kosmorro's GUI"
+msgstr ""
+
+#: kosmorrolib/main.py:181
 msgid "Delete all the files Kosmorro stored in the cache."
 msgstr ""
 
-#: kosmorrolib/main.py:167
+#: kosmorrolib/main.py:183
 msgid "The format under which the information have to be output"
 msgstr ""
 
-#: kosmorrolib/main.py:169
+#: kosmorrolib/main.py:185
 msgid ""
 "The observer's latitude on Earth. Can also be set in the "
 "KOSMORRO_LATITUDE environment variable."
 msgstr ""
 
-#: kosmorrolib/main.py:172
+#: kosmorrolib/main.py:188
 msgid ""
 "The observer's longitude on Earth. Can also be set in the "
 "KOSMORRO_LONGITUDE environment variable."
 msgstr ""
 
-#: kosmorrolib/main.py:175
+#: kosmorrolib/main.py:191
 msgid ""
 "The date for which the ephemerides must be computed (in the YYYY-MM-DD "
 "format), or as an interval in the \"[+-]YyMmDd\" format (with Y, M, and D"
 " numbers). Defaults to the current date ({default_date})"
 msgstr ""
 
-#: kosmorrolib/main.py:180
+#: kosmorrolib/main.py:196
 msgid ""
 "The timezone to display the hours in (e.g. 2 for UTC+2 or -3 for UTC-3). "
 "Can also be set in the KOSMORRO_TIMEZONE environment variable."
 msgstr ""
 
-#: kosmorrolib/main.py:183
+#: kosmorrolib/main.py:199
 msgid "Disable the colors in the console."
 msgstr ""
 
-#: kosmorrolib/main.py:185
+#: kosmorrolib/main.py:201
 msgid ""
 "A file to export the output to. If not given, the standard output is "
 "used. This argument is needed for PDF format."
 msgstr ""
 
-#: kosmorrolib/main.py:188
+#: kosmorrolib/main.py:204
 msgid ""
 "Do not generate a graph to represent the rise and set times in the PDF "
 "format."
+msgstr ""
+
+#: kosmorrolib/gui/mainwindow.py:159
+msgid "&Application"
+msgstr ""
+
+#: kosmorrolib/gui/mainwindow.py:160
+msgid "&Help"
+msgstr ""
+
+#: kosmorrolib/gui/mainwindow.py:176
+msgid ""
+"This is a free software licensed under the GNU Affero General Public "
+"License."
+msgstr ""
+
+#: kosmorrolib/gui/mainwindow.py:180
+msgid "Close"
+msgstr ""
+
+#: kosmorrolib/gui/mainwindow.py:181
+msgid "Website"
+msgstr ""
+
+#: kosmorrolib/gui/mainwindow.py:196
+msgid "Computing…"
+msgstr ""
+
+#: kosmorrolib/gui/mainwindow.py:273
+msgid "PDF export saved in \"{path}\"!"
+msgstr ""
+
+#: kosmorrolib/gui/mainwindow.py:275
+msgid "Error while exporting your document"
+msgstr ""
+
+#: kosmorrolib/gui/mainwindow.py:290
+msgid "Please select an export file location"
+msgstr ""
+
+#: kosmorrolib/gui/panel.py:37
+msgid "Position:"
+msgstr ""
+
+#: kosmorrolib/gui/panel.py:40
+msgid "Change the position"
+msgstr ""
+
+#: kosmorrolib/gui/panel.py:47
+msgid "Date:"
+msgstr ""
+
+#: kosmorrolib/gui/panel.py:52
+msgid "Timezone:"
+msgstr ""
+
+#: kosmorrolib/gui/panel.py:59
+msgid "&Compute"
+msgstr ""
+
+#: kosmorrolib/gui/panel.py:60
+msgid "E&xport PDF…"
+msgstr ""
+
+#: kosmorrolib/gui/panel.py:82
+msgid "Unknown"
+msgstr ""
+
+#: kosmorrolib/gui/panel.py:232
+msgid "- {event_time}: {event_description}"
+msgstr ""
+
+#: kosmorrolib/gui/panel.py:239
+msgid "No events for this day."
+msgstr ""
+
+#: kosmorrolib/gui/positionwindow.py:11
+msgid "Set position"
+msgstr ""
+
+#: kosmorrolib/gui/positionwindow.py:14
+msgid "Latitude:"
+msgstr ""
+
+#: kosmorrolib/gui/positionwindow.py:19
+msgid "Longitude:"
+msgstr ""
+
+#: kosmorrolib/gui/positionwindow.py:24
+msgid "OK"
+msgstr ""
+
+#: kosmorrolib/gui/positionwindow.py:25
+msgid "Cancel"
 msgstr ""
 
