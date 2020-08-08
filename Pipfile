@@ -9,6 +9,7 @@ pylint = "*"
 babel = "*"
 unittest-data-provider = "*"
 coveralls = "*"
+comlipy = "*"
 
 [packages]
 skyfield = ">=1.21.0,<2.0.0"
