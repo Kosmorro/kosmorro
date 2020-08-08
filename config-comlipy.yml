@@ -1,0 +1,17 @@
+global:
+  help: 'get help here: https://github.com/Deuchnord/kosmorro/blob/master/CONTRIBUTING.md#commiting'
+
+rules:
+  header-min-length:
+    applicable: always
+    value: 0
+    level: 1
+  header-max-length: 
+    applicable: always
+    value: 120
+    level: 2
+  scope-case:
+    value: lower-case
+  scope-empty:
+    level: 0
+

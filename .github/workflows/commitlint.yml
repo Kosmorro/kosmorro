@@ -8,14 +8,17 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Use Node.js
-      uses: actions/setup-node@v1
+    - name: Set up Python
+      uses: actions/setup-python@v1
       with:
-        node-version: 13.x
-    - name: setup
+        python-version: 3.8
+    - name: Install dependencies
       run: |
-        npm install -g @commitlint/cli @commitlint/config-conventional
-    - name: commitlint
+        pip install --upgrade pip pipenv
+        pipenv sync -d
+    - name: Lint
       run: |
-        git log --format=%B -n 1 $GITHUB_SHA | commitlint
+        message="$(git log --format=%B -n 1 HEAD)"
+        echo $message
+        pipenv run comlipy -c config-comlipy.yml "$message"
 
