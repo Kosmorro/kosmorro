@@ -7,6 +7,10 @@ The terms are given in an alphabetically order.
 
 ## TERMS
 
+### Apogee
+
+The Moon is told being at its apogee when it is at its furthest point from the Earth.
+
 ### Conjunction
 
 From the point of view of the Earth, two asters are said in conjunction when they are close together.
@@ -26,6 +30,10 @@ An occultation is a special kind of conjunction where the closer aster to the Ea
 An aster is said in opposition when it is positionned at the exact opposite of the Sun, from the point of view of the Earth, i.e. when their angle is equal to 180 degrees.
 For all the superior planets, it is the best moment to observe them, because they will be at the smallest distance to the Earth. Plus, they will appear full.  
 For instance, Mars is in opposition when the angle Mars-Earth-Sun is equal to 180 degrees.
+
+### Perigee
+
+The Moon is told being at its apogee when it is at its nearest point from the Earth.
 
 ### Planet
 
