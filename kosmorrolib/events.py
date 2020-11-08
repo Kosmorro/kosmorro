@@ -20,7 +20,7 @@ from datetime import date as date_type
 
 from skyfield.errors import EphemerisRangeError
 from skyfield.timelib import Time
-from skyfield.searchlib import find_discrete, find_maxima
+from skyfield.searchlib import find_discrete, find_maxima, find_minima
 from numpy import pi
 
 from .data import Event, Star, Planet, ASTERS
@@ -135,6 +135,45 @@ def _search_maximal_elongations(start_time: Time, end_time: Time, timezone: int)
     return events
 
 
+def _get_moon_distance():
+    earth = get_skf_objects()['earth']
+    moon = get_skf_objects()['moon']
+
+    def get_distance(time: Time):
+        earth_pos = earth.at(time)
+        moon_pos = earth_pos.observe(moon).apparent()
+
+        return moon_pos.distance().au
+
+    get_distance.rough_period = 1.0
+
+    return get_distance
+
+
+def _search_moon_apogee(start_time: Time, end_time: Time, timezone: int) -> [Event]:
+    moon = ASTERS[1]
+    events = []
+
+    times, _ = find_maxima(start_time, end_time, f=_get_moon_distance(), epsilon=1./24/60)
+
+    for time in times:
+        events.append(Event('MOON_APOGEE', [moon], translate_to_timezone(time.utc_datetime(), timezone)))
+
+    return events
+
+
+def _search_moon_perigee(start_time: Time, end_time: Time, timezone: int) -> [Event]:
+    moon = ASTERS[1]
+    events = []
+
+    times, _ = find_minima(start_time, end_time, f=_get_moon_distance(), epsilon=1./24/60)
+
+    for time in times:
+        events.append(Event('MOON_PERIGEE', [moon], translate_to_timezone(time.utc_datetime(), timezone)))
+
+    return events
+
+
 def search_events(date: date_type, timezone: int = 0) -> [Event]:
     start_time = get_timescale().utc(date.year, date.month, date.day, -timezone)
     end_time = get_timescale().utc(date.year, date.month, date.day + 1, -timezone)
@@ -143,7 +182,9 @@ def search_events(date: date_type, timezone: int = 0) -> [Event]:
         return sorted(flatten_list([
             _search_oppositions(start_time, end_time, timezone),
             _search_conjunction(start_time, end_time, timezone),
-            _search_maximal_elongations(start_time, end_time, timezone)
+            _search_maximal_elongations(start_time, end_time, timezone),
+            _search_moon_apogee(start_time, end_time, timezone),
+            _search_moon_perigee(start_time, end_time, timezone),
         ]), key=lambda event: event.start_time)
     except EphemerisRangeError as error:
         start_date = translate_to_timezone(error.start_time.utc_datetime(), timezone)

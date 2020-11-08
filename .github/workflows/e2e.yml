@@ -16,6 +16,7 @@ jobs:
 
     - name: Prepare tests
       run: |
+        sudo apt update
         sudo apt install ruby
         sudo gem install ronn
         pip install -U setuptools pip requests wheel Babel
