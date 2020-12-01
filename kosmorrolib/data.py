@@ -44,7 +44,9 @@ EVENTS = {
     'OPPOSITION': {'message': _('%s is in opposition')},
     'CONJUNCTION': {'message': _('%s and %s are in conjunction')},
     'OCCULTATION': {'message': _('%s occults %s')},
-    'MAXIMAL_ELONGATION': {'message': _("%s's largest elongation")}
+    'MAXIMAL_ELONGATION': {'message': _("%s's largest elongation")},
+    'MOON_PERIGEE': {'message': _("%s is at its perigee")},
+    'MOON_APOGEE': {'message': _("%s is at its apogee")},
 }
 
 
@@ -115,6 +117,9 @@ class Object(Serializable):
         self.skyfield_name = skyfield_name
         self.radius = radius
 
+    def __repr__(self):
+        return '<Object type=%s name=%s />' % (self.get_type(), self.name)
+
     def get_skyfield_object(self) -> SkfPlanet:
         return get_skf_objects()[self.skyfield_name]
 
@@ -175,6 +180,13 @@ class Event(Serializable):
         self.start_time = start_time
         self.end_time = end_time
         self.details = details
+
+    def __repr__(self):
+        return '<Event type=%s objects=[%s] start=%s end=%s details=%s>' % (self.event_type,
+                                                                            self.objects,
+                                                                            self.start_time,
+                                                                            self.end_time,
+                                                                            self.details)
 
     def get_description(self, show_details: bool = True) -> str:
         description = EVENTS[self.event_type]['message'] % self._get_objects_name()

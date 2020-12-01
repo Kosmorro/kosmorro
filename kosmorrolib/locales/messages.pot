@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kosmorro 0.8.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-06-07 11:13+0200\n"
+"POT-Creation-Date: 2020-12-01 12:01+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -83,43 +83,53 @@ msgstr ""
 msgid "%s's largest elongation"
 msgstr ""
 
-#: kosmorrolib/data.py:262
+#: kosmorrolib/data.py:48
+#, python-format
+msgid "%s is at its perigee"
+msgstr ""
+
+#: kosmorrolib/data.py:49
+#, python-format
+msgid "%s is at its apogee"
+msgstr ""
+
+#: kosmorrolib/data.py:274
 msgid "Sun"
 msgstr ""
 
-#: kosmorrolib/data.py:263
+#: kosmorrolib/data.py:275
 msgid "Moon"
 msgstr ""
 
-#: kosmorrolib/data.py:264
+#: kosmorrolib/data.py:276
 msgid "Mercury"
 msgstr ""
 
-#: kosmorrolib/data.py:265
+#: kosmorrolib/data.py:277
 msgid "Venus"
 msgstr ""
 
-#: kosmorrolib/data.py:266
+#: kosmorrolib/data.py:278
 msgid "Mars"
 msgstr ""
 
-#: kosmorrolib/data.py:267
+#: kosmorrolib/data.py:279
 msgid "Jupiter"
 msgstr ""
 
-#: kosmorrolib/data.py:268
+#: kosmorrolib/data.py:280
 msgid "Saturn"
 msgstr ""
 
-#: kosmorrolib/data.py:269
+#: kosmorrolib/data.py:281
 msgid "Uranus"
 msgstr ""
 
-#: kosmorrolib/data.py:270
+#: kosmorrolib/data.py:282
 msgid "Neptune"
 msgstr ""
 
-#: kosmorrolib/data.py:271
+#: kosmorrolib/data.py:283
 msgid "Pluto"
 msgstr ""
 
