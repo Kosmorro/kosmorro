@@ -23,6 +23,7 @@ import os
 from pathlib import Path
 from tabulate import tabulate
 from termcolor import colored
+
 from .data import ASTERS, AsterEphemerides, MoonPhase, Event
 from .i18n import _, FULL_DATE_FORMAT, SHORT_DATETIME_FORMAT, TIME_FORMAT
 from .version import VERSION
@@ -159,9 +160,9 @@ class TextDumper(Dumper):
         if moon_phase is None:
             return _('Moon phase is unavailable for this date.')
 
-        current_moon_phase = ' '.join([self.style(_('Moon phase:'), 'strong'), moon_phase.get_phase()])
+        current_moon_phase = ' '.join([self.style(_('Moon phase:'), 'strong'), moon_phase.phase_type.value])
         new_moon_phase = _('{next_moon_phase} on {next_moon_phase_date} at {next_moon_phase_time}').format(
-            next_moon_phase=moon_phase.get_next_phase_name(),
+            next_moon_phase=moon_phase.get_next_phase().value,
             next_moon_phase_date=moon_phase.next_phase_date.strftime(FULL_DATE_FORMAT),
             next_moon_phase_time=moon_phase.next_phase_date.strftime(TIME_FORMAT)
         )
@@ -183,12 +184,9 @@ class _LatexDumper(Dumper):
         kosmorro_logo_path = os.path.join(os.path.abspath(os.path.dirname(__file__)),
                                           'assets', 'png', 'kosmorro-logo.png')
 
-        if self.moon_phase is None:
-            self.moon_phase = MoonPhase('UNKNOWN')
-
         moon_phase_graphics = os.path.join(os.path.abspath(os.path.dirname(__file__)),
                                            'assets', 'moonphases', 'png',
-                                           '.'.join([self.moon_phase.identifier.lower().replace('_', '-'),
+                                           '.'.join([self.moon_phase.phase_type.name.lower().replace('_', '-'),
                                                      'png']))
 
         document = template
@@ -234,7 +232,7 @@ class _LatexDumper(Dumper):
             .replace('+++GRAPH_LABEL_HOURS+++', _('hours')) \
             .replace('+++MOON-PHASE-GRAPHICS+++', moon_phase_graphics) \
             .replace('+++CURRENT-MOON-PHASE-TITLE+++', _('Moon phase:')) \
-            .replace('+++CURRENT-MOON-PHASE+++', self.moon_phase.get_phase()) \
+            .replace('+++CURRENT-MOON-PHASE+++', self.moon_phase.phase_type.value) \
             .replace('+++SECTION-EVENTS+++', _('Expected events')) \
             .replace('+++EVENTS+++', self._make_events())
 

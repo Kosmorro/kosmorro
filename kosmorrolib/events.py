@@ -25,6 +25,7 @@ from numpy import pi
 
 from .data import Event, Star, Planet, ASTERS
 from .dateutil import translate_to_timezone
+from .enum import EventType
 from .exceptions import OutOfRangeDateError
 from .core import get_timescale, get_skf_objects, flatten_list
 
@@ -68,10 +69,10 @@ def _search_conjunction(start_time: Time, end_time: Time, timezone: int) -> [Eve
                                            aster2] if aster1_pos.distance().km < aster2_pos.distance().km else [aster2,
                                                                                                                 aster1]
 
-                        conjunctions.append(Event('OCCULTATION', occulting_aster,
+                        conjunctions.append(Event(EventType.OCCULTATION, occulting_aster,
                                                   translate_to_timezone(time.utc_datetime(), timezone)))
                     else:
-                        conjunctions.append(Event('CONJUNCTION', [aster1, aster2],
+                        conjunctions.append(Event(EventType.CONJUNCTION, [aster1, aster2],
                                                   translate_to_timezone(time.utc_datetime(), timezone)))
 
         computed.append(aster1)
@@ -101,7 +102,7 @@ def _search_oppositions(start_time: Time, end_time: Time, timezone: int) -> [Eve
 
         times, _ = find_discrete(start_time, end_time, is_oppositing)
         for time in times:
-            events.append(Event('OPPOSITION', [aster], translate_to_timezone(time.utc_datetime(), timezone)))
+            events.append(Event(EventType.OPPOSITION, [aster], translate_to_timezone(time.utc_datetime(), timezone)))
 
     return events
 
@@ -129,7 +130,9 @@ def _search_maximal_elongations(start_time: Time, end_time: Time, timezone: int)
 
         for i, time in enumerate(times):
             elongation = elongations[i]
-            events.append(Event('MAXIMAL_ELONGATION', [aster], translate_to_timezone(time.utc_datetime(), timezone),
+            events.append(Event(EventType.MAXIMAL_ELONGATION,
+                                [aster],
+                                translate_to_timezone(time.utc_datetime(), timezone),
                                 details='{:.3n}°'.format(elongation)))
 
     return events
@@ -157,7 +160,7 @@ def _search_moon_apogee(start_time: Time, end_time: Time, timezone: int) -> [Eve
     times, _ = find_maxima(start_time, end_time, f=_get_moon_distance(), epsilon=1./24/60)
 
     for time in times:
-        events.append(Event('MOON_APOGEE', [moon], translate_to_timezone(time.utc_datetime(), timezone)))
+        events.append(Event(EventType.MOON_APOGEE, [moon], translate_to_timezone(time.utc_datetime(), timezone)))
 
     return events
 
@@ -169,7 +172,7 @@ def _search_moon_perigee(start_time: Time, end_time: Time, timezone: int) -> [Ev
     times, _ = find_minima(start_time, end_time, f=_get_moon_distance(), epsilon=1./24/60)
 
     for time in times:
-        events.append(Event('MOON_PERIGEE', [moon], translate_to_timezone(time.utc_datetime(), timezone)))
+        events.append(Event(EventType.MOON_PERIGEE, [moon], translate_to_timezone(time.utc_datetime(), timezone)))
 
     return events
 
