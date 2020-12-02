@@ -1,0 +1,11 @@
+#!/usr/bin/python3
+
+from kosmorrolib.gui import mainwindow
+
+
+def main():
+    mainwindow.start()
+
+
+if __name__ == '__main__':
+    main()

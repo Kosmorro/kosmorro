@@ -17,3 +17,4 @@ coverage.xml
 # Translation files are taken care on https://poeditor.com/join/project/GXuhLpdaoh
 *.mo
 *.po
+/.eggs

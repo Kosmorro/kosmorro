@@ -57,36 +57,8 @@ finish-release: env
 	@echo -e "Invoke \e[33mgit push origin master features v$$RELEASE_NUMBER\e[39m to finish."
 
 distmacapp = dist/Kosmorro.app
-dist-mac-app: env
-	@if [ -e $(distmacapp) ]; then echo "Deleting the existing app."; rm -rf $(distmacapp); fi
-	mkdir -p "$(distmacapp)/Contents/MacOS" "$(distmacapp)/Contents/Resources"
-
-	# Add application files
-	cp "kosmorro" "$(distmacapp)/Contents/MacOS/kosmorro"
-	cp -r "kosmorrolib" "$(distmacapp)/Contents/MacOS/kosmorrolib"
-	cp "Pipfile" "$(distmacapp)/Contents/MacOS/Pipfile"
-	cp "Pipfile.lock" "$(distmacapp)/Contents/MacOS/Pipfile.lock"
-
-	# Install dependencies
-	cd $(distmacapp)/Contents/MacOS && PIPENV_VENV_IN_PROJECT=1 pipenv sync
-	cd $(distmacapp)/Contents/MacOS && source .venv/bin/activate && pip install wxPython latex
-
-	# Add Python binaries and remove the links in the virtualenv
-	cp -r "$$(dirname $$(realpath $$(which python3)))/.." $(distmacapp)/Contents/MacOS/python
-	rm $(distmacapp)/Contents/MacOS/.venv/bin/python{,3,3.9}
-
-	# Add Mac-specific files
-	cp "build/distrib/darwin/Info.plist" "$(distmacapp)/Contents/Info.plist"
-	cp "build/distrib/darwin/launch-kosmorro.sh" "$(distmacapp)/Contents/MacOS/launch-kosmorro"
-	cp "build/distrib/darwin/icon.icns" "$(distmacapp)/Contents/Resources/icon.icns"
-
-	sed "s/{{app_version}}/$$RELEASE_NUMBER/" "build/distrib/darwin/Info.plist" > "$(distmacapp)/Contents/Info.plist"
-	chmod +x "$(distmacapp)/Contents/MacOS/launch-kosmorro"
-
-	# Clean package
-	rm "$(distmacapp)/Contents/MacOS/Pipfile" "$(distmacapp)/Contents/MacOS/Pipfile.lock"
-
-	@echo "Application created."
+dist-mac-app:
+	python3 setup-gui-app.py py2app
 
 distmacdmg = dist/Kosmorro.dmg
 dist-mac-dmg: dist-mac-app
