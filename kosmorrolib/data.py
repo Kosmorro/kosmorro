@@ -25,29 +25,9 @@ from numpy import pi, arcsin
 from skyfield.api import Topos, Time
 from skyfield.vectorlib import VectorSum as SkfPlanet
 
-from .core import get_skf_objects, get_timescale
+from .core import get_skf_objects
+from .enum import MoonPhaseType, EventType
 from .i18n import _
-
-MOON_PHASES = {
-    'NEW_MOON': _('New Moon'),
-    'WAXING_CRESCENT': _('Waxing crescent'),
-    'FIRST_QUARTER': _('First Quarter'),
-    'WAXING_GIBBOUS': _('Waxing gibbous'),
-    'FULL_MOON': _('Full Moon'),
-    'WANING_GIBBOUS': _('Waning gibbous'),
-    'LAST_QUARTER': _('Last Quarter'),
-    'WANING_CRESCENT': _('Waning crescent'),
-    'UNKNOWN': _('Unavailable')
-}
-
-EVENTS = {
-    'OPPOSITION': {'message': _('%s is in opposition')},
-    'CONJUNCTION': {'message': _('%s and %s are in conjunction')},
-    'OCCULTATION': {'message': _('%s occults %s')},
-    'MAXIMAL_ELONGATION': {'message': _("%s's largest elongation")},
-    'MOON_PERIGEE': {'message': _("%s is at its perigee")},
-    'MOON_APOGEE': {'message': _("%s is at its apogee")},
-}
 
 
 class Serializable(ABC):
@@ -57,40 +37,27 @@ class Serializable(ABC):
 
 
 class MoonPhase(Serializable):
-    def __init__(self, identifier: str, time: datetime = None, next_phase_date: datetime = None):
-        if identifier not in MOON_PHASES.keys():
-            raise ValueError('identifier parameter must be one of %s (got %s)' % (', '.join(MOON_PHASES.keys()),
-                                                                                  identifier))
-
-        self.identifier = identifier
+    def __init__(self, phase_type: MoonPhaseType, time: datetime = None, next_phase_date: datetime = None):
+        self.phase_type = phase_type
         self.time = time
         self.next_phase_date = next_phase_date
 
-    def get_phase(self):
-        return MOON_PHASES[self.identifier]
-
-    def get_next_phase_name(self):
-        next_identifier = self.get_next_phase()
-
-        return MOON_PHASES[next_identifier]
-
     def get_next_phase(self):
-        if self.identifier == 'NEW_MOON' or self.identifier == 'WAXING_CRESCENT':
-            next_identifier = 'FIRST_QUARTER'
-        elif self.identifier == 'FIRST_QUARTER' or self.identifier == 'WAXING_GIBBOUS':
-            next_identifier = 'FULL_MOON'
-        elif self.identifier == 'FULL_MOON' or self.identifier == 'WANING_GIBBOUS':
-            next_identifier = 'LAST_QUARTER'
-        else:
-            next_identifier = 'NEW_MOON'
-        return next_identifier
+        if self.phase_type in [MoonPhaseType.NEW_MOON, MoonPhaseType.WAXING_CRESCENT]:
+            return MoonPhaseType.FIRST_QUARTER
+        if self.phase_type in [MoonPhaseType.FIRST_QUARTER, MoonPhaseType.WAXING_GIBBOUS]:
+            return MoonPhaseType.FULL_MOON
+        if self.phase_type in [MoonPhaseType.FULL_MOON, MoonPhaseType.WANING_GIBBOUS]:
+            return MoonPhaseType.LAST_QUARTER
+
+        return MoonPhaseType.NEW_MOON
 
     def serialize(self) -> dict:
         return {
-            'phase': self.identifier,
+            'phase': self.phase_type.name,
             'time': self.time.isoformat() if self.time is not None else None,
             'next': {
-                'phase': self.get_next_phase(),
+                'phase': self.get_next_phase().name,
                 'time': self.next_phase_date.isoformat()
             }
         }
@@ -168,13 +135,8 @@ class Satellite(Object):
 
 
 class Event(Serializable):
-    def __init__(self, event_type: str, objects: [Object], start_time: datetime,
+    def __init__(self, event_type: EventType, objects: [Object], start_time: datetime,
                  end_time: Union[datetime, None] = None, details: str = None):
-        if event_type not in EVENTS.keys():
-            accepted_types = ', '.join(EVENTS.keys())
-            raise ValueError('event_type parameter must be one of the following: %s (got %s)' % (accepted_types,
-                                                                                                 event_type))
-
         self.event_type = event_type
         self.objects = objects
         self.start_time = start_time
@@ -189,7 +151,7 @@ class Event(Serializable):
                                                                             self.details)
 
     def get_description(self, show_details: bool = True) -> str:
-        description = EVENTS[self.event_type]['message'] % self._get_objects_name()
+        description = self.event_type.value % self._get_objects_name()
         if show_details and self.details is not None:
             description += ' ({:s})'.format(self.details)
         return description
@@ -203,48 +165,11 @@ class Event(Serializable):
     def serialize(self) -> dict:
         return {
             'objects': [object.serialize() for object in self.objects],
-            'event': self.event_type,
+            'event': self.event_type.name,
             'starts_at': self.start_time.isoformat(),
             'ends_at': self.end_time.isoformat() if self.end_time is not None else None,
             'details': self.details
         }
-
-
-def skyfield_to_moon_phase(times: [Time], vals: [int], now: Time) -> Union[MoonPhase, None]:
-    tomorrow = get_timescale().utc(now.utc_datetime().year, now.utc_datetime().month, now.utc_datetime().day + 1)
-
-    phases = list(MOON_PHASES.keys())
-    current_phase = None
-    current_phase_time = None
-    next_phase_time = None
-    i = 0
-
-    if len(times) == 0:
-        return None
-
-    for i, time in enumerate(times):
-        if now.utc_iso() <= time.utc_iso():
-            if vals[i] in [0, 2, 4, 6]:
-                if time.utc_datetime() < tomorrow.utc_datetime():
-                    current_phase_time = time
-                    current_phase = phases[vals[i]]
-                else:
-                    i -= 1
-                    current_phase_time = None
-                    current_phase = phases[vals[i]]
-            else:
-                current_phase = phases[vals[i]]
-
-            break
-
-    for j in range(i + 1, len(times)):
-        if vals[j] in [0, 2, 4, 6]:
-            next_phase_time = times[j]
-            break
-
-    return MoonPhase(current_phase,
-                     current_phase_time.utc_datetime() if current_phase_time is not None else None,
-                     next_phase_time.utc_datetime() if next_phase_time is not None else None)
 
 
 class AsterEphemerides(Serializable):
@@ -266,8 +191,6 @@ class AsterEphemerides(Serializable):
             'set_time': self.set_time.isoformat() if self.set_time is not None else None
         }
 
-
-MONTHS = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
 
 EARTH = Planet('Earth', 'EARTH')
 

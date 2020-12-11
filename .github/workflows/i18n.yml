@@ -19,13 +19,26 @@ jobs:
     - name: Check i18n
       run: |
         pipenv run python setup.py extract_messages --output-file=/tmp/kosmorro-messages.pot > /dev/null
-        n=$(diff -y --suppress-common-lines kosmorrolib/locales/messages.pot /tmp/kosmorro-messages.pot | grep -v -E '^"POT-Creation-Date: ' | wc -l)
+        diff=$(diff kosmorrolib/locales/messages.pot /tmp/kosmorro-messages.pot | grep '^>')
+        n=$(echo "$diff" | grep -v '> "POT-Creation-Date: ' | wc -l)
+
+        if [ "$(echo "$diff" | grep -E '^"Generated-By: Babel' | wc -l)" -eq "1" ]; then
+          echo "❌ You dependencies may be out of date!"
+          echo "   Please run the following command to fix this:"
+          echo
+          echo "     pipenv sync --dev"
+          echo
+          echo "   Then update the messages file:"
+          echo
+          echo "     make messages"
+          exit 2
+        fi
 
         if [ "$n" -ne "0" ]; then
           echo "❌ The messages file is not up-to-date!"
           echo "   Please run the following command to fix this:"
           echo
-          echo "   pipenv run python setup.py extract_messages --output-file=kosmorrolib/locales/messages.pot"
+          echo "     make messages"
           exit 1
         fi
 

@@ -3,6 +3,7 @@ from datetime import date, datetime
 
 from kosmorrolib.data import AsterEphemerides, Planet, MoonPhase, Event
 from kosmorrolib.dumper import JsonDumper, TextDumper, _LatexDumper
+from kosmorrolib.enum import MoonPhaseType, EventType
 
 
 class DumperTestCase(unittest.TestCase):
@@ -283,14 +284,14 @@ class DumperTestCase(unittest.TestCase):
 
     @staticmethod
     def _get_moon_phase():
-        return MoonPhase('FULL_MOON', datetime(2019, 10, 14), datetime(2019, 10, 21))
+        return MoonPhase(MoonPhaseType.FULL_MOON, datetime(2019, 10, 14), datetime(2019, 10, 21))
 
     @staticmethod
     def _get_events():
-        return [Event('OPPOSITION',
+        return [Event(EventType.OPPOSITION,
                       [Planet('Mars', 'MARS')],
                       datetime(2019, 10, 14, 23, 00)),
-                Event('MAXIMAL_ELONGATION',
+                Event(EventType.MAXIMAL_ELONGATION,
                       [Planet('Venus', 'VENUS')],
                       datetime(2019, 10, 14, 12, 00), details='42.0°'),
                 ]

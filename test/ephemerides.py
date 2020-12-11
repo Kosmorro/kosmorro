@@ -1,7 +1,10 @@
 import unittest
+
 from .testutils import expect_assertions
 from kosmorrolib import ephemerides
 from kosmorrolib.data import EARTH, Position, MoonPhase
+from kosmorrolib.enum import MoonPhaseType
+
 from datetime import date
 from kosmorrolib.exceptions import OutOfRangeDateError
 
@@ -29,84 +32,84 @@ class EphemeridesTestCase(unittest.TestCase):
 
     def test_moon_phase_new_moon(self):
         phase = ephemerides.get_moon_phase(date(2019, 11, 25))
-        self.assertEqual('WANING_CRESCENT', phase.identifier)
+        self.assertEqual(MoonPhaseType.WANING_CRESCENT, phase.phase_type)
         self.assertIsNone(phase.time)
         self.assertRegexpMatches(phase.next_phase_date.isoformat(), '^2019-11-26T')
 
         phase = ephemerides.get_moon_phase(date(2019, 11, 26))
-        self.assertEqual('NEW_MOON', phase.identifier)
+        self.assertEqual(MoonPhaseType.NEW_MOON, phase.phase_type)
         self.assertRegexpMatches(phase.next_phase_date.isoformat(), '^2019-12-04T')
 
         phase = ephemerides.get_moon_phase(date(2019, 11, 27))
-        self.assertEqual('WAXING_CRESCENT', phase.identifier)
+        self.assertEqual(MoonPhaseType.WAXING_CRESCENT, phase.phase_type)
         self.assertIsNone(phase.time)
         self.assertRegexpMatches(phase.next_phase_date.isoformat(), '^2019-12-04T')
 
     def test_moon_phase_first_crescent(self):
         phase = ephemerides.get_moon_phase(date(2019, 11, 3))
-        self.assertEqual('WAXING_CRESCENT', phase.identifier)
+        self.assertEqual(MoonPhaseType.WAXING_CRESCENT, phase.phase_type)
         self.assertIsNone(phase.time)
         self.assertRegexpMatches(phase.next_phase_date.isoformat(), '^2019-11-04T')
 
         phase = ephemerides.get_moon_phase(date(2019, 11, 4))
-        self.assertEqual('FIRST_QUARTER', phase.identifier)
+        self.assertEqual(MoonPhaseType.FIRST_QUARTER, phase.phase_type)
         self.assertRegexpMatches(phase.next_phase_date.isoformat(), '^2019-11-12T')
 
         phase = ephemerides.get_moon_phase(date(2019, 11, 5))
-        self.assertEqual('WAXING_GIBBOUS', phase.identifier)
+        self.assertEqual(MoonPhaseType.WAXING_GIBBOUS, phase.phase_type)
         self.assertIsNone(phase.time)
         self.assertRegexpMatches(phase.next_phase_date.isoformat(), '^2019-11-12T')
 
     def test_moon_phase_full_moon(self):
         phase = ephemerides.get_moon_phase(date(2019, 11, 11))
-        self.assertEqual('WAXING_GIBBOUS', phase.identifier)
+        self.assertEqual(MoonPhaseType.WAXING_GIBBOUS, phase.phase_type)
         self.assertIsNone(phase.time)
         self.assertRegexpMatches(phase.next_phase_date.isoformat(), '^2019-11-12T')
 
         phase = ephemerides.get_moon_phase(date(2019, 11, 12))
-        self.assertEqual('FULL_MOON', phase.identifier)
+        self.assertEqual(MoonPhaseType.FULL_MOON, phase.phase_type)
         self.assertRegexpMatches(phase.next_phase_date.isoformat(), '^2019-11-19T')
 
         phase = ephemerides.get_moon_phase(date(2019, 11, 13))
-        self.assertEqual('WANING_GIBBOUS', phase.identifier)
+        self.assertEqual(MoonPhaseType.WANING_GIBBOUS, phase.phase_type)
         self.assertIsNone(phase.time)
         self.assertRegexpMatches(phase.next_phase_date.isoformat(), '^2019-11-19T')
 
     def test_moon_phase_last_quarter(self):
         phase = ephemerides.get_moon_phase(date(2019, 11, 18))
-        self.assertEqual('WANING_GIBBOUS', phase.identifier)
+        self.assertEqual(MoonPhaseType.WANING_GIBBOUS, phase.phase_type)
         self.assertIsNone(phase.time)
         self.assertRegexpMatches(phase.next_phase_date.isoformat(), '^2019-11-19T')
 
         phase = ephemerides.get_moon_phase(date(2019, 11, 19))
-        self.assertEqual('LAST_QUARTER', phase.identifier)
+        self.assertEqual(MoonPhaseType.LAST_QUARTER, phase.phase_type)
         self.assertRegexpMatches(phase.next_phase_date.isoformat(), '^2019-11-26T')
 
         phase = ephemerides.get_moon_phase(date(2019, 11, 20))
-        self.assertEqual('WANING_CRESCENT', phase.identifier)
+        self.assertEqual(MoonPhaseType.WANING_CRESCENT, phase.phase_type)
         self.assertIsNone(phase.time)
         self.assertRegexpMatches(phase.next_phase_date.isoformat(), '^2019-11-26T')
 
     def test_moon_phase_prediction(self):
-        phase = MoonPhase('NEW_MOON', None, None)
-        self.assertEqual('First Quarter', phase.get_next_phase_name())
-        phase = MoonPhase('WAXING_CRESCENT', None, None)
-        self.assertEqual('First Quarter', phase.get_next_phase_name())
+        phase = MoonPhase(MoonPhaseType.NEW_MOON, None, None)
+        self.assertEqual(MoonPhaseType.FIRST_QUARTER, phase.get_next_phase())
+        phase = MoonPhase(MoonPhaseType.WAXING_CRESCENT, None, None)
+        self.assertEqual(MoonPhaseType.FIRST_QUARTER, phase.get_next_phase())
 
-        phase = MoonPhase('FIRST_QUARTER', None, None)
-        self.assertEqual('Full Moon', phase.get_next_phase_name())
-        phase = MoonPhase('WAXING_GIBBOUS', None, None)
-        self.assertEqual('Full Moon', phase.get_next_phase_name())
+        phase = MoonPhase(MoonPhaseType.FIRST_QUARTER, None, None)
+        self.assertEqual(MoonPhaseType.FULL_MOON, phase.get_next_phase())
+        phase = MoonPhase(MoonPhaseType.WAXING_GIBBOUS, None, None)
+        self.assertEqual(MoonPhaseType.FULL_MOON, phase.get_next_phase())
 
-        phase = MoonPhase('FULL_MOON', None, None)
-        self.assertEqual('Last Quarter', phase.get_next_phase_name())
-        phase = MoonPhase('WANING_GIBBOUS', None, None)
-        self.assertEqual('Last Quarter', phase.get_next_phase_name())
+        phase = MoonPhase(MoonPhaseType.FULL_MOON, None, None)
+        self.assertEqual(MoonPhaseType.LAST_QUARTER, phase.get_next_phase())
+        phase = MoonPhase(MoonPhaseType.WANING_GIBBOUS, None, None)
+        self.assertEqual(MoonPhaseType.LAST_QUARTER, phase.get_next_phase())
 
-        phase = MoonPhase('LAST_QUARTER', None, None)
-        self.assertEqual('New Moon', phase.get_next_phase_name())
-        phase = MoonPhase('WANING_CRESCENT', None, None)
-        self.assertEqual('New Moon', phase.get_next_phase_name())
+        phase = MoonPhase(MoonPhaseType.LAST_QUARTER, None, None)
+        self.assertEqual(MoonPhaseType.NEW_MOON, phase.get_next_phase())
+        phase = MoonPhase(MoonPhaseType.WANING_CRESCENT, None, None)
+        self.assertEqual(MoonPhaseType.NEW_MOON, phase.get_next_phase())
 
     def test_get_ephemerides_raises_exception_on_out_of_date_range(self):
         with self.assertRaises(OutOfRangeDateError):
