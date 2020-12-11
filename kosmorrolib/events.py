@@ -196,4 +196,4 @@ def search_events(date: date_type, timezone: int = 0) -> [Event]:
         start_date = date_type(start_date.year, start_date.month, start_date.day)
         end_date = date_type(end_date.year, end_date.month, end_date.day)
 
-        raise OutOfRangeDateError(start_date, end_date)
+        raise OutOfRangeDateError(start_date, end_date) from error

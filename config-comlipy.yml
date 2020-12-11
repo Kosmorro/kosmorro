@@ -6,7 +6,7 @@ rules:
     applicable: always
     value: 0
     level: 1
-  header-max-length: 
+  header-max-length:
     applicable: always
     value: 120
     level: 2
@@ -14,4 +14,5 @@ rules:
     value: lower-case
   scope-empty:
     level: 0
-
+  subject-case:
+    level: 0

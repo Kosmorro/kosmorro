@@ -97,7 +97,7 @@ def get_moon_phase(compute_date: datetime.date, timezone: int = 0) -> MoonPhase:
         start = datetime.date(start.year, start.month, start.day) + datetime.timedelta(days=12)
         end = datetime.date(end.year, end.month, end.day) - datetime.timedelta(days=12)
 
-        raise OutOfRangeDateError(start, end)
+        raise OutOfRangeDateError(start, end) from error
 
     return _get_skyfield_to_moon_phase(times, phase, today)
 
@@ -158,6 +158,6 @@ def get_ephemerides(date: datetime.date, position: Position, timezone: int = 0) 
         start = datetime.date(start.year, start.month, start.day + 1)
         end = datetime.date(end.year, end.month, end.day - 1)
 
-        raise OutOfRangeDateError(start, end)
+        raise OutOfRangeDateError(start, end) from error
 
     return ephemerides

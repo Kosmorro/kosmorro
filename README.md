@@ -1,18 +1,9 @@
 # ![Kosmorro](kosmorrolib/assets/png/kosmorro-logo.png)
 [![Coverage Status](https://coveralls.io/repos/github/Kosmorro/kosmorro/badge.svg?branch=master)](https://coveralls.io/github/Kosmorro/kosmorro?branch=master) [![Version on PyPI](https://img.shields.io/pypi/v/kosmorro)](https://pypi.org/project/kosmorro) [![Discord](https://img.shields.io/discord/650237632533757965?logo=discord&label=%23kosmorro)](https://discord.gg/TVX4MSKGaa)
 
-## About the project
-
-Kosmorro is a software that allows you to compute the ephemeris for a date, a month or a year.
+A program that calculates your astronomical ephemerides!
 
 ## Installation
-
-### Requirements
-
-Kosmorro requires the following software to work:
-
-- Python ≥ 3.5.0
-- PIP
 
 ### Production environment
 
@@ -32,7 +23,7 @@ First, install `python-pip` on your system and invoke the following command: `pi
 #### macOS
 
 Currently, macOS does not provide Python 3, so you will first have to install it.
-If you don't have it, first install [HomeBrew](https://formulae.brew.sh), then install Python 3: `brew install python`.
+If you don't have it, install [HomeBrew](https://formulae.brew.sh), then install Python 3: `brew install python`.
 
 This will install Python 3 and its PIP on your system. Note that their executables are called `python3` and `pip3`.
 Now, you can install Kosmorro with your PIP: `pip3 install kosmorro`.
@@ -43,7 +34,11 @@ Kosmorro being at an early-stage development, Windows is not supported officiall
 
 ### Development environment
 
-First, install [Pipenv](https://pypi.org/project/pipenv/).
+Before you run Kosmorro in your development environment, check you have installed these programs on your system:
+
+- Python ≥ 3.7.0 (needed run Kosmorro)
+- PIP3 (needed for package management, usually installed among with Python 3)
+- [Pipenv](https://pypi.org/project/pipenv/) (needed to manage the virtual environment)
 
 Clone this repository and run `pipenv sync` to install all the dependencies.
 Then, run Kosmorro by invoking `pipenv run python kosmorro`.
@@ -63,17 +58,13 @@ Note: the first time it runs, Kosmorro will download some important files needed
 
 ### Exporting to PDF
 
-Kosmorro can export the computation results to PDF files, but this feature requires first that you install some additional dependencies. Before you use this feature, please check these packages are installed:
+Kosmorro can export the computation results to PDF files, but this feature requires first that you install some additional dependencies.
+Before you use this feature, make sure you have installed a LaTeX distribution:
 
-- **A LaTeX distribution:**
-    - Linux: install TeXLive through your packages manager. Kosmorro just needs the minimal installation, you don't need any extension.
-    - macOS: install [MacTeX](https://www.tug.org/mactex/), the basic version will suffice:
-        - from the official website, choose the _smaller download_
-        - with Brew: `brew install basictex`
-- **The `latex` Python library:**
-    - Arch Linux: the library is available [on the AUR](https://aur.archlinux.org/packages/python-latex)
-    - Any other systems: install it through PyPI: `pip install latex`
+- **Linux:** install TeXLive through your packages manager. Kosmorro just needs the minimal installation, you don't need any extension.  
+  Note: **on Ubuntu 20.04+**, you will also need the `texlive-latex-extra` package.
+- **macOS**: install basic version of [MacTeX](https://www.tug.org/mactex/):
+    - from the official website, choose the _smaller download_
+    - with Brew: `brew install basictex`
 
 These dependencies are not installed by default, because they take a lot of place and are not necessary if you are not interested in generating PDF files.
-The first time you ask Kosmorro to create a PDF, it may be a little verbose. You can ignore its blahblah.
-

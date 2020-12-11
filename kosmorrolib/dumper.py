@@ -20,6 +20,9 @@ from abc import ABC, abstractmethod
 import datetime
 import json
 import os
+import tempfile
+import subprocess
+import shutil
 from pathlib import Path
 from tabulate import tabulate
 from termcolor import colored
@@ -27,11 +30,7 @@ from termcolor import colored
 from .data import ASTERS, AsterEphemerides, MoonPhase, Event
 from .i18n import _, FULL_DATE_FORMAT, SHORT_DATETIME_FORMAT, TIME_FORMAT
 from .version import VERSION
-from .exceptions import UnavailableFeatureError
-try:
-    from latex import build_pdf
-except ImportError:
-    build_pdf = None
+from .exceptions import UnavailableFeatureError, CompileError
 
 
 class Dumper(ABC):
@@ -346,10 +345,12 @@ class PdfDumper(Dumper):
                                         date=self.date, timezone=self.timezone, with_colors=self.with_colors,
                                         show_graph=self.show_graph)
             return self._compile(latex_dumper.to_string())
-        except RuntimeError:
+        except CompileError as error:
+            raise UnavailableFeatureError from error
+        except RuntimeError as error:
             raise UnavailableFeatureError(_("Building PDFs was not possible, because some dependencies are not"
                                             " installed.\nPlease look at the documentation at http://kosmorro.space "
-                                            "for more information."))
+                                            "for more information.")) from error
 
     @staticmethod
     def is_file_output_needed() -> bool:
@@ -357,9 +358,28 @@ class PdfDumper(Dumper):
 
     @staticmethod
     def _compile(latex_input) -> bytes:
-        if build_pdf is None:
-            raise RuntimeError('Python latex module not found')
+        package = str(Path(__file__).parent.absolute()) + '/assets/pdf/kosmorro.sty'
 
-        package = str(Path(__file__).parent.absolute()) + '/assets/pdf/'
+        with tempfile.TemporaryDirectory() as tempdir:
+            timestamp = datetime.datetime.now().strftime('%Y%m%d%H%M%S')
+            shutil.copy(package, tempdir)
 
-        return bytes(build_pdf(latex_input, [package]))
+            with open('%s/%s.tex' % (tempdir, timestamp), 'w') as texfile:
+                texfile.write(latex_input)
+
+            os.chdir(tempdir)
+            try:
+                subprocess.run(['pdflatex', '-interaction', 'nonstopmode', '%s.tex' % timestamp],
+                               capture_output=True, check=True)
+            except FileNotFoundError as error:
+                raise RuntimeError('pdflatex is not installed.') from error
+            except subprocess.CalledProcessError as error:
+                with open('/tmp/kosmorro-%s.log' % timestamp, 'wb') as file:
+                    file.write(error.stdout)
+
+                raise CompileError(_('An error occured during the compilation of the PDF.\n'
+                                     'Please open an issue at https://github.com/Kosmorro/kosmorro/issues and share '
+                                     'the content of the log file at /tmp/kosmorro-%s.log' % timestamp)) from error
+
+            with open('%s.pdf' % timestamp, 'rb') as pdffile:
+                return bytes(pdffile.read())

@@ -1,6 +1,8 @@
 .PHONY: test
 
 test:
+	export LC_ALL=C.UTF-8; \
+	export LANG=C.UTF-8; \
 	unset KOSMORRO_LATITUDE; \
 	unset KOSMORRO_LONGITUDE; \
 	unset KOSMORRO_TIMEZONE; \
