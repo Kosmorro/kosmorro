@@ -6,13 +6,17 @@ test:
 	unset KOSMORRO_TIMEZONE; \
 	LANG=C pipenv run python3 -m coverage run -m unittest test
 
-build: i18n
+build: i18n manpages
 	python3 setup.py sdist bdist_wheel
 
-i18n:
+messages:
+	pipenv run python setup.py extract_messages --output-file=kosmorrolib/locales/messages.pot
+
+manpages:
 	ronn --roff manpage/kosmorro.1.md
 	ronn --roff manpage/kosmorro.7.md
 
+i18n:
 	if [ "$$POEDITOR_API_ACCESS" != "" ]; then \
 		python3 .scripts/build/getlangs.py; \
 		python3 setup.py compile_catalog; \

@@ -17,18 +17,57 @@
 #    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import datetime
+from typing import Union
 
 from skyfield.searchlib import find_discrete, find_maxima
 from skyfield.timelib import Time
 from skyfield.constants import tau
 from skyfield.errors import EphemerisRangeError
 
-from .data import Position, AsterEphemerides, MoonPhase, Object, ASTERS, skyfield_to_moon_phase
+from .data import Position, AsterEphemerides, MoonPhase, Object, ASTERS
 from .dateutil import translate_to_timezone
 from .core import get_skf_objects, get_timescale, get_iau2000b
+from .enum import MoonPhaseType
 from .exceptions import OutOfRangeDateError
 
 RISEN_ANGLE = -0.8333
+
+
+def _get_skyfield_to_moon_phase(times: [Time], vals: [int], now: Time) -> Union[MoonPhase, None]:
+    tomorrow = get_timescale().utc(now.utc_datetime().year, now.utc_datetime().month, now.utc_datetime().day + 1)
+
+    phases = list(MoonPhaseType)
+    current_phase = None
+    current_phase_time = None
+    next_phase_time = None
+    i = 0
+
+    if len(times) == 0:
+        return None
+
+    for i, time in enumerate(times):
+        if now.utc_iso() <= time.utc_iso():
+            if vals[i] in [0, 2, 4, 6]:
+                if time.utc_datetime() < tomorrow.utc_datetime():
+                    current_phase_time = time
+                    current_phase = phases[vals[i]]
+                else:
+                    i -= 1
+                    current_phase_time = None
+                    current_phase = phases[vals[i]]
+            else:
+                current_phase = phases[vals[i]]
+
+            break
+
+    for j in range(i + 1, len(times)):
+        if vals[j] in [0, 2, 4, 6]:
+            next_phase_time = times[j]
+            break
+
+    return MoonPhase(current_phase,
+                     current_phase_time.utc_datetime() if current_phase_time is not None else None,
+                     next_phase_time.utc_datetime() if next_phase_time is not None else None)
 
 
 def get_moon_phase(compute_date: datetime.date, timezone: int = 0) -> MoonPhase:
@@ -60,7 +99,7 @@ def get_moon_phase(compute_date: datetime.date, timezone: int = 0) -> MoonPhase:
 
         raise OutOfRangeDateError(start, end)
 
-    return skyfield_to_moon_phase(times, phase, today)
+    return _get_skyfield_to_moon_phase(times, phase, today)
 
 
 def get_ephemerides(date: datetime.date, position: Position, timezone: int = 0) -> [AsterEphemerides]:
