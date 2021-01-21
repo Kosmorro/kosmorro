@@ -1,9 +1,13 @@
 name: Internationalization check
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [master, features]
+  pull_request:
+    branches: [master, features]
 
 jobs:
-  build:
+  internationalization:
     runs-on: ubuntu-latest
 
     steps:

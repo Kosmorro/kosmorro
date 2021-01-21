@@ -101,8 +101,7 @@ assertSuccess "LATITUDE=50.5876 LONGITUDE=3.0624 TIMEZONE=-1 kosmorro -d 2020-01
 # Missing dependencies, should fail
 assertFailure "kosmorro --latitude=50.5876 --longitude=3.0624 -d 2020-01-27 --format=pdf -o /tmp/document.pdf"
 
-assertSuccess "sudo apt-get install -y texlive" "CI"
-assertSuccess "$PIP_BIN install latex" "CI"
+assertSuccess "sudo apt-get install -y texlive texlive-latex-extra" "CI"
 
 # Dependencies installed, should not fail
 assertSuccess "kosmorro --latitude=50.5876 --longitude=3.0624 -d 2020-01-27 --format=pdf -o /tmp/document.pdf"

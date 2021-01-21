@@ -86,9 +86,14 @@ def main():
         try:
             with open(args.output, 'wb') as output_file:
                 output_file.write(output.to_string())
+        except UnavailableFeatureError as error:
+            print(colored(error.msg, 'red'))
+            return 2
         except OSError as error:
-            print(_('Could not save the output in "{path}": {error}').format(path=args.output,
-                                                                             error=error.strerror))
+            print(colored(_('Could not save the output in "{path}": {error}').format(path=args.output,
+                                                                                     error=error.strerror),
+                          'red'))
+            return 3
     elif not output.is_file_output_needed():
         print(output)
     else:

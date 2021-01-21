@@ -3,4 +3,5 @@ branch = true
 source =
     kosmorrolib
 omit =
+    kosmorrolib/main.py
     test/*

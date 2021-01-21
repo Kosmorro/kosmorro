@@ -98,7 +98,8 @@ def get_date(date_arg: str) -> date:
         try:
             return date.fromisoformat(date_arg)
         except ValueError as error:
-            raise ValueError(_('The date {date} is not valid: {error}').format(date=date_arg, error=error.args[0]))
+            raise ValueError(_('The date {date} is not valid: {error}').format(date=date_arg,
+                                                                               error=error.args[0])) from error
     elif re.match(r'^([+-])(([0-9]+)y)?[ ]?(([0-9]+)m)?[ ]?(([0-9]+)d)?$', date_arg):
         def get_offset(date_arg: str, signifier: str):
             if re.search(r'([0-9]+)' + signifier, date_arg):

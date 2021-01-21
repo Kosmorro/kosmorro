@@ -1,17 +1,22 @@
-name: PyLint
+name: Python Lint
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [master, features]
+  pull_request:
+    branches: [master, features]
 
 jobs:
-  build:
+  pylint:
     runs-on: ubuntu-latest
 
+    name: PyLint
     steps:
     - uses: actions/checkout@v1
     - name: Set up Python
       uses: actions/setup-python@v1
       with:
-        python-version: 3.8
+        python-version: 3.9
     - name: Install dependencies
       run: |
         pip install --upgrade pip pipenv
