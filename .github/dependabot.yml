@@ -1,14 +1,15 @@
 version: 2
+
 updates:
 - package-ecosystem: pip
   directory: "/"
   schedule:
-    interval: weekly
+    interval: daily
     time: "04:00"
   open-pull-requests-limit: 10
   target-branch: master
   reviewers:
-  - Deuchnord
+    - Deuchnord
   commit-message:
     prefix: chore
     include: scope

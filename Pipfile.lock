@@ -56,12 +56,6 @@
             ],
             "version": "==2.15"
         },
-        "latex": {
-            "hashes": [
-                "sha256:bf10c3fe27e9f3adccebc12e90ec239c86dcba101b89221f6775918211482a79"
-            ],
-            "version": "==2.15"
-        },
         "numpy": {
             "hashes": [
                 "sha256:012426a41bc9ab63bb158635aecccc7610e3eff5d31d1eb43bc099debc979d94",
