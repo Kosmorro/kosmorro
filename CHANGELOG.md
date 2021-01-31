@@ -1,3 +1,28 @@
+# [](https://github.com/Kosmorro/kosmorro/compare/v0.8.1...v0.9.0) (2021-01-31)
+
+
+### Code Refactoring
+
+* use `enum` instead of `dict`s for the events and moon phase ([#129](https://github.com/Kosmorro/kosmorro/issues/129)) ([8b723bf](https://github.com/Kosmorro/kosmorro/commit/8b723bfd221dbcddae1717c5e1211a99d828b67e))
+
+
+### Continuous Integration
+
+* **compatibility:** add support for Python 3.9 ([#131](https://github.com/Kosmorro/kosmorro/issues/131)) ([0b12e71](https://github.com/Kosmorro/kosmorro/commit/0b12e71da8ba5ef9079a86a5eb401ae3f32beba2))
+
+
+### Features
+
+* **event:** add support for moon apogee and perigee ([331ab99](https://github.com/Kosmorro/kosmorro/commit/331ab99aa1c3647a45eb05c6850241ebb205fdfb))
+
+
+### BREAKING CHANGES
+
+* **compatibility:** on Ubuntu 20.04+, the `texlive-latex-extra` package is needed to generate the PDF output
+* **kosmorrolib:** some methods in `Event` and `MoonPhase` classes have been dropped in favor of `enum.Enum`'s `name` and `value` properties.
+
+
+
 # [v0.8.1](https://github.com/Deuchnord/kosmorro/compare/v0.8.0...v0.8.1) (2020-06-07)
 
 
