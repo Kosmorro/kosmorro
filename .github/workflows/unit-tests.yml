@@ -35,7 +35,8 @@ jobs:
         pipenv sync -d
     - name: Unit tests
       env:
-        COVERALLS_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
+        COVERALLS_PRO_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         make test
-        COVERALLS_REPO_TOKEN=$COVERALLS_TOKEN pipenv run coveralls
+        pipenv run coveralls --service=github
