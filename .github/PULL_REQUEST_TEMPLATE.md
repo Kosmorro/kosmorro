@@ -7,9 +7,12 @@
 | License        | GNU AGPL-v3
 
 **Checklist:**
+<!--
+    Leave the checklist as it when editing, and check the boxes once the PR created.
+-->
 - [ ] I have updated the manpages
 
 <!--
-    Replace this notice by a short README for your feature/bugfix.
+    Replace this notice with a short README for your feature/bugfix.
 -->
 
