@@ -32,6 +32,15 @@ Now, you can install Kosmorro with your PIP: `pip3 install kosmorro`.
 
 Kosmorro being at an early-stage development, Windows is not supported officially for now.
 
+#### Docker
+
+Get the official Kosmorro Docker image by running `docker pull kosmorro/kosmorro`.
+
+Now that you have the image, you can run it with `docker run -it kosmorro`.
+Run Kosmorro by executing `kosmorro` in the container.
+
+You can also run the image with the command: `docker run kosmorro kosmorro [args]`.
+
 ### Development environment
 
 Before you run Kosmorro in your development environment, check you have installed these programs on your system:
