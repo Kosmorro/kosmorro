@@ -7,8 +7,8 @@ verify_ssl = true
 pylintfileheader = "*"
 pylint = "*"
 babel = "*"
-unittest-data-provider = "*"
 coveralls = "*"
+parameterized = "*"
 
 [packages]
 skyfield = ">=1.32.0,<2.0.0"
