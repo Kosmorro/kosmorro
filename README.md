@@ -1,5 +1,5 @@
 # ![Kosmorro](kosmorrolib/assets/png/kosmorro-logo.png)
-[![Coverage Status](https://coveralls.io/repos/github/Kosmorro/kosmorro/badge.svg?branch=master)](https://coveralls.io/github/Kosmorro/kosmorro?branch=master) [![Version on PyPI](https://img.shields.io/pypi/v/kosmorro)](https://pypi.org/project/kosmorro) [![Discord](https://img.shields.io/discord/650237632533757965?logo=discord&label=%23kosmorro)](https://discord.gg/TVX4MSKGaa)
+[![Coverage Status](https://coveralls.io/repos/github/Kosmorro/kosmorro/badge.svg?branch=master)](https://coveralls.io/github/Kosmorro/kosmorro?branch=master) [![Version on PyPI](https://img.shields.io/pypi/v/kosmorro)](https://pypi.org/project/kosmorro) [![Discord](https://img.shields.io/discord/650237632533757965?logo=discord&label=%23kosmorro)](https://discord.gg/TVX4MSKGaa) ![Docker Pulls](https://img.shields.io/docker/pulls/kosmorro/kosmorro)
 
 A program that calculates your astronomical ephemerides!
 
@@ -34,12 +34,34 @@ Kosmorro being at an early-stage development, Windows is not supported officiall
 
 #### Docker
 
-Get the official Kosmorro Docker image by running `docker pull kosmorro/kosmorro`.
+Kosmorro is available on [Docker Hub](https://hub.docker.com/r/kosmorro/kosmorro)!
+You can get it by running `docker pull kosmorro/kosmorro`.
 
-Now that you have the image, you can run it with `docker run -it kosmorro`.
+Now that you have the image, you can run it with `docker run -it kosmorro/kosmorro`.
 Run Kosmorro by executing `kosmorro` in the container.
 
-You can also run the image with the command: `docker run kosmorro kosmorro [args]`.
+You can also run the image with the command: `docker run kosmorro/kosmorro kosmorro [args]`.
+
+Note that for more convenience, you might add the following in your `.bashrc`/`.zshrc`/etc.:
+
+```bash
+alias kosmorro="docker run kosmorro/kosmorro kosmorro"
+```
+
+##### Image versioning on Docker Hub
+
+By default, running `docker pull kosmorro/kosmorro` will download the `latest` tag by default, which corresponds to the last version of Kosmorro.
+If you prefer, you can also force pulling a specific version by specifying it after the `:` character: `docker pull kosmorro/kosmorro:[version]`.
+
+As of version 0.10, five kinds of tags are available:
+
+| Tag | Description | Example
+| --- | --- | ---
+| `unstable` | the current code in the `master` branch, for testing purpose | `kosmorro/kosmorro:unstable`
+| `latest` | the last version (equivalent to not specifying any tag) | `kosmorro/kosmorro:latest`
+| `x` | the last version in the `x` major version | `kosmorro/kosmorro:0`: will pull the ![last version in the `0` major branch](https://img.shields.io/docker/v/kosmorro/kosmorro/0?style=flat-square)
+| `x.y` | the last version in the `x.y` minor version | `kosmorro/kosmorro:0.10`: will pull the ![last version in the `0` major branch](https://img.shields.io/docker/v/kosmorro/kosmorro/0.10?style=flat-square)
+| `x.y.z` | the exact specified version | `kosmorro/kosmorro:0.10.0`
 
 ### Development environment
 
