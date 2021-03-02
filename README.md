@@ -9,24 +9,23 @@ A program that calculates your astronomical ephemerides!
 
 Keep in mind that Kosmorro is still in alpha development stage and is not considered as stable.
 
-#### Linux
+#### Available packages
 
-##### Arch Linux, Manjaro…
+First thing first, check on the badge below (or on [Repology](https://repology.org/project/kosmorro/packages)) if your distribution has a package for Kosmorro.
+If possible, prefer these packages, since they provide the best integration with your system, especially the update routine.
 
-Kosmorro is available [in the AUR](https://aur.archlinux.org/packages/kosmorro).
+[![Packaging status](https://repology.org/badge/vertical-allrepos/kosmorro.svg)](https://repology.org/project/kosmorro/versions)
 
-##### Other distributions
+If it doesn't, then follow the methods ways below.
+
+#### Install from PyPI (Linux, macOS)
+
+> Note: Python 3 and PIP3 is necessary on your machine.
+> Please check you have installed it before you install Kosmorro.
+> If you need help to install Python 3 and PIP3, please refer to your distribution's manual.
 
 Kosmorro is available [on PyPI](https://pypi.org/project/kosmorro/), a repository dedicated to Python.
-First, install `python-pip` on your system and invoke the following command: `pip install kosmorro`.
-
-#### macOS
-
-Currently, macOS does not provide Python 3, so you will first have to install it.
-If you don't have it, install [HomeBrew](https://formulae.brew.sh), then install Python 3: `brew install python`.
-
-This will install Python 3 and its PIP on your system. Note that their executables are called `python3` and `pip3`.
-Now, you can install Kosmorro with your PIP: `pip3 install kosmorro`.
+To install it, invoke the following command: `pip3 install kosmorro`.
 
 #### Windows
 
