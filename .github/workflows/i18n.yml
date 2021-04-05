@@ -23,7 +23,7 @@ jobs:
     - name: Check i18n
       run: |
         pipenv run python setup.py extract_messages --output-file=/tmp/kosmorro-messages.pot > /dev/null
-        diff=$(diff kosmorrolib/locales/messages.pot /tmp/kosmorro-messages.pot | grep '^>')
+        diff=$(diff _kosmorro/locales/messages.pot /tmp/kosmorro-messages.pot | grep '^>')
         n=$(echo "$diff" | grep -v '> "POT-Creation-Date: ' | wc -l)
 
         if [ "$(echo "$diff" | grep -E '^"Generated-By: Babel' | wc -l)" -eq "1" ]; then

@@ -1,0 +1,56 @@
+#!/usr/bin/env python3
+
+from .utils import _
+
+from kosmorrolib import EventType, MoonPhaseType, ObjectIdentifier, Event
+
+
+def from_event(event: Event) -> str:
+    return {
+        EventType.OPPOSITION: _("%s is in opposition")
+        % (from_object(event.objects[0].identifier)),
+        EventType.CONJUNCTION: _("%s and %s are in conjunction")
+        % (
+            from_object(event.objects[0].identifier),
+            from_object(event.objects[1].identifier),
+        ),
+        EventType.OCCULTATION: _("%s occults %s")
+        % (
+            from_object(event.objects[0].identifier),
+            from_object(event.objects[1].identifier),
+        ),
+        EventType.MAXIMAL_ELONGATION: _("%s's largest elongation")
+        % (from_object(event.objects[0].identifier)),
+        EventType.MOON_PERIGEE: _("%s is at its perigee")
+        % (from_object(event.objects[0].identifier)),
+        EventType.MOON_APOGEE: _("%s is at its apogee")
+        % (from_object(event.objects[0].identifier)),
+    }.get(event.event_type)
+
+
+def from_moon_phase(moon_phase: MoonPhaseType) -> str:
+    return {
+        MoonPhaseType.NEW_MOON: _("New Moon"),
+        MoonPhaseType.WAXING_CRESCENT: _("Waxing Crescent"),
+        MoonPhaseType.FIRST_QUARTER: _("First Quarter"),
+        MoonPhaseType.WAXING_GIBBOUS: _("Waxing Gibbous"),
+        MoonPhaseType.FULL_MOON: _("Full Moon"),
+        MoonPhaseType.WANING_GIBBOUS: _("Waning Gibbous"),
+        MoonPhaseType.LAST_QUARTER: _("Last Quarter"),
+        MoonPhaseType.WANING_CRESCENT: _("Waning Crescent"),
+    }.get(moon_phase, _("Unknown phase"))
+
+
+def from_object(identifier: ObjectIdentifier) -> str:
+    return {
+        ObjectIdentifier.SUN: _("Sun"),
+        ObjectIdentifier.MOON: _("Moon"),
+        ObjectIdentifier.MERCURY: _("Mercury"),
+        ObjectIdentifier.VENUS: _("Venus"),
+        ObjectIdentifier.MARS: _("Mars"),
+        ObjectIdentifier.JUPITER: _("Jupiter"),
+        ObjectIdentifier.SATURN: _("Saturn"),
+        ObjectIdentifier.URANUS: _("Uranus"),
+        ObjectIdentifier.NEPTUNE: _("Neptune"),
+        ObjectIdentifier.PLUTO: _("Pluto"),
+    }.get(identifier, _("Unknown object"))
