@@ -377,7 +377,7 @@ class PdfDumper(Dumper):
                 with open('/tmp/kosmorro-%s.log' % timestamp, 'wb') as file:
                     file.write(error.stdout)
 
-                raise CompileError(_('An error occured during the compilation of the PDF.\n'
+                raise CompileError(_('An error occurred during the compilation of the PDF.\n'
                                      'Please open an issue at https://github.com/Kosmorro/kosmorro/issues and share '
                                      'the content of the log file at /tmp/kosmorro-%s.log' % timestamp)) from error
 
