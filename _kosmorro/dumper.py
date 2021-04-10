@@ -24,6 +24,8 @@ import tempfile
 import subprocess
 import shutil
 from pathlib import Path
+
+from kosmorrolib.exceptions import UnavailableFeatureError
 from tabulate import tabulate
 from termcolor import colored
 
@@ -290,7 +292,7 @@ class _LatexDumper(Dumper):
     ) -> str:
         document = document.replace("+++KOSMORRO-VERSION+++", version)
         document = document.replace("+++KOSMORRO-LOGO+++", kosmorro_logo_path)
-        document = document.replace("+++DOCUMENT-TITLE+++", _("A Summary of your Sky"))
+        document = document.replace("+++DOCUMENT-TITLE+++", _("Overview of your sky"))
         document = document.replace(
             "+++DOCUMENT-DATE+++", self.get_date_as_string(capitalized=True)
         )
@@ -474,14 +476,13 @@ class PdfDumper(Dumper):
             )
             return self._compile(latex_dumper.to_string())
         except RuntimeError as error:
-            raise error
-            # raise UnavailableFeatureError(
-            #     _(
-            #         "Building PDFs was not possible, because some dependencies are not"
-            #         " installed.\nPlease look at the documentation at http://kosmorro.space "
-            #         "for more information."
-            #     )
-            # ) from error
+            raise UnavailableFeatureError(
+                _(
+                    "Building PDF was not possible, because some dependencies are not"
+                    " installed.\nPlease look at the documentation at http://kosmorro.space "
+                    "for more information."
+                )
+            ) from error
 
     @staticmethod
     def is_file_output_needed() -> bool:
@@ -515,7 +516,7 @@ class PdfDumper(Dumper):
 
                 raise CompileError(
                     _(
-                        "An error occured during the compilation of the PDF.\n"
+                        "An error occurred during the compilation of the PDF.\n"
                         "Please open an issue at https://github.com/Kosmorro/kosmorro/issues and share "
                         "the content of the log file at /tmp/kosmorro-%s.log"
                         % timestamp

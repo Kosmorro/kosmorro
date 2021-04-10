@@ -10,7 +10,7 @@ def from_event(event: Event) -> str:
         EventType.OPPOSITION: _("%s is in opposition"),
         EventType.CONJUNCTION: _("%s and %s are in conjunction"),
         EventType.OCCULTATION: _("%s occults %s"),
-        EventType.MAXIMAL_ELONGATION: _("%s's largest elongation"),
+        EventType.MAXIMAL_ELONGATION: _("Elongation of %s is maximal"),
         EventType.MOON_PERIGEE: _("%s is at its perigee"),
         EventType.MOON_APOGEE: _("%s is at its apogee"),
     }.get(event.event_type) % tuple([from_object(o.identifier) for o in event.objects])
