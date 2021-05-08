@@ -8,88 +8,96 @@ msgstr ""
 "Project-Id-Version: kosmorro 0.9.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-01-31 10:15+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2021-05-09 09:45+0000\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
+"Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
+"kosmorro/cli/nb_NO/>\n"
 "Language: nb_NO\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.7-dev\n"
 "Generated-By: Babel 2.9.0\n"
 
 #: kosmorrolib/core.py:101
 msgid "The date {date} is not valid: {error}"
-msgstr ""
+msgstr "Datoen {date} er ikke gyldig: {error}"
 
 #: kosmorrolib/core.py:118
+#, fuzzy
 msgid ""
 "The date {date} does not match the required YYYY-MM-DD format or the "
 "offset format."
 msgstr ""
+"Datoen {date} passer ikke overens med påkrevd ÅÅÅÅ-MM-DD -format, eller "
+"forskyvningsformatet."
 
 #: kosmorrolib/data.py:197
 msgid "Sun"
-msgstr ""
+msgstr "Solen"
 
 #: kosmorrolib/data.py:198
 msgid "Moon"
-msgstr ""
+msgstr "Månen"
 
 #: kosmorrolib/data.py:199
 msgid "Mercury"
-msgstr ""
+msgstr "Merkur"
 
 #: kosmorrolib/data.py:200
 msgid "Venus"
-msgstr ""
+msgstr "Venus"
 
 #: kosmorrolib/data.py:201
 msgid "Mars"
-msgstr ""
+msgstr "Mars"
 
 #: kosmorrolib/data.py:202
 msgid "Jupiter"
-msgstr ""
+msgstr "Jupiter"
 
 #: kosmorrolib/data.py:203
 msgid "Saturn"
-msgstr ""
+msgstr "Saturn"
 
 #: kosmorrolib/data.py:204
 msgid "Uranus"
-msgstr ""
+msgstr "Uranus"
 
 #: kosmorrolib/data.py:205
 msgid "Neptune"
-msgstr ""
+msgstr "Neptun"
 
 #: kosmorrolib/data.py:206
 msgid "Pluto"
-msgstr ""
+msgstr "Pluto"
 
 #: kosmorrolib/dumper.py:87
 msgid "Expected events:"
-msgstr ""
+msgstr "Forventede hendelser:"
 
 #: kosmorrolib/dumper.py:91
 msgid "Note: All the hours are given in UTC."
-msgstr ""
+msgstr "Merk: Alle tider er angitt i UTC."
 
 #: kosmorrolib/dumper.py:96
+#, fuzzy
 msgid "Note: All the hours are given in the UTC{offset} timezone."
-msgstr ""
+msgstr "Merk: Alle tider er angitt i UTC{offset}-tidssone."
 
 #: kosmorrolib/dumper.py:142 kosmorrolib/dumper.py:226
 msgid "Object"
-msgstr ""
+msgstr "Objekt"
 
 #: kosmorrolib/dumper.py:143 kosmorrolib/dumper.py:227
+#, fuzzy
 msgid "Rise time"
-msgstr ""
+msgstr "Emningstid"
 
 #: kosmorrolib/dumper.py:144 kosmorrolib/dumper.py:228
 msgid "Culmination time"
-msgstr ""
+msgstr "Høydepunkt"
 
 #: kosmorrolib/dumper.py:145 kosmorrolib/dumper.py:229
 msgid "Set time"
@@ -97,19 +105,19 @@ msgstr ""
 
 #: kosmorrolib/dumper.py:160
 msgid "Moon phase is unavailable for this date."
-msgstr ""
+msgstr "Månefase er utilgjengelig for denne datoen."
 
 #: kosmorrolib/dumper.py:162 kosmorrolib/dumper.py:233
 msgid "Moon phase:"
-msgstr ""
+msgstr "Månefase:"
 
 #: kosmorrolib/dumper.py:163
 msgid "{next_moon_phase} on {next_moon_phase_date} at {next_moon_phase_time}"
-msgstr ""
+msgstr "{next_moon_phase} {next_moon_phase_date} klokken {next_moon_phase_time}"
 
 #: kosmorrolib/dumper.py:213
 msgid "A Summary of your Sky"
-msgstr ""
+msgstr "Et sammendrag av din himmel"
 
 #: kosmorrolib/dumper.py:217
 msgid ""
@@ -122,7 +130,7 @@ msgstr ""
 msgid ""
 "Don't forget to check the weather forecast before you go out with your "
 "equipment."
-msgstr ""
+msgstr "Ikke glem å sjekke værmeldingen før du gir deg ivei med utstyret ditt."
 
 #: kosmorrolib/dumper.py:225
 msgid "Ephemerides of the day"
@@ -130,11 +138,11 @@ msgstr ""
 
 #: kosmorrolib/dumper.py:231
 msgid "hours"
-msgstr ""
+msgstr "timer"
 
 #: kosmorrolib/dumper.py:235
 msgid "Expected events"
-msgstr ""
+msgstr "Forventede hendelser"
 
 #: kosmorrolib/dumper.py:351
 msgid ""
@@ -154,7 +162,7 @@ msgstr ""
 
 #: kosmorrolib/enum.py:24
 msgid "New Moon"
-msgstr ""
+msgstr "Nymåne"
 
 #: kosmorrolib/enum.py:25
 msgid "Waxing crescent"
@@ -162,7 +170,7 @@ msgstr ""
 
 #: kosmorrolib/enum.py:26
 msgid "First Quarter"
-msgstr ""
+msgstr "Første kvarter"
 
 #: kosmorrolib/enum.py:27
 msgid "Waxing gibbous"
@@ -170,19 +178,19 @@ msgstr ""
 
 #: kosmorrolib/enum.py:28
 msgid "Full Moon"
-msgstr ""
+msgstr "Fullmåne"
 
 #: kosmorrolib/enum.py:29
 msgid "Waning gibbous"
-msgstr ""
+msgstr "Fallende større enn halv"
 
 #: kosmorrolib/enum.py:30
 msgid "Last Quarter"
-msgstr ""
+msgstr "Siste kvarter"
 
 #: kosmorrolib/enum.py:31
 msgid "Waning crescent"
-msgstr ""
+msgstr "Fallende sigd"
 
 #: kosmorrolib/enum.py:35
 #, python-format
@@ -195,9 +203,9 @@ msgid "%s and %s are in conjunction"
 msgstr ""
 
 #: kosmorrolib/enum.py:37
-#, python-format
+#, fuzzy, python-format
 msgid "%s occults %s"
-msgstr ""
+msgstr "%s dekker %s"
 
 #: kosmorrolib/enum.py:38
 #, python-format
@@ -224,11 +232,11 @@ msgstr ""
 
 #: kosmorrolib/i18n.py:29
 msgid "{month} {day_number}, {hours}:{minutes}"
-msgstr ""
+msgstr "{day_number} {month}, {hours}:{minutes}"
 
 #: kosmorrolib/i18n.py:31
 msgid "{month} {day_number}, {year}"
-msgstr ""
+msgstr "{day_number} {month} {year}"
 
 #: kosmorrolib/i18n.py:32
 msgid "{hours}:{minutes}"
@@ -261,7 +269,7 @@ msgstr ""
 
 #: kosmorrolib/main.py:139
 msgid "Running on Python {python_version}"
-msgstr ""
+msgstr "Kjører med Python {python_version}"
 
 #: kosmorrolib/main.py:145
 msgid "Do you really want to clear Kosmorro's cache? [yN] "
@@ -286,7 +294,7 @@ msgstr ""
 
 #: kosmorrolib/main.py:168
 msgid "Show the program version"
-msgstr ""
+msgstr "Vis programversjonen"
 
 #: kosmorrolib/main.py:170
 msgid "Delete all the files Kosmorro stored in the cache."
