@@ -18,11 +18,11 @@
 
 import sys
 import locale
-from kosmorrolib.main import main
+from _kosmorro.main import main
 
-locale.setlocale(locale.LC_ALL, '')
+locale.setlocale(locale.LC_ALL, "")
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     try:
         sys.exit(main())
     except KeyboardInterrupt:

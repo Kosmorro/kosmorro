@@ -16,13 +16,30 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-from datetime import datetime, timezone, timedelta
+from datetime import date
+from _kosmorro.i18n.utils import _, SHORT_DATE_FORMAT
 
 
-def translate_to_timezone(date: datetime, to_tz: int, from_tz: int = None):
-    if from_tz is not None:
-        source_tz = timezone(timedelta(hours=from_tz))
-    else:
-        source_tz = timezone.utc
+class UnavailableFeatureError(RuntimeError):
+    def __init__(self, msg: str):
+        super().__init__()
+        self.msg = msg
 
-    return date.replace(tzinfo=source_tz).astimezone(tz=timezone(timedelta(hours=to_tz)))
+
+class OutOfRangeDateError(RuntimeError):
+    def __init__(self, min_date: date, max_date: date):
+        super().__init__()
+        self.min_date = min_date
+        self.max_date = max_date
+        self.msg = _(
+            "The date must be between {minimum_date}" " and {maximum_date}"
+        ).format(
+            minimum_date=min_date.strftime(SHORT_DATE_FORMAT),
+            maximum_date=max_date.strftime(SHORT_DATE_FORMAT),
+        )
+
+
+class CompileError(RuntimeError):
+    def __init__(self, msg):
+        super().__init__()
+        self.msg = msg

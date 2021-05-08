@@ -16,25 +16,11 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-from enum import Enum
-from .i18n import _
-
-
-class MoonPhaseType(Enum):
-    NEW_MOON = _('New Moon')
-    WAXING_CRESCENT = _('Waxing crescent')
-    FIRST_QUARTER = _('First Quarter')
-    WAXING_GIBBOUS = _('Waxing gibbous')
-    FULL_MOON = _('Full Moon')
-    WANING_GIBBOUS = _('Waning gibbous')
-    LAST_QUARTER = _('Last Quarter')
-    WANING_CRESCENT = _('Waning crescent')
-
-
-class EventType(Enum):
-    OPPOSITION = _('%s is in opposition')
-    CONJUNCTION = _('%s and %s are in conjunction')
-    OCCULTATION = _('%s occults %s')
-    MAXIMAL_ELONGATION = _("%s's largest elongation")
-    MOON_PERIGEE = _("%s is at its perigee")
-    MOON_APOGEE = _("%s is at its apogee")
+__title__ = "kosmorrolib"
+__description__ = "A program that computes your ephemerides"
+__url__ = "http://kosmorro.space"
+__version__ = "0.9.0"
+__author__ = "Jérôme Deuchnord"
+__author_email__ = "jerome@deuchnord.fr"
+__license__ = "AGPL"
+__copyright__ = "Copyright 2021 Jérôme Deuchnord"
