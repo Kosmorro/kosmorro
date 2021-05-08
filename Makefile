@@ -1,5 +1,7 @@
-.PHONY: test
+black:
+	pipenv run black kosmorro _kosmorro setup.py
 
+.PHONY: test
 test:
 	export LC_ALL=C.UTF-8; \
 	export LANG=C.UTF-8; \
@@ -12,7 +14,7 @@ build: manpages
 	python3 setup.py sdist bdist_wheel
 
 messages:
-	pipenv run python setup.py extract_messages --output-file=kosmorrolib/locales/messages.pot
+	pipenv run python setup.py extract_messages --output-file=_kosmorro/locales/messages.pot
 
 manpages:
 	ronn --roff manpage/kosmorro.1.md
@@ -32,10 +34,10 @@ release: env
 	@echo -e "\e[1mCreating release with version number \e[36m$$RELEASE_NUMBER\e[0m"
 	@echo
 
-	sed "s/^VERSION =.*/VERSION = '$$RELEASE_NUMBER'/g" kosmorrolib/version.py > version.py
-	mv version.py kosmorrolib/version.py
+	sed "s/^VERSION =.*/VERSION = '$$RELEASE_NUMBER'/g" _kosmorro/version.py > version.py
+	mv version.py _kosmorro/version.py
 
-	pipenv run python setup.py extract_messages --output-file=kosmorrolib/locales/messages.pot > /dev/null
+	pipenv run python setup.py extract_messages --output-file=_kosmorro/locales/messages.pot > /dev/null
 
 	conventional-changelog -p angular -i CHANGELOG.md -s
 	sed "0,/\\[\\]/s/\\[\\]/[v$$RELEASE_NUMBER]/g" CHANGELOG.md > /tmp/CHANGELOG.md
@@ -47,7 +49,7 @@ release: env
 	@echo -e "Please review the changes, then invoke \e[33mmake finish-release\e[39m."
 
 finish-release: env
-	git add CHANGELOG.md kosmorrolib/version.py kosmorrolib/locales/messages.pot
+	git add CHANGELOG.md _kosmorro/version.py _kosmorro/locales/messages.pot
 	git commit -m "build: bump version $$RELEASE_NUMBER"
 	git tag "v$$RELEASE_NUMBER"
 	git checkout features
@@ -57,3 +59,6 @@ finish-release: env
 	@echo
 	@echo -e "\e[1mVersion \e[36m$$RELEASE_NUMBER\e[39m successfully tagged!"
 	@echo -e "Invoke \e[33mgit push origin master features v$$RELEASE_NUMBER\e[39m to finish."
+
+clean:
+	rm -rf build dist kosmorro.egg-info manpage/kosmorro.{1,7}{,.html}

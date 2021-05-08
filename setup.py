@@ -19,36 +19,41 @@
 import pathlib
 from setuptools import setup, find_packages
 
-from kosmorrolib.version import VERSION
+from _kosmorro.__version__ import __version__
 
 HERE = pathlib.Path(__file__).parent
-README = (HERE / 'README.md').read_text()
+README = (HERE / "README.md").read_text()
 
 setup(
-    name='kosmorro',
-    version=VERSION,
-    author='Jérôme Deuchnord',
-    author_email='jerome@deuchnord.fr',
-    url='http://kosmorro.space',
-    license='AGPL-3.0',
-    description='A program that computes the ephemerides.',
+    name="kosmorro",
+    version=__version__,
+    author="Jérôme Deuchnord",
+    author_email="jerome@deuchnord.fr",
+    url="http://kosmorro.space",
+    license="AGPL-3.0",
+    description="A program that computes the ephemerides.",
     long_description=README,
-    long_description_content_type='text/markdown',
-    keywords='kosmorro astronomy ephemerides ephemeris',
+    long_description_content_type="text/markdown",
+    keywords="kosmorro astronomy ephemerides ephemeris",
     packages=find_packages(),
-    scripts=['kosmorro'],
+    scripts=["kosmorro"],
     include_package_data=True,
     data_files=[
-        ('man/man1', ['manpage/kosmorro.1']),
-        ('man/man7', ['manpage/kosmorro.7'])
+        ("man/man1", ["manpage/kosmorro.1"]),
+        ("man/man7", ["manpage/kosmorro.7"]),
     ],
-    install_requires=['skyfield>=1.21.0,<2.0.0', 'tabulate', 'numpy>=1.17.0,<2.0.0', 'termcolor', 'python-dateutil'],
+    install_requires=[
+        "kosmorrolib",
+        "tabulate",
+        "termcolor",
+        "python-dateutil",
+    ],
     classifiers=[
-        'Development Status :: 3 - Alpha',
-        'Operating System :: POSIX :: Linux',
-        'Operating System :: MacOS :: MacOS X',
-        'Environment :: Console',
-        'Topic :: Scientific/Engineering :: Astronomy'
+        "Development Status :: 3 - Alpha",
+        "Operating System :: POSIX :: Linux",
+        "Operating System :: MacOS :: MacOS X",
+        "Environment :: Console",
+        "Topic :: Scientific/Engineering :: Astronomy",
     ],
-    python_requires='>=3.7'
+    python_requires=">=3.7",
 )

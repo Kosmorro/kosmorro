@@ -1,2 +1,2 @@
-recursive-include kosmorrolib/locales *
-recursive-include kosmorrolib/assets *
+recursive-include _kosmorro/locales *
+recursive-include _kosmorro/assets *
