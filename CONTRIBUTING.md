@@ -17,7 +17,7 @@ First, please check someone didn't suggest your next revolution in the _Issues_ 
 
 ## Translating
 
-If you speak another language than English, another nice way to enhance Kosmorro is to translate its messages. The recommended way to begin translating Kosmorro is to [join the POEditor team](https://poeditor.com/join/project/GXuhLpdaoh).
+If you speak another language than English, another nice way to enhance Kosmorro is to translate its messages. The recommended way to begin translating Kosmorro is to [join the Weblate project](https://hosted.weblate.org/engage/kosmorro/).
 
 ## Writing code
 
@@ -44,7 +44,7 @@ The messages file contains all the messages Kosmorro can display, in order to ma
 When you add a new string that will be displayed to the end user, please pass it to the `_()` function made available in the `kosmorrolib.i18n` package, for instance:
 
 ```python
-# Dont:
+# Don't:
 print('Note: All the hours are given in UTC.')
 
 # Do:
@@ -57,10 +57,10 @@ This will allow Python's internationalization tool to translate the string in an
 Once you have done your work, please remember to tell [Babel](http://babel.pocoo.org) to extract the new strings:
 
 ```console
-$ pipenv run python setup.py extract_messages --output-file=kosmorrolib/locales/messages.pot
+$ make messages
 ```
 
-> If the `setup.py` script tells you that the `extract_messages` command does not exist, then run `kosmorro sync` to ensure all the dev dependencies are installed and try again.
+> If the `setup.py` script tells you that the `extract_messages` command does not exist, then run `pipenv sync` to ensure all the dev dependencies are installed and try again.
 
 Note that if you forget to update the messages file, the CI will fail.
 

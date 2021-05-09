@@ -8,7 +8,7 @@ test:
 	unset KOSMORRO_TIMEZONE; \
 	LANG=C pipenv run python3 -m coverage run -m unittest test
 
-build: i18n manpages
+build: manpages
 	python3 setup.py sdist bdist_wheel
 
 messages:
@@ -19,10 +19,7 @@ manpages:
 	ronn --roff manpage/kosmorro.7.md
 
 i18n:
-	if [ "$$POEDITOR_API_ACCESS" != "" ]; then \
-		python3 .scripts/build/getlangs.py; \
-		python3 setup.py compile_catalog; \
-	fi
+	python3 setup.py compile_catalog; \
 
 env:
 	@if [[ "$$RELEASE_NUMBER" == "" ]]; \

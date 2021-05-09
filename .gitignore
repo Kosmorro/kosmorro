@@ -12,6 +12,5 @@ coverage.xml
 /manpage/*
 !/manpage/*.md
 
-# Translation files are taken care on https://poeditor.com/join/project/GXuhLpdaoh
+# Compiled internationalization files
 *.mo
-*.po
