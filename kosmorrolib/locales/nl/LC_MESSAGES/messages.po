@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kosmorro 0.9.0\n"
 "Report-Msgid-Bugs-To: jerome@deuchnord.fr\n"
 "POT-Creation-Date: 2021-01-31 10:15+0100\n"
-"PO-Revision-Date: 2021-05-09 16:07+0000\n"
+"PO-Revision-Date: 2021-05-09 17:03+0000\n"
 "Last-Translator: Damgermys <damhub28@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/kosmorro/cli/nl/>\n"
 "Language: nl\n"
@@ -24,10 +24,13 @@ msgid "The date {date} is not valid: {error}"
 msgstr "De datum {date} is niet geldig: {error}"
 
 #: kosmorrolib/core.py:118
+#, fuzzy
 msgid ""
 "The date {date} does not match the required YYYY-MM-DD format or the "
 "offset format."
 msgstr ""
+"De datum {date} komt niet overeen met het vereiste JJJJ-MM-DD-formaat of het "
+"offset-formaat."
 
 #: kosmorrolib/data.py:197
 msgid "Sun"
@@ -79,7 +82,7 @@ msgstr "Opmerking: alle uren worden gegeven in UTC."
 
 #: kosmorrolib/dumper.py:96
 msgid "Note: All the hours are given in the UTC{offset} timezone."
-msgstr "Alle uren worden gegeven in de UTC{offset} tijdzone."
+msgstr "Opmerking: alle uren worden gegeven in de UTC{offset} tijdzone."
 
 #: kosmorrolib/dumper.py:142 kosmorrolib/dumper.py:226
 msgid "Object"
