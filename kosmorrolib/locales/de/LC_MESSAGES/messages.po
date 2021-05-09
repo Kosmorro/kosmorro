@@ -6,9 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: kosmorro 0.9.0\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"Report-Msgid-Bugs-To: jerome@deuchnord.fr\n"
 "POT-Creation-Date: 2021-01-31 10:15+0100\n"
-"PO-Revision-Date: 2021-05-09 09:45+0000\n"
+"PO-Revision-Date: 2021-05-09 18:44+0000\n"
 "Last-Translator: Jérôme Deuchnord <jerome@deuchnord.fr>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/kosmorro/cli/de/>"
 "\n"
@@ -290,7 +290,7 @@ msgstr "Mit Python {python_version} ausführt"
 
 #: kosmorrolib/main.py:145
 msgid "Do you really want to clear Kosmorro's cache? [yN] "
-msgstr "Wollen Sie wirklich Kosmorros Cache löschen? "
+msgstr "Wollen Sie wirklich Kosmorros Cache löschen? [jN] "
 
 #: kosmorrolib/main.py:152
 msgid "Answer did not match expected options, cache not cleared."
