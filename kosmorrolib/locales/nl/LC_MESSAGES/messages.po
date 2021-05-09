@@ -6,10 +6,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: kosmorro 0.9.0\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"Report-Msgid-Bugs-To: jerome@deuchnord.fr\n"
 "POT-Creation-Date: 2021-01-31 10:15+0100\n"
-"PO-Revision-Date: 2021-05-09 09:45+0000\n"
-"Last-Translator: Jérôme Deuchnord <jerome@deuchnord.fr>\n"
+"PO-Revision-Date: 2021-05-09 16:07+0000\n"
+"Last-Translator: Damgermys <damhub28@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/kosmorro/cli/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -28,8 +28,6 @@ msgid ""
 "The date {date} does not match the required YYYY-MM-DD format or the "
 "offset format."
 msgstr ""
-"The date {date} does not match the required YYYY-MM-DD format or the offset "
-"format."
 
 #: kosmorrolib/data.py:197
 msgid "Sun"
@@ -115,10 +113,12 @@ msgid "{next_moon_phase} on {next_moon_phase_date} at {next_moon_phase_time}"
 msgstr "{next_moon_phase} op {next_moon_phase_date} om {next_moon_phase_time}"
 
 #: kosmorrolib/dumper.py:213
+#, fuzzy
 msgid "A Summary of your Sky"
 msgstr "A Summary of your Sky"
 
 #: kosmorrolib/dumper.py:217
+#, fuzzy
 msgid ""
 "This document summarizes the ephemerides and the events of {date}. It "
 "aims to help you to prepare your observation session. All the hours are "
@@ -133,8 +133,6 @@ msgid ""
 "Don't forget to check the weather forecast before you go out with your "
 "equipment."
 msgstr ""
-"Don't forget to check the weather forecast before you go out with your "
-"equipment."
 
 #: kosmorrolib/dumper.py:225
 msgid "Ephemerides of the day"
@@ -234,7 +232,7 @@ msgstr "%s is op zijn apogeum"
 
 #: kosmorrolib/exceptions.py:34
 msgid "The date must be between {minimum_date} and {maximum_date}"
-msgstr "The date must be between {minimum_date} and {maximum_date}"
+msgstr "De datum moet zijn tussen {minimum_date} en {maximum_date}"
 
 #: kosmorrolib/i18n.py:27
 msgid "{day_of_week} {month} {day_number}, {year}"
@@ -296,6 +294,7 @@ msgid "Answer did not match expected options, cache not cleared."
 msgstr "Antwoord kwam niet overeen met verwachte opties, cache niet gewist."
 
 #: kosmorrolib/main.py:161
+#, fuzzy
 msgid ""
 "Compute the ephemerides and the events for a given date, at a given "
 "position on Earth."
