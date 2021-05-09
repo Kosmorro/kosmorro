@@ -1,0 +1,381 @@
+# Translations template for kosmorro.
+# Copyright (C) 2021 ORGANIZATION
+# This file is distributed under the same license as the kosmorro project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kosmorro 0.9.0\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2021-01-31 10:15+0100\n"
+"PO-Revision-Date: 2021-05-09 09:45+0000\n"
+"Last-Translator: Jérôme Deuchnord <jerome@deuchnord.fr>\n"
+"Language-Team: French <https://hosted.weblate.org/projects/kosmorro/cli/fr/>"
+"\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.7-dev\n"
+"Generated-By: Babel 2.9.0\n"
+
+#: kosmorrolib/core.py:101
+msgid "The date {date} is not valid: {error}"
+msgstr "La date {date} n'est pas valide : {error}"
+
+#: kosmorrolib/core.py:118
+msgid ""
+"The date {date} does not match the required YYYY-MM-DD format or the "
+"offset format."
+msgstr "La date {date} ne répond pas au format YYYY-MM-DD ou au format relatif."
+
+#: kosmorrolib/data.py:197
+msgid "Sun"
+msgstr "Soleil"
+
+#: kosmorrolib/data.py:198
+msgid "Moon"
+msgstr "Lune"
+
+#: kosmorrolib/data.py:199
+msgid "Mercury"
+msgstr "Mercure"
+
+#: kosmorrolib/data.py:200
+msgid "Venus"
+msgstr "Vénus"
+
+#: kosmorrolib/data.py:201
+msgid "Mars"
+msgstr "Mars"
+
+#: kosmorrolib/data.py:202
+msgid "Jupiter"
+msgstr "Jupiter"
+
+#: kosmorrolib/data.py:203
+msgid "Saturn"
+msgstr "Saturne"
+
+#: kosmorrolib/data.py:204
+msgid "Uranus"
+msgstr "Uranus"
+
+#: kosmorrolib/data.py:205
+msgid "Neptune"
+msgstr "Neptune"
+
+#: kosmorrolib/data.py:206
+msgid "Pluto"
+msgstr "Pluton"
+
+#: kosmorrolib/dumper.py:87
+msgid "Expected events:"
+msgstr "Événements prévus :"
+
+#: kosmorrolib/dumper.py:91
+msgid "Note: All the hours are given in UTC."
+msgstr "Note : toutes les heures sont en temps universel (UTC)."
+
+#: kosmorrolib/dumper.py:96
+msgid "Note: All the hours are given in the UTC{offset} timezone."
+msgstr ""
+"Note : toutes les heures sont données dans le fuseau horaire UTC{offset}."
+
+#: kosmorrolib/dumper.py:142 kosmorrolib/dumper.py:226
+msgid "Object"
+msgstr "Objet"
+
+#: kosmorrolib/dumper.py:143 kosmorrolib/dumper.py:227
+msgid "Rise time"
+msgstr "Heure de lever"
+
+#: kosmorrolib/dumper.py:144 kosmorrolib/dumper.py:228
+msgid "Culmination time"
+msgstr "Heure de culmination"
+
+#: kosmorrolib/dumper.py:145 kosmorrolib/dumper.py:229
+msgid "Set time"
+msgstr "Heure de coucher"
+
+#: kosmorrolib/dumper.py:160
+msgid "Moon phase is unavailable for this date."
+msgstr "La phase de la Lune n'est pas disponible pour cette date."
+
+#: kosmorrolib/dumper.py:162 kosmorrolib/dumper.py:233
+msgid "Moon phase:"
+msgstr "Phase de la Lune :"
+
+#: kosmorrolib/dumper.py:163
+msgid "{next_moon_phase} on {next_moon_phase_date} at {next_moon_phase_time}"
+msgstr "{next_moon_phase} le {next_moon_phase_date} à {next_moon_phase_time}"
+
+#: kosmorrolib/dumper.py:213
+msgid "A Summary of your Sky"
+msgstr "Synthèse de votre ciel"
+
+#: kosmorrolib/dumper.py:217
+msgid ""
+"This document summarizes the ephemerides and the events of {date}. It "
+"aims to help you to prepare your observation session. All the hours are "
+"given in {timezone}."
+msgstr ""
+"Ce document synthétise les éphémérides et les événements prévus pour le "
+"{date}. Son but est de vous aider à préparer votre soirée d'observation. "
+"Toutes les heures sont données en {timezone}."
+
+#: kosmorrolib/dumper.py:223
+msgid ""
+"Don't forget to check the weather forecast before you go out with your "
+"equipment."
+msgstr ""
+"N’oubliez pas de vous assurer que les conditions météo sont favorables avant "
+"de sortir votre matériel d’observation."
+
+#: kosmorrolib/dumper.py:225
+msgid "Ephemerides of the day"
+msgstr "Éphémérides du jour"
+
+#: kosmorrolib/dumper.py:231
+msgid "hours"
+msgstr "heures"
+
+#: kosmorrolib/dumper.py:235
+msgid "Expected events"
+msgstr "Événements prévus"
+
+#: kosmorrolib/dumper.py:351
+msgid ""
+"Building PDFs was not possible, because some dependencies are not "
+"installed.\n"
+"Please look at the documentation at http://kosmorro.space for more "
+"information."
+msgstr ""
+"La génération du document PDF n'est pas possible, car certaines dépendances "
+"ne sont pas installées.\n"
+"Veuillez vous référer à la documentation sur http://kosmorro.space pour de "
+"plus amples informations."
+
+#: kosmorrolib/dumper.py:380
+#, python-format
+msgid ""
+"An error occured during the compilation of the PDF.\n"
+"Please open an issue at https://github.com/Kosmorro/kosmorro/issues and "
+"share the content of the log file at /tmp/kosmorro-%s.log"
+msgstr ""
+"Une erreur s'est produite pendant la compilation du PDF.\n"
+"Merci d'ouvrir un ticket sur https://github.com/Kosmorro/kosmorro/issues et "
+"de partager le contenu du fichier journal situé dans /tmp/kosmorro-%s.log"
+
+#: kosmorrolib/enum.py:24
+msgid "New Moon"
+msgstr "Nouvelle lune"
+
+#: kosmorrolib/enum.py:25
+msgid "Waxing crescent"
+msgstr "Premier croissant"
+
+#: kosmorrolib/enum.py:26
+msgid "First Quarter"
+msgstr "Premier quartier"
+
+#: kosmorrolib/enum.py:27
+msgid "Waxing gibbous"
+msgstr "Gibbeuse croissante"
+
+#: kosmorrolib/enum.py:28
+msgid "Full Moon"
+msgstr "Pleine lune"
+
+#: kosmorrolib/enum.py:29
+msgid "Waning gibbous"
+msgstr "Gibbeuse décroissante"
+
+#: kosmorrolib/enum.py:30
+msgid "Last Quarter"
+msgstr "Dernier quartier"
+
+#: kosmorrolib/enum.py:31
+msgid "Waning crescent"
+msgstr "Dernier croissant"
+
+#: kosmorrolib/enum.py:35
+#, python-format
+msgid "%s is in opposition"
+msgstr "%s est à l'opposition"
+
+#: kosmorrolib/enum.py:36
+#, python-format
+msgid "%s and %s are in conjunction"
+msgstr "%s et %s sont en conjonction"
+
+#: kosmorrolib/enum.py:37
+#, python-format
+msgid "%s occults %s"
+msgstr "%s occulte %s"
+
+#: kosmorrolib/enum.py:38
+#, python-format
+msgid "%s's largest elongation"
+msgstr "L'élongation de %s est à son maximum"
+
+#: kosmorrolib/enum.py:39
+#, python-format
+msgid "%s is at its perigee"
+msgstr "%s est à son périgée"
+
+#: kosmorrolib/enum.py:40
+#, python-format
+msgid "%s is at its apogee"
+msgstr "%s est à son apogée"
+
+#: kosmorrolib/exceptions.py:34
+msgid "The date must be between {minimum_date} and {maximum_date}"
+msgstr "La date doit être entre le {minimum_date} et le {maximum_date}"
+
+#: kosmorrolib/i18n.py:27
+msgid "{day_of_week} {month} {day_number}, {year}"
+msgstr "{day_of_week} {day_number} {month} {year}"
+
+#: kosmorrolib/i18n.py:29
+msgid "{month} {day_number}, {hours}:{minutes}"
+msgstr "{day_number} {month}, {hours}:{minutes}"
+
+#: kosmorrolib/i18n.py:31
+msgid "{month} {day_number}, {year}"
+msgstr "{day_number} {month} {year}"
+
+#: kosmorrolib/i18n.py:32
+msgid "{hours}:{minutes}"
+msgstr "{hours}h{minutes}"
+
+#: kosmorrolib/main.py:61
+msgid ""
+"Save the planet and paper!\n"
+"Consider printing you PDF document only if really necessary, and use the "
+"other side of the sheet."
+msgstr ""
+"Sauvez la planète, économisez du papier !\n"
+"N'imprimez le document PDF uniquement si nécessaire, et pensez à utiliser le "
+"verso de la feuille."
+
+#: kosmorrolib/main.py:65
+msgid ""
+"PDF output will not contain the ephemerides, because you didn't provide "
+"the observation coordinate."
+msgstr ""
+"Le document PDF ne contiendra pas les éphémérides, car les coordonnées du "
+"lieu d'observation sont manquantes."
+
+#: kosmorrolib/main.py:93
+msgid "Could not save the output in \"{path}\": {error}"
+msgstr "Impossible d'enregistrer le fichier \"{path}\" : {error}"
+
+#: kosmorrolib/main.py:100
+msgid "Selected output format needs an output file (--output)."
+msgstr "Le format de sortie choisi requiert un fichier de sortie (--output)."
+
+#: kosmorrolib/main.py:117
+msgid "Moon phase can only be displayed between {min_date} and {max_date}"
+msgstr ""
+"La phase de la Lune ne peut être affichée qu'entre le {min_date} et le "
+"{max_date}"
+
+#: kosmorrolib/main.py:139
+msgid "Running on Python {python_version}"
+msgstr "Exécuté à l'aide de Python {python_version}"
+
+#: kosmorrolib/main.py:145
+msgid "Do you really want to clear Kosmorro's cache? [yN] "
+msgstr "Voulez-vous vraiment effacer le cache de Kosmorro ? [oN] "
+
+#: kosmorrolib/main.py:152
+msgid "Answer did not match expected options, cache not cleared."
+msgstr "Réponse erronée, le cache n'a pas été effacé."
+
+#: kosmorrolib/main.py:161
+msgid ""
+"Compute the ephemerides and the events for a given date, at a given "
+"position on Earth."
+msgstr ""
+"Calcule les éphémérides et les événements pour une date et une position sur "
+"Terre données."
+
+#: kosmorrolib/main.py:163
+msgid ""
+"By default, only the events will be computed for today ({date}).\n"
+"To compute also the ephemerides, latitude and longitude arguments are "
+"needed."
+msgstr ""
+"Par défaut, seuls les événements sont calculés pour la date actuelle "
+"({date}).\n"
+"Pour calculer les éphémérides, la latitude et la longitude sont requis."
+
+#: kosmorrolib/main.py:168
+msgid "Show the program version"
+msgstr "Affiche la version du programme"
+
+#: kosmorrolib/main.py:170
+msgid "Delete all the files Kosmorro stored in the cache."
+msgstr "Efface tous les fichiers du cache de Kosmorro."
+
+#: kosmorrolib/main.py:172
+msgid "The format under which the information have to be output"
+msgstr "Le format de sortie des informations"
+
+#: kosmorrolib/main.py:174
+msgid ""
+"The observer's latitude on Earth. Can also be set in the "
+"KOSMORRO_LATITUDE environment variable."
+msgstr ""
+"La latitude de l'observateur. Peut également être renseignée dans la "
+"variable d'environnement KOSMORRO_LATITUDE."
+
+#: kosmorrolib/main.py:177
+msgid ""
+"The observer's longitude on Earth. Can also be set in the "
+"KOSMORRO_LONGITUDE environment variable."
+msgstr ""
+"La longitude de l'observateur. Peut également être renseignée dans la "
+"variable d'environnement KOSMORRO_LONGITUDE."
+
+#: kosmorrolib/main.py:180
+msgid ""
+"The date for which the ephemerides must be computed (in the YYYY-MM-DD "
+"format), or as an interval in the \"[+-]YyMmDd\" format (with Y, M, and D"
+" numbers). Defaults to the current date ({default_date})"
+msgstr ""
+"La date pour laquelle les éphémérides doivent être calculées (au format AAAA-"
+"MM-JJ), ou comme un intervalle au format \"[+-]Ay-Mm-Jd\" (où A, M, et J "
+"sont des nombres). Par défaut, la date du jour ({default_date}) est utilisée"
+
+#: kosmorrolib/main.py:185
+msgid ""
+"The timezone to display the hours in (e.g. 2 for UTC+2 or -3 for UTC-3). "
+"Can also be set in the KOSMORRO_TIMEZONE environment variable."
+msgstr ""
+"Le fuseau horaire dans lequel les heures doivent être données (par exemple 2 "
+"pour UTC+2 ou -3 pour UTC-3). Peut également être renseigné dans la variable "
+"d'environnement KOSMORRO_TIMEZONE."
+
+#: kosmorrolib/main.py:188
+msgid "Disable the colors in the console."
+msgstr "Désactive les couleurs dans la console."
+
+#: kosmorrolib/main.py:190
+msgid ""
+"A file to export the output to. If not given, the standard output is "
+"used. This argument is needed for PDF format."
+msgstr ""
+"Un fichier dans lequel la sortie doit être enregistré. S'il n'est pas donné, "
+"la sortie standard de la console est utilisée. Cet argument est nécessaire "
+"pour le format de sortie PDF."
+
+#: kosmorrolib/main.py:193
+msgid ""
+"Do not generate a graph to represent the rise and set times in the PDF "
+"format."
+msgstr ""
+"Désactive la génération du graphique des levers et couchers des astres dans "
+"le format PDF."
