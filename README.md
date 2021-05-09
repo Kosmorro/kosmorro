@@ -1,5 +1,5 @@
 # ![Kosmorro](kosmorrolib/assets/png/kosmorro-logo.png)
-[![Coverage Status](https://coveralls.io/repos/github/Kosmorro/kosmorro/badge.svg?branch=master)](https://coveralls.io/github/Kosmorro/kosmorro?branch=master) [![Version on PyPI](https://img.shields.io/pypi/v/kosmorro)](https://pypi.org/project/kosmorro) [![Discord](https://img.shields.io/discord/650237632533757965?logo=discord&label=%23kosmorro)](https://discord.gg/TVX4MSKGaa) ![Docker Pulls](https://img.shields.io/docker/pulls/kosmorro/kosmorro)
+[![Coverage Status](https://coveralls.io/repos/github/Kosmorro/kosmorro/badge.svg?branch=master)](https://coveralls.io/github/Kosmorro/kosmorro?branch=master) [![Version on PyPI](https://img.shields.io/pypi/v/kosmorro)](https://pypi.org/project/kosmorro) [![Discord](https://img.shields.io/discord/650237632533757965?logo=discord&label=%23kosmorro)](https://discord.gg/TVX4MSKGaa) ![Docker Pulls](https://img.shields.io/docker/pulls/kosmorro/kosmorro) [![Help translating Kosmorro!](https://hosted.weblate.org/widgets/kosmorro/-/cli/svg-badge.svg)](https://hosted.weblate.org/engage/kosmorro/)
 
 A program that calculates your astronomical ephemerides!
 
@@ -98,3 +98,10 @@ Before you use this feature, make sure you have installed a LaTeX distribution:
     - with Brew: `brew install basictex`
 
 These dependencies are not installed by default, because they take a lot of place and are not necessary if you are not interested in generating PDF files.
+
+## Help translating Kosmorro!
+
+Kosmorro is translated on [Weblate](https://hosted.weblate.org/engage/kosmorro/), a popular free platform for crowd-sourced internationalization.
+If you speak a language that is not supported yet, feel free to contribute!
+
+![Translation state per language](https://hosted.weblate.org/widgets/kosmorro/-/cli/multi-auto.svg)

@@ -24,12 +24,6 @@ jobs:
                   changelog="${changelog//$'\n'/'%0A'}"
                   changelog="${changelog//$'\r'/'%0D'}"
                   echo "::set-output name=changelog::$changelog"
-            - name: Build locales
-              env:
-                  POEDITOR_API_ACCESS: ${{ secrets.POEDITOR_API_ACCESS }}
-              run: |
-                  make POEDITOR_API_ACCESS="${POEDITOR_API_ACCESS}" i18n
-                  tar cf locales.tar.gz kosmorrolib/locales
             - name: Create release
               id: create_release
               uses: actions/create-release@v1
@@ -42,19 +36,8 @@ jobs:
                   prerelease: false
                   body: |
                     ${{ steps.prepare_release.outputs.changelog }}
-            - name: Upload locales
-              id: upload-locales
-              uses: actions/upload-release-asset@v1
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-              with:
-                  upload_url: ${{ steps.create_release.outputs.upload_url }}
-                  asset_path: ./locales.tar.gz
-                  asset_name: locales.tar.gz
-                  asset_content_type: application/x-tar
 
-
-    pip:
+    pipy:
         name: Release to PyPI
         runs-on: ubuntu-latest
         steps:
@@ -76,9 +59,7 @@ jobs:
               env:
                 TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
                 TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
-                POEDITOR_API_ACCESS: ${{ secrets.POEDITOR_API_ACCESS }}
                 POEDITOR_PROJECT_ID: 306433
               run: |
-                make POEDITOR_API_ACCESS="${POEDITOR_API_ACCESS}" POEDITOR_PROJECT_ID="306433" build
+                make i18n build
                 twine upload dist/*
-
