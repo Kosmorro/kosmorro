@@ -6,10 +6,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: kosmorro 0.9.0\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"Report-Msgid-Bugs-To: jerome@deuchnord.fr\n"
 "POT-Creation-Date: 2021-01-31 10:15+0100\n"
-"PO-Revision-Date: 2021-05-09 09:45+0000\n"
-"Last-Translator: Jérôme Deuchnord <jerome@deuchnord.fr>\n"
+"PO-Revision-Date: 2021-05-09 18:44+0000\n"
+"Last-Translator: Damgermys <damhub28@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/kosmorro/cli/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -24,12 +24,13 @@ msgid "The date {date} is not valid: {error}"
 msgstr "De datum {date} is niet geldig: {error}"
 
 #: kosmorrolib/core.py:118
+#, fuzzy
 msgid ""
 "The date {date} does not match the required YYYY-MM-DD format or the "
 "offset format."
 msgstr ""
-"The date {date} does not match the required YYYY-MM-DD format or the offset "
-"format."
+"De datum {date} komt niet overeen met het vereiste JJJJ-MM-DD-formaat of het "
+"offset-formaat."
 
 #: kosmorrolib/data.py:197
 msgid "Sun"
@@ -81,7 +82,7 @@ msgstr "Opmerking: alle uren worden gegeven in UTC."
 
 #: kosmorrolib/dumper.py:96
 msgid "Note: All the hours are given in the UTC{offset} timezone."
-msgstr "Alle uren worden gegeven in de UTC{offset} tijdzone."
+msgstr "Opmerking: alle uren worden gegeven in de UTC{offset} tijdzone."
 
 #: kosmorrolib/dumper.py:142 kosmorrolib/dumper.py:226
 msgid "Object"
@@ -116,7 +117,7 @@ msgstr "{next_moon_phase} op {next_moon_phase_date} om {next_moon_phase_time}"
 
 #: kosmorrolib/dumper.py:213
 msgid "A Summary of your Sky"
-msgstr "A Summary of your Sky"
+msgstr "Een samenvatting van uw lucht"
 
 #: kosmorrolib/dumper.py:217
 msgid ""
@@ -124,17 +125,12 @@ msgid ""
 "aims to help you to prepare your observation session. All the hours are "
 "given in {timezone}."
 msgstr ""
-"This document summarizes the ephemerides and the events of {date}. It aims "
-"to help you to prepare your observation session. All the hours are given in "
-"{timezone}."
 
 #: kosmorrolib/dumper.py:223
 msgid ""
 "Don't forget to check the weather forecast before you go out with your "
 "equipment."
 msgstr ""
-"Don't forget to check the weather forecast before you go out with your "
-"equipment."
 
 #: kosmorrolib/dumper.py:225
 msgid "Ephemerides of the day"
@@ -166,9 +162,6 @@ msgid ""
 "Please open an issue at https://github.com/Kosmorro/kosmorro/issues and "
 "share the content of the log file at /tmp/kosmorro-%s.log"
 msgstr ""
-"An error occured during the compilation of the PDF.\n"
-"Please open an issue at https://github.com/Kosmorro/kosmorro/issues and "
-"share the content of the log file at /tmp/kosmorro-%s.log"
 
 #: kosmorrolib/enum.py:24
 msgid "New Moon"
@@ -176,7 +169,7 @@ msgstr "Nieuwe maan"
 
 #: kosmorrolib/enum.py:25
 msgid "Waxing crescent"
-msgstr "Waxing crescent"
+msgstr ""
 
 #: kosmorrolib/enum.py:26
 msgid "First Quarter"
@@ -184,7 +177,7 @@ msgstr "Eerste kwartier"
 
 #: kosmorrolib/enum.py:27
 msgid "Waxing gibbous"
-msgstr "Waxing gibbous"
+msgstr ""
 
 #: kosmorrolib/enum.py:28
 msgid "Full Moon"
@@ -192,7 +185,7 @@ msgstr "Volle maan"
 
 #: kosmorrolib/enum.py:29
 msgid "Waning gibbous"
-msgstr "Waning gibbous"
+msgstr ""
 
 #: kosmorrolib/enum.py:30
 msgid "Last Quarter"
@@ -200,27 +193,27 @@ msgstr "Laatste kwartier"
 
 #: kosmorrolib/enum.py:31
 msgid "Waning crescent"
-msgstr "Waning crescent"
+msgstr ""
 
 #: kosmorrolib/enum.py:35
-#, python-format
+#, fuzzy, python-format
 msgid "%s is in opposition"
-msgstr "%s is in opposition"
+msgstr "%s is in oppositie"
 
 #: kosmorrolib/enum.py:36
-#, python-format
+#, fuzzy, python-format
 msgid "%s and %s are in conjunction"
-msgstr "%s and %s are in conjunction"
+msgstr "%s en %s zijn in conjunctie"
 
 #: kosmorrolib/enum.py:37
-#, python-format
+#, fuzzy, python-format
 msgid "%s occults %s"
-msgstr "%s occults %s"
+msgstr "%s verbergt %s"
 
 #: kosmorrolib/enum.py:38
 #, python-format
 msgid "%s's largest elongation"
-msgstr "%s's largest elongation"
+msgstr ""
 
 #: kosmorrolib/enum.py:39
 #, python-format
@@ -234,7 +227,7 @@ msgstr "%s is op zijn apogeum"
 
 #: kosmorrolib/exceptions.py:34
 msgid "The date must be between {minimum_date} and {maximum_date}"
-msgstr "The date must be between {minimum_date} and {maximum_date}"
+msgstr "De datum moet zijn tussen {minimum_date} en {maximum_date}"
 
 #: kosmorrolib/i18n.py:27
 msgid "{day_of_week} {month} {day_number}, {year}"
@@ -281,11 +274,11 @@ msgstr ""
 
 #: kosmorrolib/main.py:117
 msgid "Moon phase can only be displayed between {min_date} and {max_date}"
-msgstr "Moon phase can only be displayed between {min_date} and {max_date}"
+msgstr "Maanfase kan alleen worden weergegeven tussen {min_date} en {max_date}"
 
 #: kosmorrolib/main.py:139
 msgid "Running on Python {python_version}"
-msgstr "Running on Python {python_version}"
+msgstr "Draait op Python {python_version}"
 
 #: kosmorrolib/main.py:145
 msgid "Do you really want to clear Kosmorro's cache? [yN] "
@@ -300,8 +293,6 @@ msgid ""
 "Compute the ephemerides and the events for a given date, at a given "
 "position on Earth."
 msgstr ""
-"Compute the ephemerides and the events for a given date, at a given position "
-"on Earth."
 
 #: kosmorrolib/main.py:163
 msgid ""
@@ -309,8 +300,6 @@ msgid ""
 "To compute also the ephemerides, latitude and longitude arguments are "
 "needed."
 msgstr ""
-"By default, only the events will be computed for today ({date}).\n"
-"To compute also the ephemerides, latitude and longitude arguments are needed."
 
 #: kosmorrolib/main.py:168
 msgid "Show the program version"
@@ -318,7 +307,7 @@ msgstr "Toon de programmaversie"
 
 #: kosmorrolib/main.py:170
 msgid "Delete all the files Kosmorro stored in the cache."
-msgstr "Delete all the files Kosmorro stored in the cache."
+msgstr "Verwijder alle bestanden die Kosmorro in de cache heeft opgeslagen."
 
 #: kosmorrolib/main.py:172
 msgid "The format under which the information have to be output"
@@ -329,16 +318,12 @@ msgid ""
 "The observer's latitude on Earth. Can also be set in the "
 "KOSMORRO_LATITUDE environment variable."
 msgstr ""
-"The observer's latitude on Earth. Can also be set in the KOSMORRO_LATITUDE "
-"environment variable."
 
 #: kosmorrolib/main.py:177
 msgid ""
 "The observer's longitude on Earth. Can also be set in the "
 "KOSMORRO_LONGITUDE environment variable."
 msgstr ""
-"The observer's longitude on Earth. Can also be set in the KOSMORRO_LONGITUDE "
-"environment variable."
 
 #: kosmorrolib/main.py:180
 msgid ""
@@ -346,17 +331,12 @@ msgid ""
 "format), or as an interval in the \"[+-]YyMmDd\" format (with Y, M, and D"
 " numbers). Defaults to the current date ({default_date})"
 msgstr ""
-"The date for which the ephemerides must be computed (in the YYYY-MM-DD "
-"format), or as an interval in the \"[+-]YyMmDd\" format (with Y, M, and D "
-"numbers). Defaults to the current date ({default_date})"
 
 #: kosmorrolib/main.py:185
 msgid ""
 "The timezone to display the hours in (e.g. 2 for UTC+2 or -3 for UTC-3). "
 "Can also be set in the KOSMORRO_TIMEZONE environment variable."
 msgstr ""
-"The timezone to display the hours in (e.g. 2 for UTC+2 or -3 for UTC-3). Can "
-"also be set in the KOSMORRO_TIMEZONE environment variable."
 
 #: kosmorrolib/main.py:188
 msgid "Disable the colors in the console."
@@ -375,5 +355,3 @@ msgid ""
 "Do not generate a graph to represent the rise and set times in the PDF "
 "format."
 msgstr ""
-"Do not generate a graph to represent the rise and set times in the PDF "
-"format."
