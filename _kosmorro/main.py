@@ -23,13 +23,14 @@ import sys
 
 from kosmorrolib import Position, get_ephemerides, get_events, get_moon_phase
 from kosmorrolib.__version__ import __version__ as kosmorrolib_version
+from kosmorrolib.exceptions import OutOfRangeDateError
 from datetime import date
 from termcolor import colored
 
 from . import dumper, environment, debug
 from .date import parse_date
 from .__version__ import __version__ as kosmorro_version
-from .exceptions import UnavailableFeatureError, OutOfRangeDateError
+from .exceptions import UnavailableFeatureError
 from _kosmorro.i18n.utils import _
 
 
