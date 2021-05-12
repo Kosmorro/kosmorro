@@ -7,25 +7,13 @@ from kosmorrolib import EventType, MoonPhaseType, ObjectIdentifier, Event
 
 def from_event(event: Event) -> str:
     return {
-        EventType.OPPOSITION: _("%s is in opposition")
-        % (from_object(event.objects[0].identifier)),
-        EventType.CONJUNCTION: _("%s and %s are in conjunction")
-        % (
-            from_object(event.objects[0].identifier),
-            from_object(event.objects[1].identifier),
-        ),
-        EventType.OCCULTATION: _("%s occults %s")
-        % (
-            from_object(event.objects[0].identifier),
-            from_object(event.objects[1].identifier),
-        ),
-        EventType.MAXIMAL_ELONGATION: _("%s's largest elongation")
-        % (from_object(event.objects[0].identifier)),
-        EventType.MOON_PERIGEE: _("%s is at its perigee")
-        % (from_object(event.objects[0].identifier)),
-        EventType.MOON_APOGEE: _("%s is at its apogee")
-        % (from_object(event.objects[0].identifier)),
-    }.get(event.event_type)
+        EventType.OPPOSITION: _("%s is in opposition"),
+        EventType.CONJUNCTION: _("%s and %s are in conjunction"),
+        EventType.OCCULTATION: _("%s occults %s"),
+        EventType.MAXIMAL_ELONGATION: _("%s's largest elongation"),
+        EventType.MOON_PERIGEE: _("%s is at its perigee"),
+        EventType.MOON_APOGEE: _("%s is at its apogee"),
+    }.get(event.event_type) % tuple([from_object(o.identifier) for o in event.objects])
 
 
 def from_moon_phase(moon_phase: MoonPhaseType) -> str:

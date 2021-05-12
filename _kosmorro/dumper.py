@@ -433,7 +433,6 @@ class _LatexDumper(Dumper):
         latex = []
 
         for event in self.events:
-            print(event)
             latex.append(
                 r"\event{%s}{%s}"
                 % (event.start_time.strftime(TIME_FORMAT), strings.from_event(event))
