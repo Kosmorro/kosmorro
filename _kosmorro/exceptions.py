@@ -32,7 +32,7 @@ class OutOfRangeDateError(RuntimeError):
         self.min_date = min_date
         self.max_date = max_date
         self.msg = _(
-            "The date must be between {minimum_date}" " and {maximum_date}"
+            "The date must be between {minimum_date} and {maximum_date}"
         ).format(
             minimum_date=min_date.strftime(SHORT_DATE_FORMAT),
             maximum_date=max_date.strftime(SHORT_DATE_FORMAT),
