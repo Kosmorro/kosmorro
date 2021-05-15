@@ -30,8 +30,8 @@ from termcolor import colored
 from . import dumper, environment, debug
 from .date import parse_date
 from .__version__ import __version__ as kosmorro_version
-from .exceptions import UnavailableFeatureError
-from _kosmorro.i18n.utils import _
+from .exceptions import UnavailableFeatureError, OutOfRangeDateError as DateRangeError
+from _kosmorro.i18n.utils import _, SHORT_DATE_FORMAT
 
 
 def main():
@@ -61,7 +61,7 @@ def main():
         print(
             _(
                 "Save the planet and paper!\n"
-                "Consider printing you PDF document only if really necessary, and use the other side of the sheet."
+                "Consider printing your PDF document only if really necessary, and use the other side of the sheet."
             )
         )
         if position is None:
@@ -70,7 +70,7 @@ def main():
                 colored(
                     _(
                         "PDF output will not contain the ephemerides, because you didn't provide the observation "
-                        "coordinate."
+                        "coordinates."
                     ),
                     "yellow",
                 )
@@ -96,7 +96,7 @@ def main():
         print(colored(error.msg, "red"))
         debug.debug_print(error)
         return 2
-    except OutOfRangeDateError as error:
+    except DateRangeError as error:
         print(colored(error.msg, "red"))
         debug.debug_print(error)
         return 1
@@ -113,7 +113,7 @@ def main():
         except OSError as error:
             print(
                 colored(
-                    _('Could not save the output in "{path}": {error}').format(
+                    _('The file could not be saved in "{path}": {error}').format(
                         path=args.output, error=error.strerror
                     ),
                     "red",
@@ -127,7 +127,7 @@ def main():
     else:
         print(
             colored(
-                _("Selected output format needs an output file (--output)."),
+                _("Please provide a file path to export in this format (--output)."),
                 color="red",
             )
         )
@@ -145,7 +145,12 @@ def get_information(
     show_graph: bool,
 ) -> dumper.Dumper:
     if position is not None:
-        eph = get_ephemerides(date=compute_date, position=position, timezone=timezone)
+        try:
+            eph = get_ephemerides(
+                date=compute_date, position=position, timezone=timezone
+            )
+        except OutOfRangeDateError as error:
+            raise DateRangeError(error.min_date, error.max_date)
     else:
         eph = None
 
@@ -156,9 +161,11 @@ def get_information(
         print(
             colored(
                 _(
-                    "Moon phase can only be displayed"
-                    " between {min_date} and {max_date}"
-                ).format(min_date=error.min_date, max_date=error.max_date),
+                    "Moon phase can only be displayed between {min_date} and {max_date}"
+                ).format(
+                    min_date=error.min_date.strftime(SHORT_DATE_FORMAT),
+                    max_date=error.max_date.strftime(SHORT_DATE_FORMAT),
+                ),
                 "yellow",
             )
         )
@@ -210,7 +217,7 @@ def clear_cache() -> bool:
             debug.debug_print("No cache found, nothing done.")
             pass
     elif confirm != "" and re.match(locale.nl_langinfo(locale.NOEXPR), confirm) is None:
-        print(_("Answer did not match expected options, cache not cleared."))
+        print(_("Incorrect answer, cache not cleared."))
         return False
 
     return True
@@ -221,8 +228,7 @@ def get_args(output_formats: [str]):
 
     parser = argparse.ArgumentParser(
         description=_(
-            "Compute the ephemerides and the events for a given date,"
-            " at a given position on Earth."
+            "Compute the ephemerides and the events for a given date and a given position on Earth."
         ),
         epilog=_(
             "By default, only the events will be computed for today ({date}).\n"
@@ -246,7 +252,7 @@ def get_args(output_formats: [str]):
         action="store_const",
         const=clear_cache,
         default=None,
-        help=_("Delete all the files Kosmorro stored in the cache."),
+        help=_("Delete all the files from Kosmorro's cache."),
     )
     parser.add_argument(
         "--format",
@@ -254,7 +260,7 @@ def get_args(output_formats: [str]):
         type=str,
         default=output_formats[0],
         choices=output_formats,
-        help=_("The format under which the information have to be output"),
+        help=_("The format to output the information to"),
     )
     parser.add_argument(
         "--latitude",
@@ -282,9 +288,9 @@ def get_args(output_formats: [str]):
         type=str,
         default=today.strftime("%Y-%m-%d"),
         help=_(
-            "The date for which the ephemerides must be computed (in the YYYY-MM-DD format), "
-            'or as an interval in the "[+-]YyMmDd" format (with Y, M, and D numbers). '
-            "Defaults to the current date ({default_date})"
+            "The date for which the ephemerides must be calculated. Can be in the YYYY-MM-DD format "
+            'or an interval in the "[+-]YyMmDd" format (with Y, M, and D numbers). '
+            "Defaults to today ({default_date})."
         ).format(default_date=today.strftime("%Y-%m-%d")),
     )
     parser.add_argument(
