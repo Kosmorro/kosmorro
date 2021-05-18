@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: kosmorro 0.9.0\n"
 "Report-Msgid-Bugs-To: jerome@deuchnord.fr\n"
 "POT-Creation-Date: 2021-01-31 10:15+0100\n"
-"PO-Revision-Date: 2021-05-16 09:25+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2021-05-19 08:33+0000\n"
+"Last-Translator: Jérôme Deuchnord <jerome@deuchnord.fr>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/kosmorro/cli/de/>"
 "\n"
 "Language: de\n"
@@ -174,32 +174,36 @@ msgid "New Moon"
 msgstr "Neumond"
 
 #: kosmorrolib/enum.py:25
+#, fuzzy
 msgid "Waxing crescent"
-msgstr "Zunehmender Sichelmond"
+msgstr "zunehmende Sichel"
 
 #: kosmorrolib/enum.py:26
 msgid "First Quarter"
 msgstr "Erstes Viertel"
 
 #: kosmorrolib/enum.py:27
+#, fuzzy
 msgid "Waxing gibbous"
-msgstr "Zunehmender Dreiviertelmond"
+msgstr "zweites Viertel"
 
 #: kosmorrolib/enum.py:28
 msgid "Full Moon"
 msgstr "Vollmond"
 
 #: kosmorrolib/enum.py:29
+#, fuzzy
 msgid "Waning gibbous"
-msgstr "Abnehmender Sichelmond"
+msgstr "drittes Viertel"
 
 #: kosmorrolib/enum.py:30
 msgid "Last Quarter"
 msgstr "Letztes Viertel"
 
 #: kosmorrolib/enum.py:31
+#, fuzzy
 msgid "Waning crescent"
-msgstr "Abnehmender Dreiviertelmond"
+msgstr "abnehmende Sichel"
 
 #: kosmorrolib/enum.py:35
 #, python-format
