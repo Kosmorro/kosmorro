@@ -2,16 +2,16 @@
 # Copyright (C) 2021 ORGANIZATION
 # This file is distributed under the same license as the kosmorro project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
-#
+# Jérôme Deuchnord <jerome@deuchnord.fr>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: kosmorro 0.9.0\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"Report-Msgid-Bugs-To: jerome@deuchnord.fr\n"
 "POT-Creation-Date: 2021-05-15 16:28+0200\n"
-"PO-Revision-Date: 2021-05-19 08:33+0000\n"
+"PO-Revision-Date: 2021-05-20 08:22+0000\n"
 "Last-Translator: Jérôme Deuchnord <jerome@deuchnord.fr>\n"
-"Language-Team: German <https://hosted.weblate.org/projects/kosmorro/cli/de/"
-">\n"
+"Language-Team: German <https://hosted.weblate.org/projects/kosmorro/cli/de/>"
+"\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -107,12 +107,6 @@ msgid "Expected events"
 msgstr "Erwartete Ereignisse"
 
 #: _kosmorro/dumper.py:480
-#, fuzzy
-#| msgid ""
-#| "Building PDFs was not possible, because some dependencies are not "
-#| "installed.\n"
-#| "Please look at the documentation at http://kosmorro.space for more "
-#| "information."
 msgid ""
 "Building PDF was not possible, because some dependencies are not installed.\n"
 "Please look at the documentation at http://kosmorro.space for more "
@@ -124,11 +118,7 @@ msgstr ""
 "lesen."
 
 #: _kosmorro/dumper.py:518
-#, fuzzy, python-format
-#| msgid ""
-#| "An error occured during the compilation of the PDF.\n"
-#| "Please open an issue at https://github.com/Kosmorro/kosmorro/issues and "
-#| "share the content of the log file at /tmp/kosmorro-%s.log"
+#, python-format
 msgid ""
 "An error occurred during the compilation of the PDF.\n"
 "Please open an issue at https://github.com/Kosmorro/kosmorro/issues and "
@@ -144,25 +134,16 @@ msgstr ""
 "Das Datum muss zwischen dem {minimum_date} und dem {maximum_date} liegen"
 
 #: _kosmorro/main.py:62
-#, fuzzy
-#| msgid ""
-#| "Save the planet and paper!\n"
-#| "Consider printing you PDF document only if really necessary, and use the "
-#| "other side of the sheet."
 msgid ""
 "Save the planet and paper!\n"
 "Consider printing your PDF document only if really necessary, and use the "
 "other side of the sheet."
 msgstr ""
 "Bring der Planet in Sicherheit, spare Papier!\n"
-"Drucken Sie das PDF-Dokument, nur wenn Sie wirklich brauchen aus, und nutzen "
+"Drucken Sie das PDF-Dokument aus, nur wenn Sie wirklich brauchen, und nutzen "
 "Sie das Verso."
 
 #: _kosmorro/main.py:71
-#, fuzzy
-#| msgid ""
-#| "PDF output will not contain the ephemerides, because you didn't provide "
-#| "the observation coordinate."
 msgid ""
 "PDF output will not contain the ephemerides, because you didn't provide the "
 "observation coordinates."
@@ -171,8 +152,6 @@ msgstr ""
 "Beobachtungskoordinate nicht angegeben haben."
 
 #: _kosmorro/main.py:116
-#, fuzzy
-#| msgid "Could not save the output in \"{path}\": {error}"
 msgid "The file could not be saved in \"{path}\": {error}"
 msgstr "Die Ausgabe in \"{path}\" konnte nicht gespeichert werden: {error}"
 
@@ -187,22 +166,18 @@ msgstr ""
 "werden"
 
 #: _kosmorro/main.py:202
-#, fuzzy
-#| msgid "Running on Python {python_version}"
 msgid ""
 "Running on Python {python_version} with Kosmorrolib v{kosmorrolib_version}"
-msgstr "Mit Python {python_version} ausführt"
+msgstr ""
+"Mit Python {python_version} und Kosmorrolib v{kosmorrolib_version} ausführt"
 
 #: _kosmorro/main.py:212
 msgid "Do you really want to clear Kosmorro's cache? [yN] "
 msgstr "Wollen Sie wirklich Kosmorros Cache löschen? [jN] "
 
 #: _kosmorro/main.py:220
-#, fuzzy
-#| msgid "Answer did not match expected options, cache not cleared."
 msgid "Incorrect answer, cache not cleared."
-msgstr ""
-"Die Antwort passte nicht zu erwartete Wahlen. Der Cache wurde nicht gelöscht."
+msgstr "Inkorrekte Antwort, der Cache wurde nicht gelöscht."
 
 #: _kosmorro/main.py:230
 #, fuzzy
@@ -213,8 +188,8 @@ msgid ""
 "Compute the ephemerides and the events for a given date and a given position "
 "on Earth."
 msgstr ""
-"Berechnet die Ephemeriden und die Ereignisse für das gegeben Datum und für "
-"das gegeben Standort auf der Erde."
+"Berechnet die Ephemeriden und die Ereignisse für die angegeben Datum und "
+"Standort auf der Erde."
 
 #: _kosmorro/main.py:233
 msgid ""
@@ -231,16 +206,12 @@ msgid "Show the program version"
 msgstr "Stellt die Version des Programms aus"
 
 #: _kosmorro/main.py:255
-#, fuzzy
-#| msgid "Delete all the files Kosmorro stored in the cache."
 msgid "Delete all the files from Kosmorro's cache."
-msgstr "Löscht alle die Dateien, die von Kosmorro im Cache gelagert wurden."
+msgstr "Löscht alle die Dateien gelagert im Kosmorros Cache."
 
 #: _kosmorro/main.py:263
-#, fuzzy
-#| msgid "The format under which the information have to be output"
 msgid "The format to output the information to"
-msgstr "Die Datenstruktur für die Ausgabe"
+msgstr "Die Datenstruktur der Ausgabe"
 
 #: _kosmorro/main.py:270
 msgid ""
@@ -259,19 +230,14 @@ msgstr ""
 "Umgebungsvariablen KOSMORRO_LONGITUDE gesetzt werden."
 
 #: _kosmorro/main.py:290
-#, fuzzy
-#| msgid ""
-#| "The date for which the ephemerides must be computed (in the YYYY-MM-DD "
-#| "format), or as an interval in the \"[+-]YyMmDd\" format (with Y, M, and D "
-#| "numbers). Defaults to the current date ({default_date})"
 msgid ""
 "The date for which the ephemerides must be calculated. Can be in the YYYY-MM-"
 "DD format or an interval in the \"[+-]YyMmDd\" format (with Y, M, and D "
 "numbers). Defaults to today ({default_date})."
 msgstr ""
-"Das Datum, für das die Ephemeriden berechnet werden müssen (im Format JJJJ-"
-"MM-TT), oder als Intervall im Format \"[+-]JyMmTd\" (wo J, M und T Zahlen "
-"sind). Standardwert ist das aktuelle Datum ({default_date})"
+"Das Datum, für das die Ephemeriden berechnet werden müssen. Kann im Format "
+"JJJJ-MM-TT oder als Intervall im Format \"[+-]JyMmTd\" (wo J, M und T Zahlen "
+"sind) angegeben. Standardwert ist das aktuelle Datum ({default_date})."
 
 #: _kosmorro/main.py:301
 msgid ""
@@ -342,7 +308,6 @@ msgid "New Moon"
 msgstr "Neumond"
 
 #: _kosmorro/i18n/strings.py:22
-#, fuzzy
 msgid "Waxing Crescent"
 msgstr "zunehmende Sichel"
 
@@ -351,7 +316,6 @@ msgid "First Quarter"
 msgstr "Erstes Viertel"
 
 #: _kosmorro/i18n/strings.py:24
-#, fuzzy
 msgid "Waxing Gibbous"
 msgstr "zweites Viertel"
 
@@ -360,7 +324,6 @@ msgid "Full Moon"
 msgstr "Vollmond"
 
 #: _kosmorro/i18n/strings.py:26
-#, fuzzy
 msgid "Waning Gibbous"
 msgstr "drittes Viertel"
 
@@ -369,15 +332,12 @@ msgid "Last Quarter"
 msgstr "Letztes Viertel"
 
 #: _kosmorro/i18n/strings.py:28
-#, fuzzy
 msgid "Waning Crescent"
 msgstr "abnehmende Sichel"
 
 #: _kosmorro/i18n/strings.py:29
-#, fuzzy
-#| msgid "Moon phase:"
 msgid "Unknown phase"
-msgstr "Mondphase:"
+msgstr "Unbekannt Mondphase"
 
 #: _kosmorro/i18n/strings.py:34
 msgid "Sun"
