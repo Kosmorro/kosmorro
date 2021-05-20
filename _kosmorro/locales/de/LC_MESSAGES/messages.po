@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kosmorro 0.9.0\n"
 "Report-Msgid-Bugs-To: jerome@deuchnord.fr\n"
 "POT-Creation-Date: 2021-05-15 16:28+0200\n"
-"PO-Revision-Date: 2021-05-20 08:22+0000\n"
+"PO-Revision-Date: 2021-05-21 12:33+0000\n"
 "Last-Translator: Jérôme Deuchnord <jerome@deuchnord.fr>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/kosmorro/cli/de/>"
 "\n"
@@ -74,7 +74,7 @@ msgstr "{next_moon_phase} am {next_moon_phase_date} um {next_moon_phase_time}"
 
 #: _kosmorro/dumper.py:295
 msgid "Overview of your sky"
-msgstr ""
+msgstr "Übersicht über Ihren Himmel"
 
 #: _kosmorro/dumper.py:303
 msgid ""
@@ -158,6 +158,8 @@ msgstr "Die Ausgabe in \"{path}\" konnte nicht gespeichert werden: {error}"
 #: _kosmorro/main.py:130
 msgid "Please provide a file path to export in this format (--output)."
 msgstr ""
+"Bitte geben Sie einen Dateipfad an, der in diesem Format exportiert werden "
+"soll (--output)."
 
 #: _kosmorro/main.py:163
 msgid "Moon phase can only be displayed between {min_date} and {max_date}"
@@ -180,16 +182,12 @@ msgid "Incorrect answer, cache not cleared."
 msgstr "Inkorrekte Antwort, der Cache wurde nicht gelöscht."
 
 #: _kosmorro/main.py:230
-#, fuzzy
-#| msgid ""
-#| "Compute the ephemerides and the events for a given date, at a given "
-#| "position on Earth."
 msgid ""
 "Compute the ephemerides and the events for a given date and a given position "
 "on Earth."
 msgstr ""
 "Berechnet die Ephemeriden und die Ereignisse für die angegeben Datum und "
-"Standort auf der Erde."
+"Position auf der Erde."
 
 #: _kosmorro/main.py:233
 msgid ""
@@ -270,8 +268,9 @@ msgstr ""
 "generieren."
 
 #: _kosmorro/main.py:334
+#, fuzzy
 msgid "Show debugging messages"
-msgstr ""
+msgstr "Fehlerdiagnosemeldungen anzeigen"
 
 #: _kosmorro/i18n/strings.py:10
 #, python-format
@@ -291,7 +290,7 @@ msgstr "%s bedeckt %s"
 #: _kosmorro/i18n/strings.py:13
 #, python-format
 msgid "Elongation of %s is maximal"
-msgstr ""
+msgstr "Die Elongation von %s ist maximal"
 
 #: _kosmorro/i18n/strings.py:14
 #, python-format
@@ -337,7 +336,7 @@ msgstr "abnehmende Sichel"
 
 #: _kosmorro/i18n/strings.py:29
 msgid "Unknown phase"
-msgstr "Unbekannt Mondphase"
+msgstr "Unbekannte Mondphase"
 
 #: _kosmorro/i18n/strings.py:34
 msgid "Sun"
@@ -381,7 +380,7 @@ msgstr "Pluto"
 
 #: _kosmorro/i18n/strings.py:44
 msgid "Unknown object"
-msgstr ""
+msgstr "Unbekanntes Objekt"
 
 #: _kosmorro/i18n/utils.py:27
 msgid "{day_of_week} {month} {day_number}, {year}"
