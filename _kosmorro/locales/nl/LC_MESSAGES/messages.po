@@ -2,14 +2,14 @@
 # Copyright (C) 2021 ORGANIZATION
 # This file is distributed under the same license as the kosmorro project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
-#
+# Damgermys <damhub28@gmail.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: kosmorro 0.9.0\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"Report-Msgid-Bugs-To: jerome@deuchnord.fr\n"
 "POT-Creation-Date: 2021-05-15 16:28+0200\n"
-"PO-Revision-Date: 2021-05-16 09:25+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2021-05-23 15:33+0000\n"
+"Last-Translator: Damgermys <damhub28@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/kosmorro/cli/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -77,7 +77,7 @@ msgstr "{next_moon_phase} op {next_moon_phase_date} om {next_moon_phase_time}"
 
 #: _kosmorro/dumper.py:295
 msgid "Overview of your sky"
-msgstr ""
+msgstr "Overzicht van uw hemel"
 
 #: _kosmorro/dumper.py:303
 msgid ""
@@ -301,7 +301,7 @@ msgstr "Nieuwe maan"
 
 #: _kosmorro/i18n/strings.py:22
 msgid "Waxing Crescent"
-msgstr ""
+msgstr "Jonge maansikkel"
 
 #: _kosmorro/i18n/strings.py:23
 msgid "First Quarter"
@@ -309,7 +309,7 @@ msgstr "Eerste kwartier"
 
 #: _kosmorro/i18n/strings.py:24
 msgid "Waxing Gibbous"
-msgstr ""
+msgstr "Wassende maan"
 
 #: _kosmorro/i18n/strings.py:25
 msgid "Full Moon"
@@ -317,7 +317,7 @@ msgstr "Volle maan"
 
 #: _kosmorro/i18n/strings.py:26
 msgid "Waning Gibbous"
-msgstr ""
+msgstr "Krimpende maan"
 
 #: _kosmorro/i18n/strings.py:27
 msgid "Last Quarter"
@@ -325,7 +325,7 @@ msgstr "Laatste kwartier"
 
 #: _kosmorro/i18n/strings.py:28
 msgid "Waning Crescent"
-msgstr ""
+msgstr "Asgrauwe maan"
 
 #: _kosmorro/i18n/strings.py:29
 #, fuzzy
