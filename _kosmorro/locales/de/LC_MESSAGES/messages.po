@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kosmorro 0.9.0\n"
 "Report-Msgid-Bugs-To: jerome@deuchnord.fr\n"
 "POT-Creation-Date: 2021-05-15 16:28+0200\n"
-"PO-Revision-Date: 2021-05-21 12:33+0000\n"
+"PO-Revision-Date: 2021-05-23 15:33+0000\n"
 "Last-Translator: Jérôme Deuchnord <jerome@deuchnord.fr>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/kosmorro/cli/de/>"
 "\n"
@@ -268,7 +268,6 @@ msgstr ""
 "generieren."
 
 #: _kosmorro/main.py:334
-#, fuzzy
 msgid "Show debugging messages"
 msgstr "Fehlerdiagnosemeldungen anzeigen"
 
