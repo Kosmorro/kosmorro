@@ -34,8 +34,8 @@ release: env
 	@echo -e "\e[1mCreating release with version number \e[36m$$RELEASE_NUMBER\e[0m"
 	@echo
 
-	sed "s/^VERSION =.*/VERSION = '$$RELEASE_NUMBER'/g" _kosmorro/version.py > version.py
-	mv version.py _kosmorro/version.py
+	sed "s/^__version__ =.*/__version__ = '$$RELEASE_NUMBER'/g" _kosmorro/__version__.py > version.py
+	mv version.py _kosmorro/__version__.py
 
 	pipenv run python setup.py extract_messages --output-file=_kosmorro/locales/messages.pot > /dev/null
 
@@ -49,7 +49,7 @@ release: env
 	@echo -e "Please review the changes, then invoke \e[33mmake finish-release\e[39m."
 
 finish-release: env
-	git add CHANGELOG.md _kosmorro/version.py _kosmorro/locales/messages.pot
+	git add CHANGELOG.md _kosmorro/__version__.py _kosmorro/locales/messages.pot
 	git commit -m "build: bump version $$RELEASE_NUMBER"
 	git tag "v$$RELEASE_NUMBER"
 	git checkout features

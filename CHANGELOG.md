@@ -1,3 +1,18 @@
+# [v0.10.0](https://github.com/Kosmorro/kosmorro/compare/v0.9.0...v0.10.0) (2021-05-30)
+
+
+### Bug Fixes
+
+* fix English messages ([#178](https://github.com/Kosmorro/kosmorro/issues/178)) ([6661984](https://github.com/Kosmorro/kosmorro/commit/666198497398700f0a9540ba5cf7448895e29e75))
+
+
+### Features
+
+* add official Docker image ([#137](https://github.com/Kosmorro/kosmorro/issues/137)) ([a6d3575](https://github.com/Kosmorro/kosmorro/commit/a6d3575977046003d27c03f82e4635c36f7f34e7))
+* use Kosmorrolib ([#162](https://github.com/Kosmorro/kosmorro/issues/162)) ([87206d7](https://github.com/Kosmorro/kosmorro/commit/87206d706893fef714e955cf6047483bc815a327))
+
+
+
 # [v0.9.0](https://github.com/Kosmorro/kosmorro/compare/v0.8.1...v0.9.0) (2021-01-31)
 
 
