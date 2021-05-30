@@ -16,9 +16,9 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-__title__ = "kosmorrolib"
+__title__ = "kosmorro"
 __description__ = "A program that computes your ephemerides"
-__url__ = "http://kosmorro.space"
+__url__ = "https://kosmorro.space"
 __version__ = "0.9.0"
 __author__ = "Jérôme Deuchnord"
 __author_email__ = "jerome@deuchnord.fr"
