@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kosmorro 0.10.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-05-30 17:22+0200\n"
+"POT-Creation-Date: 2021-06-05 17:59+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,84 +27,84 @@ msgid ""
 "offset format."
 msgstr ""
 
-#: _kosmorro/dumper.py:108
+#: _kosmorro/dumper.py:111
 msgid "Expected events:"
 msgstr ""
 
-#: _kosmorro/dumper.py:115
+#: _kosmorro/dumper.py:118
 msgid "Note: All the hours are given in UTC."
 msgstr ""
 
-#: _kosmorro/dumper.py:122
+#: _kosmorro/dumper.py:125
 msgid "Note: All the hours are given in the UTC{offset} timezone."
 msgstr ""
 
-#: _kosmorro/dumper.py:186 _kosmorro/dumper.py:322
+#: _kosmorro/dumper.py:189 _kosmorro/dumper.py:325
 msgid "Object"
 msgstr ""
 
-#: _kosmorro/dumper.py:187 _kosmorro/dumper.py:323
+#: _kosmorro/dumper.py:190 _kosmorro/dumper.py:326
 msgid "Rise time"
 msgstr ""
 
-#: _kosmorro/dumper.py:188 _kosmorro/dumper.py:325
+#: _kosmorro/dumper.py:191 _kosmorro/dumper.py:328
 msgid "Culmination time"
 msgstr ""
 
-#: _kosmorro/dumper.py:189 _kosmorro/dumper.py:327
+#: _kosmorro/dumper.py:192 _kosmorro/dumper.py:330
 msgid "Set time"
 msgstr ""
 
-#: _kosmorro/dumper.py:223
+#: _kosmorro/dumper.py:226
 msgid "Moon phase is unavailable for this date."
 msgstr ""
 
-#: _kosmorro/dumper.py:227 _kosmorro/dumper.py:331
+#: _kosmorro/dumper.py:230 _kosmorro/dumper.py:334
 msgid "Moon phase:"
 msgstr ""
 
-#: _kosmorro/dumper.py:231
+#: _kosmorro/dumper.py:234
 msgid "{next_moon_phase} on {next_moon_phase_date} at {next_moon_phase_time}"
 msgstr ""
 
-#: _kosmorro/dumper.py:295
+#: _kosmorro/dumper.py:298
 msgid "Overview of your sky"
 msgstr ""
 
-#: _kosmorro/dumper.py:303
+#: _kosmorro/dumper.py:306
 msgid ""
 "This document summarizes the ephemerides and the events of {date}. It "
 "aims to help you to prepare your observation session. All the hours are "
 "given in {timezone}."
 msgstr ""
 
-#: _kosmorro/dumper.py:313
+#: _kosmorro/dumper.py:316
 msgid ""
 "Don't forget to check the weather forecast before you go out with your "
 "equipment."
 msgstr ""
 
-#: _kosmorro/dumper.py:320
+#: _kosmorro/dumper.py:323
 msgid "Ephemerides of the day"
 msgstr ""
 
-#: _kosmorro/dumper.py:329
+#: _kosmorro/dumper.py:332
 msgid "hours"
 msgstr ""
 
-#: _kosmorro/dumper.py:336
+#: _kosmorro/dumper.py:339
 msgid "Expected events"
 msgstr ""
 
-#: _kosmorro/dumper.py:480
+#: _kosmorro/dumper.py:484
 msgid ""
 "Building PDF was not possible, because some dependencies are not "
 "installed.\n"
-"Please look at the documentation at http://kosmorro.space for more "
+"Please look at the documentation at https://kosmorro.space for more "
 "information."
 msgstr ""
 
-#: _kosmorro/dumper.py:518
+#: _kosmorro/dumper.py:537
 #, python-format
 msgid ""
 "An error occurred during the compilation of the PDF.\n"
