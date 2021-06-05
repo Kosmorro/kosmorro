@@ -35,7 +35,10 @@ from kosmorrolib.model import ASTERS, MoonPhase
 from .i18n.utils import _, FULL_DATE_FORMAT, SHORT_DATETIME_FORMAT, TIME_FORMAT
 from .i18n import strings
 from .__version__ import __version__ as version
-from .exceptions import CompileError
+from .exceptions import (
+    CompileError,
+    UnavailableFeatureError as KosmorroUnavailableFeatureError,
+)
 from .debug import debug_print
 
 
@@ -474,12 +477,13 @@ class PdfDumper(Dumper):
                 with_colors=self.with_colors,
                 show_graph=self.show_graph,
             )
+
             return self._compile(latex_dumper.to_string())
         except RuntimeError as error:
-            raise UnavailableFeatureError(
+            raise KosmorroUnavailableFeatureError(
                 _(
                     "Building PDF was not possible, because some dependencies are not"
-                    " installed.\nPlease look at the documentation at http://kosmorro.space "
+                    " installed.\nPlease look at the documentation at https://kosmorro.space "
                     "for more information."
                 )
             ) from error
@@ -491,37 +495,48 @@ class PdfDumper(Dumper):
     @staticmethod
     def _compile(latex_input) -> bytes:
         package = str(Path(__file__).parent.absolute()) + "/assets/pdf/kosmorro.sty"
+        timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+        current_dir = (
+            os.getcwd()
+        )  # Keep the current directory to return to it after the PDFLaTeX execution
 
-        with tempfile.TemporaryDirectory() as tempdir:
-            timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
-            shutil.copy(package, tempdir)
+        try:
+            temp_dir = tempfile.mkdtemp()
 
-            with open("%s/%s.tex" % (tempdir, timestamp), "w") as texfile:
-                texfile.write(latex_input)
+            shutil.copy(package, temp_dir)
 
-            os.chdir(tempdir)
+            temp_tex = "%s/%s.tex" % (temp_dir, timestamp)
+
+            with open(temp_tex, "w") as tex_file:
+                tex_file.write(latex_input)
+
+            os.chdir(temp_dir)
             debug_print("LaTeX content:\n%s" % latex_input)
 
-            try:
-                subprocess.run(
-                    ["pdflatex", "-interaction", "nonstopmode", "%s.tex" % timestamp],
-                    capture_output=True,
-                    check=True,
-                )
-            except FileNotFoundError as error:
-                raise RuntimeError("pdflatex is not installed.") from error
-            except subprocess.CalledProcessError as error:
-                with open("/tmp/kosmorro-%s.log" % timestamp, "wb") as file:
-                    file.write(error.stdout)
+            subprocess.run(
+                ["pdflatex", "-interaction", "nonstopmode", "%s.tex" % timestamp],
+                capture_output=True,
+                check=True,
+            )
 
-                raise CompileError(
-                    _(
-                        "An error occurred during the compilation of the PDF.\n"
-                        "Please open an issue at https://github.com/Kosmorro/kosmorro/issues and share "
-                        "the content of the log file at /tmp/kosmorro-%s.log"
-                        % timestamp
-                    )
-                ) from error
+            os.chdir(current_dir)
 
-            with open("%s.pdf" % timestamp, "rb") as pdffile:
+            with open("%s/%s.pdf" % (temp_dir, timestamp), "rb") as pdffile:
                 return bytes(pdffile.read())
+
+        except FileNotFoundError as error:
+            raise KosmorroUnavailableFeatureError(
+                "TeXLive is not installed."
+            ) from error
+
+        except subprocess.CalledProcessError as error:
+            with open("/tmp/kosmorro-%s.log" % timestamp, "wb") as file:
+                file.write(error.stdout)
+
+            raise CompileError(
+                _(
+                    "An error occurred during the compilation of the PDF.\n"
+                    "Please open an issue at https://github.com/Kosmorro/kosmorro/issues and share "
+                    "the content of the log file at /tmp/kosmorro-%s.log" % timestamp
+                )
+            ) from error
