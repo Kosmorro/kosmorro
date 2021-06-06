@@ -483,7 +483,7 @@ class PdfDumper(Dumper):
             raise KosmorroUnavailableFeatureError(
                 _(
                     "Building PDF was not possible, because some dependencies are not"
-                    " installed.\nPlease look at the documentation at https://kosmorro.space "
+                    " installed.\nPlease look at the documentation at https://kosmorro.space/cli/generate-pdf/ "
                     "for more information."
                 )
             ) from error
