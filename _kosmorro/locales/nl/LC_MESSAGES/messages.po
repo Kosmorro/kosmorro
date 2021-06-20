@@ -384,11 +384,6 @@ msgstr "{hours}:{minutes}"
 #~ "output)."
 
 #, fuzzy
-#~| msgid ""
-#~| "Building PDFs was not possible, because some dependencies are not "
-#~| "installed.\n"
-#~| "Please look at the documentation at http://kosmorro.space for more "
-#~| "information."
 #~ msgid ""
 #~ "Building PDF was not possible, because some dependencies are not "
 #~ "installed.\n"
