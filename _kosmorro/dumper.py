@@ -35,7 +35,10 @@ from kosmorrolib.model import ASTERS, MoonPhase
 from .i18n.utils import _, FULL_DATE_FORMAT, SHORT_DATETIME_FORMAT, TIME_FORMAT
 from .i18n import strings
 from .__version__ import __version__ as version
-from .exceptions import CompileError
+from .exceptions import (
+    CompileError,
+    UnavailableFeatureError as KosmorroUnavailableFeatureError,
+)
 from .debug import debug_print
 
 
@@ -146,7 +149,11 @@ class TextDumper(Dumper):
         data = []
 
         for ephemeris in self.ephemerides:
-            name = self.style(strings.from_object(ephemeris.object.identifier), "th")
+            object_name = strings.from_object(ephemeris.object.identifier)
+            if object_name is None:
+                continue
+
+            name = self.style(object_name, "th")
 
             if ephemeris.rise_time is not None:
                 time_fmt = (
@@ -194,16 +201,10 @@ class TextDumper(Dumper):
         )
 
     def get_events(self, events: [Event]) -> str:
-        def get_event_description(ev: Event):
-            description = strings.from_event(ev)
-
-            if ev.details is not None:
-                description += " ({:s})".format(ev.details)
-            return description
-
         data = []
 
         for event in events:
+            description = strings.from_event(event)
             time_fmt = (
                 TIME_FORMAT
                 if event.start_time.day == self.date.day
@@ -212,7 +213,7 @@ class TextDumper(Dumper):
             data.append(
                 [
                     self.style(event.start_time.strftime(time_fmt), "th"),
-                    get_event_description(event),
+                    description,
                 ]
             )
 
@@ -337,9 +338,13 @@ class _LatexDumper(Dumper):
         document = document.replace("+++EVENTS+++", self._make_events())
 
         for aster in ASTERS:
+            object_name = strings.from_object(aster.identifier)
+            if object_name is None:
+                continue
+
             document = document.replace(
                 "+++ASTER_%s+++" % aster.skyfield_name.upper().split(" ")[0],
-                strings.from_object(aster.identifier),
+                object_name,
             )
 
         return document
@@ -381,15 +386,17 @@ class _LatexDumper(Dumper):
                     aster_set = "-"
 
                 if not self.show_graph:
-                    latex.append(
-                        r"\object{%s}{%s}{%s}{%s}"
-                        % (
-                            strings.from_object(ephemeris.object.identifier),
-                            aster_rise,
-                            aster_culmination,
-                            aster_set,
+                    object_name = strings.from_object(ephemeris.object.identifier)
+                    if object_name is not None:
+                        latex.append(
+                            r"\object{%s}{%s}{%s}{%s}"
+                            % (
+                                object_name,
+                                aster_rise,
+                                aster_culmination,
+                                aster_set,
+                            )
                         )
-                    )
                 else:
                     if ephemeris.rise_time is not None:
                         raise_hour = ephemeris.rise_time.hour
@@ -435,9 +442,13 @@ class _LatexDumper(Dumper):
         latex = []
 
         for event in self.events:
+            event_name = strings.from_event(event)
+            if event_name is None:
+                continue
+
             latex.append(
                 r"\event{%s}{%s}"
-                % (event.start_time.strftime(TIME_FORMAT), strings.from_event(event))
+                % (event.start_time.strftime(TIME_FORMAT), event_name)
             )
 
         return "".join(latex)
@@ -474,12 +485,13 @@ class PdfDumper(Dumper):
                 with_colors=self.with_colors,
                 show_graph=self.show_graph,
             )
+
             return self._compile(latex_dumper.to_string())
         except RuntimeError as error:
-            raise UnavailableFeatureError(
+            raise KosmorroUnavailableFeatureError(
                 _(
                     "Building PDF was not possible, because some dependencies are not"
-                    " installed.\nPlease look at the documentation at http://kosmorro.space "
+                    " installed.\nPlease look at the documentation at https://kosmorro.space/cli/generate-pdf/ "
                     "for more information."
                 )
             ) from error
@@ -491,37 +503,48 @@ class PdfDumper(Dumper):
     @staticmethod
     def _compile(latex_input) -> bytes:
         package = str(Path(__file__).parent.absolute()) + "/assets/pdf/kosmorro.sty"
+        timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+        current_dir = (
+            os.getcwd()
+        )  # Keep the current directory to return to it after the PDFLaTeX execution
 
-        with tempfile.TemporaryDirectory() as tempdir:
-            timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
-            shutil.copy(package, tempdir)
+        try:
+            temp_dir = tempfile.mkdtemp()
 
-            with open("%s/%s.tex" % (tempdir, timestamp), "w") as texfile:
-                texfile.write(latex_input)
+            shutil.copy(package, temp_dir)
 
-            os.chdir(tempdir)
+            temp_tex = "%s/%s.tex" % (temp_dir, timestamp)
+
+            with open(temp_tex, "w") as tex_file:
+                tex_file.write(latex_input)
+
+            os.chdir(temp_dir)
             debug_print("LaTeX content:\n%s" % latex_input)
 
-            try:
-                subprocess.run(
-                    ["pdflatex", "-interaction", "nonstopmode", "%s.tex" % timestamp],
-                    capture_output=True,
-                    check=True,
-                )
-            except FileNotFoundError as error:
-                raise RuntimeError("pdflatex is not installed.") from error
-            except subprocess.CalledProcessError as error:
-                with open("/tmp/kosmorro-%s.log" % timestamp, "wb") as file:
-                    file.write(error.stdout)
+            subprocess.run(
+                ["pdflatex", "-interaction", "nonstopmode", "%s.tex" % timestamp],
+                capture_output=True,
+                check=True,
+            )
 
-                raise CompileError(
-                    _(
-                        "An error occurred during the compilation of the PDF.\n"
-                        "Please open an issue at https://github.com/Kosmorro/kosmorro/issues and share "
-                        "the content of the log file at /tmp/kosmorro-%s.log"
-                        % timestamp
-                    )
-                ) from error
+            os.chdir(current_dir)
 
-            with open("%s.pdf" % timestamp, "rb") as pdffile:
+            with open("%s/%s.pdf" % (temp_dir, timestamp), "rb") as pdffile:
                 return bytes(pdffile.read())
+
+        except FileNotFoundError as error:
+            raise KosmorroUnavailableFeatureError(
+                "TeXLive is not installed."
+            ) from error
+
+        except subprocess.CalledProcessError as error:
+            with open("/tmp/kosmorro-%s.log" % timestamp, "wb") as file:
+                file.write(error.stdout)
+
+            raise CompileError(
+                _(
+                    "An error occurred during the compilation of the PDF.\n"
+                    "Please open an issue at https://github.com/Kosmorro/kosmorro/issues and share "
+                    "the content of the log file at /tmp/kosmorro-%s.log" % timestamp
+                )
+            ) from error
