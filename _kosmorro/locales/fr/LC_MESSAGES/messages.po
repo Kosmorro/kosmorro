@@ -31,52 +31,57 @@ msgid ""
 msgstr ""
 "La date {date} ne répond pas au format YYYY-MM-DD ou au format relatif."
 
-#: _kosmorro/dumper.py:119
+#: _kosmorro/dumper.py:119 _kosmorro/dumper.py:111
 msgid "Expected events:"
 msgstr "Événements prévus :"
 
-#: _kosmorro/dumper.py:126
+#: _kosmorro/dumper.py:126 _kosmorro/dumper.py:118
 msgid "Note: All the hours are given in UTC."
 msgstr "Note : toutes les heures sont en temps universel (UTC)."
 
-#: _kosmorro/dumper.py:133
+#: _kosmorro/dumper.py:133 _kosmorro/dumper.py:125
 msgid "Note: All the hours are given in the UTC{offset} timezone."
 msgstr ""
 "Note : toutes les heures sont données dans le fuseau horaire UTC{offset}."
 
-#: _kosmorro/dumper.py:201 _kosmorro/dumper.py:331
+#: _kosmorro/dumper.py:201 _kosmorro/dumper.py:331 _kosmorro/dumper.py:193
+#: _kosmorro/dumper.py:323
 msgid "Object"
 msgstr "Objet"
 
-#: _kosmorro/dumper.py:202 _kosmorro/dumper.py:332
+#: _kosmorro/dumper.py:202 _kosmorro/dumper.py:332 _kosmorro/dumper.py:194
+#: _kosmorro/dumper.py:324
 msgid "Rise time"
 msgstr "Heure de lever"
 
-#: _kosmorro/dumper.py:203 _kosmorro/dumper.py:334
+#: _kosmorro/dumper.py:203 _kosmorro/dumper.py:334 _kosmorro/dumper.py:195
+#: _kosmorro/dumper.py:326
 msgid "Culmination time"
 msgstr "Heure de culmination"
 
-#: _kosmorro/dumper.py:204 _kosmorro/dumper.py:336
+#: _kosmorro/dumper.py:204 _kosmorro/dumper.py:336 _kosmorro/dumper.py:196
+#: _kosmorro/dumper.py:328
 msgid "Set time"
 msgstr "Heure de coucher"
 
-#: _kosmorro/dumper.py:232
+#: _kosmorro/dumper.py:232 _kosmorro/dumper.py:224
 msgid "Moon phase is unavailable for this date."
 msgstr "La phase de la Lune n'est pas disponible pour cette date."
 
-#: _kosmorro/dumper.py:236 _kosmorro/dumper.py:340
+#: _kosmorro/dumper.py:236 _kosmorro/dumper.py:340 _kosmorro/dumper.py:228
+#: _kosmorro/dumper.py:332
 msgid "Moon phase:"
 msgstr "Phase de la Lune :"
 
-#: _kosmorro/dumper.py:240
+#: _kosmorro/dumper.py:240 _kosmorro/dumper.py:232
 msgid "{next_moon_phase} on {next_moon_phase_date} at {next_moon_phase_time}"
 msgstr "{next_moon_phase} le {next_moon_phase_date} à {next_moon_phase_time}"
 
-#: _kosmorro/dumper.py:304
+#: _kosmorro/dumper.py:304 _kosmorro/dumper.py:296
 msgid "Overview of your sky"
 msgstr "Résumé de votre ciel"
 
-#: _kosmorro/dumper.py:312
+#: _kosmorro/dumper.py:312 _kosmorro/dumper.py:304
 msgid ""
 "This document summarizes the ephemerides and the events of {date}. It aims "
 "to help you to prepare your observation session. All the hours are given in "
@@ -86,7 +91,7 @@ msgstr ""
 "{date}. Son but est de vous aider à préparer votre soirée d'observation. "
 "Toutes les heures sont données en {timezone}."
 
-#: _kosmorro/dumper.py:322
+#: _kosmorro/dumper.py:322 _kosmorro/dumper.py:314
 msgid ""
 "Don't forget to check the weather forecast before you go out with your "
 "equipment."
@@ -94,15 +99,15 @@ msgstr ""
 "N’oubliez pas de vous assurer que les conditions météo sont favorables avant "
 "de sortir votre matériel d’observation."
 
-#: _kosmorro/dumper.py:329
+#: _kosmorro/dumper.py:329 _kosmorro/dumper.py:321
 msgid "Ephemerides of the day"
 msgstr "Éphémérides du jour"
 
-#: _kosmorro/dumper.py:338
+#: _kosmorro/dumper.py:338 _kosmorro/dumper.py:330
 msgid "hours"
 msgstr "heures"
 
-#: _kosmorro/dumper.py:345
+#: _kosmorro/dumper.py:345 _kosmorro/dumper.py:337
 msgid "Expected events"
 msgstr "Événements prévus"
 
@@ -117,7 +122,7 @@ msgstr ""
 "Veuillez vous référer à la documentation sur https://kosmorro.space/cli/"
 "generate-pdf/ pour de plus amples informations."
 
-#: _kosmorro/dumper.py:552
+#: _kosmorro/dumper.py:552 _kosmorro/dumper.py:545
 #, python-format
 msgid ""
 "An error occurred during the compilation of the PDF.\n"
@@ -285,90 +290,90 @@ msgstr "%s et %s sont en conjonction"
 msgid "%s occults %s"
 msgstr "%s occulte %s"
 
-#: _kosmorro/i18n/strings.py:14
+#: _kosmorro/i18n/strings.py:14 _kosmorro/i18n/strings.py:13
 #, python-format
 msgid "Elongation of %s is maximal"
 msgstr "L’élongation de %s est maximale"
 
-#: _kosmorro/i18n/strings.py:21
+#: _kosmorro/i18n/strings.py:21 _kosmorro/i18n/strings.py:14
 #, python-format
 msgid "%s is at its perigee"
 msgstr "%s est à son périgée"
 
-#: _kosmorro/i18n/strings.py:22
+#: _kosmorro/i18n/strings.py:22 _kosmorro/i18n/strings.py:15
 #, python-format
 msgid "%s is at its apogee"
 msgstr "%s est à son apogée"
 
-#: _kosmorro/i18n/strings.py:38
+#: _kosmorro/i18n/strings.py:38 _kosmorro/i18n/strings.py:31
 msgid "New Moon"
 msgstr "Nouvelle lune"
 
-#: _kosmorro/i18n/strings.py:39
+#: _kosmorro/i18n/strings.py:39 _kosmorro/i18n/strings.py:32
 msgid "Waxing Crescent"
 msgstr "Premier croissant"
 
-#: _kosmorro/i18n/strings.py:40
+#: _kosmorro/i18n/strings.py:40 _kosmorro/i18n/strings.py:33
 msgid "First Quarter"
 msgstr "Premier quartier"
 
-#: _kosmorro/i18n/strings.py:41
+#: _kosmorro/i18n/strings.py:41 _kosmorro/i18n/strings.py:34
 msgid "Waxing Gibbous"
 msgstr "Gibbeuse croissante"
 
-#: _kosmorro/i18n/strings.py:42
+#: _kosmorro/i18n/strings.py:42 _kosmorro/i18n/strings.py:35
 msgid "Full Moon"
 msgstr "Pleine lune"
 
-#: _kosmorro/i18n/strings.py:43
+#: _kosmorro/i18n/strings.py:43 _kosmorro/i18n/strings.py:36
 msgid "Waning Gibbous"
 msgstr "Gibbeuse décroissante"
 
-#: _kosmorro/i18n/strings.py:44
+#: _kosmorro/i18n/strings.py:44 _kosmorro/i18n/strings.py:37
 msgid "Last Quarter"
 msgstr "Dernier quartier"
 
-#: _kosmorro/i18n/strings.py:45
+#: _kosmorro/i18n/strings.py:45 _kosmorro/i18n/strings.py:38
 msgid "Waning Crescent"
 msgstr "Dernier croissant"
 
-#: _kosmorro/i18n/strings.py:56
+#: _kosmorro/i18n/strings.py:56 _kosmorro/i18n/strings.py:49
 msgid "Sun"
 msgstr "Soleil"
 
-#: _kosmorro/i18n/strings.py:57
+#: _kosmorro/i18n/strings.py:57 _kosmorro/i18n/strings.py:50
 msgid "Moon"
 msgstr "Lune"
 
-#: _kosmorro/i18n/strings.py:58
+#: _kosmorro/i18n/strings.py:58 _kosmorro/i18n/strings.py:51
 msgid "Mercury"
 msgstr "Mercure"
 
-#: _kosmorro/i18n/strings.py:59
+#: _kosmorro/i18n/strings.py:59 _kosmorro/i18n/strings.py:52
 msgid "Venus"
 msgstr "Vénus"
 
-#: _kosmorro/i18n/strings.py:60
+#: _kosmorro/i18n/strings.py:60 _kosmorro/i18n/strings.py:53
 msgid "Mars"
 msgstr "Mars"
 
-#: _kosmorro/i18n/strings.py:61
+#: _kosmorro/i18n/strings.py:61 _kosmorro/i18n/strings.py:54
 msgid "Jupiter"
 msgstr "Jupiter"
 
-#: _kosmorro/i18n/strings.py:62
+#: _kosmorro/i18n/strings.py:62 _kosmorro/i18n/strings.py:55
 msgid "Saturn"
 msgstr "Saturne"
 
-#: _kosmorro/i18n/strings.py:63
+#: _kosmorro/i18n/strings.py:63 _kosmorro/i18n/strings.py:56
 msgid "Uranus"
 msgstr "Uranus"
 
-#: _kosmorro/i18n/strings.py:64
+#: _kosmorro/i18n/strings.py:64 _kosmorro/i18n/strings.py:57
 msgid "Neptune"
 msgstr "Neptune"
 
-#: _kosmorro/i18n/strings.py:65
+#: _kosmorro/i18n/strings.py:65 _kosmorro/i18n/strings.py:58
 msgid "Pluto"
 msgstr "Pluton"
 
@@ -403,3 +408,14 @@ msgstr "{hours}h{minutes}"
 #~ msgid "Selected output format needs an output file (--output)."
 #~ msgstr ""
 #~ "Le format de sortie choisi requiert un fichier de sortie (--output)."
+
+#~ msgid ""
+#~ "Building PDF was not possible, because some dependencies are not "
+#~ "installed.\n"
+#~ "Please look at the documentation at http://kosmorro.space for more "
+#~ "information."
+#~ msgstr ""
+#~ "La génération du document PDF n'est pas possible, car certaines "
+#~ "dépendances ne sont pas installées.\n"
+#~ "Veuillez vous référer à la documentation sur http://kosmorro.space pour "
+#~ "de plus amples informations."

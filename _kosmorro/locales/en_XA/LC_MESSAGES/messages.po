@@ -34,59 +34,64 @@ msgstr ""
 "~~~ Translatable ~~~The date {date} does not match the required YYYY-MM-DD "
 "format or the offset format.~~~ End Translatable ~~~"
 
-#: _kosmorro/dumper.py:119
+#: _kosmorro/dumper.py:119 _kosmorro/dumper.py:111
 msgid "Expected events:"
 msgstr "~~~ Translatable ~~~Expected events:~~~ End Translatable ~~~"
 
-#: _kosmorro/dumper.py:126
+#: _kosmorro/dumper.py:126 _kosmorro/dumper.py:118
 msgid "Note: All the hours are given in UTC."
 msgstr ""
 "~~~ Translatable ~~~Note: All the hours are given in UTC.~~~ End "
 "Translatable ~~~"
 
-#: _kosmorro/dumper.py:133
+#: _kosmorro/dumper.py:133 _kosmorro/dumper.py:125
 msgid "Note: All the hours are given in the UTC{offset} timezone."
 msgstr ""
 "~~~ Translatable ~~~Note: All the hours are given in the UTC{offset} "
 "timezone.~~~ End Translatable ~~~"
 
-#: _kosmorro/dumper.py:201 _kosmorro/dumper.py:331
+#: _kosmorro/dumper.py:201 _kosmorro/dumper.py:331 _kosmorro/dumper.py:193
+#: _kosmorro/dumper.py:323
 msgid "Object"
 msgstr "~~~ Translatable ~~~Object~~~ End Translatable ~~~"
 
-#: _kosmorro/dumper.py:202 _kosmorro/dumper.py:332
+#: _kosmorro/dumper.py:202 _kosmorro/dumper.py:332 _kosmorro/dumper.py:194
+#: _kosmorro/dumper.py:324
 msgid "Rise time"
 msgstr "~~~ Translatable ~~~Rise time~~~ End Translatable ~~~"
 
-#: _kosmorro/dumper.py:203 _kosmorro/dumper.py:334
+#: _kosmorro/dumper.py:203 _kosmorro/dumper.py:334 _kosmorro/dumper.py:195
+#: _kosmorro/dumper.py:326
 msgid "Culmination time"
 msgstr "~~~ Translatable ~~~Culmination time~~~ End Translatable ~~~"
 
-#: _kosmorro/dumper.py:204 _kosmorro/dumper.py:336
+#: _kosmorro/dumper.py:204 _kosmorro/dumper.py:336 _kosmorro/dumper.py:196
+#: _kosmorro/dumper.py:328
 msgid "Set time"
 msgstr "~~~ Translatable ~~~Set time~~~ End Translatable ~~~"
 
-#: _kosmorro/dumper.py:232
+#: _kosmorro/dumper.py:232 _kosmorro/dumper.py:224
 msgid "Moon phase is unavailable for this date."
 msgstr ""
 "~~~ Translatable ~~~Moon phase is unavailable for this date.~~~ End "
 "Translatable ~~~"
 
-#: _kosmorro/dumper.py:236 _kosmorro/dumper.py:340
+#: _kosmorro/dumper.py:236 _kosmorro/dumper.py:340 _kosmorro/dumper.py:228
+#: _kosmorro/dumper.py:332
 msgid "Moon phase:"
 msgstr "~~~ Translatable ~~~Moon phase:~~~ End Translatable ~~~"
 
-#: _kosmorro/dumper.py:240
+#: _kosmorro/dumper.py:240 _kosmorro/dumper.py:232
 msgid "{next_moon_phase} on {next_moon_phase_date} at {next_moon_phase_time}"
 msgstr ""
 "~~~ Translatable ~~~{next_moon_phase} on {next_moon_phase_date} at "
 "{next_moon_phase_time}~~~ End Translatable ~~~"
 
-#: _kosmorro/dumper.py:304
+#: _kosmorro/dumper.py:304 _kosmorro/dumper.py:296
 msgid "Overview of your sky"
 msgstr "~~~ Translatable ~~~Overview of your sky~~~ End Translatable ~~~"
 
-#: _kosmorro/dumper.py:312
+#: _kosmorro/dumper.py:312 _kosmorro/dumper.py:304
 msgid ""
 "This document summarizes the ephemerides and the events of {date}. It aims "
 "to help you to prepare your observation session. All the hours are given in "
@@ -96,7 +101,7 @@ msgstr ""
 "of {date}. It aims to help you to prepare your observation session. All the "
 "hours are given in {timezone}.~~~ End Translatable ~~~"
 
-#: _kosmorro/dumper.py:322
+#: _kosmorro/dumper.py:322 _kosmorro/dumper.py:314
 msgid ""
 "Don't forget to check the weather forecast before you go out with your "
 "equipment."
@@ -104,15 +109,15 @@ msgstr ""
 "~~~ Translatable ~~~Don't forget to check the weather forecast before you go "
 "out with your equipment.~~~ End Translatable ~~~"
 
-#: _kosmorro/dumper.py:329
+#: _kosmorro/dumper.py:329 _kosmorro/dumper.py:321
 msgid "Ephemerides of the day"
 msgstr "~~~ Translatable ~~~Ephemerides of the day~~~ End Translatable ~~~"
 
-#: _kosmorro/dumper.py:338
+#: _kosmorro/dumper.py:338 _kosmorro/dumper.py:330
 msgid "hours"
 msgstr "~~~ Translatable ~~~hours~~~ End Translatable ~~~"
 
-#: _kosmorro/dumper.py:345
+#: _kosmorro/dumper.py:345 _kosmorro/dumper.py:337
 msgid "Expected events"
 msgstr "~~~ Translatable ~~~Expected events~~~ End Translatable ~~~"
 
@@ -127,7 +132,7 @@ msgstr ""
 "Please look at the documentation at https://kosmorro.space/cli/generate-pdf/ "
 "for more information.~~~ End Translatable ~~~"
 
-#: _kosmorro/dumper.py:552
+#: _kosmorro/dumper.py:552 _kosmorro/dumper.py:545
 #, python-format
 msgid ""
 "An error occurred during the compilation of the PDF.\n"
@@ -313,91 +318,91 @@ msgstr ""
 msgid "%s occults %s"
 msgstr "~~~ Translatable ~~~%s occults %s~~~ End Translatable ~~~"
 
-#: _kosmorro/i18n/strings.py:14
+#: _kosmorro/i18n/strings.py:14 _kosmorro/i18n/strings.py:13
 #, python-format
 msgid "Elongation of %s is maximal"
 msgstr ""
 "~~~ Translatable ~~~Elongation of %s is maximal~~~ End Translatable ~~~"
 
-#: _kosmorro/i18n/strings.py:21
+#: _kosmorro/i18n/strings.py:21 _kosmorro/i18n/strings.py:14
 #, python-format
 msgid "%s is at its perigee"
 msgstr "~~~ Translatable ~~~%s is at its perigee~~~ End Translatable ~~~"
 
-#: _kosmorro/i18n/strings.py:22
+#: _kosmorro/i18n/strings.py:22 _kosmorro/i18n/strings.py:15
 #, python-format
 msgid "%s is at its apogee"
 msgstr "~~~ Translatable ~~~%s is at its apogee~~~ End Translatable ~~~"
 
-#: _kosmorro/i18n/strings.py:38
+#: _kosmorro/i18n/strings.py:38 _kosmorro/i18n/strings.py:31
 msgid "New Moon"
 msgstr "~~~ Translatable ~~~New Moon~~~ End Translatable ~~~"
 
-#: _kosmorro/i18n/strings.py:39
+#: _kosmorro/i18n/strings.py:39 _kosmorro/i18n/strings.py:32
 msgid "Waxing Crescent"
 msgstr "~~~ Translatable ~~~Waxing Crescent~~~ End Translatable ~~~"
 
-#: _kosmorro/i18n/strings.py:40
+#: _kosmorro/i18n/strings.py:40 _kosmorro/i18n/strings.py:33
 msgid "First Quarter"
 msgstr "~~~ Translatable ~~~First Quarter~~~ End Translatable ~~~"
 
-#: _kosmorro/i18n/strings.py:41
+#: _kosmorro/i18n/strings.py:41 _kosmorro/i18n/strings.py:34
 msgid "Waxing Gibbous"
 msgstr "~~~ Translatable ~~~Waxing Gibbous~~~ End Translatable ~~~"
 
-#: _kosmorro/i18n/strings.py:42
+#: _kosmorro/i18n/strings.py:42 _kosmorro/i18n/strings.py:35
 msgid "Full Moon"
 msgstr "~~~ Translatable ~~~Full Moon~~~ End Translatable ~~~"
 
-#: _kosmorro/i18n/strings.py:43
+#: _kosmorro/i18n/strings.py:43 _kosmorro/i18n/strings.py:36
 msgid "Waning Gibbous"
 msgstr "~~~ Translatable ~~~Waning Gibbous~~~ End Translatable ~~~"
 
-#: _kosmorro/i18n/strings.py:44
+#: _kosmorro/i18n/strings.py:44 _kosmorro/i18n/strings.py:37
 msgid "Last Quarter"
 msgstr "~~~ Translatable ~~~Last Quarter~~~ End Translatable ~~~"
 
-#: _kosmorro/i18n/strings.py:45
+#: _kosmorro/i18n/strings.py:45 _kosmorro/i18n/strings.py:38
 msgid "Waning Crescent"
 msgstr "~~~ Translatable ~~~Waning Crescent~~~ End Translatable ~~~"
 
-#: _kosmorro/i18n/strings.py:56
+#: _kosmorro/i18n/strings.py:56 _kosmorro/i18n/strings.py:49
 msgid "Sun"
 msgstr "~~~ Translatable ~~~Sun~~~ End Translatable ~~~"
 
-#: _kosmorro/i18n/strings.py:57
+#: _kosmorro/i18n/strings.py:57 _kosmorro/i18n/strings.py:50
 msgid "Moon"
 msgstr "~~~ Translatable ~~~Moon~~~ End Translatable ~~~"
 
-#: _kosmorro/i18n/strings.py:58
+#: _kosmorro/i18n/strings.py:58 _kosmorro/i18n/strings.py:51
 msgid "Mercury"
 msgstr "~~~ Translatable ~~~Mercury~~~ End Translatable ~~~"
 
-#: _kosmorro/i18n/strings.py:59
+#: _kosmorro/i18n/strings.py:59 _kosmorro/i18n/strings.py:52
 msgid "Venus"
 msgstr "~~~ Translatable ~~~Venus~~~ End Translatable ~~~"
 
-#: _kosmorro/i18n/strings.py:60
+#: _kosmorro/i18n/strings.py:60 _kosmorro/i18n/strings.py:53
 msgid "Mars"
 msgstr "~~~ Translatable ~~~Mars~~~ End Translatable ~~~"
 
-#: _kosmorro/i18n/strings.py:61
+#: _kosmorro/i18n/strings.py:61 _kosmorro/i18n/strings.py:54
 msgid "Jupiter"
 msgstr "~~~ Translatable ~~~Jupiter~~~ End Translatable ~~~"
 
-#: _kosmorro/i18n/strings.py:62
+#: _kosmorro/i18n/strings.py:62 _kosmorro/i18n/strings.py:55
 msgid "Saturn"
 msgstr "~~~ Translatable ~~~Saturn~~~ End Translatable ~~~"
 
-#: _kosmorro/i18n/strings.py:63
+#: _kosmorro/i18n/strings.py:63 _kosmorro/i18n/strings.py:56
 msgid "Uranus"
 msgstr "~~~ Translatable ~~~Uranus~~~ End Translatable ~~~"
 
-#: _kosmorro/i18n/strings.py:64
+#: _kosmorro/i18n/strings.py:64 _kosmorro/i18n/strings.py:57
 msgid "Neptune"
 msgstr "~~~ Translatable ~~~Neptune~~~ End Translatable ~~~"
 
-#: _kosmorro/i18n/strings.py:65
+#: _kosmorro/i18n/strings.py:65 _kosmorro/i18n/strings.py:58
 msgid "Pluto"
 msgstr "~~~ Translatable ~~~Pluto~~~ End Translatable ~~~"
 
@@ -427,3 +432,14 @@ msgstr "~~~ Translatable ~~~{hours}:{minutes}~~~ End Translatable ~~~"
 
 #~ msgid "Unknown object"
 #~ msgstr "~~~ Translatable ~~~Unknown object~~~ End Translatable ~~~"
+
+#~ msgid ""
+#~ "Building PDF was not possible, because some dependencies are not "
+#~ "installed.\n"
+#~ "Please look at the documentation at http://kosmorro.space for more "
+#~ "information."
+#~ msgstr ""
+#~ "~~~ Translatable ~~~Building PDF was not possible, because some "
+#~ "dependencies are not installed.\n"
+#~ "Please look at the documentation at http://kosmorro.space for more "
+#~ "information.~~~ End Translatable ~~~"
