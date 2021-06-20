@@ -149,7 +149,11 @@ class TextDumper(Dumper):
         data = []
 
         for ephemeris in self.ephemerides:
-            name = self.style(strings.from_object(ephemeris.object.identifier), "th")
+            object_name = strings.from_object(ephemeris.object.identifier)
+            if object_name is None:
+                continue
+
+            name = self.style(object_name, "th")
 
             if ephemeris.rise_time is not None:
                 time_fmt = (
@@ -197,16 +201,10 @@ class TextDumper(Dumper):
         )
 
     def get_events(self, events: [Event]) -> str:
-        def get_event_description(ev: Event):
-            description = strings.from_event(ev)
-
-            if ev.details is not None:
-                description += " ({:s})".format(ev.details)
-            return description
-
         data = []
 
         for event in events:
+            description = strings.from_event(event)
             time_fmt = (
                 TIME_FORMAT
                 if event.start_time.day == self.date.day
@@ -215,7 +213,7 @@ class TextDumper(Dumper):
             data.append(
                 [
                     self.style(event.start_time.strftime(time_fmt), "th"),
-                    get_event_description(event),
+                    description,
                 ]
             )
 
@@ -340,9 +338,13 @@ class _LatexDumper(Dumper):
         document = document.replace("+++EVENTS+++", self._make_events())
 
         for aster in ASTERS:
+            object_name = strings.from_object(aster.identifier)
+            if object_name is None:
+                continue
+
             document = document.replace(
                 "+++ASTER_%s+++" % aster.skyfield_name.upper().split(" ")[0],
-                strings.from_object(aster.identifier),
+                object_name,
             )
 
         return document
@@ -384,15 +386,17 @@ class _LatexDumper(Dumper):
                     aster_set = "-"
 
                 if not self.show_graph:
-                    latex.append(
-                        r"\object{%s}{%s}{%s}{%s}"
-                        % (
-                            strings.from_object(ephemeris.object.identifier),
-                            aster_rise,
-                            aster_culmination,
-                            aster_set,
+                    object_name = strings.from_object(ephemeris.object.identifier)
+                    if object_name is not None:
+                        latex.append(
+                            r"\object{%s}{%s}{%s}{%s}"
+                            % (
+                                object_name,
+                                aster_rise,
+                                aster_culmination,
+                                aster_set,
+                            )
                         )
-                    )
                 else:
                     if ephemeris.rise_time is not None:
                         raise_hour = ephemeris.rise_time.hour
@@ -438,9 +442,13 @@ class _LatexDumper(Dumper):
         latex = []
 
         for event in self.events:
+            event_name = strings.from_event(event)
+            if event_name is None:
+                continue
+
             latex.append(
                 r"\event{%s}{%s}"
-                % (event.start_time.strftime(TIME_FORMAT), strings.from_event(event))
+                % (event.start_time.strftime(TIME_FORMAT), event_name)
             )
 
         return "".join(latex)
