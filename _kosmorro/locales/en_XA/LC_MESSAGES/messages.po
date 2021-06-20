@@ -6,9 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: kosmorro 0.9.0\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"Report-Msgid-Bugs-To: jerome@deuchnord.fr\n"
 "POT-Creation-Date: 2021-06-20 15:59+0200\n"
-"PO-Revision-Date: 2021-05-20 08:19+0000\n"
+"PO-Revision-Date: 2021-06-20 14:10+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: English (XA pseudolocale) <https://hosted.weblate.org/"
 "projects/kosmorro/cli/en_XA/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.7\n"
 "Generated-By: Babel 2.9.1\n"
 
 #: _kosmorro/date.py:17
@@ -117,12 +117,6 @@ msgid "Expected events"
 msgstr "~~~ Translatable ~~~Expected events~~~ End Translatable ~~~"
 
 #: _kosmorro/dumper.py:492
-#, fuzzy
-#| msgid ""
-#| "Building PDF was not possible, because some dependencies are not "
-#| "installed.\n"
-#| "Please look at the documentation at http://kosmorro.space for more "
-#| "information."
 msgid ""
 "Building PDF was not possible, because some dependencies are not installed.\n"
 "Please look at the documentation at https://kosmorro.space/cli/generate-pdf/ "
@@ -130,8 +124,8 @@ msgid ""
 msgstr ""
 "~~~ Translatable ~~~Building PDF was not possible, because some dependencies "
 "are not installed.\n"
-"Please look at the documentation at http://kosmorro.space for more "
-"information.~~~ End Translatable ~~~"
+"Please look at the documentation at https://kosmorro.space/cli/generate-pdf/ "
+"for more information.~~~ End Translatable ~~~"
 
 #: _kosmorro/dumper.py:545
 #, python-format
