@@ -13,4 +13,3 @@ def debug_print(what, force: bool = False):
         print_exception(type(what), value=what, tb=None)
     else:
         print("[DEBUG] %s" % what)
-
