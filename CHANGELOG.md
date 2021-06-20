@@ -1,3 +1,13 @@
+# [v0.10.1](https://github.com/Kosmorro/kosmorro/compare/v0.10.0...v0.10.1) (2021-06-20)
+
+
+### Bug Fixes
+
+* enhance forward compatibility with Kosmorrolib ([#189](https://github.com/Kosmorro/kosmorro/issues/189)) ([1fe90d2](https://github.com/Kosmorro/kosmorro/commit/1fe90d2603edbe68d7a119a0a7fb3649b55abe68))
+* **PDF export:** fix the failure on PDF saving ([#186](https://github.com/Kosmorro/kosmorro/issues/186)) ([8d71b61](https://github.com/Kosmorro/kosmorro/commit/8d71b611e036c7cbb39683054dd6485c774076f7))
+
+
+
 # [v0.10.0](https://github.com/Kosmorro/kosmorro/compare/v0.9.0...v0.10.0) (2021-05-30)
 
 
