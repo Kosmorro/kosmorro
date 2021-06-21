@@ -111,7 +111,7 @@ msgstr "Uhren"
 msgid "Expected events"
 msgstr "Erwartete Ereignisse"
 
-#: _kosmorro/dumper.py:499
+#: _kosmorro/dumper.py:499 _kosmorro/dumper.py:492
 msgid ""
 "Building PDF was not possible, because some dependencies are not installed.\n"
 "Please look at the documentation at https://kosmorro.space/cli/generate-pdf/ "
