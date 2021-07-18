@@ -13,6 +13,7 @@ from termcolor import colored
 
 from . import dumper, environment, debug
 from .date import parse_date
+from .geolocation import get_position
 from .__version__ import __version__ as kosmorro_version
 from .exceptions import UnavailableFeatureError, OutOfRangeDateError as DateRangeError
 from _kosmorro.i18n.utils import _, SHORT_DATE_FORMAT
@@ -34,12 +35,7 @@ def main():
         print(colored(error.args[0], color="red", attrs=["bold"]))
         return -1
 
-    position = None
-
-    if args.latitude is not None or args.longitude is not None:
-        position = Position(args.latitude, args.longitude)
-    elif env_vars.latitude is not None and env_vars.longitude is not None:
-        position = Position(float(env_vars.latitude), float(env_vars.longitude))
+    position = get_position(args.position) if args.position not in [None, ""] else None
 
     if output_format == "pdf":
         print(
@@ -247,23 +243,13 @@ def get_args(output_formats: [str]):
         help=_("The format to output the information to"),
     )
     parser.add_argument(
-        "--latitude",
-        "-lat",
-        type=float,
+        "--position",
+        "-p",
+        type=str,
         default=None,
         help=_(
-            "The observer's latitude on Earth. Can also be set in the KOSMORRO_LATITUDE environment "
-            "variable."
-        ),
-    )
-    parser.add_argument(
-        "--longitude",
-        "-lon",
-        type=float,
-        default=None,
-        help=_(
-            "The observer's longitude on Earth. Can also be set in the KOSMORRO_LONGITUDE "
-            "environment variable."
+            'The observer\'s position on Earth, in the "{latitude},{longitude}" format.'
+            "Can also be set in the KOSMORRO_POSITION environment variable."
         ),
     )
     parser.add_argument(
