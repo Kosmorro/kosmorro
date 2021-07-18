@@ -31,6 +31,7 @@ setup(
         "tabulate",
         "termcolor",
         "python-dateutil",
+        "openlocationcode",
     ],
     classifiers=[
         "Development Status :: 3 - Alpha",

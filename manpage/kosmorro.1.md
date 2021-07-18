@@ -16,11 +16,8 @@
 `--clear-cache`  
     delete all the files Kosmorro stored in the cache
 
-`--latitude=`_LATITUDE_, `-lat` _LATITUDE_  
-    the observer's latitude on Earth
-
-`--longitude=`_LONGITUDE_, `-lon` _LONGITUDE_  
-    the observer's longitude on Earth
+`--position=`"_LATITUDE_,_LONGITUDE_", `-p` "_LATITUDE_,_LONGITUDE"  
+    the observer's position on Earth
 
 `--date=`_DATE_, `-d` _DATE_  
     The date for which the ephemerides must be computed, either in the YYYY-MM-DD format or as an interval in the "[+-]YyMmDd" format (with Y, M, and D numbers); defaults to the current date
@@ -48,11 +45,8 @@ As a consequence, any option that would be given to `kosmorro` will override its
 
 Available environment variables are:
 
-`KOSMORRO_LATITUDE`  
-    the observer's latitude on Earth (alternative to `--latitude`)
-    
-`KOSMORRO_LONGITUDE`  
-    the observer's longitude on Earth (alternative to `--longitude`)
+`KOSMORRO_POSITION`  
+    the observer's position on Earth (alternative to `--position`)
     
 `KOSMORRO_TIMEZONE`  
     the observer's timezone (alternative to `--timezone`)

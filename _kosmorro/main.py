@@ -35,7 +35,7 @@ def main():
         print(colored(error.args[0], color="red", attrs=["bold"]))
         return -1
 
-    position = get_position(args.position) if args.position is not None else None
+    position = get_position(args.position) if args.position not in [None, ""] else None
 
     if output_format == "pdf":
         print(
@@ -248,7 +248,7 @@ def get_args(output_formats: [str]):
         type=str,
         default=None,
         help=_(
-            "The observer's position on Earth, in the \"{latitude},{longitude}\" format."
+            'The observer\'s position on Earth, in the "{latitude},{longitude}" format.'
             "Can also be set in the KOSMORRO_POSITION environment variable."
         ),
     )
