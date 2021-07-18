@@ -12,6 +12,7 @@ tabulate = "*"
 termcolor = "*"
 kosmorrolib = ">=0.11.0,<0.12.0"
 python-dateutil = "*"
+openlocationcode = ">=1.0.0,<2.0.0"
 
 [requires]
 python_version = "3"
