@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kosmorro 0.10.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-20 16:08+0200\n"
+"POT-Creation-Date: 2021-07-19 12:19+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -96,7 +96,7 @@ msgstr ""
 msgid "Expected events"
 msgstr ""
 
-#: _kosmorro/dumper.py:492
+#: _kosmorro/dumper.py:491
 msgid ""
 "Building PDF was not possible, because some dependencies are not "
 "installed.\n"
@@ -104,7 +104,7 @@ msgid ""
 "pdf/ for more information."
 msgstr ""
 
-#: _kosmorro/dumper.py:545
+#: _kosmorro/dumper.py:544
 #, python-format
 msgid ""
 "An error occurred during the compilation of the PDF.\n"
@@ -238,90 +238,90 @@ msgstr ""
 msgid "%s occults %s"
 msgstr ""
 
-#: _kosmorro/i18n/strings.py:13
+#: _kosmorro/i18n/strings.py:14
 #, python-format
 msgid "Elongation of %s is maximal"
 msgstr ""
 
-#: _kosmorro/i18n/strings.py:14
+#: _kosmorro/i18n/strings.py:21
 #, python-format
 msgid "%s is at its perigee"
 msgstr ""
 
-#: _kosmorro/i18n/strings.py:15
+#: _kosmorro/i18n/strings.py:22
 #, python-format
 msgid "%s is at its apogee"
 msgstr ""
 
-#: _kosmorro/i18n/strings.py:31
+#: _kosmorro/i18n/strings.py:38
 msgid "New Moon"
 msgstr ""
 
-#: _kosmorro/i18n/strings.py:32
+#: _kosmorro/i18n/strings.py:39
 msgid "Waxing Crescent"
 msgstr ""
 
-#: _kosmorro/i18n/strings.py:33
+#: _kosmorro/i18n/strings.py:40
 msgid "First Quarter"
 msgstr ""
 
-#: _kosmorro/i18n/strings.py:34
+#: _kosmorro/i18n/strings.py:41
 msgid "Waxing Gibbous"
 msgstr ""
 
-#: _kosmorro/i18n/strings.py:35
+#: _kosmorro/i18n/strings.py:42
 msgid "Full Moon"
 msgstr ""
 
-#: _kosmorro/i18n/strings.py:36
+#: _kosmorro/i18n/strings.py:43
 msgid "Waning Gibbous"
 msgstr ""
 
-#: _kosmorro/i18n/strings.py:37
+#: _kosmorro/i18n/strings.py:44
 msgid "Last Quarter"
 msgstr ""
 
-#: _kosmorro/i18n/strings.py:38
+#: _kosmorro/i18n/strings.py:45
 msgid "Waning Crescent"
 msgstr ""
 
-#: _kosmorro/i18n/strings.py:49
+#: _kosmorro/i18n/strings.py:56
 msgid "Sun"
 msgstr ""
 
-#: _kosmorro/i18n/strings.py:50
+#: _kosmorro/i18n/strings.py:57
 msgid "Moon"
 msgstr ""
 
-#: _kosmorro/i18n/strings.py:51
+#: _kosmorro/i18n/strings.py:58
 msgid "Mercury"
 msgstr ""
 
-#: _kosmorro/i18n/strings.py:52
+#: _kosmorro/i18n/strings.py:59
 msgid "Venus"
 msgstr ""
 
-#: _kosmorro/i18n/strings.py:53
+#: _kosmorro/i18n/strings.py:60
 msgid "Mars"
 msgstr ""
 
-#: _kosmorro/i18n/strings.py:54
+#: _kosmorro/i18n/strings.py:61
 msgid "Jupiter"
 msgstr ""
 
-#: _kosmorro/i18n/strings.py:55
+#: _kosmorro/i18n/strings.py:62
 msgid "Saturn"
 msgstr ""
 
-#: _kosmorro/i18n/strings.py:56
+#: _kosmorro/i18n/strings.py:63
 msgid "Uranus"
 msgstr ""
 
-#: _kosmorro/i18n/strings.py:57
+#: _kosmorro/i18n/strings.py:64
 msgid "Neptune"
 msgstr ""
 
-#: _kosmorro/i18n/strings.py:58
+#: _kosmorro/i18n/strings.py:65
 msgid "Pluto"
 msgstr ""
 
