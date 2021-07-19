@@ -10,7 +10,14 @@ def from_event(event: Event, with_description: bool = True) -> str:
         EventType.OPPOSITION: (_("%s is in opposition"), None),
         EventType.CONJUNCTION: (_("%s and %s are in conjunction"), None),
         EventType.OCCULTATION: (_("%s occults %s"), None),
-        EventType.MAXIMAL_ELONGATION: (_("Elongation of %s is maximal"),  ('{:.3n}°'.format(event.details['deg']) if type(event.details) is dict else event.details)),
+        EventType.MAXIMAL_ELONGATION: (
+            _("Elongation of %s is maximal"),
+            (
+                "{:.3n}°".format(event.details["deg"])
+                if type(event.details) is dict
+                else event.details
+            ),
+        ),
         EventType.MOON_PERIGEE: (_("%s is at its perigee"), None),
         EventType.MOON_APOGEE: (_("%s is at its apogee"), None),
     }.get(event.event_type)
@@ -21,7 +28,7 @@ def from_event(event: Event, with_description: bool = True) -> str:
     string = string % tuple([from_object(o.identifier) for o in event.objects])
 
     if details is not None and with_description:
-        return '%s (%s)' % (string, details)
+        return "%s (%s)" % (string, details)
 
     return string
 
