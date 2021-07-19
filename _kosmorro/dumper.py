@@ -447,8 +447,7 @@ class _LatexDumper(Dumper):
                 continue
 
             latex.append(
-                r"\event{%s}{%s}"
-                % (event.start_time.strftime(TIME_FORMAT), event_name)
+                r"\event{%s}{%s}" % (event.start_time.strftime(TIME_FORMAT), event_name)
             )
 
         return "".join(latex)
