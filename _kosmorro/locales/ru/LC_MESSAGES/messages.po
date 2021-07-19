@@ -40,7 +40,7 @@ msgstr "Ожидаемые события:"
 msgid "Note: All the hours are given in UTC."
 msgstr "Примечание: все время указано в формате UTC."
 
-#: _kosmorro/dumper.py:133
+#: _kosmorro/dumper.py:133 _kosmorro/dumper.py:125
 msgid "Note: All the hours are given in the UTC{offset} timezone."
 msgstr "Примечание: все часы указаны по UTC{offset} времени."
 
