@@ -109,7 +109,7 @@ msgstr "uren"
 msgid "Expected events"
 msgstr "Verwachte events"
 
-#: _kosmorro/dumper.py:499 _kosmorro/dumper.py:492
+#: _kosmorro/dumper.py:499 _kosmorro/dumper.py:492 _kosmorro/dumper.py:491
 #, fuzzy
 msgid ""
 "Building PDF was not possible, because some dependencies are not installed.\n"
@@ -120,7 +120,7 @@ msgstr ""
 "zijn geïnstalleerd.\n"
 "Raadpleeg de documentatie op http://kosmorro.space voor meer informatie."
 
-#: _kosmorro/dumper.py:552 _kosmorro/dumper.py:545
+#: _kosmorro/dumper.py:552 _kosmorro/dumper.py:545 _kosmorro/dumper.py:544
 #, python-format
 msgid ""
 "An error occurred during the compilation of the PDF.\n"

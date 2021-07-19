@@ -108,14 +108,14 @@ msgstr ""
 msgid "Expected events"
 msgstr ""
 
-#: _kosmorro/dumper.py:499 _kosmorro/dumper.py:492
+#: _kosmorro/dumper.py:499 _kosmorro/dumper.py:492 _kosmorro/dumper.py:491
 msgid ""
 "Building PDF was not possible, because some dependencies are not installed.\n"
 "Please look at the documentation at https://kosmorro.space/cli/generate-pdf/ "
 "for more information."
 msgstr ""
 
-#: _kosmorro/dumper.py:552 _kosmorro/dumper.py:545
+#: _kosmorro/dumper.py:552 _kosmorro/dumper.py:545 _kosmorro/dumper.py:544
 #, python-format
 msgid ""
 "An error occurred during the compilation of the PDF.\n"
