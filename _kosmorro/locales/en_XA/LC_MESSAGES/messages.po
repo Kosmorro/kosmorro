@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kosmorro 0.9.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-06-20 16:08+0200\n"
+"POT-Creation-Date: 2021-07-19 12:19+0200\n"
 "PO-Revision-Date: 2021-06-20 14:10+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: English (XA pseudolocale) <https://hosted.weblate.org/"
@@ -116,7 +116,7 @@ msgstr "~~~ Translatable ~~~hours~~~ End Translatable ~~~"
 msgid "Expected events"
 msgstr "~~~ Translatable ~~~Expected events~~~ End Translatable ~~~"
 
-#: _kosmorro/dumper.py:492
+#: _kosmorro/dumper.py:491
 msgid ""
 "Building PDF was not possible, because some dependencies are not installed.\n"
 "Please look at the documentation at https://kosmorro.space/cli/generate-pdf/ "
@@ -127,7 +127,7 @@ msgstr ""
 "Please look at the documentation at https://kosmorro.space/cli/generate-pdf/ "
 "for more information.~~~ End Translatable ~~~"
 
-#: _kosmorro/dumper.py:545
+#: _kosmorro/dumper.py:544
 #, python-format
 msgid ""
 "An error occurred during the compilation of the PDF.\n"
@@ -313,91 +313,91 @@ msgstr ""
 msgid "%s occults %s"
 msgstr "~~~ Translatable ~~~%s occults %s~~~ End Translatable ~~~"
 
-#: _kosmorro/i18n/strings.py:13
+#: _kosmorro/i18n/strings.py:14
 #, python-format
 msgid "Elongation of %s is maximal"
 msgstr ""
 "~~~ Translatable ~~~Elongation of %s is maximal~~~ End Translatable ~~~"
 
-#: _kosmorro/i18n/strings.py:14
+#: _kosmorro/i18n/strings.py:21
 #, python-format
 msgid "%s is at its perigee"
 msgstr "~~~ Translatable ~~~%s is at its perigee~~~ End Translatable ~~~"
 
-#: _kosmorro/i18n/strings.py:15
+#: _kosmorro/i18n/strings.py:22
 #, python-format
 msgid "%s is at its apogee"
 msgstr "~~~ Translatable ~~~%s is at its apogee~~~ End Translatable ~~~"
 
-#: _kosmorro/i18n/strings.py:31
+#: _kosmorro/i18n/strings.py:38
 msgid "New Moon"
 msgstr "~~~ Translatable ~~~New Moon~~~ End Translatable ~~~"
 
-#: _kosmorro/i18n/strings.py:32
+#: _kosmorro/i18n/strings.py:39
 msgid "Waxing Crescent"
 msgstr "~~~ Translatable ~~~Waxing Crescent~~~ End Translatable ~~~"
 
-#: _kosmorro/i18n/strings.py:33
+#: _kosmorro/i18n/strings.py:40
 msgid "First Quarter"
 msgstr "~~~ Translatable ~~~First Quarter~~~ End Translatable ~~~"
 
-#: _kosmorro/i18n/strings.py:34
+#: _kosmorro/i18n/strings.py:41
 msgid "Waxing Gibbous"
 msgstr "~~~ Translatable ~~~Waxing Gibbous~~~ End Translatable ~~~"
 
-#: _kosmorro/i18n/strings.py:35
+#: _kosmorro/i18n/strings.py:42
 msgid "Full Moon"
 msgstr "~~~ Translatable ~~~Full Moon~~~ End Translatable ~~~"
 
-#: _kosmorro/i18n/strings.py:36
+#: _kosmorro/i18n/strings.py:43
 msgid "Waning Gibbous"
 msgstr "~~~ Translatable ~~~Waning Gibbous~~~ End Translatable ~~~"
 
-#: _kosmorro/i18n/strings.py:37
+#: _kosmorro/i18n/strings.py:44
 msgid "Last Quarter"
 msgstr "~~~ Translatable ~~~Last Quarter~~~ End Translatable ~~~"
 
-#: _kosmorro/i18n/strings.py:38
+#: _kosmorro/i18n/strings.py:45
 msgid "Waning Crescent"
 msgstr "~~~ Translatable ~~~Waning Crescent~~~ End Translatable ~~~"
 
-#: _kosmorro/i18n/strings.py:49
+#: _kosmorro/i18n/strings.py:56
 msgid "Sun"
 msgstr "~~~ Translatable ~~~Sun~~~ End Translatable ~~~"
 
-#: _kosmorro/i18n/strings.py:50
+#: _kosmorro/i18n/strings.py:57
 msgid "Moon"
 msgstr "~~~ Translatable ~~~Moon~~~ End Translatable ~~~"
 
-#: _kosmorro/i18n/strings.py:51
+#: _kosmorro/i18n/strings.py:58
 msgid "Mercury"
 msgstr "~~~ Translatable ~~~Mercury~~~ End Translatable ~~~"
 
-#: _kosmorro/i18n/strings.py:52
+#: _kosmorro/i18n/strings.py:59
 msgid "Venus"
 msgstr "~~~ Translatable ~~~Venus~~~ End Translatable ~~~"
 
-#: _kosmorro/i18n/strings.py:53
+#: _kosmorro/i18n/strings.py:60
 msgid "Mars"
 msgstr "~~~ Translatable ~~~Mars~~~ End Translatable ~~~"
 
-#: _kosmorro/i18n/strings.py:54
+#: _kosmorro/i18n/strings.py:61
 msgid "Jupiter"
 msgstr "~~~ Translatable ~~~Jupiter~~~ End Translatable ~~~"
 
-#: _kosmorro/i18n/strings.py:55
+#: _kosmorro/i18n/strings.py:62
 msgid "Saturn"
 msgstr "~~~ Translatable ~~~Saturn~~~ End Translatable ~~~"
 
-#: _kosmorro/i18n/strings.py:56
+#: _kosmorro/i18n/strings.py:63
 msgid "Uranus"
 msgstr "~~~ Translatable ~~~Uranus~~~ End Translatable ~~~"
 
-#: _kosmorro/i18n/strings.py:57
+#: _kosmorro/i18n/strings.py:64
 msgid "Neptune"
 msgstr "~~~ Translatable ~~~Neptune~~~ End Translatable ~~~"
 
-#: _kosmorro/i18n/strings.py:58
+#: _kosmorro/i18n/strings.py:65
 msgid "Pluto"
 msgstr "~~~ Translatable ~~~Pluto~~~ End Translatable ~~~"
 
