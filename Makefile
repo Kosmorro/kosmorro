@@ -1,14 +1,9 @@
 black:
 	pipenv run black kosmorro _kosmorro setup.py
 
-.PHONY: test
-test:
-	export LC_ALL=C.UTF-8; \
-	export LANG=C.UTF-8; \
-	unset KOSMORRO_LATITUDE; \
-	unset KOSMORRO_LONGITUDE; \
-	unset KOSMORRO_TIMEZONE; \
-	LANG=C pipenv run python3 -m coverage run -m unittest test
+.PHONY: tests
+tests:
+	pipenv run python -m unittest tests
 
 build: manpages
 	python3 setup.py sdist bdist_wheel

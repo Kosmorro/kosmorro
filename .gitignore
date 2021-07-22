@@ -14,3 +14,7 @@ coverage.xml
 
 # Compiled internationalization files
 *.mo
+
+# Error test reports:
+/tests/*.t.err
+/cli-tests

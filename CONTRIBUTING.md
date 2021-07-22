@@ -80,7 +80,7 @@ Kosmorro's unit tests use Python's official `unittest` module. They live in the 
 You can also run them by invoking the following command:
 
 ```shell
-make test
+make tests
 ```
 
 Note: there are currently some memory leaks in the unit tests, making the result quite difficult to read. I am working to fix this.

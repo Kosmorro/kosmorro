@@ -1,4 +1,4 @@
-name: E2E tests
+name: Tests
 
 on:
   push:
@@ -34,12 +34,12 @@ jobs:
         sudo apt update
         sudo apt install ruby
         sudo gem install ronn
-        pip install -U setuptools pip requests wheel Babel
+        pip install -U setuptools pip requests wheel Babel pipenv
+        pipenv sync --dev
 
-    - name: E2E tests
+    - name: Run tests
       run: |
-        export ENVIRONMENT="CI"
-        bash .scripts/tests-e2e.sh
+        make tests
 
     - name: manpage (section 1)
       run: |

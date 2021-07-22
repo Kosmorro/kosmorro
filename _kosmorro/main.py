@@ -35,7 +35,12 @@ def main():
         print(colored(error.args[0], color="red", attrs=["bold"]))
         return -1
 
-    position = get_position(args.position) if args.position not in [None, ""] else None
+    position = None
+
+    if args.position not in [None, ""]:
+        position = get_position(args.position)
+    elif env_vars.position not in [None, ""]:
+        position = get_position(env_vars.position)
 
     if output_format == "pdf":
         print(
