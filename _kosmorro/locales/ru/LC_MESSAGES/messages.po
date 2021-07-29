@@ -36,7 +36,7 @@ msgstr "Дата {date} не соответствовать требуемому
 msgid "Expected events:"
 msgstr "Ожидаемые события:"
 
-#: _kosmorro/dumper.py:126
+#: _kosmorro/dumper.py:126 _kosmorro/dumper.py:118
 msgid "Note: All the hours are given in UTC."
 msgstr "Примечание: все время указано в формате UTC."
 
@@ -81,7 +81,7 @@ msgstr "{next_moon_phase} в {next_moon_phase_date} в {next_moon_phase_time}"
 msgid "Overview of your sky"
 msgstr ""
 
-#: _kosmorro/dumper.py:312
+#: _kosmorro/dumper.py:312 _kosmorro/dumper.py:304
 msgid ""
 "This document summarizes the ephemerides and the events of {date}. It aims "
 "to help you to prepare your observation session. All the hours are given in "
