@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kosmorro 0.9.0\n"
 "Report-Msgid-Bugs-To: jerome@deuchnord.fr\n"
 "POT-Creation-Date: 2021-07-19 12:19+0200\n"
-"PO-Revision-Date: 2021-07-20 17:35+0000\n"
+"PO-Revision-Date: 2021-07-30 10:33+0000\n"
 "Last-Translator: Stalone <talone+weblate@boxph.one>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/kosmorro/cli/ru/>"
 "\n"
@@ -23,20 +23,20 @@ msgstr ""
 
 #: _kosmorro/date.py:17
 msgid "The date {date} is not valid: {error}"
-msgstr ""
+msgstr "Дата {date} - неправильно"
 
 #: _kosmorro/date.py:39
+#, fuzzy
 msgid ""
 "The date {date} does not match the required YYYY-MM-DD format or the offset "
 "format."
-msgstr ""
+msgstr "Дата {date} не соответствовать требуемому формату YYYY-MM-DD или ???"
 
 #: _kosmorro/dumper.py:111
 msgid "Expected events:"
 msgstr "Ожидаемые события:"
 
 #: _kosmorro/dumper.py:118
-#, fuzzy
 msgid "Note: All the hours are given in UTC."
 msgstr "Примечание: все время указано в формате UTC."
 
@@ -46,7 +46,7 @@ msgstr "Примечание: все часы указаны по UTC{offset} в
 
 #: _kosmorro/dumper.py:193 _kosmorro/dumper.py:323
 msgid "Object"
-msgstr "объект"
+msgstr "Объект"
 
 #: _kosmorro/dumper.py:194 _kosmorro/dumper.py:324
 msgid "Rise time"
@@ -82,6 +82,8 @@ msgid ""
 "to help you to prepare your observation session. All the hours are given in "
 "{timezone}."
 msgstr ""
+"Этот документ резюмирует эфемериды и события {date}. Это поможет вам "
+"подготовиться к сеансу наблюдения. Все часы указаны по {timezone}."
 
 #: _kosmorro/dumper.py:314
 msgid ""
@@ -264,35 +266,35 @@ msgstr ""
 
 #: _kosmorro/i18n/strings.py:38
 msgid "New Moon"
-msgstr ""
+msgstr "Новолуние"
 
 #: _kosmorro/i18n/strings.py:39
 msgid "Waxing Crescent"
-msgstr ""
+msgstr "Молодая луна"
 
 #: _kosmorro/i18n/strings.py:40
 msgid "First Quarter"
-msgstr "Первый Четверть"
+msgstr "Первая четверть"
 
 #: _kosmorro/i18n/strings.py:41
 msgid "Waxing Gibbous"
-msgstr ""
+msgstr "Прибывающая луна"
 
 #: _kosmorro/i18n/strings.py:42
 msgid "Full Moon"
-msgstr "Полнолунье"
+msgstr "Полнолуние"
 
 #: _kosmorro/i18n/strings.py:43
 msgid "Waning Gibbous"
-msgstr ""
+msgstr "Убывающая луна"
 
 #: _kosmorro/i18n/strings.py:44
 msgid "Last Quarter"
-msgstr ""
+msgstr "Последняя четверть"
 
 #: _kosmorro/i18n/strings.py:45
 msgid "Waning Crescent"
-msgstr ""
+msgstr "Старая луна"
 
 #: _kosmorro/i18n/strings.py:56
 msgid "Sun"
