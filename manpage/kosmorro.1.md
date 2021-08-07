@@ -31,8 +31,8 @@
 `--output=`_OUTPUT_, `-o` _OUTPUT_  
     a file to export the output to; if not given, the standard output is used
 
-`--format=`_FORMAT_, `-f` _FORMAT_  
-    the format under which the information have to be output; one of the following: text, json, pdf
+`--format=`_FORMAT_, `-f` _FORMAT_ (optional)  
+    the format under which the information have to be output; one of the following: text, json, pdf. If no format is provided, the output format will be inferred from the extension of the output file
 
 `--no-graph`  
     present the ephemerides in a table instead of a graph; PDF output format only
@@ -68,7 +68,7 @@ kosmorro --latitude=50.5876 --longitude=3.0624 --date=2022-04-01
 Compute the ephemerides for Lille, France, on April 1st, 2022, and export them in a PDF document:
 
 ```
-kosmorro --latitude=50.5876 --longitude=3.0624 -date=2022-04-01 --format=pdf --output=file.pdf
+kosmorro --latitude=50.5876 --longitude=3.0624 -date=2022-04-01 --output=file.pdf
 ```
 
 ## AUTHOR

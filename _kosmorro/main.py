@@ -20,6 +20,7 @@ import argparse
 import locale
 import re
 import sys
+import os.path
 
 from kosmorrolib import Position, get_ephemerides, get_events, get_moon_phase
 from kosmorrolib.__version__ import __version__ as kosmorrolib_version
@@ -31,7 +32,11 @@ from . import dumper, environment, debug
 from .date import parse_date
 from .geolocation import get_position
 from .__version__ import __version__ as kosmorro_version
-from .exceptions import UnavailableFeatureError, OutOfRangeDateError as DateRangeError
+from .exceptions import (
+    InvalidOutputFormatError,
+    UnavailableFeatureError,
+    OutOfRangeDateError as DateRangeError,
+)
 from _kosmorro.i18n.utils import _, SHORT_DATE_FORMAT
 
 
@@ -52,6 +57,16 @@ def main():
         return -1
 
     position = get_position(args.position) if args.position not in [None, ""] else None
+
+    # if output format is not specified, try to use output file extension as output format
+    if args.output is not None and output_format is None:
+        file_extension = os.path.splitext(args.output)[-1][1:].lower()
+        if file_extension:
+            output_format = file_extension
+
+    # default to .txt if output format was not given and output file did not have file extension
+    if output_format is None:
+        output_format = "txt"
 
     if output_format == "pdf":
         print(
@@ -88,6 +103,10 @@ def main():
             args.colors,
             args.show_graph,
         )
+    except InvalidOutputFormatError as error:
+        print(colored(error.msg, "red"))
+        debug.debug_print(error)
+        return 3
     except UnavailableFeatureError as error:
         print(colored(error.msg, "red"))
         debug.debug_print(error)
@@ -99,9 +118,10 @@ def main():
 
     if args.output is not None:
         try:
-            pdf_content = output.to_string()
-            with open(args.output, "wb") as output_file:
-                output_file.write(pdf_content)
+            file_content = output.to_string()
+            opening_mode = get_opening_mode(output_format)
+            with open(args.output, opening_mode) as output_file:
+                output_file.write(file_content)
         except UnavailableFeatureError as error:
             print(colored(error.msg, "red"))
             debug.debug_print(error)
@@ -168,23 +188,33 @@ def get_information(
 
     events_list = get_events(compute_date, timezone)
 
-    return get_dumpers()[output_format](
-        ephemerides=eph,
-        moon_phase=moon_phase,
-        events=events_list,
-        date=compute_date,
-        timezone=timezone,
-        with_colors=colors,
-        show_graph=show_graph,
-    )
+    try:
+        return get_dumpers()[output_format](
+            ephemerides=eph,
+            moon_phase=moon_phase,
+            events=events_list,
+            date=compute_date,
+            timezone=timezone,
+            with_colors=colors,
+            show_graph=show_graph,
+        )
+    except KeyError as error:
+        raise InvalidOutputFormatError(output_format, list(get_dumpers().keys()))
 
 
 def get_dumpers() -> {str: dumper.Dumper}:
     return {
-        "text": dumper.TextDumper,
+        "txt": dumper.TextDumper,
         "json": dumper.JsonDumper,
         "pdf": dumper.PdfDumper,
     }
+
+
+def get_opening_mode(format: str) -> str:
+    if format == "pdf":
+        return "wb"
+
+    return "w"
 
 
 def output_version() -> bool:
@@ -254,9 +284,12 @@ def get_args(output_formats: [str]):
         "--format",
         "-f",
         type=str,
-        default=output_formats[0],
+        default=None,
         choices=output_formats,
-        help=_("The format to output the information to"),
+        help=_(
+            "The format to output the information to. If not provided, the output format "
+            "will be inferred from the file extension of the output file."
+        ),
     )
     parser.add_argument(
         "--position",
