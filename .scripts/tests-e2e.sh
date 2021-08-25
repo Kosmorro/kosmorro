@@ -128,6 +128,19 @@ assertSuccess "ls $HOME/kosmorro/export/document.pdf"
 assertSuccess "$KOSMORRO_COMMAND --position=\"50.5876;3.0624\" -d 2020-01-27 --format=pdf -o $HOME/kosmorro/export/document-no-graph.pdf --no-graph"
 assertSuccess "ls $HOME/kosmorro/export/document-no-graph.pdf"
 
+# If format argument is given, use it even if it conflicts with file extension
+assertSuccess "$KOSMORRO_COMMAND --position=\"50.5876;3.0624\" -d 2020-01-27 --format=json -o $HOME/kosmorro/export/txt-document.txt"
+assertSuccess "ls $HOME/kosmorro/export/txt-document.txt"
+
+assertSuccess "$KOSMORRO_COMMAND --position=\"50.5876;3.0624\" -d 2020-01-27 -o $HOME/kosmorro/export/txt-document.txt"
+assertSuccess "ls $HOME/kosmorro/export/txt-document.txt"
+
+assertSuccess "$KOSMORRO_COMMAND --position=\"50.5876;3.0624\" -d 2020-01-27 -o $HOME/kosmorro/export/json-document.json"
+assertSuccess "ls $HOME/kosmorro/export/json-document.json"
+
+assertSuccess "$KOSMORRO_COMMAND --position=\"50.5876;3.0624\" -d 2020-01-27 -o $HOME/kosmorro/export/pdf-document.pdf"
+assertSuccess "ls $HOME/kosmorro/export/pdf-document.pdf"
+
 # man page
 assertSuccess "man --pager=cat kosmorro"
 

@@ -39,6 +39,19 @@ class OutOfRangeDateError(RuntimeError):
         )
 
 
+class InvalidOutputFormatError(RuntimeError):
+    def __init__(self, output_format: str, accepted_extensions: [str]):
+        super().__init__()
+        self.output_format = output_format
+        self.accepted_extensions = accepted_extensions
+        self.msg = _(
+            "Invalid output format: {output_format}. Output file must end with: {accepted_extensions}"
+        ).format(
+            output_format=output_format,
+            accepted_extensions=", ".join(accepted_extensions),
+        )
+
+
 class CompileError(RuntimeError):
     def __init__(self, msg):
         super().__init__()
