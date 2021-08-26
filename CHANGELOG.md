@@ -1,3 +1,12 @@
+# [v0.10.2](https://github.com/Kosmorro/kosmorro/compare/v0.10.1...v0.10.2) (2021-08-26)
+
+
+### Bug Fixes
+
+* NoneType error on JSON output without position ([#199](https://github.com/Kosmorro/kosmorro/issues/199)) ([6988e77](https://github.com/Kosmorro/kosmorro/commit/6988e77838c31ce4bf2fcff9da8e13b21cd5b494))
+
+
+
 # [v0.10.1](https://github.com/Kosmorro/kosmorro/compare/v0.10.0...v0.10.1) (2021-06-20)
 
 
