@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kosmorro 0.9.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-19 12:19+0200\n"
+"POT-Creation-Date: 2021-08-26 11:37+0000\n"
 "PO-Revision-Date: 2021-06-20 14:10+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: English (XA pseudolocale) <https://hosted.weblate.org/"
@@ -34,59 +34,59 @@ msgstr ""
 "~~~ Translatable ~~~The date {date} does not match the required YYYY-MM-DD "
 "format or the offset format.~~~ End Translatable ~~~"
 
-#: _kosmorro/dumper.py:111
+#: _kosmorro/dumper.py:119
 msgid "Expected events:"
 msgstr "~~~ Translatable ~~~Expected events:~~~ End Translatable ~~~"
 
-#: _kosmorro/dumper.py:118
+#: _kosmorro/dumper.py:126
 msgid "Note: All the hours are given in UTC."
 msgstr ""
 "~~~ Translatable ~~~Note: All the hours are given in UTC.~~~ End "
 "Translatable ~~~"
 
-#: _kosmorro/dumper.py:125
+#: _kosmorro/dumper.py:133
 msgid "Note: All the hours are given in the UTC{offset} timezone."
 msgstr ""
 "~~~ Translatable ~~~Note: All the hours are given in the UTC{offset} "
 "timezone.~~~ End Translatable ~~~"
 
-#: _kosmorro/dumper.py:193 _kosmorro/dumper.py:323
+#: _kosmorro/dumper.py:201 _kosmorro/dumper.py:331
 msgid "Object"
 msgstr "~~~ Translatable ~~~Object~~~ End Translatable ~~~"
 
-#: _kosmorro/dumper.py:194 _kosmorro/dumper.py:324
+#: _kosmorro/dumper.py:202 _kosmorro/dumper.py:332
 msgid "Rise time"
 msgstr "~~~ Translatable ~~~Rise time~~~ End Translatable ~~~"
 
-#: _kosmorro/dumper.py:195 _kosmorro/dumper.py:326
+#: _kosmorro/dumper.py:203 _kosmorro/dumper.py:334
 msgid "Culmination time"
 msgstr "~~~ Translatable ~~~Culmination time~~~ End Translatable ~~~"
 
-#: _kosmorro/dumper.py:196 _kosmorro/dumper.py:328
+#: _kosmorro/dumper.py:204 _kosmorro/dumper.py:336
 msgid "Set time"
 msgstr "~~~ Translatable ~~~Set time~~~ End Translatable ~~~"
 
-#: _kosmorro/dumper.py:224
+#: _kosmorro/dumper.py:232
 msgid "Moon phase is unavailable for this date."
 msgstr ""
 "~~~ Translatable ~~~Moon phase is unavailable for this date.~~~ End "
 "Translatable ~~~"
 
-#: _kosmorro/dumper.py:228 _kosmorro/dumper.py:332
+#: _kosmorro/dumper.py:236 _kosmorro/dumper.py:340
 msgid "Moon phase:"
 msgstr "~~~ Translatable ~~~Moon phase:~~~ End Translatable ~~~"
 
-#: _kosmorro/dumper.py:232
+#: _kosmorro/dumper.py:240
 msgid "{next_moon_phase} on {next_moon_phase_date} at {next_moon_phase_time}"
 msgstr ""
 "~~~ Translatable ~~~{next_moon_phase} on {next_moon_phase_date} at "
 "{next_moon_phase_time}~~~ End Translatable ~~~"
 
-#: _kosmorro/dumper.py:296
+#: _kosmorro/dumper.py:304
 msgid "Overview of your sky"
 msgstr "~~~ Translatable ~~~Overview of your sky~~~ End Translatable ~~~"
 
-#: _kosmorro/dumper.py:304
+#: _kosmorro/dumper.py:312
 msgid ""
 "This document summarizes the ephemerides and the events of {date}. It aims "
 "to help you to prepare your observation session. All the hours are given in "
@@ -96,7 +96,7 @@ msgstr ""
 "of {date}. It aims to help you to prepare your observation session. All the "
 "hours are given in {timezone}.~~~ End Translatable ~~~"
 
-#: _kosmorro/dumper.py:314
+#: _kosmorro/dumper.py:322
 msgid ""
 "Don't forget to check the weather forecast before you go out with your "
 "equipment."
@@ -104,19 +104,19 @@ msgstr ""
 "~~~ Translatable ~~~Don't forget to check the weather forecast before you go "
 "out with your equipment.~~~ End Translatable ~~~"
 
-#: _kosmorro/dumper.py:321
+#: _kosmorro/dumper.py:329
 msgid "Ephemerides of the day"
 msgstr "~~~ Translatable ~~~Ephemerides of the day~~~ End Translatable ~~~"
 
-#: _kosmorro/dumper.py:330
+#: _kosmorro/dumper.py:338
 msgid "hours"
 msgstr "~~~ Translatable ~~~hours~~~ End Translatable ~~~"
 
-#: _kosmorro/dumper.py:337
+#: _kosmorro/dumper.py:345
 msgid "Expected events"
 msgstr "~~~ Translatable ~~~Expected events~~~ End Translatable ~~~"
 
-#: _kosmorro/dumper.py:491
+#: _kosmorro/dumper.py:499
 msgid ""
 "Building PDF was not possible, because some dependencies are not installed.\n"
 "Please look at the documentation at https://kosmorro.space/cli/generate-pdf/ "
@@ -127,7 +127,7 @@ msgstr ""
 "Please look at the documentation at https://kosmorro.space/cli/generate-pdf/ "
 "for more information.~~~ End Translatable ~~~"
 
-#: _kosmorro/dumper.py:544
+#: _kosmorro/dumper.py:552
 #, python-format
 msgid ""
 "An error occurred during the compilation of the PDF.\n"
