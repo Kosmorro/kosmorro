@@ -43,15 +43,23 @@ from .debug import debug_print
 
 
 class Dumper(ABC):
+    ephemerides: [AsterEphemerides]
+    moon_phase: MoonPhase
+    events: [Event]
+    date: datetime.date
+    timezone: int
+    with_colors: bool
+    show_graph: bool
+
     def __init__(
         self,
-        ephemerides: [AsterEphemerides] = None,
-        moon_phase: MoonPhase = None,
-        events: [Event] = None,
-        date: datetime.date = datetime.date.today(),
-        timezone: int = 0,
-        with_colors: bool = True,
-        show_graph: bool = False,
+        ephemerides: [AsterEphemerides],
+        moon_phase: MoonPhase,
+        events: [Event],
+        date: datetime.date,
+        timezone: int,
+        with_colors: bool,
+        show_graph: bool,
     ):
         self.ephemerides = ephemerides
         self.moon_phase = moon_phase
@@ -99,7 +107,7 @@ class TextDumper(Dumper):
     def to_string(self):
         text = [self.style(self.get_date_as_string(capitalized=True), "h1")]
 
-        if self.ephemerides is not None:
+        if len(self.ephemerides) > 0:
             text.append(self.stringify_ephemerides())
 
         text.append(self.get_moon(self.moon_phase))

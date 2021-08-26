@@ -168,7 +168,7 @@ def get_information(
         except OutOfRangeDateError as error:
             raise DateRangeError(error.min_date, error.max_date)
     else:
-        eph = None
+        eph = []
 
     try:
         moon_phase = get_moon_phase(compute_date)
