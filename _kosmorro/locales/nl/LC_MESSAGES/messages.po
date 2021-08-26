@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: kosmorro 0.9.0\n"
-"Report-Msgid-Bugs-To: jerome@deuchnord.fr\n"
-"POT-Creation-Date: 2021-05-15 16:28+0200\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2021-08-26 11:37+0000\n"
 "PO-Revision-Date: 2021-05-23 15:33+0000\n"
 "Last-Translator: Damgermys <damhub28@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/kosmorro/cli/nl/>\n"
@@ -32,79 +32,79 @@ msgstr ""
 "De datum {date} komt niet overeen met het vereiste JJJJ-MM-DD-formaat of het "
 "offset-formaat."
 
-#: _kosmorro/dumper.py:108
+#: _kosmorro/dumper.py:119
 msgid "Expected events:"
 msgstr "Verwachte evenementen:"
 
-#: _kosmorro/dumper.py:115
+#: _kosmorro/dumper.py:126
 msgid "Note: All the hours are given in UTC."
 msgstr "Opmerking: alle uren worden gegeven in UTC."
 
-#: _kosmorro/dumper.py:122
+#: _kosmorro/dumper.py:133
 msgid "Note: All the hours are given in the UTC{offset} timezone."
 msgstr "Opmerking: alle uren worden gegeven in de UTC{offset} tijdzone."
 
-#: _kosmorro/dumper.py:186 _kosmorro/dumper.py:322
+#: _kosmorro/dumper.py:201 _kosmorro/dumper.py:331
 msgid "Object"
 msgstr "Object"
 
-#: _kosmorro/dumper.py:187 _kosmorro/dumper.py:323
+#: _kosmorro/dumper.py:202 _kosmorro/dumper.py:332
 #, fuzzy
 msgid "Rise time"
 msgstr "Opgang tijd"
 
-#: _kosmorro/dumper.py:188 _kosmorro/dumper.py:325
+#: _kosmorro/dumper.py:203 _kosmorro/dumper.py:334
 #, fuzzy
 msgid "Culmination time"
 msgstr "Culminatie tijd"
 
-#: _kosmorro/dumper.py:189 _kosmorro/dumper.py:327
+#: _kosmorro/dumper.py:204 _kosmorro/dumper.py:336
 #, fuzzy
 msgid "Set time"
 msgstr "Ondergang tijd"
 
-#: _kosmorro/dumper.py:223
+#: _kosmorro/dumper.py:232
 msgid "Moon phase is unavailable for this date."
 msgstr "Maanfase is niet beschikbaar voor deze datum."
 
-#: _kosmorro/dumper.py:227 _kosmorro/dumper.py:331
+#: _kosmorro/dumper.py:236 _kosmorro/dumper.py:340
 msgid "Moon phase:"
 msgstr "Maanfase:"
 
-#: _kosmorro/dumper.py:231
+#: _kosmorro/dumper.py:240
 msgid "{next_moon_phase} on {next_moon_phase_date} at {next_moon_phase_time}"
 msgstr "{next_moon_phase} op {next_moon_phase_date} om {next_moon_phase_time}"
 
-#: _kosmorro/dumper.py:295
+#: _kosmorro/dumper.py:304
 msgid "Overview of your sky"
 msgstr "Overzicht van uw hemel"
 
-#: _kosmorro/dumper.py:303
+#: _kosmorro/dumper.py:312
 msgid ""
 "This document summarizes the ephemerides and the events of {date}. It aims "
 "to help you to prepare your observation session. All the hours are given in "
 "{timezone}."
 msgstr ""
 
-#: _kosmorro/dumper.py:313
+#: _kosmorro/dumper.py:322
 msgid ""
 "Don't forget to check the weather forecast before you go out with your "
 "equipment."
 msgstr ""
 
-#: _kosmorro/dumper.py:320
+#: _kosmorro/dumper.py:329
 msgid "Ephemerides of the day"
 msgstr "Efemeriden van de dag"
 
-#: _kosmorro/dumper.py:329
+#: _kosmorro/dumper.py:338
 msgid "hours"
 msgstr "uren"
 
-#: _kosmorro/dumper.py:336
+#: _kosmorro/dumper.py:345
 msgid "Expected events"
 msgstr "Verwachte events"
 
-#: _kosmorro/dumper.py:480
+#: _kosmorro/dumper.py:499
 #, fuzzy
 #| msgid ""
 #| "Building PDFs was not possible, because some dependencies are not "
@@ -113,14 +113,14 @@ msgstr "Verwachte events"
 #| "information."
 msgid ""
 "Building PDF was not possible, because some dependencies are not installed.\n"
-"Please look at the documentation at http://kosmorro.space for more "
-"information."
+"Please look at the documentation at https://kosmorro.space/cli/generate-pdf/ "
+"for more information."
 msgstr ""
 "Het bouwen van pdf's was niet mogelijk, omdat sommige afhankelijkheden niet "
 "zijn geïnstalleerd.\n"
 "Raadpleeg de documentatie op http://kosmorro.space voor meer informatie."
 
-#: _kosmorro/dumper.py:518
+#: _kosmorro/dumper.py:552
 #, python-format
 msgid ""
 "An error occurred during the compilation of the PDF.\n"
@@ -280,102 +280,92 @@ msgstr "%s en %s zijn in conjunctie"
 msgid "%s occults %s"
 msgstr "%s verbergt %s"
 
-#: _kosmorro/i18n/strings.py:13
+#: _kosmorro/i18n/strings.py:14
 #, python-format
 msgid "Elongation of %s is maximal"
 msgstr ""
 
-#: _kosmorro/i18n/strings.py:14
+#: _kosmorro/i18n/strings.py:21
 #, python-format
 msgid "%s is at its perigee"
 msgstr "%s is op zijn perigeum"
 
-#: _kosmorro/i18n/strings.py:15
+#: _kosmorro/i18n/strings.py:22
 #, python-format
 msgid "%s is at its apogee"
 msgstr "%s is op zijn apogeum"
 
-#: _kosmorro/i18n/strings.py:21
+#: _kosmorro/i18n/strings.py:38
 msgid "New Moon"
 msgstr "Nieuwe maan"
 
-#: _kosmorro/i18n/strings.py:22
+#: _kosmorro/i18n/strings.py:39
 msgid "Waxing Crescent"
 msgstr "Jonge maansikkel"
 
-#: _kosmorro/i18n/strings.py:23
+#: _kosmorro/i18n/strings.py:40
 msgid "First Quarter"
 msgstr "Eerste kwartier"
 
-#: _kosmorro/i18n/strings.py:24
+#: _kosmorro/i18n/strings.py:41
 msgid "Waxing Gibbous"
 msgstr "Wassende maan"
 
-#: _kosmorro/i18n/strings.py:25
+#: _kosmorro/i18n/strings.py:42
 msgid "Full Moon"
 msgstr "Volle maan"
 
-#: _kosmorro/i18n/strings.py:26
+#: _kosmorro/i18n/strings.py:43
 msgid "Waning Gibbous"
 msgstr "Krimpende maan"
 
-#: _kosmorro/i18n/strings.py:27
+#: _kosmorro/i18n/strings.py:44
 msgid "Last Quarter"
 msgstr "Laatste kwartier"
 
-#: _kosmorro/i18n/strings.py:28
+#: _kosmorro/i18n/strings.py:45
 msgid "Waning Crescent"
 msgstr "Asgrauwe maan"
 
-#: _kosmorro/i18n/strings.py:29
-#, fuzzy
-#| msgid "Moon phase:"
-msgid "Unknown phase"
-msgstr "Maanfase:"
-
-#: _kosmorro/i18n/strings.py:34
+#: _kosmorro/i18n/strings.py:56
 msgid "Sun"
 msgstr "Zon"
 
-#: _kosmorro/i18n/strings.py:35
+#: _kosmorro/i18n/strings.py:57
 msgid "Moon"
 msgstr "Maan"
 
-#: _kosmorro/i18n/strings.py:36
+#: _kosmorro/i18n/strings.py:58
 msgid "Mercury"
 msgstr "Mercurius"
 
-#: _kosmorro/i18n/strings.py:37
+#: _kosmorro/i18n/strings.py:59
 msgid "Venus"
 msgstr "Venus"
 
-#: _kosmorro/i18n/strings.py:38
+#: _kosmorro/i18n/strings.py:60
 msgid "Mars"
 msgstr "Mars"
 
-#: _kosmorro/i18n/strings.py:39
+#: _kosmorro/i18n/strings.py:61
 msgid "Jupiter"
 msgstr "Jupiter"
 
-#: _kosmorro/i18n/strings.py:40
+#: _kosmorro/i18n/strings.py:62
 msgid "Saturn"
 msgstr "Saturnus"
 
-#: _kosmorro/i18n/strings.py:41
+#: _kosmorro/i18n/strings.py:63
 msgid "Uranus"
 msgstr "Uranus"
 
-#: _kosmorro/i18n/strings.py:42
+#: _kosmorro/i18n/strings.py:64
 msgid "Neptune"
 msgstr "Neptunus"
 
-#: _kosmorro/i18n/strings.py:43
+#: _kosmorro/i18n/strings.py:65
 msgid "Pluto"
 msgstr "Pluto"
-
-#: _kosmorro/i18n/strings.py:44
-msgid "Unknown object"
-msgstr ""
 
 #: _kosmorro/i18n/utils.py:27
 msgid "{day_of_week} {month} {day_number}, {year}"
@@ -392,6 +382,11 @@ msgstr "{month} {day_number}, {year}"
 #: _kosmorro/i18n/utils.py:36
 msgid "{hours}:{minutes}"
 msgstr "{hours}:{minutes}"
+
+#, fuzzy
+#~| msgid "Moon phase:"
+#~ msgid "Unknown phase"
+#~ msgstr "Maanfase:"
 
 #~ msgid "A Summary of your Sky"
 #~ msgstr "Een samenvatting van uw lucht"
