@@ -98,6 +98,8 @@ assertSuccess "$KOSMORRO_COMMAND --latitude=50.5876 --longitude=3.0624 -d 2020-0
 assertSuccess "$KOSMORRO_COMMAND --latitude=50.5876 --longitude=3.0624 -d 2020-01-27 --format=json"
 assertFailure "$KOSMORRO_COMMAND --latitude=50.5876 --longitude=3.0624 -d 2020-01-27 --format=pdf"
 
+assertSuccess "$KOSMORRO_COMMAND -d 2020-01-27 --format=json"
+
 # Environment variables
 assertSuccess "LATITUDE=50.5876 LONGITUDE=3.0624 TIMEZONE=1 kosmorro -d 2020-01-27"
 assertSuccess "LATITUDE=50.5876 LONGITUDE=3.0624 TIMEZONE=-1 kosmorro -d 2020-01-27"
