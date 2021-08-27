@@ -21,11 +21,13 @@ If you speak another language than English, another nice way to enhance Kosmorro
 
 ## Writing code
 
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/Kosmorro/kosmorro)
+
 First of all, if you are fixing an opened issue, check that nobody is already working on it — if someone seems to be but their Pull Request seems stuck, please ask them first if you can continue the development. If you retake the code they produced, **don't change the author of the commits**.
 
-Before writing the code, first create a fork of the repository and clone it. You may also want to add the original repository (`Deuchnord/kosmorro`), so you can update your fork with the last upstream commits.
+Before writing the code, first create a fork of the repository and clone it. You may also want to add the original repository (`Kosmorro/kosmorro`), so you can update your fork with the last upstream commits.
 
-Then create a new branch and start coding. Finally, commit and push, then open a PR on this project. If your project is not complete, feel free to open it as Draft (if you forgot to activate the Draft status, just edit the first comment to say it), then mark it as ready for review when you're done.
+Then create a new branch and start coding. Finally, commit and push, then open a PR on this project. If your project is not complete, feel free to open it as Draft, then mark it as ready for review when you're done.
 
 ### Choosing the right target branch
 
@@ -33,7 +35,7 @@ Whatever you are doing, always base your working branch on `master`.
 When you create your PR, please consider selecting the right target branch:
 
 - If you are fixing a bug or optimizing something, then target the `master` branch.
-- If you are doing anything else, then target the `feature` branch.
+- If you are doing anything else, then target the `features` branch.
 
 This allows to make easier to publish patch releases, which have a higher priority than the minor releases.
 
@@ -70,12 +72,12 @@ Kosmorro's source code follows the major coding standards of Python (PEPs). Befo
 
 ### Testing the code
 
-There are two kinds of tests on this project: **unit tests** and **end-to-end tests** (sometimes abbreviated to _E2E tests_). 
+There are two kinds of tests on this project: **unit tests** and **end-to-end tests** (sometimes abbreviated to _E2E tests_).
 
 #### Unit tests
 
 [Unit tests](https://en.wikipedia.org/wiki/Unit_testing) check that every little piece of code (any _unit_) does exactly what it is supposed to do. They have several advantages, like proving that new things in the codebase works exactly as they should, and making sure that future changes done later won't break them.
- 
+
 Kosmorro's unit tests use Python's official `unittest` module. They live in the `/test` folder of the repository. Whenever you write a new feature or a bug fix, please write the unit tests that will make sure it works.
 You can also run them by invoking the following command:
 
