@@ -16,5 +16,5 @@ jobs:
     - uses: actions/setup-python@v2
       with:
         python-version: 3.9
-    - uses: psf/black@21.7b0
+    - uses: psf/black@21.8b0
 
