@@ -1,0 +1,110 @@
+name: Bug report
+description: Report a bug you have found, so it can be fixed
+labels:
+  - bug
+assignees:
+  - deuchnord
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking time to fill out this bug report!
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: I have searched for an opened issue and didn't find my bug
+      description: |
+        Before continuing, please verify that your bug is not already known, i.e.:
+
+        - there is an issue that describe your bug;
+        - the issue is not closed.
+
+        If you have found a closed issue that describes the same bug as yours, please don't comment inside and open a new issue instead.
+        Even though it may look the same, your bug might be totally different :smile:
+
+      options:
+        - label: I confirm I didn't find any issue regarding my bug
+          required: true
+
+  - type: dropdown
+    id: cli-version
+    validations:
+      required: true
+    attributes:
+      label: Version of Kosmorro
+      description: |
+        What version of Kosmorro are you using?
+
+        Note: if you don't know, invoke `kosmorro --version`.
+      options:
+        - "0.10.2"
+        - "0.10.1"
+        - "0.10.0"
+        - "0.9.0"
+        - master branch
+        - features branch
+
+  - type: dropdown
+    id: python-version
+    validations:
+      required: true
+    attributes:
+      label: Version of Python
+      description: |
+        What version of Python are you using?
+
+        Note: if you don't know, invoke `kosmorro --version` or `python --version`.
+
+      options:
+        - "3.10"
+        - "3.9"
+        - "3.8"
+        - "3.7"
+
+  - type: dropdown
+    id: operating-system
+    validations:
+      required: true
+    attributes:
+      label: Operating system
+      description: What operating system did you use?
+      multiple: true
+
+      options:
+        - Linux
+        - FreeBSD
+        - macOS 12 (Monterey)
+        - macOS 11 (Big Sur)
+        - macOS 10.15 (Catalina)
+
+  - type: dropdown
+    id: install-source
+    validations:
+      required: true
+    attributes:
+      label: Installation source
+      description: What did you use to install Kosmorro?
+
+      options:
+        - PyPI
+        - Arch User Repository (AUR)
+        - FreshPorts
+        - Docker
+        - I have compiled the package from source
+        - I have run Kosmorro with Pipenv
+        - other
+
+  - type: textarea
+    id: description
+    validations:
+      required: true
+    attributes:
+      label: Bug description
+      description: |
+        Describe the bug you have encountered:
+
+        - what did you try to do?
+        - what did you expect the program to do?
+        - what happened instead?
