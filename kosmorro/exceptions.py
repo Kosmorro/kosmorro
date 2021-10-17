@@ -17,7 +17,7 @@
 #    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 from datetime import date
-from _kosmorro.i18n.utils import _, SHORT_DATE_FORMAT
+from kosmorro.i18n.utils import _, SHORT_DATE_FORMAT
 
 
 class UnavailableFeatureError(RuntimeError):

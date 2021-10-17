@@ -18,9 +18,10 @@
 
 import argparse
 import locale
-import re
 import sys
 import os.path
+import platform
+import colorama
 
 from kosmorrolib import Position, get_ephemerides, get_events, get_moon_phase
 from kosmorrolib.__version__ import __version__ as kosmorrolib_version
@@ -37,10 +38,11 @@ from .exceptions import (
     UnavailableFeatureError,
     OutOfRangeDateError as DateRangeError,
 )
-from _kosmorro.i18n.utils import _, SHORT_DATE_FORMAT
+from kosmorro.i18n.utils import _, SHORT_DATE_FORMAT
 
 
 def main():
+    colorama.init()
     env_vars = environment.get_env_vars()
     output_formats = get_dumpers()
     args = get_args(list(output_formats.keys()))
@@ -56,7 +58,13 @@ def main():
         print(colored(error.args[0], color="red", attrs=["bold"]))
         return -1
 
-    position = get_position(args.position) if args.position not in [None, ""] else None
+    try:
+        position = get_position(args.position) if args.position not in [None, ""] else None
+        if position is None and env_vars.position is not None:
+            position = get_position(env_vars.position)
+    except ValueError as e:
+        print(colored(str(e), "red"))
+        return 1
 
     # if output format is not specified, try to use output file extension as output format
     if args.output is not None and output_format is None:
@@ -331,3 +339,16 @@ def get_args(output_formats: [str]):
     )
 
     return parser.parse_args()
+
+
+if __name__ == "__main__":
+    lang, encoding = locale.getlocale()
+    if platform.system() == "Windows":
+        locale.setlocale(locale.LC_ALL, lang)
+    else:
+        locale.setlocale(locale.LC_ALL, f"{lang}.{encoding}")
+
+    try:
+        sys.exit(main())
+    except KeyboardInterrupt:
+        sys.exit(1)

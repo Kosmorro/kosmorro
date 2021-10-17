@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=$(grep -Eo '[0-9]+\.[0-9]+\.[0-9]+' _kosmorro/__version__.py)
+VERSION=$(grep -Eo '[0-9]+\.[0-9]+\.[0-9]+' kosmorro/__version__.py)
 PYTHON_BIN=$(command -v python)
 PIP_BIN=$(command -v pip)
 
@@ -78,7 +78,7 @@ echo
 assertSuccess "make build"
 assertSuccess "$PIP_BIN install dist/kosmorro-$VERSION.tar.gz" "CI"
 
-KOSMORRO_COMMAND="kosmorro --debug"
+KOSMORRO_COMMAND="kosmorro.py --debug"
 
 assertSuccess "$KOSMORRO_COMMAND"
 assertSuccess "$KOSMORRO_COMMAND -h"

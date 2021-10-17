@@ -14,7 +14,7 @@ RUN pipenv sync && pipenv run pip freeze > requirements.txt
 
 # Add files
 RUN pip install -r requirements.txt
-COPY _kosmorro/ _kosmorro/
+COPY kosmorro/ kosmorro/
 COPY kosmorro .
 
 # Compile the translations
@@ -26,7 +26,7 @@ RUN python setup.py compile_catalog
 
 # Clean the image
 RUN rm setup.py setup.cfg README.md && \
-    rm _kosmorro/locales/messages.pot _kosmorro/locales/*/LC_MESSAGES/messages.po && \
+    rm kosmorro/locales/messages.pot kosmorro/locales/*/LC_MESSAGES/messages.po && \
     pip uninstall --yes Babel pipenv
 
 USER kosmorro

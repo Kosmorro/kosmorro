@@ -13,6 +13,7 @@ termcolor = "*"
 kosmorrolib = ">=1.0.0,<2.0.0"
 python-dateutil = "*"
 openlocationcode = ">=1.0.0,<2.0.0"
+colorama = "*"
 
 [requires]
 python_version = "3"

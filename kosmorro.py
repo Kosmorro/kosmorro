@@ -17,10 +17,7 @@
 #    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import sys
-import locale
-from _kosmorro.main import main
-
-locale.setlocale(locale.LC_ALL, "")
+from kosmorro.__main__ import main
 
 if __name__ == "__main__":
     try:

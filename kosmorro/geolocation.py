@@ -11,7 +11,7 @@ from .i18n.utils import _
 
 def _parse_latitude_longitude(from_str: str) -> Position:
     if not re.search(r"^([\d.-]+)[,;]([\d.-]+)$", from_str):
-        raise ValueError(_("The given position (%s) is not valid." % from_str))
+        raise ValueError(_('The given position ("%s") is not valid.' % from_str))
 
     latitude_longitude = from_str.split(";")
     if len(latitude_longitude) == 1:

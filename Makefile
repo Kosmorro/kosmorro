@@ -1,5 +1,5 @@
 black:
-	pipenv run black kosmorro _kosmorro setup.py
+	pipenv run black kosmorro kosmorro setup.py
 
 .PHONY: test
 test:
@@ -10,11 +10,12 @@ test:
 	unset KOSMORRO_TIMEZONE; \
 	LANG=C pipenv run python3 -m coverage run -m unittest test
 
-build: manpages
+.PHONY: build
+build: #manpages
 	python3 setup.py sdist bdist_wheel
 
 messages:
-	pipenv run python setup.py extract_messages --output-file=_kosmorro/locales/messages.pot
+	pipenv run python setup.py extract_messages --output-file=kosmorro/locales/messages.pot
 
 manpages:
 	ronn --roff manpage/kosmorro.1.md
@@ -34,10 +35,10 @@ release: env
 	@echo -e "\e[1mCreating release with version number \e[36m$$RELEASE_NUMBER\e[0m"
 	@echo
 
-	sed "s/^__version__ =.*/__version__ = \"$$RELEASE_NUMBER\"/g" _kosmorro/__version__.py > version.py
-	mv version.py _kosmorro/__version__.py
+	sed "s/^__version__ =.*/__version__ = \"$$RELEASE_NUMBER\"/g" kosmorro/__version__.py > version.py
+	mv version.py kosmorro/__version__.py
 
-	pipenv run python setup.py extract_messages --output-file=_kosmorro/locales/messages.pot > /dev/null
+	pipenv run python setup.py extract_messages --output-file=kosmorro/locales/messages.pot > /dev/null
 
 	conventional-changelog -p angular -i CHANGELOG.md -s
 	sed "0,/\\[\\]/s/\\[\\]/[v$$RELEASE_NUMBER]/g" CHANGELOG.md > /tmp/CHANGELOG.md
@@ -49,7 +50,7 @@ release: env
 	@echo -e "Please review the changes, then invoke \e[33mmake finish-release\e[39m."
 
 finish-release: env
-	git add CHANGELOG.md _kosmorro/__version__.py _kosmorro/locales/messages.pot
+	git add CHANGELOG.md kosmorro/__version__.py kosmorro/locales/messages.pot
 	git commit -m "build: bump version $$RELEASE_NUMBER"
 	git tag "v$$RELEASE_NUMBER"
 	git checkout features

@@ -19,7 +19,7 @@
 import pathlib
 from setuptools import setup, find_packages
 
-from _kosmorro.__version__ import __version__
+from kosmorro.__version__ import __version__
 
 HERE = pathlib.Path(__file__).parent
 README = (HERE / "README.md").read_text()
@@ -35,12 +35,12 @@ setup(
     long_description=README,
     long_description_content_type="text/markdown",
     keywords="kosmorro astronomy ephemerides ephemeris",
-    packages=find_packages(),
-    scripts=["kosmorro"],
+    packages=['kosmorro'],
+    scripts=["kosmorro.py"],
     include_package_data=True,
     data_files=[
-        ("man/man1", ["manpage/kosmorro.1"]),
-        ("man/man7", ["manpage/kosmorro.7"]),
+        #("man/man1", ["manpage/kosmorro.1"]),
+        #("man/man7", ["manpage/kosmorro.7"]),
     ],
     install_requires=[
         "kosmorrolib",
@@ -48,6 +48,7 @@ setup(
         "termcolor",
         "python-dateutil",
         "openlocationcode",
+        "colorama",
     ],
     classifiers=[
         "Development Status :: 3 - Alpha",
