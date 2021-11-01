@@ -1,3 +1,12 @@
+# [v0.10.3](https://github.com/Kosmorro/kosmorro/compare/v0.10.2...v0.10.3) (2021-11-01)
+
+
+### Bug Fixes
+
+* update Kosmorrolib to version 1.0.1 ([#207](https://github.com/Kosmorro/kosmorro/issues/207)) ([b492e7f](https://github.com/Kosmorro/kosmorro/commit/b492e7f946c3452de3f09a36d40f458947f8f6e9))
+**Note:** if you were using Kosmorro < 0.10.3, files were automatically downloaded. Those files are not necessary anymore, so you can delete the folder `$HOME/.kosmorro-cache`
+
+
 # [v0.10.2](https://github.com/Kosmorro/kosmorro/compare/v0.10.1...v0.10.2) (2021-08-26)
 
 

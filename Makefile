@@ -34,7 +34,7 @@ release: env
 	@echo -e "\e[1mCreating release with version number \e[36m$$RELEASE_NUMBER\e[0m"
 	@echo
 
-	sed "s/^__version__ =.*/__version__ = '$$RELEASE_NUMBER'/g" _kosmorro/__version__.py > version.py
+	sed "s/^__version__ =.*/__version__ = \"$$RELEASE_NUMBER\"/g" _kosmorro/__version__.py > version.py
 	mv version.py _kosmorro/__version__.py
 
 	pipenv run python setup.py extract_messages --output-file=_kosmorro/locales/messages.pot > /dev/null
