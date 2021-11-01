@@ -18,8 +18,8 @@ def from_event(event: Event, with_description: bool = True) -> str:
                 else event.details
             ),
         ),
-        EventType.MOON_PERIGEE: (_("%s is at its perigee"), None),
-        EventType.MOON_APOGEE: (_("%s is at its apogee"), None),
+        EventType.PERIGEE: (_("%s is at its perigee"), None),
+        EventType.APOGEE: (_("%s is at its apogee"), None),
     }.get(event.event_type)
 
     if string is None:
