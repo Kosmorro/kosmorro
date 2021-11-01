@@ -25,7 +25,6 @@ import subprocess
 import shutil
 from pathlib import Path
 
-from kosmorrolib.exceptions import UnavailableFeatureError
 from tabulate import tabulate
 from termcolor import colored
 
@@ -351,7 +350,7 @@ class _LatexDumper(Dumper):
                 continue
 
             document = document.replace(
-                "+++ASTER_%s+++" % aster.skyfield_name.upper().split(" ")[0],
+                "+++ASTER_%s+++" % aster.identifier.name,
                 object_name,
             )
 
