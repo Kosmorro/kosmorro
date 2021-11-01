@@ -1,3 +1,10 @@
+# [v0.10.4](https://github.com/Kosmorro/kosmorro/compare/v0.10.3...v0.10.4) (2021-11-01)
+
+This version is empty and contains exactly the same things as v0.10.3.
+It has been created because of a manipulation mistake that led to the creation of a wrong version on PyPI.
+
+If v0.10.3 does not exist on your distribution, install v0.10.4, and you will have exactly the same thing.
+
 # [v0.10.3](https://github.com/Kosmorro/kosmorro/compare/v0.10.2...v0.10.3) (2021-11-01)
 
 
