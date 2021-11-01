@@ -147,7 +147,7 @@ def get_information(
     if position is not None:
         try:
             eph = get_ephemerides(
-                date=compute_date, position=position, timezone=timezone
+                for_date=compute_date, position=position, timezone=timezone
             )
         except OutOfRangeDateError as error:
             raise DateRangeError(error.min_date, error.max_date)
@@ -208,21 +208,6 @@ def output_version() -> bool:
     return True
 
 
-def clear_cache() -> bool:
-    confirm = input(_("Do you really want to clear Kosmorro's cache? [yN] ")).upper()
-    if re.match(locale.nl_langinfo(locale.YESEXPR), confirm) is not None:
-        try:
-            environment.clear_cache()
-        except FileNotFoundError:
-            debug.debug_print("No cache found, nothing done.")
-            pass
-    elif confirm != "" and re.match(locale.nl_langinfo(locale.NOEXPR), confirm) is None:
-        print(_("Incorrect answer, cache not cleared."))
-        return False
-
-    return True
-
-
 def get_args(output_formats: [str]):
     today = date.today()
 
@@ -245,14 +230,6 @@ def get_args(output_formats: [str]):
         const=output_version,
         default=None,
         help=_("Show the program version"),
-    )
-    parser.add_argument(
-        "--clear-cache",
-        dest="special_action",
-        action="store_const",
-        const=clear_cache,
-        default=None,
-        help=_("Delete all the files from Kosmorro's cache."),
     )
     parser.add_argument(
         "--format",
