@@ -6,9 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: kosmorro 0.9.0\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"Report-Msgid-Bugs-To: jerome@deuchnord.fr\n"
 "POT-Creation-Date: 2021-11-01 18:17+0100\n"
-"PO-Revision-Date: 2021-05-23 15:33+0000\n"
+"PO-Revision-Date: 2021-11-02 21:34+0000\n"
 "Last-Translator: Damgermys <damhub28@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/kosmorro/cli/nl/>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.9-dev\n"
 "Generated-By: Babel 2.9.0\n"
 
 #: _kosmorro/date.py:17
@@ -85,12 +85,17 @@ msgid ""
 "to help you to prepare your observation session. All the hours are given in "
 "{timezone}."
 msgstr ""
+"Dit document vat de efemeriden en de gebeurtenissen van {date} samen. Het is "
+"bedoeld om u te helpen bij het voorbereiden van uw observatiesessie. Alle "
+"uren worden gegeven in {timezone}."
 
 #: _kosmorro/dumper.py:321
 msgid ""
 "Don't forget to check the weather forecast before you go out with your "
 "equipment."
 msgstr ""
+"Vergeet niet de weersvoorspelling te checken voordat je eropuit gaat met je "
+"uitrusting."
 
 #: _kosmorro/dumper.py:328
 msgid "Ephemerides of the day"
@@ -122,6 +127,9 @@ msgid ""
 "Please open an issue at https://github.com/Kosmorro/kosmorro/issues and "
 "share the content of the log file at /tmp/kosmorro-%s.log"
 msgstr ""
+"Er is een fout opgetreden tijdens het samenstellen van de PDF.\n"
+"Open a.u.b. een ticket op https://github.com/Kosmorro/kosmorro/issues and "
+"share the content of the log file at /tmp/kosmorro-%s.log"
 
 #: _kosmorro/exceptions.py:34
 msgid "The date must be between {minimum_date} and {maximum_date}"
@@ -154,7 +162,7 @@ msgstr "Kan de uitvoer niet opslaan in \"{path}\": {error}"
 
 #: _kosmorro/main.py:130
 msgid "Please provide a file path to export in this format (--output)."
-msgstr ""
+msgstr "Geef een bestandspad op om in deze indeling te exporteren (--output)."
 
 #: _kosmorro/main.py:163
 msgid "Moon phase can only be displayed between {min_date} and {max_date}"
@@ -171,12 +179,17 @@ msgid ""
 "Compute the ephemerides and the events for a given date and a given position "
 "on Earth."
 msgstr ""
+"Bereken de efemeriden en de gebeurtenissen voor een bepaalde datum en een "
+"bepaalde positie op aarde."
 
 #: _kosmorro/main.py:218
 msgid ""
 "By default, only the events will be computed for today ({date}).\n"
 "To compute also the ephemerides, latitude and longitude arguments are needed."
 msgstr ""
+"Standaard worden alleen de gebeurtenissen voor vandaag ({date}) berekend.\n"
+"Om ook de efemeriden te berekenen, zijn latitude- en longitude-argumenten "
+"nodig."
 
 #: _kosmorro/main.py:232
 msgid "Show the program version"
@@ -192,12 +205,16 @@ msgid ""
 "The observer's latitude on Earth. Can also be set in the KOSMORRO_LATITUDE "
 "environment variable."
 msgstr ""
+"De breedtegraad van de waarnemer op aarde. Kan ook worden ingesteld in de "
+"omgevingsvariabele KOSMORRO_LATITUDE."
 
 #: _kosmorro/main.py:257
 msgid ""
 "The observer's longitude on Earth. Can also be set in the KOSMORRO_LONGITUDE "
 "environment variable."
 msgstr ""
+"De lengtegraad van de waarnemer op aarde. Kan ook worden ingesteld in de "
+"omgevingsvariabele KOSMORRO_LONGITUDE."
 
 #: _kosmorro/main.py:267
 msgid ""
@@ -205,12 +222,18 @@ msgid ""
 "DD format or an interval in the \"[+-]YyMmDd\" format (with Y, M, and D "
 "numbers). Defaults to today ({default_date})."
 msgstr ""
+"De datum waarvoor de efemeriden berekend moeten worden. Kan de indeling JJJJ-"
+"MM-DD hebben of een interval in de indeling \"[+-]YyMmDd\" (met Y-, M- en "
+"D-nummers). Standaard ingesteld op vandaag ({default_date})."
 
 #: _kosmorro/main.py:278
 msgid ""
 "The timezone to display the hours in (e.g. 2 for UTC+2 or -3 for UTC-3). Can "
 "also be set in the KOSMORRO_TIMEZONE environment variable."
 msgstr ""
+"De tijdzone waarin de uren worden weergegeven (bijvoorbeeld 2 voor UTC+2 of -"
+"3 voor UTC-3). Kan ook worden ingesteld in de omgevingsvariabele "
+"KOSMORRO_TIMEZONE."
 
 #: _kosmorro/main.py:287
 msgid "Disable the colors in the console."
@@ -225,14 +248,17 @@ msgstr ""
 "de standaarduitvoer gebruikt. Dit argument is nodig voor het pdf-formaat."
 
 #: _kosmorro/main.py:303
+#, fuzzy
 msgid ""
 "Do not generate a graph to represent the rise and set times in the PDF "
 "format."
 msgstr ""
+"Genereer geen grafiek om de opkomst- en ondergangstijden in PDF-formaat weer "
+"te geven."
 
 #: _kosmorro/main.py:311
 msgid "Show debugging messages"
-msgstr ""
+msgstr "Foutopsporingsberichten weergeven"
 
 #: _kosmorro/i18n/strings.py:10
 #, fuzzy, python-format
@@ -250,9 +276,9 @@ msgid "%s occults %s"
 msgstr "%s verbergt %s"
 
 #: _kosmorro/i18n/strings.py:14
-#, python-format
+#, fuzzy, python-format
 msgid "Elongation of %s is maximal"
-msgstr ""
+msgstr "Verlenging van %s is maximaal"
 
 #: _kosmorro/i18n/strings.py:21
 #, python-format
