@@ -112,14 +112,16 @@ class TextDumper(Dumper):
         text.append(self.get_moon(self.moon_phase))
 
         if len(self.events) > 0:
-            text.append(
-                "\n".join(
-                    [
-                        self.style(_("Expected events:"), "h2"),
-                        self.get_events(self.events),
-                    ]
+            events = self.get_events(self.events)
+            if  events.strip("\n") != "":
+                text.append(
+                    "\n".join(
+                        [
+                            self.style(_("Expected events:"), "h2"),
+                            events,
+                        ]
+                    )
                 )
-            )
 
         if self.timezone == 0:
             text.append(self.style(_("Note: All the hours are given in UTC."), "em"))
@@ -212,6 +214,9 @@ class TextDumper(Dumper):
 
         for event in events:
             description = strings.from_event(event)
+            if description is None:
+                continue
+
             time_fmt = (
                 TIME_FORMAT
                 if event.start_time.day == self.date.day
