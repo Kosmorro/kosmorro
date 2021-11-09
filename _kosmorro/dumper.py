@@ -113,7 +113,7 @@ class TextDumper(Dumper):
 
         if len(self.events) > 0:
             events = self.get_events(self.events)
-            if  events.strip("\n") != "":
+            if events.strip("\n") != "":
                 text.append(
                     "\n".join(
                         [
