@@ -11,7 +11,10 @@ def from_event(event: Event, with_description: bool = True) -> Union[None, str]:
         EventType.OPPOSITION: (_("%s is in opposition"), None),
         EventType.CONJUNCTION: (_("%s and %s are in conjunction"), None),
         EventType.OCCULTATION: (_("%s occults %s"), None),
-        EventType.MAXIMAL_ELONGATION: (_("Elongation of %s is maximal"), lambda e: "{:.3n}°".format(e.details["deg"])),
+        EventType.MAXIMAL_ELONGATION: (
+            _("Elongation of %s is maximal"),
+            lambda e: "{:.3n}°".format(e.details["deg"]),
+        ),
         EventType.PERIGEE: (_("%s is at its perigee"), None),
         EventType.APOGEE: (_("%s is at its apogee"), None),
     }.get(event.event_type, (None, None))
