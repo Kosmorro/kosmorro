@@ -1,3 +1,13 @@
+# [v0.10.5](https://github.com/Kosmorro/kosmorro/compare/v0.10.4...v0.10.5) (2021-11-09)
+
+
+### Bug Fixes
+
+* fix a display issue on the events list when Kosmorrolib returns events not supported by the CLI ([e82af8f](https://github.com/Kosmorro/kosmorro/commit/e82af8f4b9d3a1511876718ff99d5bcc6dce9067))
+* fix KeyError on events processing ([be6bf53](https://github.com/Kosmorro/kosmorro/commit/be6bf530b7c57e9a54da09c86bcca7bfcbadf595))
+
+
+
 # [v0.10.4](https://github.com/Kosmorro/kosmorro/compare/v0.10.3...v0.10.4) (2021-11-01)
 
 This version is empty and contains exactly the same things as v0.10.3.
