@@ -1,4 +1,4 @@
-name: E2E tests
+name: Tests
 
 on:
   push:
@@ -17,14 +17,15 @@ jobs:
       fail-fast: false
       matrix:
         os:
-          - ubuntu-18.04
-          - ubuntu-20.04
+          - ubuntu-latest
+          - macos-latest
         python-version:
           - '3.7'
           - '3.8'
           - '3.9'
+          - '3.10'
 
-    name: E2E tests (Python ${{ matrix.python-version }} on ${{ matrix.os }})
+    name: Python ${{ matrix.python-version }} on ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v1
 
@@ -35,20 +36,30 @@ jobs:
 
     - name: Prepare tests
       run: |
-        sudo apt update
-        sudo apt install ruby
         sudo gem install ronn
-        pip install -U setuptools pip requests wheel Babel
+        pip install -U pip pipenv
+        pipenv sync --dev
+        make manpage
 
     - name: E2E tests
       run: |
-        export ENVIRONMENT="CI"
-        bash .scripts/tests-e2e.sh
+        make tests
+
+    - name: Install TeXLive (Ubuntu)
+      if: ${{ matrix.os == 'ubuntu-latest' }}
+      run: |
+        sudo apt-get install -y texlive texlive-latex-extra
+
+    - name: E2E tests
+      env:
+        TEXLIVE_INSTALLED: 1
+      run: |
+        make tests
 
     - name: manpage (section 1)
       run: |
-        man -P $(which cat) kosmorro
+        man -P $(which cat) manpage/kosmorro.1
 
     - name: manpage (section 7)
       run: |
-        man -P $(which cat) 7 kosmorro
+        man -P $(which cat) manpage/kosmorro.7

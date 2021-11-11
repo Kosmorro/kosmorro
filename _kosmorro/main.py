@@ -23,10 +23,10 @@ from kosmorrolib import Position, get_ephemerides, get_events, get_moon_phase
 from kosmorrolib.__version__ import __version__ as kosmorrolib_version
 from kosmorrolib.exceptions import OutOfRangeDateError
 from datetime import date
-from termcolor import colored
 
 from . import dumper, environment, debug
 from .date import parse_date
+from .utils import colored, set_colors_activated
 from .__version__ import __version__ as kosmorro_version
 from .exceptions import UnavailableFeatureError, OutOfRangeDateError as DateRangeError
 from _kosmorro.i18n.utils import _, SHORT_DATE_FORMAT
@@ -38,6 +38,8 @@ def main():
     args = get_args(list(output_formats.keys()))
     debug.show_debug_messages = args.show_debug_messages
     output_format = args.format
+
+    set_colors_activated(args.colors)
 
     if args.special_action is not None:
         return 0 if args.special_action() else 1
@@ -214,9 +216,8 @@ def get_args(output_formats: [str]):
             "Compute the ephemerides and the events for a given date and a given position on Earth."
         ),
         epilog=_(
-            "By default, only the events will be computed for today ({date}).\n"
-            "To compute also the ephemerides, latitude and longitude arguments"
-            " are needed."
+            "By default, only the events will be computed for today.\n"
+            "To compute also the ephemerides, latitude and longitude arguments are needed."
         ).format(date=today.strftime(dumper.FULL_DATE_FORMAT)),
     )
 
@@ -265,7 +266,7 @@ def get_args(output_formats: [str]):
         help=_(
             "The date for which the ephemerides must be calculated. Can be in the YYYY-MM-DD format "
             'or an interval in the "[+-]YyMmDd" format (with Y, M, and D numbers). '
-            "Defaults to today ({default_date})."
+            "Defaults to current date."
         ).format(default_date=today.strftime("%Y-%m-%d")),
     )
     parser.add_argument(
