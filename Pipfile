@@ -6,6 +6,8 @@ verify_ssl = true
 [dev-packages]
 babel = "*"
 black = "*"
+pytest = "*"
+aurornis = "*"
 
 [packages]
 tabulate = "*"

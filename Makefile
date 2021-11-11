@@ -1,5 +1,14 @@
 black:
-	pipenv run black kosmorro _kosmorro setup.py
+	pipenv run black kosmorro _kosmorro tests setup.py
+
+.PHONY: tests
+tests:
+	@if [ "$${TEXLIVE_INSTALLED}" == "" ]; then \
+  		echo "If you are running the tests locally and TeXLive is installed on your machine, you will need to set the TEXLIVE_INSTALLED environment variable."; \
+  		echo; \
+	fi
+
+	pipenv run python3 -m pytest tests/*.py
 
 .PHONY: build
 build: manpage
