@@ -2,8 +2,6 @@ name: Bug report
 description: Report a bug you have found, so it can be fixed
 labels:
   - bug
-assignees:
-  - deuchnord
 
 body:
   - type: markdown
@@ -76,6 +74,7 @@ body:
         - macOS 12 (Monterey)
         - macOS 11 (Big Sur)
         - macOS 10.15 (Catalina)
+        - Other
 
   - type: dropdown
     id: install-source
