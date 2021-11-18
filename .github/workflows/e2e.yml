@@ -5,6 +5,10 @@ on:
     branches: [master, features]
   pull_request:
     branches: [master, features]
+  schedule:
+    # Run the tests every day at 6:00 AM.
+    # This allows to run the tests against the relative dates
+    - cron: "0 6 * * *"
 
 jobs:
   e2e-tests:
