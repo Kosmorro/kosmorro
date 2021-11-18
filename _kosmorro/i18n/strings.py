@@ -25,7 +25,7 @@ def from_event(event: Event, with_description: bool = True) -> Union[None, str]:
     string = string % tuple([from_object(o.identifier) for o in event.objects])
 
     if details is not None and with_description:
-        return "%s (%s)" % (string, details())
+        return "%s (%s)" % (string, details(event))
 
     return string
 
