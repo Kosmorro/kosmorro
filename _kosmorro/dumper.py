@@ -145,14 +145,14 @@ class TextDumper(Dumper):
             return text
 
         styles = {
-            "h1": lambda t: colored(t, "yellow", attrs=["bold"]),
+            "h1": lambda t: colored(t, "green", attrs=["bold"]),
             "h2": lambda t: colored(t, "magenta", attrs=["bold"]),
-            "th": lambda t: colored(t, "white", attrs=["bold"]),
+            "th": lambda t: colored(t, attrs=["bold"]),
             "strong": lambda t: colored(t, attrs=["bold"]),
             "em": lambda t: colored(t, attrs=["dark"]),
         }
 
-        return styles[tag](text)
+        return styles.get(tag, lambda t: t)(text)
 
     def stringify_ephemerides(self) -> str:
         data = []
