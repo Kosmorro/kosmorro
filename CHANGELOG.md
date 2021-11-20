@@ -1,3 +1,13 @@
+# [v0.10.6](https://github.com/Kosmorro/kosmorro/compare/v0.10.5...v0.10.6) (2021-11-20)
+
+
+### Bug Fixes
+
+* **colors:** use colors adapted on both dark and light background ([9bdb490](https://github.com/Kosmorro/kosmorro/commit/9bdb490435a4ca9741911396a28fa6bbdb47159b))
+* **events:** fix event details display for maximal elongation ([d73f74a](https://github.com/Kosmorro/kosmorro/commit/d73f74a34cc21ff8b092d65f77aacf66529ab8bb))
+
+
+
 # [v0.10.5](https://github.com/Kosmorro/kosmorro/compare/v0.10.4...v0.10.5) (2021-11-09)
 
 
