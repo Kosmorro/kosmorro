@@ -2,8 +2,6 @@ name: Bug report
 description: Report a bug you have found, so it can be fixed
 labels:
   - bug
-assignees:
-  - deuchnord
 
 body:
   - type: markdown
@@ -39,10 +37,8 @@ body:
 
         Note: if you don't know, invoke `kosmorro --version`.
       options:
-        - "0.10.2"
-        - "0.10.1"
-        - "0.10.0"
-        - "0.9.0"
+        - "0.10"
+        - "0.9"
         - master branch
         - features branch
 
@@ -78,6 +74,7 @@ body:
         - macOS 12 (Monterey)
         - macOS 11 (Big Sur)
         - macOS 10.15 (Catalina)
+        - Other
 
   - type: dropdown
     id: install-source
