@@ -21,6 +21,7 @@ import re
 from pathlib import Path
 
 CACHE_FOLDER = str(Path.home()) + "/.kosmorro-cache"
+NO_COLOR = "NO_COLOR" in os.environ
 
 
 class Environment:

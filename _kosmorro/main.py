@@ -95,12 +95,14 @@ def main():
         timezone = 0
 
     try:
+        use_colors = not environment.NO_COLOR and args.colors
+
         output = get_information(
             compute_date,
             position,
             timezone,
             output_format,
-            args.colors,
+            use_colors,
             args.show_graph,
         )
     except InvalidOutputFormatError as error:
