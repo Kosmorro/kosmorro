@@ -51,6 +51,9 @@ Available environment variables are:
 `KOSMORRO_TIMEZONE`  
     the observer's timezone (alternative to `--timezone`)
 
+`NO_COLOR`
+    disable colored console output (alternative to `--no-colors`)
+
 ## EXAMPLES
 
 Compute the events only for the current date:
