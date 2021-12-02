@@ -1,5 +1,6 @@
 # ![Kosmorro](https://raw.githubusercontent.com/Kosmorro/logos/main/png/kosmorro-logo-grey.png)
 [![Coverage Status](https://coveralls.io/repos/github/Kosmorro/kosmorro/badge.svg?branch=master)](https://coveralls.io/github/Kosmorro/kosmorro?branch=master) [![Version on PyPI](https://img.shields.io/pypi/v/kosmorro)](https://pypi.org/project/kosmorro) [![Packaging status](https://repology.org/badge/tiny-repos/kosmorro.svg)](https://repology.org/project/kosmorro/versions) [![Docker Pulls](https://img.shields.io/docker/pulls/kosmorro/kosmorro)](https://hub.docker.com/r/kosmorro/kosmorro) [![Help translating Kosmorro!](https://hosted.weblate.org/widgets/kosmorro/-/cli/svg-badge.svg)](https://hosted.weblate.org/engage/kosmorro/)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FKosmorro%2Fkosmorro.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FKosmorro%2Fkosmorro?ref=badge_shield)
 
 A program that calculates your astronomical ephemerides!
 
@@ -44,3 +45,7 @@ Kosmorro is translated on [Weblate](https://hosted.weblate.org/engage/kosmorro/)
 If you speak a language that is not supported yet, feel free to contribute!
 
 ![Translation state per language](https://hosted.weblate.org/widgets/kosmorro/-/cli/multi-auto.svg)
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FKosmorro%2Fkosmorro.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FKosmorro%2Fkosmorro?ref=badge_large)
