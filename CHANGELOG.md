@@ -1,3 +1,12 @@
+# [v0.10.7](https://github.com/Kosmorro/kosmorro/compare/v0.10.6...v0.10.7) (2021-12-04)
+
+
+### Bug Fixes
+
+* return next Moon phase with the correct time zone ([1cc8913](https://github.com/Kosmorro/kosmorro/commit/1cc891395e2081d431d63a4d4be303a8121c2daa))
+
+
+
 # [v0.10.6](https://github.com/Kosmorro/kosmorro/compare/v0.10.5...v0.10.6) (2021-11-20)
 
 
