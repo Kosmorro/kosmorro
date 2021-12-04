@@ -171,7 +171,7 @@ def get_information(
         eph = []
 
     try:
-        moon_phase = get_moon_phase(compute_date)
+        moon_phase = get_moon_phase(for_date=compute_date, timezone=timezone)
     except OutOfRangeDateError as error:
         moon_phase = None
         print(
