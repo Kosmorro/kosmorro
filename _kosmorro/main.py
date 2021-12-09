@@ -213,6 +213,7 @@ def get_dumpers() -> {str: dumper.Dumper}:
         "txt": dumper.TextDumper,
         "json": dumper.JsonDumper,
         "pdf": dumper.PdfDumper,
+        "tex": dumper.LatexDumper,
     }
 
 
