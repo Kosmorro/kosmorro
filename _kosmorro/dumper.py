@@ -252,10 +252,13 @@ class TextDumper(Dumper):
         return "\n".join([current_moon_phase, new_moon_phase])
 
 
-class _LatexDumper(Dumper):
+class LatexDumper(Dumper):
     def to_string(self):
         template_path = os.path.join(
-            os.path.abspath(os.path.dirname(__file__)), "assets", "pdf", "template.tex"
+            os.path.abspath(os.path.dirname(__file__)),
+            "assets",
+            "latex",
+            "template.tex",
         )
 
         with open(template_path, mode="r") as file:
@@ -303,6 +306,9 @@ class _LatexDumper(Dumper):
     def add_strings(
         self, document: str, kosmorro_logo_path: str, moon_phase_graphics: str
     ) -> str:
+        document = document.replace(
+            "+++CURRENT-DATE+++", datetime.datetime.now().isoformat()
+        )
         document = document.replace("+++KOSMORRO-VERSION+++", version)
         document = document.replace("+++KOSMORRO-LOGO+++", kosmorro_logo_path)
         document = document.replace("+++DOCUMENT-TITLE+++", _("Overview of your sky"))
@@ -487,7 +493,7 @@ class _LatexDumper(Dumper):
 class PdfDumper(Dumper):
     def to_string(self):
         try:
-            latex_dumper = _LatexDumper(
+            latex_dumper = LatexDumper(
                 self.ephemerides,
                 self.moon_phase,
                 self.events,
@@ -513,7 +519,6 @@ class PdfDumper(Dumper):
 
     @staticmethod
     def _compile(latex_input) -> bytes:
-        package = str(Path(__file__).parent.absolute()) + "/assets/pdf/kosmorro.sty"
         timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
         current_dir = (
             os.getcwd()
@@ -521,9 +526,6 @@ class PdfDumper(Dumper):
 
         try:
             temp_dir = tempfile.mkdtemp()
-
-            shutil.copy(package, temp_dir)
-
             temp_tex = "%s/%s.tex" % (temp_dir, timestamp)
 
             with open(temp_tex, "w") as tex_file:
