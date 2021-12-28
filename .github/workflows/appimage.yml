@@ -1,0 +1,42 @@
+name: AppImage
+
+on:
+  pull_request:
+    branches: [master, features]
+  release:
+
+jobs:
+  build-appimage:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Prepare environment
+        run: |
+          sudo gem install ronn
+          wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage -O /usr/local/bin/appimagetool
+          sudo chmod +x /usr/local/bin/appimagetool
+          pip install -U pip pipenv Babel wheel appimage-builder
+          pipenv install --dev
+
+      - name: Build wheel
+        run: |
+          make i18n build
+
+      - name: Build AppImage
+        run: |
+          make appimage
+
+      - name: Upload AppImage
+        uses: actions/upload-artifact@v2
+        with:
+          name: kosmorro.AppImage
+          path: dist/kosmorro-latest-x86_64.AppImage
+
+      - name: Upload AppImage version synchronization file
+        uses: actions/upload-artifact@v2
+        with:
+          name: kosmorro.AppImage.zsync
+          path: dist/kosmorro-latest-x86_64.AppImage.zsync
