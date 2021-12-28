@@ -3,7 +3,7 @@ version: 1
 
 script: |
   mkdir -p build/AppDir build/AppDir/usr/share/icons/hicolor/scalable/apps
-  cp _kosmorro/assets/svg/kosmorro-icon.svg build/AppDir/usr/share/icons/hicolor/scalable/apps/kosmorro.svg
+  cp kosmorro/assets/svg/kosmorro-icon.svg build/AppDir/usr/share/icons/hicolor/scalable/apps/kosmorro.svg
   pip3 install --isolated --root="./build/AppDir" ./dist/kosmorro-*.whl
 
 AppDir:

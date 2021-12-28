@@ -18,21 +18,20 @@ jobs:
         python-version: '3.x'
     - name: Install dependencies
       run: |
-        pip install --upgrade pip pipenv
-        pipenv sync -d
+        pip install --upgrade pip poetry
+        poetry install
     - name: Check i18n
       run: |
-        pipenv run pybabel extract --output=/tmp/kosmorro-messages.pot _kosmorro
+        poetry run pybabel extract --output=/tmp/kosmorro-messages.pot kosmorro
         echo
-
-        diff=$(diff _kosmorro/locales/messages.pot /tmp/kosmorro-messages.pot | grep '^>')
+        diff=$(diff kosmorro/locales/messages.pot /tmp/kosmorro-messages.pot | grep '^>')
         n=$(echo "$diff" | grep -v '> "POT-Creation-Date: ' | wc -l)
 
         if [ "$(echo "$diff" | grep -E '^"Generated-By: Babel' | wc -l)" -eq "1" ]; then
-          echo "❌ You dependencies may be out of date!"
+          echo "❌ Your dependencies may be out of date!"
           echo "   Please run the following command to fix this:"
           echo
-          echo "     pipenv sync --dev"
+          echo "     poetry install"
           echo
           echo "   Then update the messages file:"
           echo

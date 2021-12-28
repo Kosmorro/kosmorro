@@ -30,10 +30,10 @@ from .date import parse_date
 from .utils import colored, set_colors_activated
 from .__version__ import __version__ as kosmorro_version
 from .exceptions import UnavailableFeatureError, OutOfRangeDateError as DateRangeError
-from _kosmorro.i18n.utils import _, SHORT_DATE_FORMAT
+from kosmorro.i18n.utils import _
 
 
-def main():
+def run():
     env_vars = environment.get_env_vars()
     output_formats = get_dumpers()
     args = get_args(list(output_formats.keys()))
@@ -312,3 +312,7 @@ def get_args(output_formats: [str]):
     )
 
     return parser.parse_args()
+
+
+def main():
+    sys.exit(run())

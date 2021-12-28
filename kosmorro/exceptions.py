@@ -18,7 +18,7 @@
 
 from datetime import date
 from babel.dates import format_date
-from _kosmorro.i18n.utils import _, SHORT_DATE_FORMAT
+from kosmorro.i18n.utils import _, SHORT_DATE_FORMAT
 
 
 class UnavailableFeatureError(RuntimeError):
