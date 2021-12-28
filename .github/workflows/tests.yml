@@ -27,19 +27,17 @@ jobs:
 
     name: Python ${{ matrix.python-version }} on ${{ matrix.os }}
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
 
     - name: Set up Python
-      uses: actions/setup-python@v1
+      uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
 
     - name: Prepare tests
       run: |
-        sudo gem install ronn
-        pip install -U pip pipenv
-        pipenv sync --dev
-        make manpage
+        pip install -U pip poetry
+        poetry install
 
     - name: E2E tests
       run: |
@@ -55,11 +53,3 @@ jobs:
         TEXLIVE_INSTALLED: 1
       run: |
         make tests
-
-    - name: manpage (section 1)
-      run: |
-        man -P $(which cat) manpage/kosmorro.1
-
-    - name: manpage (section 7)
-      run: |
-        man -P $(which cat) manpage/kosmorro.7

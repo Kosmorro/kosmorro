@@ -1,5 +1,5 @@
 # ![Kosmorro](https://raw.githubusercontent.com/Kosmorro/logos/main/png/kosmorro-logo-grey.png)
-[![Coverage Status](https://coveralls.io/repos/github/Kosmorro/kosmorro/badge.svg?branch=master)](https://coveralls.io/github/Kosmorro/kosmorro?branch=master) [![Version on PyPI](https://img.shields.io/pypi/v/kosmorro)](https://pypi.org/project/kosmorro) [![Packaging status](https://repology.org/badge/tiny-repos/kosmorro.svg)](https://repology.org/project/kosmorro/versions) [![Docker Pulls](https://img.shields.io/docker/pulls/kosmorro/kosmorro)](https://hub.docker.com/r/kosmorro/kosmorro) [![Help translating Kosmorro!](https://hosted.weblate.org/widgets/kosmorro/-/cli/svg-badge.svg)](https://hosted.weblate.org/engage/kosmorro/)
+[![Coverage Status](https://coveralls.io/repos/github/Kosmorro/kosmorro/badge.svg?branch=master)](https://coveralls.io/github/Kosmorro/kosmorro?branch=master) [![Version on PyPI](https://img.shields.io/pypi/v/kosmorro)](https://pypi.org/project/kosmorro) [![Packaging status](https://repology.org/badge/tiny-repos/kosmorro.svg)](https://repology.org/project/kosmorro/versions) [![Help translating Kosmorro!](https://hosted.weblate.org/widgets/kosmorro/-/cli/svg-badge.svg)](https://hosted.weblate.org/engage/kosmorro/)
 
 A program that calculates your astronomical ephemerides!
 
@@ -17,12 +17,12 @@ Before you run Kosmorro in your development environment, check you have installe
 
 - Python ≥ 3.7.0 (needed run Kosmorro)
 - PIP3 (needed for package management, usually installed among with Python 3)
-- [Pipenv](https://pypi.org/project/pipenv/) (needed to manage the virtual environment)
+- [Poetry](https://python-poetry.org/) (needed to manage the virtual environment)
 
-Clone this repository and run `pipenv sync` to install all the dependencies.
-Then, run Kosmorro by invoking `pipenv run python kosmorro`.
+Clone this repository and run `poetry install` to install all the dependencies.
+Then, run Kosmorro by invoking `poetry run python kosmorro`.
 
-For comfort, you may want to invoke `pipenv shell` first and then just `python kosmoro`.
+For comfort, you may want to invoke `poetry shell` first and then just `python kosmoro`.
 
 ## Using Kosmorro
 

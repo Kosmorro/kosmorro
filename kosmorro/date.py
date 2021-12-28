@@ -5,7 +5,7 @@ import re
 from dateutil.relativedelta import relativedelta
 from datetime import date
 
-from _kosmorro.i18n.utils import _
+from kosmorro.i18n.utils import _
 
 
 def parse_date(date_arg: str) -> date:

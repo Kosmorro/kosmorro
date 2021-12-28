@@ -7,7 +7,7 @@ from os import environ
 from typing import Union
 
 DEFAULT_ENVIRONMENT = {"PATH": environ["PATH"]}
-KOSMORRO = ["./kosmorro", "--no-color"]
+KOSMORRO = ["kosmorro", "--no-color"]
 
 CURRENT_MOON_PHASE_PATTERN = re.compile(
     r"^Moon phase: ("
