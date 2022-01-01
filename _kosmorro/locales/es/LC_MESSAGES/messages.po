@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kosmorro 0.9.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-04 11:58+0100\n"
+"POT-Creation-Date: 2021-12-30 12:15+0100\n"
 "PO-Revision-Date: 2021-05-16 09:25+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/kosmorro/cli/es/"
@@ -136,7 +136,7 @@ msgstr ""
 msgid "The date must be between {minimum_date} and {maximum_date}"
 msgstr "La fecha debe estar entre {fecha_mínima} y {fecha_máxima}"
 
-#: _kosmorro/main.py:62
+#: _kosmorro/main.py:60
 #, fuzzy
 msgid ""
 "Save the planet and paper!\n"
@@ -147,7 +147,7 @@ msgstr ""
 "Considere la posibilidad de imprimir su documento PDF sólo si es realmente "
 "necesario, y utilice el otro lado de la hoja."
 
-#: _kosmorro/main.py:71
+#: _kosmorro/main.py:69
 #, fuzzy
 msgid ""
 "PDF output will not contain the ephemerides, because you didn't provide the "
@@ -156,26 +156,26 @@ msgstr ""
 "La salida en PDF no contendrá las efemérides, porque no proporcionó la "
 "coordenada de observación."
 
-#: _kosmorro/main.py:116
+#: _kosmorro/main.py:114
 #, fuzzy
 msgid "The file could not be saved in \"{path}\": {error}"
 msgstr "No pude guardar la salida en \"{path}\": {error}"
 
-#: _kosmorro/main.py:130
+#: _kosmorro/main.py:128
 msgid "Please provide a file path to export in this format (--output)."
 msgstr ""
 
-#: _kosmorro/main.py:163
+#: _kosmorro/main.py:161
 msgid "Moon phase can only be displayed between {min_date} and {max_date}"
 msgstr "La fase lunar sólo puede ser mostrada entre {min_date} y {max_date}"
 
-#: _kosmorro/main.py:202
+#: _kosmorro/main.py:200
 #, fuzzy
 msgid ""
 "Running on Python {python_version} with Kosmorrolib v{kosmorrolib_version}"
 msgstr "Corriendo en Python {python_version}"
 
-#: _kosmorro/main.py:215
+#: _kosmorro/main.py:213
 #, fuzzy
 msgid ""
 "Compute the ephemerides and the events for a given date and a given position "
@@ -184,7 +184,7 @@ msgstr ""
 "Calcular las efemérides y los eventos para una fecha determinada, en una "
 "posición determinada en la Tierra."
 
-#: _kosmorro/main.py:218
+#: _kosmorro/main.py:216
 msgid ""
 "By default, only the events will be computed for today ({date}).\n"
 "To compute also the ephemerides, latitude and longitude arguments are needed."
@@ -193,16 +193,16 @@ msgstr ""
 "Para calcular también las efemérides, se necesitan los argumentos de latitud "
 "y longitud."
 
-#: _kosmorro/main.py:232
+#: _kosmorro/main.py:230
 msgid "Show the program version"
 msgstr "Mostrar la versión del programa"
 
-#: _kosmorro/main.py:240
+#: _kosmorro/main.py:238
 #, fuzzy
 msgid "The format to output the information to"
 msgstr "El formato en el cual la información debe ser producida"
 
-#: _kosmorro/main.py:247
+#: _kosmorro/main.py:245
 msgid ""
 "The observer's latitude on Earth. Can also be set in the KOSMORRO_LATITUDE "
 "environment variable."
@@ -210,7 +210,7 @@ msgstr ""
 "La latitud del observador en la Tierra. También se puede establecer en la "
 "variable ambiental KOSMORRO_LATITUDE."
 
-#: _kosmorro/main.py:257
+#: _kosmorro/main.py:255
 msgid ""
 "The observer's longitude on Earth. Can also be set in the KOSMORRO_LONGITUDE "
 "environment variable."
@@ -218,7 +218,7 @@ msgstr ""
 "La longitud del observador en la Tierra. También se puede establecer en la "
 "variable ambiental KOSMORRO_LONGITUDE."
 
-#: _kosmorro/main.py:267
+#: _kosmorro/main.py:265
 #, fuzzy
 msgid ""
 "The date for which the ephemerides must be calculated. Can be in the YYYY-MM-"
@@ -229,7 +229,7 @@ msgstr ""
 "DD), o como un intervalo en el formato \"[+-]AAmDd\" (con números Y, M y D). "
 "Por defecto, la fecha actual ({fecha_por_ defecto})"
 
-#: _kosmorro/main.py:278
+#: _kosmorro/main.py:276
 msgid ""
 "The timezone to display the hours in (e.g. 2 for UTC+2 or -3 for UTC-3). Can "
 "also be set in the KOSMORRO_TIMEZONE environment variable."
@@ -238,11 +238,11 @@ msgstr ""
 "-3 para UTC-3). También se puede establecer en la variable de entorno "
 "KOSMORRO_TIMEZONE."
 
-#: _kosmorro/main.py:287
+#: _kosmorro/main.py:285
 msgid "Disable the colors in the console."
 msgstr "Deshabilita los colores de la consola."
 
-#: _kosmorro/main.py:294
+#: _kosmorro/main.py:292
 msgid ""
 "A file to export the output to. If not given, the standard output is used. "
 "This argument is needed for PDF format."
@@ -250,7 +250,7 @@ msgstr ""
 "Un archivo al que exportar la salida. Si no se da, se utiliza la salida "
 "estándar. Este argumento es necesario para el formato PDF."
 
-#: _kosmorro/main.py:303
+#: _kosmorro/main.py:301
 msgid ""
 "Do not generate a graph to represent the rise and set times in the PDF "
 "format."
@@ -258,7 +258,7 @@ msgstr ""
 "No genere un gráfico para representar el aumento y los tiempos de ajuste en "
 "el formato PDF."
 
-#: _kosmorro/main.py:311
+#: _kosmorro/main.py:309
 msgid "Show debugging messages"
 msgstr ""
 
