@@ -38,6 +38,7 @@ from .exceptions import (
     OutOfRangeDateError as DateRangeError,
 )
 from _kosmorro.i18n.utils import _, SHORT_DATE_FORMAT
+from .terms import terms as term_dictionary
 
 
 def main():
@@ -50,6 +51,13 @@ def main():
     if args.special_action is not None:
         return 0 if args.special_action() else 1
 
+
+    if args.definitions is not None:
+        for term in term_dictionary:
+            print_term(term)
+        return 0
+
+    
     try:
         compute_date = parse_date(args.date)
     except ValueError as error:
@@ -122,6 +130,8 @@ def main():
         debug.debug_print(error)
         return 1
 
+    
+
     if args.output is not None:
         try:
             file_content = output.to_string()
@@ -146,6 +156,17 @@ def main():
             return 3
     elif not output.is_file_output_needed():
         print(output)
+
+        if args.explain is not None or env_vars.explain is not None:
+            events = []
+            for event in output.events:
+                events.append(event.event_type.name)
+                
+            events = list(dict.fromkeys(events))
+            for event in events:
+                for term in term_dictionary:
+                    if event.lower() == term.lower():
+                        print_term(term)
     else:
         print(
             colored(
@@ -240,6 +261,13 @@ def output_version() -> bool:
 
     return True
 
+def print_term(term):
+    print()
+    print(colored(_('{key_term}\n').format(
+        key_term = term
+        ),attrs=['bold']))
+    print(_('{explanation}\n').format(
+        explanation = term_dictionary[term]))
 
 def get_args(output_formats: [str]):
     today = date.today()
@@ -335,6 +363,22 @@ def get_args(output_formats: [str]):
         dest="show_debug_messages",
         action="store_true",
         help=_("Show debugging messages"),
+    )
+    parser.add_argument(
+        "--explain",
+        default=None,
+        action="store_true",
+        help=_(
+            "Explanation of terms shown by current command output."
+        ),
+    )
+    parser.add_argument(
+        "--definitions",
+        default=None,
+        action="store_true",
+        help=_(
+            "List of kosmorro terms. Program wont provide any calculations!"
+        ),
     )
 
     return parser.parse_args()
