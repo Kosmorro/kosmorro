@@ -347,9 +347,7 @@ def get_args(output_formats: [str]):
         "--no-graph",
         dest="show_graph",
         action="store_false",
-        help=_(
-            "Do not generate a graph to represent the rise and set times in the PDF format."
-        ),
+        help=_("Do not generate a graph to represent the rise and set times in the PDF format."),
     )
     parser.add_argument(
         "--debug",
