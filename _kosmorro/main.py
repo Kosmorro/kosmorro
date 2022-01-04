@@ -51,13 +51,11 @@ def main():
     if args.special_action is not None:
         return 0 if args.special_action() else 1
 
-
     if args.definitions is not None:
         for term in term_dictionary:
             print_term(term)
         return 0
 
-    
     try:
         compute_date = parse_date(args.date)
     except ValueError as error:
@@ -129,8 +127,6 @@ def main():
         print(colored(error.msg, "red"))
         debug.debug_print(error)
         return 1
-
-    
 
     if args.output is not None:
         try:
@@ -263,11 +259,8 @@ def output_version() -> bool:
 
 def print_term(term):
     print()
-    print(colored(_('{key_term}\n').format(
-        key_term = term
-        ),attrs=['bold']))
-    print(_('{explanation}\n').format(
-        explanation = term_dictionary[term]))
+    print(colored(_('{key_term}\n').format(key_term = term),attrs=['bold']))
+    print(_('{explanation}\n').format(explanation = term_dictionary[term]))
 
 def get_args(output_formats: [str]):
     today = date.today()
@@ -368,17 +361,13 @@ def get_args(output_formats: [str]):
         "--explain",
         default=None,
         action="store_true",
-        help=_(
-            "Explanation of terms shown by current command output."
-        ),
+        help=_("Explanation of terms shown by current command output."),
     )
     parser.add_argument(
         "--definitions",
         default=None,
         action="store_true",
-        help=_(
-            "List of kosmorro terms. Program wont provide any calculations!"
-        ),
+        help=_("List of kosmorro terms. Program wont provide any calculations!"),
     )
 
     return parser.parse_args()
