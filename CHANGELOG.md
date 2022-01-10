@@ -1,4 +1,4 @@
-# [v0.10.7](https://github.com/Kosmorro/kosmorro/compare/v0.10.6...v0.10.7) (2021-12-04)
+# [Version 0.10.7](https://github.com/Kosmorro/kosmorro/compare/v0.10.6...v0.10.7) (2021-12-04)
 
 
 ### Bug Fixes
@@ -7,7 +7,7 @@
 
 
 
-# [v0.10.6](https://github.com/Kosmorro/kosmorro/compare/v0.10.5...v0.10.6) (2021-11-20)
+# [Version 0.10.6](https://github.com/Kosmorro/kosmorro/compare/v0.10.5...v0.10.6) (2021-11-20)
 
 
 ### Bug Fixes
@@ -17,7 +17,7 @@
 
 
 
-# [v0.10.5](https://github.com/Kosmorro/kosmorro/compare/v0.10.4...v0.10.5) (2021-11-09)
+# [Version 0.10.5](https://github.com/Kosmorro/kosmorro/compare/v0.10.4...v0.10.5) (2021-11-09)
 
 
 ### Bug Fixes
@@ -27,14 +27,14 @@
 
 
 
-# [v0.10.4](https://github.com/Kosmorro/kosmorro/compare/v0.10.3...v0.10.4) (2021-11-01)
+# [Version 0.10.4](https://github.com/Kosmorro/kosmorro/compare/v0.10.3...v0.10.4) (2021-11-01)
 
 This version is empty and contains exactly the same things as v0.10.3.
 It has been created because of a manipulation mistake that led to the creation of a wrong version on PyPI.
 
 If v0.10.3 does not exist on your distribution, install v0.10.4, and you will have exactly the same thing.
 
-# [v0.10.3](https://github.com/Kosmorro/kosmorro/compare/v0.10.2...v0.10.3) (2021-11-01)
+# [Version 0.10.3](https://github.com/Kosmorro/kosmorro/compare/v0.10.2...v0.10.3) (2021-11-01)
 
 
 ### Bug Fixes
@@ -43,7 +43,7 @@ If v0.10.3 does not exist on your distribution, install v0.10.4, and you will ha
 **Note:** if you were using Kosmorro < 0.10.3, files were automatically downloaded. Those files are not necessary anymore, so you can delete the folder `$HOME/.kosmorro-cache`
 
 
-# [v0.10.2](https://github.com/Kosmorro/kosmorro/compare/v0.10.1...v0.10.2) (2021-08-26)
+# [Version 0.10.2](https://github.com/Kosmorro/kosmorro/compare/v0.10.1...v0.10.2) (2021-08-26)
 
 
 ### Bug Fixes
@@ -52,7 +52,7 @@ If v0.10.3 does not exist on your distribution, install v0.10.4, and you will ha
 
 
 
-# [v0.10.1](https://github.com/Kosmorro/kosmorro/compare/v0.10.0...v0.10.1) (2021-06-20)
+# [Version 0.10.1](https://github.com/Kosmorro/kosmorro/compare/v0.10.0...v0.10.1) (2021-06-20)
 
 
 ### Bug Fixes
@@ -62,7 +62,7 @@ If v0.10.3 does not exist on your distribution, install v0.10.4, and you will ha
 
 
 
-# [v0.10.0](https://github.com/Kosmorro/kosmorro/compare/v0.9.0...v0.10.0) (2021-05-30)
+# [Version 0.10.0](https://github.com/Kosmorro/kosmorro/compare/v0.9.0...v0.10.0) (2021-05-30)
 
 
 ### Bug Fixes
@@ -77,7 +77,7 @@ If v0.10.3 does not exist on your distribution, install v0.10.4, and you will ha
 
 
 
-# [v0.9.0](https://github.com/Kosmorro/kosmorro/compare/v0.8.1...v0.9.0) (2021-01-31)
+# [Version 0.9.0](https://github.com/Kosmorro/kosmorro/compare/v0.8.1...v0.9.0) (2021-01-31)
 
 
 ### Code Refactoring
@@ -102,7 +102,7 @@ If v0.10.3 does not exist on your distribution, install v0.10.4, and you will ha
 
 
 
-# [v0.8.1](https://github.com/Deuchnord/kosmorro/compare/v0.8.0...v0.8.1) (2020-06-07)
+# [Version 0.8.1](https://github.com/Deuchnord/kosmorro/compare/v0.8.0...v0.8.1) (2020-06-07)
 
 
 ### Bug Fixes
@@ -112,7 +112,7 @@ If v0.10.3 does not exist on your distribution, install v0.10.4, and you will ha
 
 
 
-# [v0.8.0](https://github.com/Deuchnord/kosmorro/compare/v0.7.0...v0.8.0) (2020-05-22)
+# [Version 0.8.0](https://github.com/Deuchnord/kosmorro/compare/v0.7.0...v0.8.0) (2020-05-22)
 
 
 ### Code Refactoring
@@ -132,7 +132,7 @@ If v0.10.3 does not exist on your distribution, install v0.10.4, and you will ha
 
 
 
-# [v0.7.0](https://github.com/Deuchnord/kosmorro/compare/v0.6.2...v0.7.0) (2020-04-05)
+# [Version 0.7.0](https://github.com/Deuchnord/kosmorro/compare/v0.6.2...v0.7.0) (2020-04-05)
 
 
 ### Features
@@ -150,7 +150,7 @@ favor of a single one.
 
 
 
-# [v0.6.2](https://github.com/Deuchnord/kosmorro/compare/v0.6.1...v0.6.2) (2020-03-19)
+# [Version 0.6.2](https://github.com/Deuchnord/kosmorro/compare/v0.6.1...v0.6.2) (2020-03-19)
 
 
 ### Bug Fixes
@@ -159,7 +159,7 @@ favor of a single one.
 
 
 
-# [v0.6.1](https://github.com/Deuchnord/kosmorro/compare/v0.6.0...v0.6.1) (2020-03-08)
+# [Version 0.6.1](https://github.com/Deuchnord/kosmorro/compare/v0.6.0...v0.6.1) (2020-03-08)
 
 
 ### Bug Fixes
@@ -170,7 +170,7 @@ favor of a single one.
 
 
 
-# [v0.6.0](https://github.com/Deuchnord/kosmorro/compare/v0.5.2...v0.6.0) (2020-03-01)
+# [Version 0.6.0](https://github.com/Deuchnord/kosmorro/compare/v0.5.2...v0.6.0) (2020-03-01)
 
 
 ### Features
@@ -181,7 +181,7 @@ favor of a single one.
 
 
 
-# [v0.5.2](https://github.com/Deuchnord/kosmorro/compare/v0.5.1...v0.5.2) (2020-02-04)
+# [Version 0.5.2](https://github.com/Deuchnord/kosmorro/compare/v0.5.1...v0.5.2) (2020-02-04)
 
 
 ### Bug Fixes
@@ -190,7 +190,7 @@ favor of a single one.
 
 
 
-# [v0.5.1](https://github.com/Deuchnord/kosmorro/compare/v0.5.0...v0.5.1) (2020-02-03)
+# [Version 0.5.1](https://github.com/Deuchnord/kosmorro/compare/v0.5.0...v0.5.1) (2020-02-03)
 
 
 ### Bug Fixes
@@ -199,7 +199,7 @@ favor of a single one.
 
 
 
-# [v0.5.0](https://github.com/Deuchnord/kosmorro/compare/v0.4.0...v0.5.0) (2020-01-26)
+# [Version 0.5.0](https://github.com/Deuchnord/kosmorro/compare/v0.4.0...v0.5.0) (2020-01-26)
 
 
 ### Features
@@ -210,7 +210,7 @@ favor of a single one.
 
 
 
-# [v0.4.0](https://github.com/Deuchnord/kosmorro/compare/v0.3.1...v0.4.0) (2019-12-28)
+# [Version 0.4.0](https://github.com/Deuchnord/kosmorro/compare/v0.3.1...v0.4.0) (2019-12-28)
 
 
 ### Features
@@ -230,7 +230,7 @@ eventually, the events for the given date (or today if date not given).
 
 
 
-# [v0.3.1](https://github.com/Deuchnord/kosmorro/compare/v0.3.0...v0.3.1) (2019-12-01)
+# [Version 0.3.1](https://github.com/Deuchnord/kosmorro/compare/v0.3.0...v0.3.1) (2019-12-01)
 
 
 ### Bug Fixes
@@ -239,7 +239,7 @@ eventually, the events for the given date (or today if date not given).
 
 
 
-# [v0.3.0](https://github.com/Deuchnord/kosmorro/compare/v0.2.3...v0.3.0) (2019-12-01)
+# [Version 0.3.0](https://github.com/Deuchnord/kosmorro/compare/v0.2.3...v0.3.0) (2019-12-01)
 
 
 ### Bug Fixes
@@ -267,7 +267,7 @@ instead of a string
 
 
 
-# [v0.2.3](https://github.com/Deuchnord/kosmorro/compare/v0.2.2...v0.2.3) (2019-11-24)
+# [Version 0.2.3](https://github.com/Deuchnord/kosmorro/compare/v0.2.2...v0.2.3) (2019-11-24)
 
 
 ### Bug Fixes
@@ -276,7 +276,7 @@ instead of a string
 
 
 
-# [v0.2.2](https://github.com/Deuchnord/kosmorro/compare/v0.2.1...v0.2.2) (2019-11-18)
+# [Version 0.2.2](https://github.com/Deuchnord/kosmorro/compare/v0.2.1...v0.2.2) (2019-11-18)
 
 
 ### Bug Fixes
@@ -288,14 +288,14 @@ instead of a string
 
 * add argument to get the current version ([5f74b08](https://github.com/Deuchnord/kosmorro/commit/5f74b08d15bbccededfc5a195b6943c408c93d16))
 
-# [v0.2.1](https://github.com/Deuchnord/kosmorro/compare/v0.2.0...v0.2.1) (2019-11-17)
+# [Version 0.2.1](https://github.com/Deuchnord/kosmorro/compare/v0.2.0...v0.2.1) (2019-11-17)
 
 
 ### Bug Fixes
 
 * Move version constant to its own file to prevent sgp4 module failing in the AUR ([9a0c9d3](https://github.com/Deuchnord/kosmorro/commit/9a0c9d3ae34c5fa561b5a1b252d39a5ef2a0a4b9))
 
-# [v0.2.0](https://github.com/Deuchnord/kosmorro/compare/v0.1.0...v0.2.0) (2019-11-17)
+# [Version 0.2.0](https://github.com/Deuchnord/kosmorro/compare/v0.1.0...v0.2.0) (2019-11-17)
 
 ### Added
 
