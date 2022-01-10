@@ -17,8 +17,6 @@
 #    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import argparse
-import locale
-import re
 import sys
 import os.path
 

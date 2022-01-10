@@ -17,3 +17,9 @@ coverage.xml
 
 # GitPod-specific:
 /.vscode/**
+
+# AppImage builds
+/AppDir
+/appimage-builder-cache
+*.AppImage
+*.AppImage.zsync

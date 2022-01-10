@@ -1,14 +1,14 @@
 # Translations template for kosmorro.
-# Copyright (C) 2021 ORGANIZATION
+# Copyright (C) 2022 ORGANIZATION
 # This file is distributed under the same license as the kosmorro project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: kosmorro 0.10.7\n"
+"Project-Id-Version: kosmorro 0.10.8\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-09 19:51+0100\n"
+"POT-Creation-Date: 2022-01-10 09:26+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,19 +39,19 @@ msgstr ""
 msgid "Note: All the hours are given in the UTC{offset} timezone."
 msgstr ""
 
-#: _kosmorro/dumper.py:202 _kosmorro/dumper.py:341
+#: _kosmorro/dumper.py:202 _kosmorro/dumper.py:335
 msgid "Object"
 msgstr ""
 
-#: _kosmorro/dumper.py:203 _kosmorro/dumper.py:342
+#: _kosmorro/dumper.py:203 _kosmorro/dumper.py:336
 msgid "Rise time"
 msgstr ""
 
-#: _kosmorro/dumper.py:204 _kosmorro/dumper.py:344
+#: _kosmorro/dumper.py:204 _kosmorro/dumper.py:338
 msgid "Culmination time"
 msgstr ""
 
-#: _kosmorro/dumper.py:205 _kosmorro/dumper.py:346
+#: _kosmorro/dumper.py:205 _kosmorro/dumper.py:340
 msgid "Set time"
 msgstr ""
 
@@ -59,7 +59,7 @@ msgstr ""
 msgid "Moon phase is unavailable for this date."
 msgstr ""
 
-#: _kosmorro/dumper.py:240 _kosmorro/dumper.py:350
+#: _kosmorro/dumper.py:240 _kosmorro/dumper.py:344
 msgid "Moon phase:"
 msgstr ""
 
@@ -67,36 +67,36 @@ msgstr ""
 msgid "{next_moon_phase} on {next_moon_phase_date} at {next_moon_phase_time}"
 msgstr ""
 
-#: _kosmorro/dumper.py:314
+#: _kosmorro/dumper.py:308
 msgid "Overview of your sky"
 msgstr ""
 
-#: _kosmorro/dumper.py:322
+#: _kosmorro/dumper.py:316
 msgid ""
 "This document summarizes the ephemerides and the events of {date}. It "
 "aims to help you to prepare your observation session. All the hours are "
 "given in {timezone}."
 msgstr ""
 
-#: _kosmorro/dumper.py:332
+#: _kosmorro/dumper.py:326
 msgid ""
 "Don't forget to check the weather forecast before you go out with your "
 "equipment."
 msgstr ""
 
-#: _kosmorro/dumper.py:339
+#: _kosmorro/dumper.py:333
 msgid "Ephemerides of the day"
 msgstr ""
 
-#: _kosmorro/dumper.py:348
+#: _kosmorro/dumper.py:342
 msgid "hours"
 msgstr ""
 
-#: _kosmorro/dumper.py:355
+#: _kosmorro/dumper.py:349
 msgid "Expected events"
 msgstr ""
 
-#: _kosmorro/dumper.py:509
+#: _kosmorro/dumper.py:503
 msgid ""
 "Building PDF was not possible, because some dependencies are not "
 "installed.\n"
@@ -104,7 +104,7 @@ msgid ""
 "pdf/ for more information."
 msgstr ""
 
-#: _kosmorro/dumper.py:558
+#: _kosmorro/dumper.py:556
 #, python-format
 msgid ""
 "An error occurred during the compilation of the PDF.\n"
@@ -116,109 +116,98 @@ msgstr ""
 msgid "The date must be between {minimum_date} and {maximum_date}"
 msgstr ""
 
-#: _kosmorro/exceptions.py:47
-msgid ""
-"Invalid output format: {output_format}. Output file must end with: "
-"{accepted_extensions}"
-msgstr ""
-
-#: _kosmorro/geolocation.py:14
-#, python-format
-msgid "The given position (%s) is not valid."
-msgstr ""
-
-#: _kosmorro/geolocation.py:29
-msgid "The given Plus Code seems to be a short code, please provide a full code."
-msgstr ""
-
-#: _kosmorro/main.py:77
+#: _kosmorro/main.py:60
 msgid ""
 "Save the planet and paper!\n"
 "Consider printing your PDF document only if really necessary, and use the"
 " other side of the sheet."
 msgstr ""
 
-#: _kosmorro/main.py:86
+#: _kosmorro/main.py:69
 msgid ""
 "PDF output will not contain the ephemerides, because you didn't provide "
 "the observation coordinates."
 msgstr ""
 
-#: _kosmorro/main.py:138
+#: _kosmorro/main.py:114
 msgid "The file could not be saved in \"{path}\": {error}"
 msgstr ""
 
-#: _kosmorro/main.py:152
+#: _kosmorro/main.py:128
 msgid "Please provide a file path to export in this format (--output)."
 msgstr ""
 
-#: _kosmorro/main.py:185
+#: _kosmorro/main.py:161
 msgid "Moon phase can only be displayed between {min_date} and {max_date}"
 msgstr ""
 
-#: _kosmorro/main.py:235
+#: _kosmorro/main.py:200
 msgid "Running on Python {python_version} with Kosmorrolib v{kosmorrolib_version}"
 msgstr ""
 
-#: _kosmorro/main.py:248
+#: _kosmorro/main.py:213
 msgid ""
 "Compute the ephemerides and the events for a given date and a given "
 "position on Earth."
 msgstr ""
 
-#: _kosmorro/main.py:251
+#: _kosmorro/main.py:216
 msgid ""
 "By default, only the events will be computed for today ({date}).\n"
 "To compute also the ephemerides, latitude and longitude arguments are "
 "needed."
 msgstr ""
 
-#: _kosmorro/main.py:265
+#: _kosmorro/main.py:230
 msgid "Show the program version"
 msgstr ""
 
-#: _kosmorro/main.py:273
-msgid ""
-"The format to output the information to. If not provided, the output "
-"format will be inferred from the file extension of the output file."
+#: _kosmorro/main.py:238
+msgid "The format to output the information to"
 msgstr ""
 
-#: _kosmorro/main.py:283
+#: _kosmorro/main.py:245
 msgid ""
-"The observer's position on Earth, in the \"{latitude},{longitude}\" "
-"format.Can also be set in the KOSMORRO_POSITION environment variable."
+"The observer's latitude on Earth. Can also be set in the "
+"KOSMORRO_LATITUDE environment variable."
 msgstr ""
 
-#: _kosmorro/main.py:293
+#: _kosmorro/main.py:255
+msgid ""
+"The observer's longitude on Earth. Can also be set in the "
+"KOSMORRO_LONGITUDE environment variable."
+msgstr ""
+
+#: _kosmorro/main.py:265
 msgid ""
 "The date for which the ephemerides must be calculated. Can be in the "
 "YYYY-MM-DD format or an interval in the \"[+-]YyMmDd\" format (with Y, M,"
 " and D numbers). Defaults to today ({default_date})."
 msgstr ""
 
-#: _kosmorro/main.py:304
+#: _kosmorro/main.py:276
 msgid ""
 "The timezone to display the hours in (e.g. 2 for UTC+2 or -3 for UTC-3). "
 "Can also be set in the KOSMORRO_TIMEZONE environment variable."
 msgstr ""
 
-#: _kosmorro/main.py:313
+#: _kosmorro/main.py:285
 msgid "Disable the colors in the console."
 msgstr ""
 
-#: _kosmorro/main.py:320
+#: _kosmorro/main.py:292
 msgid ""
 "A file to export the output to. If not given, the standard output is "
 "used. This argument is needed for PDF format."
 msgstr ""
 
-#: _kosmorro/main.py:329
+#: _kosmorro/main.py:301
 msgid ""
 "Do not generate a graph to represent the rise and set times in the PDF "
 "format."
 msgstr ""
 
-#: _kosmorro/main.py:337
+#: _kosmorro/main.py:309
 msgid "Show debugging messages"
 msgstr ""
 
