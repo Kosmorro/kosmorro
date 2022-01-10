@@ -1,3 +1,12 @@
+# [Version 0.10.8](https://github.com/Kosmorro/kosmorro/compare/v0.10.7...v0.10.8) (2022-01-10)
+
+
+### Bug Fixes
+
+* fix locale support that led to an exception ([38571c3](https://github.com/Kosmorro/kosmorro/commit/38571c3084edfec6cafeac16755dde2cd6c5ee66))
+
+
+
 # [Version 0.10.7](https://github.com/Kosmorro/kosmorro/compare/v0.10.6...v0.10.7) (2021-12-04)
 
 
