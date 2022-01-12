@@ -1,3 +1,12 @@
+# [Version 0.10.9](https://github.com/Kosmorro/kosmorro/compare/v0.10.7...v0.10.9) (2022-01-12)
+
+
+### Bug Fixes
+
+* fix distribution on PyPI
+
+
+
 # [Version 0.10.8](https://github.com/Kosmorro/kosmorro/compare/v0.10.7...v0.10.8) (2022-01-10)
 
 
