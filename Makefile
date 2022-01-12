@@ -11,10 +11,10 @@ manpage:
 	ronn --roff manpage/kosmorro.7.md
 
 messages:
-	pipenv run python setup.py extract_messages --output-file=_kosmorro/locales/messages.pot
+	pipenv run pybabel extract --output=_kosmorro/locales/messages.pot _kosmorro
 
 i18n:
-	pipenv run python setup.py compile_catalog
+	pipenv run pybabel compile --directory=_kosmorro/locales
 
 changelog:
 	conventional-changelog -p angular -i CHANGELOG.md -s

@@ -11,18 +11,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: Set up Python
-      uses: actions/setup-python@v1
+      uses: actions/setup-python@v2
       with:
-        python-version: 3.8
+        python-version: '3.x'
     - name: Install dependencies
       run: |
         pip install --upgrade pip pipenv
         pipenv sync -d
     - name: Check i18n
       run: |
-        pipenv run python setup.py extract_messages --output-file=/tmp/kosmorro-messages.pot > /dev/null
+        pipenv run pybabel extract --output=/tmp/kosmorro-messages.pot _kosmorro
+        echo
+
         diff=$(diff _kosmorro/locales/messages.pot /tmp/kosmorro-messages.pot | grep '^>')
         n=$(echo "$diff" | grep -v '> "POT-Creation-Date: ' | wc -l)
 
