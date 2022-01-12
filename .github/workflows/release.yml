@@ -21,7 +21,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install setuptools wheel twine skyfield numpy tabulate Babel requests
+          pip install pipenv setuptools wheel twine skyfield numpy tabulate Babel requests
       - name: Build package
         run: |
           make i18n build
@@ -31,3 +31,4 @@ jobs:
           TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
         run: |
           twine upload dist/*
+
