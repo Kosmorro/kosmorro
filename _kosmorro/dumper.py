@@ -25,10 +25,11 @@ import subprocess
 import shutil
 from pathlib import Path
 
+import kosmorrolib
 from tabulate import tabulate
 from termcolor import colored
 
-from kosmorrolib import AsterEphemerides, Event
+from kosmorrolib import AsterEphemerides, Event, EventType
 from kosmorrolib.model import ASTERS, MoonPhase
 
 from .i18n.utils import _, FULL_DATE_FORMAT, SHORT_DATETIME_FORMAT, TIME_FORMAT
@@ -89,6 +90,15 @@ class Dumper(ABC):
 
 
 class JsonDumper(Dumper):
+    SUPPORTED_EVENTS = [
+        EventType.OPPOSITION,
+        EventType.CONJUNCTION,
+        EventType.OCCULTATION,
+        EventType.MAXIMAL_ELONGATION,
+        EventType.PERIGEE,
+        EventType.APOGEE,
+    ]
+
     def to_string(self):
         return json.dumps(
             {
@@ -96,10 +106,17 @@ class JsonDumper(Dumper):
                     ephemeris.serialize() for ephemeris in self.ephemerides
                 ],
                 "moon_phase": self.moon_phase.serialize(),
-                "events": [event.serialize() for event in self.events],
+                "events": list(self.get_events()),
             },
             indent=4,
         )
+
+    def get_events(self) -> [{str: any}]:
+        for event in self.events:
+            if event.event_type not in self.SUPPORTED_EVENTS:
+                continue
+
+            yield event.serialize()
 
 
 class TextDumper(Dumper):
