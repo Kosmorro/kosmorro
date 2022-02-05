@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kosmorro 0.9.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-12 13:59+0100\n"
+"POT-Creation-Date: 2022-02-04 13:30+0100\n"
 "PO-Revision-Date: 2021-06-22 08:33+0000\n"
 "Last-Translator: Jérôme Deuchnord <jerome@deuchnord.fr>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/kosmorro/cli/fr/"
@@ -31,52 +31,52 @@ msgid ""
 msgstr ""
 "La date {date} ne répond pas au format YYYY-MM-DD ou au format relatif."
 
-#: _kosmorro/dumper.py:120
+#: _kosmorro/dumper.py:137
 msgid "Expected events:"
 msgstr "Événements prévus :"
 
-#: _kosmorro/dumper.py:127
+#: _kosmorro/dumper.py:144
 msgid "Note: All the hours are given in UTC."
 msgstr "Note : toutes les heures sont en temps universel (UTC)."
 
-#: _kosmorro/dumper.py:134
+#: _kosmorro/dumper.py:151
 msgid "Note: All the hours are given in the UTC{offset} timezone."
 msgstr ""
 "Note : toutes les heures sont données dans le fuseau horaire UTC{offset}."
 
-#: _kosmorro/dumper.py:202 _kosmorro/dumper.py:335
+#: _kosmorro/dumper.py:219 _kosmorro/dumper.py:352
 msgid "Object"
 msgstr "Objet"
 
-#: _kosmorro/dumper.py:203 _kosmorro/dumper.py:336
+#: _kosmorro/dumper.py:220 _kosmorro/dumper.py:353
 msgid "Rise time"
 msgstr "Heure de lever"
 
-#: _kosmorro/dumper.py:204 _kosmorro/dumper.py:338
+#: _kosmorro/dumper.py:221 _kosmorro/dumper.py:355
 msgid "Culmination time"
 msgstr "Heure de culmination"
 
-#: _kosmorro/dumper.py:205 _kosmorro/dumper.py:340
+#: _kosmorro/dumper.py:222 _kosmorro/dumper.py:357
 msgid "Set time"
 msgstr "Heure de coucher"
 
-#: _kosmorro/dumper.py:236
+#: _kosmorro/dumper.py:253
 msgid "Moon phase is unavailable for this date."
 msgstr "La phase de la Lune n'est pas disponible pour cette date."
 
-#: _kosmorro/dumper.py:240 _kosmorro/dumper.py:344
+#: _kosmorro/dumper.py:257 _kosmorro/dumper.py:361
 msgid "Moon phase:"
 msgstr "Phase de la Lune :"
 
-#: _kosmorro/dumper.py:244
+#: _kosmorro/dumper.py:261
 msgid "{next_moon_phase} on {next_moon_phase_date} at {next_moon_phase_time}"
 msgstr "{next_moon_phase} le {next_moon_phase_date} à {next_moon_phase_time}"
 
-#: _kosmorro/dumper.py:308
+#: _kosmorro/dumper.py:325
 msgid "Overview of your sky"
 msgstr "Résumé de votre ciel"
 
-#: _kosmorro/dumper.py:316
+#: _kosmorro/dumper.py:333
 msgid ""
 "This document summarizes the ephemerides and the events of {date}. It aims "
 "to help you to prepare your observation session. All the hours are given in "
@@ -86,7 +86,7 @@ msgstr ""
 "{date}. Son but est de vous aider à préparer votre soirée d'observation. "
 "Toutes les heures sont données en {timezone}."
 
-#: _kosmorro/dumper.py:326
+#: _kosmorro/dumper.py:343
 msgid ""
 "Don't forget to check the weather forecast before you go out with your "
 "equipment."
@@ -94,19 +94,19 @@ msgstr ""
 "N’oubliez pas de vous assurer que les conditions météo sont favorables avant "
 "de sortir votre matériel d’observation."
 
-#: _kosmorro/dumper.py:333
+#: _kosmorro/dumper.py:350
 msgid "Ephemerides of the day"
 msgstr "Éphémérides du jour"
 
-#: _kosmorro/dumper.py:342
+#: _kosmorro/dumper.py:359
 msgid "hours"
 msgstr "heures"
 
-#: _kosmorro/dumper.py:349
+#: _kosmorro/dumper.py:366
 msgid "Expected events"
 msgstr "Événements prévus"
 
-#: _kosmorro/dumper.py:503
+#: _kosmorro/dumper.py:520
 msgid ""
 "Building PDF was not possible, because some dependencies are not installed.\n"
 "Please look at the documentation at https://kosmorro.space/cli/generate-pdf/ "
@@ -117,7 +117,7 @@ msgstr ""
 "Veuillez vous référer à la documentation sur https://kosmorro.space/cli/"
 "generate-pdf/ pour de plus amples informations."
 
-#: _kosmorro/dumper.py:556
+#: _kosmorro/dumper.py:573
 #, python-format
 msgid ""
 "An error occurred during the compilation of the PDF.\n"

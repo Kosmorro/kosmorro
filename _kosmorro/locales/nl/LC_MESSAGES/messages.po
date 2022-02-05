@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kosmorro 0.9.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-12 13:59+0100\n"
+"POT-Creation-Date: 2022-02-04 13:30+0100\n"
 "PO-Revision-Date: 2021-11-02 21:34+0000\n"
 "Last-Translator: Damgermys <damhub28@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/kosmorro/cli/nl/>\n"
@@ -32,54 +32,54 @@ msgstr ""
 "De datum {date} komt niet overeen met het vereiste JJJJ-MM-DD-formaat of het "
 "offset-formaat."
 
-#: _kosmorro/dumper.py:120
+#: _kosmorro/dumper.py:137
 msgid "Expected events:"
 msgstr "Verwachte evenementen:"
 
-#: _kosmorro/dumper.py:127
+#: _kosmorro/dumper.py:144
 msgid "Note: All the hours are given in UTC."
 msgstr "Opmerking: alle uren worden gegeven in UTC."
 
-#: _kosmorro/dumper.py:134
+#: _kosmorro/dumper.py:151
 msgid "Note: All the hours are given in the UTC{offset} timezone."
 msgstr "Opmerking: alle uren worden gegeven in de UTC{offset} tijdzone."
 
-#: _kosmorro/dumper.py:202 _kosmorro/dumper.py:335
+#: _kosmorro/dumper.py:219 _kosmorro/dumper.py:352
 msgid "Object"
 msgstr "Object"
 
-#: _kosmorro/dumper.py:203 _kosmorro/dumper.py:336
+#: _kosmorro/dumper.py:220 _kosmorro/dumper.py:353
 #, fuzzy
 msgid "Rise time"
 msgstr "Opgang tijd"
 
-#: _kosmorro/dumper.py:204 _kosmorro/dumper.py:338
+#: _kosmorro/dumper.py:221 _kosmorro/dumper.py:355
 #, fuzzy
 msgid "Culmination time"
 msgstr "Culminatie tijd"
 
-#: _kosmorro/dumper.py:205 _kosmorro/dumper.py:340
+#: _kosmorro/dumper.py:222 _kosmorro/dumper.py:357
 #, fuzzy
 msgid "Set time"
 msgstr "Ondergang tijd"
 
-#: _kosmorro/dumper.py:236
+#: _kosmorro/dumper.py:253
 msgid "Moon phase is unavailable for this date."
 msgstr "Maanfase is niet beschikbaar voor deze datum."
 
-#: _kosmorro/dumper.py:240 _kosmorro/dumper.py:344
+#: _kosmorro/dumper.py:257 _kosmorro/dumper.py:361
 msgid "Moon phase:"
 msgstr "Maanfase:"
 
-#: _kosmorro/dumper.py:244
+#: _kosmorro/dumper.py:261
 msgid "{next_moon_phase} on {next_moon_phase_date} at {next_moon_phase_time}"
 msgstr "{next_moon_phase} op {next_moon_phase_date} om {next_moon_phase_time}"
 
-#: _kosmorro/dumper.py:308
+#: _kosmorro/dumper.py:325
 msgid "Overview of your sky"
 msgstr "Overzicht van uw hemel"
 
-#: _kosmorro/dumper.py:316
+#: _kosmorro/dumper.py:333
 msgid ""
 "This document summarizes the ephemerides and the events of {date}. It aims "
 "to help you to prepare your observation session. All the hours are given in "
@@ -89,7 +89,7 @@ msgstr ""
 "bedoeld om u te helpen bij het voorbereiden van uw observatiesessie. Alle "
 "uren worden gegeven in {timezone}."
 
-#: _kosmorro/dumper.py:326
+#: _kosmorro/dumper.py:343
 msgid ""
 "Don't forget to check the weather forecast before you go out with your "
 "equipment."
@@ -97,19 +97,19 @@ msgstr ""
 "Vergeet niet de weersvoorspelling te checken voordat je eropuit gaat met je "
 "uitrusting."
 
-#: _kosmorro/dumper.py:333
+#: _kosmorro/dumper.py:350
 msgid "Ephemerides of the day"
 msgstr "Efemeriden van de dag"
 
-#: _kosmorro/dumper.py:342
+#: _kosmorro/dumper.py:359
 msgid "hours"
 msgstr "uren"
 
-#: _kosmorro/dumper.py:349
+#: _kosmorro/dumper.py:366
 msgid "Expected events"
 msgstr "Verwachte events"
 
-#: _kosmorro/dumper.py:503
+#: _kosmorro/dumper.py:520
 #, fuzzy
 msgid ""
 "Building PDF was not possible, because some dependencies are not installed.\n"
@@ -120,7 +120,7 @@ msgstr ""
 "zijn geïnstalleerd.\n"
 "Raadpleeg de documentatie op http://kosmorro.space voor meer informatie."
 
-#: _kosmorro/dumper.py:556
+#: _kosmorro/dumper.py:573
 #, python-format
 msgid ""
 "An error occurred during the compilation of the PDF.\n"
