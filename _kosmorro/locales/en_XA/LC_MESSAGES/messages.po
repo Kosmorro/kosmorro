@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kosmorro 0.9.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-04 13:30+0100\n"
+"POT-Creation-Date: 2022-02-16 13:58+0100\n"
 "PO-Revision-Date: 2021-06-20 14:10+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: English (XA pseudolocale) <https://hosted.weblate.org/"
@@ -145,7 +145,7 @@ msgstr ""
 "~~~ Translatable ~~~The date must be between {minimum_date} and "
 "{maximum_date}~~~ End Translatable ~~~"
 
-#: _kosmorro/main.py:60
+#: _kosmorro/main.py:62
 msgid ""
 "Save the planet and paper!\n"
 "Consider printing your PDF document only if really necessary, and use the "
@@ -155,7 +155,7 @@ msgstr ""
 "Consider printing your PDF document only if really necessary, and use the "
 "other side of the sheet.~~~ End Translatable ~~~"
 
-#: _kosmorro/main.py:69
+#: _kosmorro/main.py:71
 msgid ""
 "PDF output will not contain the ephemerides, because you didn't provide the "
 "observation coordinates."
@@ -163,32 +163,32 @@ msgstr ""
 "~~~ Translatable ~~~PDF output will not contain the ephemerides, because you "
 "didn't provide the observation coordinates.~~~ End Translatable ~~~"
 
-#: _kosmorro/main.py:114
+#: _kosmorro/main.py:116
 msgid "The file could not be saved in \"{path}\": {error}"
 msgstr ""
 "~~~ Translatable ~~~The file could not be saved in \"{path}\": {error}~~~ "
 "End Translatable ~~~"
 
-#: _kosmorro/main.py:128
+#: _kosmorro/main.py:130
 msgid "Please provide a file path to export in this format (--output)."
 msgstr ""
 "~~~ Translatable ~~~Please provide a file path to export in this format (--"
 "output).~~~ End Translatable ~~~"
 
-#: _kosmorro/main.py:161
+#: _kosmorro/main.py:163
 msgid "Moon phase can only be displayed between {min_date} and {max_date}"
 msgstr ""
 "~~~ Translatable ~~~Moon phase can only be displayed between {min_date} and "
 "{max_date}~~~ End Translatable ~~~"
 
-#: _kosmorro/main.py:200
+#: _kosmorro/main.py:202
 msgid ""
 "Running on Python {python_version} with Kosmorrolib v{kosmorrolib_version}"
 msgstr ""
 "~~~ Translatable ~~~Running on Python {python_version} with Kosmorrolib "
 "v{kosmorrolib_version}~~~ End Translatable ~~~"
 
-#: _kosmorro/main.py:213
+#: _kosmorro/main.py:215
 msgid ""
 "Compute the ephemerides and the events for a given date and a given position "
 "on Earth."
@@ -196,9 +196,14 @@ msgstr ""
 "~~~ Translatable ~~~Compute the ephemerides and the events for a given date "
 "and a given position on Earth.~~~ End Translatable ~~~"
 
-#: _kosmorro/main.py:216
+#: _kosmorro/main.py:218
+#, fuzzy
+#| msgid ""
+#| "By default, only the events will be computed for today ({date}).\n"
+#| "To compute also the ephemerides, latitude and longitude arguments are "
+#| "needed."
 msgid ""
-"By default, only the events will be computed for today ({date}).\n"
+"By default, only the events will be computed for today.\n"
 "To compute also the ephemerides, latitude and longitude arguments are needed."
 msgstr ""
 "~~~ Translatable ~~~By default, only the events will be computed for today "
@@ -206,17 +211,17 @@ msgstr ""
 "To compute also the ephemerides, latitude and longitude arguments are needed."
 "~~~ End Translatable ~~~"
 
-#: _kosmorro/main.py:230
+#: _kosmorro/main.py:231
 msgid "Show the program version"
 msgstr "~~~ Translatable ~~~Show the program version~~~ End Translatable ~~~"
 
-#: _kosmorro/main.py:238
+#: _kosmorro/main.py:239
 msgid "The format to output the information to"
 msgstr ""
 "~~~ Translatable ~~~The format to output the information to~~~ End "
 "Translatable ~~~"
 
-#: _kosmorro/main.py:245
+#: _kosmorro/main.py:246
 msgid ""
 "The observer's latitude on Earth. Can also be set in the KOSMORRO_LATITUDE "
 "environment variable."
@@ -224,7 +229,7 @@ msgstr ""
 "~~~ Translatable ~~~The observer's latitude on Earth. Can also be set in the "
 "KOSMORRO_LATITUDE environment variable.~~~ End Translatable ~~~"
 
-#: _kosmorro/main.py:255
+#: _kosmorro/main.py:256
 msgid ""
 "The observer's longitude on Earth. Can also be set in the KOSMORRO_LONGITUDE "
 "environment variable."
@@ -232,18 +237,23 @@ msgstr ""
 "~~~ Translatable ~~~The observer's longitude on Earth. Can also be set in "
 "the KOSMORRO_LONGITUDE environment variable.~~~ End Translatable ~~~"
 
-#: _kosmorro/main.py:265
+#: _kosmorro/main.py:266
+#, fuzzy
+#| msgid ""
+#| "The date for which the ephemerides must be calculated. Can be in the YYYY-"
+#| "MM-DD format or an interval in the \"[+-]YyMmDd\" format (with Y, M, and "
+#| "D numbers). Defaults to today ({default_date})."
 msgid ""
 "The date for which the ephemerides must be calculated. Can be in the YYYY-MM-"
 "DD format or an interval in the \"[+-]YyMmDd\" format (with Y, M, and D "
-"numbers). Defaults to today ({default_date})."
+"numbers). Defaults to current date."
 msgstr ""
 "~~~ Translatable ~~~The date for which the ephemerides must be calculated. "
 "Can be in the YYYY-MM-DD format or an interval in the \"[+-]YyMmDd\" format "
 "(with Y, M, and D numbers). Defaults to today ({default_date}).~~~ End "
 "Translatable ~~~"
 
-#: _kosmorro/main.py:276
+#: _kosmorro/main.py:277
 msgid ""
 "The timezone to display the hours in (e.g. 2 for UTC+2 or -3 for UTC-3). Can "
 "also be set in the KOSMORRO_TIMEZONE environment variable."
@@ -252,13 +262,13 @@ msgstr ""
 "or -3 for UTC-3). Can also be set in the KOSMORRO_TIMEZONE environment "
 "variable.~~~ End Translatable ~~~"
 
-#: _kosmorro/main.py:285
+#: _kosmorro/main.py:286
 msgid "Disable the colors in the console."
 msgstr ""
 "~~~ Translatable ~~~Disable the colors in the console.~~~ End Translatable "
 "~~~"
 
-#: _kosmorro/main.py:292
+#: _kosmorro/main.py:293
 msgid ""
 "A file to export the output to. If not given, the standard output is used. "
 "This argument is needed for PDF format."
@@ -267,7 +277,7 @@ msgstr ""
 "standard output is used. This argument is needed for PDF format.~~~ End "
 "Translatable ~~~"
 
-#: _kosmorro/main.py:301
+#: _kosmorro/main.py:302
 msgid ""
 "Do not generate a graph to represent the rise and set times in the PDF "
 "format."
@@ -275,7 +285,7 @@ msgstr ""
 "~~~ Translatable ~~~Do not generate a graph to represent the rise and set "
 "times in the PDF format.~~~ End Translatable ~~~"
 
-#: _kosmorro/main.py:309
+#: _kosmorro/main.py:310
 msgid "Show debugging messages"
 msgstr "~~~ Translatable ~~~Show debugging messages~~~ End Translatable ~~~"
 
