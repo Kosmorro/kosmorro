@@ -6,9 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: kosmorro 0.9.0\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"Report-Msgid-Bugs-To: jerome@deuchnord.fr\n"
 "POT-Creation-Date: 2022-02-16 13:58+0100\n"
-"PO-Revision-Date: 2021-06-20 14:10+0000\n"
+"PO-Revision-Date: 2022-02-28 09:56+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: English (XA pseudolocale) <https://hosted.weblate.org/"
 "projects/kosmorro/cli/en_XA/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.7\n"
+"X-Generator: Weblate 4.11.1-dev\n"
 "Generated-By: Babel 2.9.1\n"
 
 #: _kosmorro/date.py:17
@@ -197,19 +197,13 @@ msgstr ""
 "and a given position on Earth.~~~ End Translatable ~~~"
 
 #: _kosmorro/main.py:218
-#, fuzzy
-#| msgid ""
-#| "By default, only the events will be computed for today ({date}).\n"
-#| "To compute also the ephemerides, latitude and longitude arguments are "
-#| "needed."
 msgid ""
 "By default, only the events will be computed for today.\n"
 "To compute also the ephemerides, latitude and longitude arguments are needed."
 msgstr ""
-"~~~ Translatable ~~~By default, only the events will be computed for today "
-"({date}).\n"
-"To compute also the ephemerides, latitude and longitude arguments are needed."
-"~~~ End Translatable ~~~"
+"~~~ Translatable ~~~By default, only the events will be computed for today.\n"
+"To compute also the ephemerides, latitude and longitude arguments are "
+"needed.~~~ End Translatable ~~~"
 
 #: _kosmorro/main.py:231
 msgid "Show the program version"
@@ -238,20 +232,14 @@ msgstr ""
 "the KOSMORRO_LONGITUDE environment variable.~~~ End Translatable ~~~"
 
 #: _kosmorro/main.py:266
-#, fuzzy
-#| msgid ""
-#| "The date for which the ephemerides must be calculated. Can be in the YYYY-"
-#| "MM-DD format or an interval in the \"[+-]YyMmDd\" format (with Y, M, and "
-#| "D numbers). Defaults to today ({default_date})."
 msgid ""
 "The date for which the ephemerides must be calculated. Can be in the YYYY-MM-"
 "DD format or an interval in the \"[+-]YyMmDd\" format (with Y, M, and D "
 "numbers). Defaults to current date."
 msgstr ""
 "~~~ Translatable ~~~The date for which the ephemerides must be calculated. "
-"Can be in the YYYY-MM-DD format or an interval in the \"[+-]YyMmDd\" format "
-"(with Y, M, and D numbers). Defaults to today ({default_date}).~~~ End "
-"Translatable ~~~"
+"Can be in the YYYY-MM-DD format or an interval in the \"[+-]YyMmDd\" format ("
+"with Y, M, and D numbers). Defaults to current date.~~~ End Translatable ~~~"
 
 #: _kosmorro/main.py:277
 msgid ""
