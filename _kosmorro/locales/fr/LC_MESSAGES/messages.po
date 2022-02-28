@@ -2,22 +2,22 @@
 # Copyright (C) 2021 ORGANIZATION
 # This file is distributed under the same license as the kosmorro project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
-# Jérôme Deuchnord <jerome@deuchnord.fr>, 2021.
+# Jérôme Deuchnord <jerome@deuchnord.fr>, 2021, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: kosmorro 0.9.0\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"Report-Msgid-Bugs-To: jerome@deuchnord.fr\n"
 "POT-Creation-Date: 2022-02-16 13:58+0100\n"
-"PO-Revision-Date: 2021-06-22 08:33+0000\n"
+"PO-Revision-Date: 2022-03-01 12:56+0000\n"
 "Last-Translator: Jérôme Deuchnord <jerome@deuchnord.fr>\n"
-"Language-Team: French <https://hosted.weblate.org/projects/kosmorro/cli/fr/"
-">\n"
+"Language-Team: French <https://hosted.weblate.org/projects/kosmorro/cli/fr/>"
+"\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.7.1-dev\n"
+"X-Generator: Weblate 4.11.1-dev\n"
 "Generated-By: Babel 2.9.0\n"
 
 #: _kosmorro/date.py:17
@@ -181,18 +181,12 @@ msgstr ""
 "Terre données."
 
 #: _kosmorro/main.py:218
-#, fuzzy
-#| msgid ""
-#| "By default, only the events will be computed for today ({date}).\n"
-#| "To compute also the ephemerides, latitude and longitude arguments are "
-#| "needed."
 msgid ""
 "By default, only the events will be computed for today.\n"
 "To compute also the ephemerides, latitude and longitude arguments are needed."
 msgstr ""
-"Par défaut, seuls les événements sont calculés pour la date actuelle "
-"({date}).\n"
-"Pour calculer les éphémérides, la latitude et la longitude sont requis."
+"Par défaut, seuls les événements sont calculés pour la date actuelle.\n"
+"Pour calculer les éphémérides, la latitude et la longitude sont requises."
 
 #: _kosmorro/main.py:231
 msgid "Show the program version"
@@ -219,20 +213,14 @@ msgstr ""
 "variable d'environnement KOSMORRO_LONGITUDE."
 
 #: _kosmorro/main.py:266
-#, fuzzy
-#| msgid ""
-#| "The date for which the ephemerides must be calculated. Can be in the YYYY-"
-#| "MM-DD format or an interval in the \"[+-]YyMmDd\" format (with Y, M, and "
-#| "D numbers). Defaults to today ({default_date})."
 msgid ""
 "The date for which the ephemerides must be calculated. Can be in the YYYY-MM-"
 "DD format or an interval in the \"[+-]YyMmDd\" format (with Y, M, and D "
 "numbers). Defaults to current date."
 msgstr ""
 "La date pour laquelle les éphémérides doivent être calculées, soit au format "
-"AAAA-MM-JJ, soit sous la forme d'un intervalle au format \"[+-]Ay-Mm-Jd"
-"\" (où A, M, et J sont des nombres). Par défaut, la date du jour "
-"({default_date}) est utilisée."
+"AAAA-MM-JJ, soit sous la forme d'un intervalle au format \"[+-]Ay-Mm-Jd\" ("
+"où A, M, et J sont des nombres). Par défaut, la date du jour est utilisée."
 
 #: _kosmorro/main.py:277
 msgid ""
