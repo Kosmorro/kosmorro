@@ -8,6 +8,7 @@ from .utils import (
     NEXT_MOON_PHASE_PATTERN,
 )
 from datetime import date
+from babel.dates import format_date
 
 
 def test_run_without_argument():
@@ -15,9 +16,10 @@ def test_run_without_argument():
     assert result.is_successful()
 
     stdout = result.stdout.split("\n")
+    print(stdout)
 
     # It always starts with the current date, an empty line and the current and next Moon date:
-    assert stdout[0] == date.today().strftime("%A %B %d, %Y")
+    assert stdout[0] == format_date(date.today(), "full")
     assert stdout[1] == ""
     assert CURRENT_MOON_PHASE_PATTERN.match(stdout[2])
     assert NEXT_MOON_PHASE_PATTERN.match(stdout[3])

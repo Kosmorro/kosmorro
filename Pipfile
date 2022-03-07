@@ -4,7 +4,6 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
-babel = "*"
 black = "*"
 pytest = "*"
 aurornis = "*"
@@ -14,6 +13,7 @@ tabulate = "*"
 termcolor = "*"
 kosmorrolib = ">=1.0.0,<2.0.0"
 python-dateutil = "*"
+babel = ">=2.9.0,<3.0.0"
 
 [requires]
 python_version = "3"

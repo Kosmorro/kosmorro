@@ -25,7 +25,7 @@ import subprocess
 import shutil
 from pathlib import Path
 
-import kosmorrolib
+from babel.dates import format_date, format_time
 from tabulate import tabulate
 from termcolor import colored
 
@@ -70,7 +70,7 @@ class Dumper(ABC):
         self.show_graph = show_graph
 
     def get_date_as_string(self, capitalized: bool = False) -> str:
-        date = self.date.strftime(FULL_DATE_FORMAT)
+        date = format_date(self.date, "full")
 
         if capitalized:
             return "".join([date[0].upper(), date[1:]])
@@ -181,35 +181,21 @@ class TextDumper(Dumper):
 
             name = self.style(object_name, "th")
 
-            if ephemeris.rise_time is not None:
-                time_fmt = (
-                    TIME_FORMAT
-                    if ephemeris.rise_time.day == self.date.day
-                    else SHORT_DATETIME_FORMAT
-                )
-                planet_rise = ephemeris.rise_time.strftime(time_fmt)
-            else:
-                planet_rise = "-"
-
-            if ephemeris.culmination_time is not None:
-                time_fmt = (
-                    TIME_FORMAT
-                    if ephemeris.culmination_time.day == self.date.day
-                    else SHORT_DATETIME_FORMAT
-                )
-                planet_culmination = ephemeris.culmination_time.strftime(time_fmt)
-            else:
-                planet_culmination = "-"
-
-            if ephemeris.set_time is not None:
-                time_fmt = (
-                    TIME_FORMAT
-                    if ephemeris.set_time.day == self.date.day
-                    else SHORT_DATETIME_FORMAT
-                )
-                planet_set = ephemeris.set_time.strftime(time_fmt)
-            else:
-                planet_set = "-"
+            planet_rise = (
+                "-"
+                if ephemeris.rise_time is None
+                else format_time(ephemeris.rise_time, "short")
+            )
+            planet_culmination = (
+                "-"
+                if ephemeris.culmination_time is None
+                else format_time(ephemeris.culmination_time, "short")
+            )
+            planet_set = (
+                "-"
+                if ephemeris.set_time is None
+                else format_time(ephemeris.set_time, "short")
+            )
 
             data.append([name, planet_rise, planet_culmination, planet_set])
 
@@ -234,14 +220,9 @@ class TextDumper(Dumper):
             if description is None:
                 continue
 
-            time_fmt = (
-                TIME_FORMAT
-                if event.start_time.day == self.date.day
-                else SHORT_DATETIME_FORMAT
-            )
             data.append(
                 [
-                    self.style(event.start_time.strftime(time_fmt), "th"),
+                    self.style(format_time(event.start_time, "short"), "th"),
                     description,
                 ]
             )
@@ -262,8 +243,8 @@ class TextDumper(Dumper):
             "{next_moon_phase} on {next_moon_phase_date} at {next_moon_phase_time}"
         ).format(
             next_moon_phase=_(strings.from_moon_phase(moon_phase.get_next_phase())),
-            next_moon_phase_date=moon_phase.next_phase_date.strftime(FULL_DATE_FORMAT),
-            next_moon_phase_time=moon_phase.next_phase_date.strftime(TIME_FORMAT),
+            next_moon_phase_date=format_date(moon_phase.next_phase_date, "full"),
+            next_moon_phase_time=format_time(moon_phase.next_phase_date, "short"),
         )
 
         return "\n".join([current_moon_phase, new_moon_phase])
@@ -384,35 +365,21 @@ class _LatexDumper(Dumper):
 
         if self.ephemerides is not None:
             for ephemeris in self.ephemerides:
-                if ephemeris.rise_time is not None:
-                    time_fmt = (
-                        TIME_FORMAT
-                        if ephemeris.rise_time.day == self.date.day
-                        else SHORT_DATETIME_FORMAT
-                    )
-                    aster_rise = ephemeris.rise_time.strftime(time_fmt)
-                else:
-                    aster_rise = "-"
-
-                if ephemeris.culmination_time is not None:
-                    time_fmt = (
-                        TIME_FORMAT
-                        if ephemeris.culmination_time.day == self.date.day
-                        else SHORT_DATETIME_FORMAT
-                    )
-                    aster_culmination = ephemeris.culmination_time.strftime(time_fmt)
-                else:
-                    aster_culmination = "-"
-
-                if ephemeris.set_time is not None:
-                    time_fmt = (
-                        TIME_FORMAT
-                        if ephemeris.set_time.day == self.date.day
-                        else SHORT_DATETIME_FORMAT
-                    )
-                    aster_set = ephemeris.set_time.strftime(time_fmt)
-                else:
-                    aster_set = "-"
+                aster_rise = (
+                    "-"
+                    if ephemeris.rise_time is None
+                    else format_time(ephemeris.rise_time, "short")
+                )
+                aster_culmination = (
+                    "-"
+                    if ephemeris.culmination_time is None
+                    else format_time(ephemeris.culmination_time, "short")
+                )
+                aster_set = (
+                    "-"
+                    if ephemeris.set_time is None
+                    else format_time(ephemeris.set_time, "short")
+                )
 
                 if not self.show_graph:
                     object_name = strings.from_object(ephemeris.object.identifier)
@@ -476,7 +443,7 @@ class _LatexDumper(Dumper):
                 continue
 
             latex.append(
-                r"\event{%s}{%s}" % (event.start_time.strftime(TIME_FORMAT), event_name)
+                r"\event{%s}{%s}" % (format_time(event.start_time, "short"), event_name)
             )
 
         return "".join(latex)

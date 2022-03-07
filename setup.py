@@ -47,6 +47,7 @@ setup(
         "tabulate",
         "termcolor",
         "python-dateutil",
+        "babel",
     ],
     classifiers=[
         "Development Status :: 3 - Alpha",

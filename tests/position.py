@@ -10,26 +10,26 @@ def check_command_return(result):
     assert result.is_successful()
     assert (
         result.stdout
-        == """Monday January 27, 2020
+        == """Monday, January 27, 2020
 
 Object     Rise time    Culmination time    Set time
 --------  -----------  ------------------  ----------
-Sun          07:31           12:01           16:30
-Moon         09:06           14:09           19:13
-Mercury      08:10           12:49           17:28
-Venus        09:01           14:35           20:10
-Mars         04:19           08:23           12:28
-Jupiter      06:15           10:18           14:21
-Saturn       06:56           11:09           15:22
-Uranus       10:21           17:25           00:33
-Neptune      09:01           14:36           20:10
-Pluto        06:57           11:04           15:11
+Sun         7:31 AM         12:01 PM        4:30 PM
+Moon        9:06 AM         2:09 PM         7:13 PM
+Mercury     8:10 AM         12:49 PM        5:28 PM
+Venus       9:01 AM         2:35 PM         8:10 PM
+Mars        4:19 AM         8:23 AM         12:28 PM
+Jupiter     6:15 AM         10:18 AM        2:21 PM
+Saturn      6:56 AM         11:09 AM        3:22 PM
+Uranus     10:21 AM         5:25 PM         12:33 AM
+Neptune     9:01 AM         2:36 PM         8:10 PM
+Pluto       6:57 AM         11:04 AM        3:11 PM
 
 Moon phase: New Moon
-First Quarter on Sunday February 02, 2020 at 01:41
+First Quarter on Sunday, February 2, 2020 at 1:41 AM
 
 Expected events:
-20:00  Venus and Neptune are in conjunction
+8:00 PM  Venus and Neptune are in conjunction
 
 Note: All the hours are given in UTC.
 """
