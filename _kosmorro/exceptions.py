@@ -17,6 +17,7 @@
 #    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 from datetime import date
+from babel.dates import format_date
 from _kosmorro.i18n.utils import _, SHORT_DATE_FORMAT
 
 
@@ -34,8 +35,8 @@ class OutOfRangeDateError(RuntimeError):
         self.msg = _(
             "The date must be between {minimum_date} and {maximum_date}"
         ).format(
-            minimum_date=min_date.strftime(SHORT_DATE_FORMAT),
-            maximum_date=max_date.strftime(SHORT_DATE_FORMAT),
+            minimum_date=format_date(min_date, "long"),
+            maximum_date=format_date(max_date, "long"),
         )
 
 

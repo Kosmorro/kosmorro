@@ -8,7 +8,7 @@ tests:
   		echo; \
 	fi
 
-	pipenv run python3 -m pytest tests/*.py
+	LANG=C pipenv run python3 -m pytest tests/*.py
 
 .PHONY: build
 build: manpage

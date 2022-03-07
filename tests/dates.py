@@ -10,13 +10,13 @@ def test_with_date():
 
         assert (
             result.stdout
-            == """Monday January 27, 2020
+            == """Monday, January 27, 2020
 
 Moon phase: New Moon
-First Quarter on Sunday February 02, 2020 at 01:41
+First Quarter on Sunday, February 2, 2020 at 1:41 AM
 
 Expected events:
-20:00  Venus and Neptune are in conjunction
+8:00 PM  Venus and Neptune are in conjunction
 
 Note: All the hours are given in UTC.
 """
@@ -48,5 +48,5 @@ def test_with_out_of_range_dates():
         assert not result.is_successful()
         assert (
             result.stdout
-            == "Moon phase can only be displayed between Aug 09, 1899 and Sep 26, 2053\n"
+            == "Moon phase can only be computed between August 9, 1899 and September 26, 2053\n"
         )

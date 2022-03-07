@@ -19,6 +19,7 @@
 import argparse
 import sys
 
+from babel.dates import format_date
 from kosmorrolib import Position, get_ephemerides, get_events, get_moon_phase
 from kosmorrolib.__version__ import __version__ as kosmorrolib_version
 from kosmorrolib.exceptions import OutOfRangeDateError
@@ -161,10 +162,10 @@ def get_information(
         print(
             colored(
                 _(
-                    "Moon phase can only be displayed between {min_date} and {max_date}"
+                    "Moon phase can only be computed between {min_date} and {max_date}"
                 ).format(
-                    min_date=error.min_date.strftime(SHORT_DATE_FORMAT),
-                    max_date=error.max_date.strftime(SHORT_DATE_FORMAT),
+                    min_date=format_date(error.min_date, "long"),
+                    max_date=format_date(error.max_date, "long"),
                 ),
                 "yellow",
             )
@@ -218,7 +219,7 @@ def get_args(output_formats: [str]):
         epilog=_(
             "By default, only the events will be computed for today.\n"
             "To compute also the ephemerides, latitude and longitude arguments are needed."
-        ).format(date=today.strftime(dumper.FULL_DATE_FORMAT)),
+        ),
     )
 
     parser.add_argument(
