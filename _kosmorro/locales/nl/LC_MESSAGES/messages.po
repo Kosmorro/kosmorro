@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kosmorro 0.9.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-16 13:58+0100\n"
+"POT-Creation-Date: 2022-03-07 16:45+0100\n"
 "PO-Revision-Date: 2021-11-02 21:34+0000\n"
 "Last-Translator: Damgermys <damhub28@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/kosmorro/cli/nl/>\n"
@@ -44,42 +44,42 @@ msgstr "Opmerking: alle uren worden gegeven in UTC."
 msgid "Note: All the hours are given in the UTC{offset} timezone."
 msgstr "Opmerking: alle uren worden gegeven in de UTC{offset} tijdzone."
 
-#: _kosmorro/dumper.py:219 _kosmorro/dumper.py:352
+#: _kosmorro/dumper.py:205 _kosmorro/dumper.py:333
 msgid "Object"
 msgstr "Object"
 
-#: _kosmorro/dumper.py:220 _kosmorro/dumper.py:353
+#: _kosmorro/dumper.py:206 _kosmorro/dumper.py:334
 #, fuzzy
 msgid "Rise time"
 msgstr "Opgang tijd"
 
-#: _kosmorro/dumper.py:221 _kosmorro/dumper.py:355
+#: _kosmorro/dumper.py:207 _kosmorro/dumper.py:336
 #, fuzzy
 msgid "Culmination time"
 msgstr "Culminatie tijd"
 
-#: _kosmorro/dumper.py:222 _kosmorro/dumper.py:357
+#: _kosmorro/dumper.py:208 _kosmorro/dumper.py:338
 #, fuzzy
 msgid "Set time"
 msgstr "Ondergang tijd"
 
-#: _kosmorro/dumper.py:253
+#: _kosmorro/dumper.py:234
 msgid "Moon phase is unavailable for this date."
 msgstr "Maanfase is niet beschikbaar voor deze datum."
 
-#: _kosmorro/dumper.py:257 _kosmorro/dumper.py:361
+#: _kosmorro/dumper.py:238 _kosmorro/dumper.py:342
 msgid "Moon phase:"
 msgstr "Maanfase:"
 
-#: _kosmorro/dumper.py:261
+#: _kosmorro/dumper.py:242
 msgid "{next_moon_phase} on {next_moon_phase_date} at {next_moon_phase_time}"
 msgstr "{next_moon_phase} op {next_moon_phase_date} om {next_moon_phase_time}"
 
-#: _kosmorro/dumper.py:325
+#: _kosmorro/dumper.py:306
 msgid "Overview of your sky"
 msgstr "Overzicht van uw hemel"
 
-#: _kosmorro/dumper.py:333
+#: _kosmorro/dumper.py:314
 msgid ""
 "This document summarizes the ephemerides and the events of {date}. It aims "
 "to help you to prepare your observation session. All the hours are given in "
@@ -89,7 +89,7 @@ msgstr ""
 "bedoeld om u te helpen bij het voorbereiden van uw observatiesessie. Alle "
 "uren worden gegeven in {timezone}."
 
-#: _kosmorro/dumper.py:343
+#: _kosmorro/dumper.py:324
 msgid ""
 "Don't forget to check the weather forecast before you go out with your "
 "equipment."
@@ -97,19 +97,19 @@ msgstr ""
 "Vergeet niet de weersvoorspelling te checken voordat je eropuit gaat met je "
 "uitrusting."
 
-#: _kosmorro/dumper.py:350
+#: _kosmorro/dumper.py:331
 msgid "Ephemerides of the day"
 msgstr "Efemeriden van de dag"
 
-#: _kosmorro/dumper.py:359
+#: _kosmorro/dumper.py:340
 msgid "hours"
 msgstr "uren"
 
-#: _kosmorro/dumper.py:366
+#: _kosmorro/dumper.py:347
 msgid "Expected events"
 msgstr "Verwachte events"
 
-#: _kosmorro/dumper.py:520
+#: _kosmorro/dumper.py:487
 #, fuzzy
 msgid ""
 "Building PDF was not possible, because some dependencies are not installed.\n"
@@ -120,7 +120,7 @@ msgstr ""
 "zijn geïnstalleerd.\n"
 "Raadpleeg de documentatie op http://kosmorro.space voor meer informatie."
 
-#: _kosmorro/dumper.py:573
+#: _kosmorro/dumper.py:540
 #, python-format
 msgid ""
 "An error occurred during the compilation of the PDF.\n"
@@ -131,11 +131,11 @@ msgstr ""
 "Open a.u.b. een ticket op https://github.com/Kosmorro/kosmorro/issues and "
 "share the content of the log file at /tmp/kosmorro-%s.log"
 
-#: _kosmorro/exceptions.py:34
+#: _kosmorro/exceptions.py:35
 msgid "The date must be between {minimum_date} and {maximum_date}"
 msgstr "De datum moet zijn tussen {minimum_date} en {maximum_date}"
 
-#: _kosmorro/main.py:62
+#: _kosmorro/main.py:63
 #, fuzzy
 msgid ""
 "Save the planet and paper!\n"
@@ -146,7 +146,7 @@ msgstr ""
 "Overweeg om uw PDF-document alleen af te drukken als het echt nodig is, en "
 "gebruik de andere kant van het vel."
 
-#: _kosmorro/main.py:71
+#: _kosmorro/main.py:72
 #, fuzzy
 msgid ""
 "PDF output will not contain the ephemerides, because you didn't provide the "
@@ -155,26 +155,28 @@ msgstr ""
 "PDF-uitvoer bevat de efemeriden niet, omdat u de observatiecoördinaat niet "
 "hebt opgegeven."
 
-#: _kosmorro/main.py:116
+#: _kosmorro/main.py:117
 #, fuzzy
 msgid "The file could not be saved in \"{path}\": {error}"
 msgstr "Kan de uitvoer niet opslaan in \"{path}\": {error}"
 
-#: _kosmorro/main.py:130
+#: _kosmorro/main.py:131
 msgid "Please provide a file path to export in this format (--output)."
 msgstr "Geef een bestandspad op om in deze indeling te exporteren (--output)."
 
-#: _kosmorro/main.py:163
-msgid "Moon phase can only be displayed between {min_date} and {max_date}"
+#: _kosmorro/main.py:164
+#, fuzzy
+#| msgid "Moon phase can only be displayed between {min_date} and {max_date}"
+msgid "Moon phase can only be computed between {min_date} and {max_date}"
 msgstr "Maanfase kan alleen worden weergegeven tussen {min_date} en {max_date}"
 
-#: _kosmorro/main.py:202
+#: _kosmorro/main.py:203
 #, fuzzy
 msgid ""
 "Running on Python {python_version} with Kosmorrolib v{kosmorrolib_version}"
 msgstr "Draait op Python {python_version}"
 
-#: _kosmorro/main.py:215
+#: _kosmorro/main.py:216
 msgid ""
 "Compute the ephemerides and the events for a given date and a given position "
 "on Earth."
@@ -182,7 +184,7 @@ msgstr ""
 "Bereken de efemeriden en de gebeurtenissen voor een bepaalde datum en een "
 "bepaalde positie op aarde."
 
-#: _kosmorro/main.py:218
+#: _kosmorro/main.py:219
 #, fuzzy
 #| msgid ""
 #| "By default, only the events will be computed for today ({date}).\n"
@@ -196,16 +198,16 @@ msgstr ""
 "Om ook de efemeriden te berekenen, zijn latitude- en longitude-argumenten "
 "nodig."
 
-#: _kosmorro/main.py:231
+#: _kosmorro/main.py:232
 msgid "Show the program version"
 msgstr "Toon de programmaversie"
 
-#: _kosmorro/main.py:239
+#: _kosmorro/main.py:240
 #, fuzzy
 msgid "The format to output the information to"
 msgstr "Het uitvoerformaat van de informatie"
 
-#: _kosmorro/main.py:246
+#: _kosmorro/main.py:247
 msgid ""
 "The observer's latitude on Earth. Can also be set in the KOSMORRO_LATITUDE "
 "environment variable."
@@ -213,7 +215,7 @@ msgstr ""
 "De breedtegraad van de waarnemer op aarde. Kan ook worden ingesteld in de "
 "omgevingsvariabele KOSMORRO_LATITUDE."
 
-#: _kosmorro/main.py:256
+#: _kosmorro/main.py:257
 msgid ""
 "The observer's longitude on Earth. Can also be set in the KOSMORRO_LONGITUDE "
 "environment variable."
@@ -221,7 +223,7 @@ msgstr ""
 "De lengtegraad van de waarnemer op aarde. Kan ook worden ingesteld in de "
 "omgevingsvariabele KOSMORRO_LONGITUDE."
 
-#: _kosmorro/main.py:266
+#: _kosmorro/main.py:267
 #, fuzzy
 #| msgid ""
 #| "The date for which the ephemerides must be calculated. Can be in the YYYY-"
@@ -236,7 +238,7 @@ msgstr ""
 "MM-DD hebben of een interval in de indeling \"[+-]YyMmDd\" (met Y-, M- en D-"
 "nummers). Standaard ingesteld op vandaag ({default_date})."
 
-#: _kosmorro/main.py:277
+#: _kosmorro/main.py:278
 msgid ""
 "The timezone to display the hours in (e.g. 2 for UTC+2 or -3 for UTC-3). Can "
 "also be set in the KOSMORRO_TIMEZONE environment variable."
@@ -245,11 +247,11 @@ msgstr ""
 "-3 voor UTC-3). Kan ook worden ingesteld in de omgevingsvariabele "
 "KOSMORRO_TIMEZONE."
 
-#: _kosmorro/main.py:286
+#: _kosmorro/main.py:287
 msgid "Disable the colors in the console."
 msgstr "Schakel de kleuren in de console uit."
 
-#: _kosmorro/main.py:293
+#: _kosmorro/main.py:294
 msgid ""
 "A file to export the output to. If not given, the standard output is used. "
 "This argument is needed for PDF format."
@@ -257,7 +259,7 @@ msgstr ""
 "Een bestand om de uitvoer naar te exporteren. Indien niet opgegeven, wordt "
 "de standaarduitvoer gebruikt. Dit argument is nodig voor het pdf-formaat."
 
-#: _kosmorro/main.py:302
+#: _kosmorro/main.py:303
 #, fuzzy
 msgid ""
 "Do not generate a graph to represent the rise and set times in the PDF "
@@ -266,7 +268,7 @@ msgstr ""
 "Genereer geen grafiek om de opkomst- en ondergangstijden in PDF-formaat weer "
 "te geven."
 
-#: _kosmorro/main.py:310
+#: _kosmorro/main.py:311
 msgid "Show debugging messages"
 msgstr "Foutopsporingsberichten weergeven"
 
