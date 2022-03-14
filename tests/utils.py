@@ -22,12 +22,11 @@ NEXT_MOON_PHASE_PATTERN = re.compile(
     r"^((New Moon)|(Waxing Crescent)|"
     r"(First Quarter)|(Waxing Gibbous)|"
     r"(Full Moon)|(Waning Gibbous)|"
-    r"(Last Quarter)|(Waning Crescent)"
-    r") "
+    r"(Last Quarter)|(Waning Crescent)) "
     r"on ((Monday)|(Tuesday)|(Wednesday)|(Thursday)|(Friday)|(Saturday)|(Sunday)), "
     r"((January)|(February)|(March)|(April)|(May)|(June)|"
     r"(July)|(August)|(September)|(October)|(November)|(December)) "
-    r"[0-9]{1,2}, [0-9]{4} at [0-9]{2}:[0-9]{2} [AP]M$"
+    r"[0-9]{1,2}, [0-9]{4} at [0-9]{1,2}:[0-9]{2} [AP]M$"
 )
 
 
