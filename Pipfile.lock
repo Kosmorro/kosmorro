@@ -39,11 +39,11 @@
         },
         "kosmorrolib": {
             "hashes": [
-                "sha256:1dd63aea8407164ba8ecabcf2760f9c4c2a6fb3b13f39bc8b1aa100df60dc9bc",
-                "sha256:3b5fd04e56364c1d5d0a08032a11cbfa827c202da5298303263e8bac8fde5bc1"
+                "sha256:8c77f40b346d183147cb3e927b3ea5c7d4d7067ce7e49edb73821566f74d5e51",
+                "sha256:9ffbbaa8666c1222bf8a25d543afa72a0a80249017d342a6667bcae8657effc0"
             ],
             "index": "pypi",
-            "version": "==1.0.5"
+            "version": "==1.0.6"
         },
         "numpy": {
             "hashes": [
