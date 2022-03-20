@@ -54,6 +54,15 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "AmauryCarrade",
+      "name": "Amaury Carrade",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1417570?v=4",
+      "profile": "https://amaury.carrade.eu/",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7
