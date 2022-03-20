@@ -1,8 +1,24 @@
 {
-    "files": [
-        "CONTRIBUTORS.md"
-    ],
-    "contributorsPerLine": 5,
-    "contributorsSortAlphabetically": true,
-    "contributors": []
+  "projectName": "kosmorro",
+  "projectOwner": "Jérôme Deuchnord",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "CONTRIBUTORS.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "commitConvention": "angular",
+  "contributors": [
+    {
+      "login": "Deuchnord",
+      "name": "Jérôme Deuchnord",
+      "avatar_url": "https://avatars.githubusercontent.com/u/7600265?v=4",
+      "profile": "https://deuchnord.fr/",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7
 }
