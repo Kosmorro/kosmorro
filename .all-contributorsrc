@@ -73,6 +73,15 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "thierry-FreeBSD",
+      "name": "Thierry Thomas",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6819982?v=4",
+      "profile": "http://people.freebsd.org/~thierry/",
+      "contributions": [
+        "platform"
+      ]
     }
   ],
   "contributorsPerLine": 7
