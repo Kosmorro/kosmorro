@@ -21,6 +21,7 @@ termcolor = "^1.1"
 kosmorrolib = "^1.0"
 python-dateutil = "^2.8"
 Babel = "^2.9"
+importlib-metadata = "^4.11"
 
 [tool.poetry.dev-dependencies]
 black = "^21.12b0"

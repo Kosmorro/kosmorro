@@ -21,14 +21,12 @@ import sys
 
 from babel.dates import format_date
 from kosmorrolib import Position, get_ephemerides, get_events, get_moon_phase
-from kosmorrolib.__version__ import __version__ as kosmorrolib_version
 from kosmorrolib.exceptions import OutOfRangeDateError
 from datetime import date
 
 from . import dumper, environment, debug
 from .date import parse_date
-from .utils import colored, set_colors_activated
-from .__version__ import __version__ as kosmorro_version
+from .utils import KOSMORRO_VERSION, KOSMORROLIB_VERSION, colored, set_colors_activated
 from .exceptions import UnavailableFeatureError, OutOfRangeDateError as DateRangeError
 from kosmorro.i18n.utils import _
 
@@ -198,12 +196,12 @@ def output_version() -> bool:
         sys.version_info[1],
         sys.version_info[2],
     )
-    print("Kosmorro %s" % kosmorro_version)
+    print("Kosmorro %s" % KOSMORRO_VERSION)
     print(
         _(
             "Running on Python {python_version} "
             "with Kosmorrolib v{kosmorrolib_version}"
-        ).format(python_version=python_version, kosmorrolib_version=kosmorrolib_version)
+        ).format(python_version=python_version, kosmorrolib_version=KOSMORROLIB_VERSION)
     )
 
     return True

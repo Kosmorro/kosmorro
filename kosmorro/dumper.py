@@ -32,14 +32,14 @@ from termcolor import colored
 from kosmorrolib import AsterEphemerides, Event, EventType
 from kosmorrolib.model import ASTERS, MoonPhase
 
-from .i18n.utils import _, FULL_DATE_FORMAT, SHORT_DATETIME_FORMAT, TIME_FORMAT
+from .i18n.utils import _
 from .i18n import strings
-from .__version__ import __version__ as version
 from .exceptions import (
     CompileError,
     UnavailableFeatureError as KosmorroUnavailableFeatureError,
 )
 from .debug import debug_print
+from .utils import KOSMORRO_VERSION
 
 
 class Dumper(ABC):
@@ -301,7 +301,7 @@ class _LatexDumper(Dumper):
     def add_strings(
         self, document: str, kosmorro_logo_path: str, moon_phase_graphics: str
     ) -> str:
-        document = document.replace("+++KOSMORRO-VERSION+++", version)
+        document = document.replace("+++KOSMORRO-VERSION+++", KOSMORRO_VERSION)
         document = document.replace("+++KOSMORRO-LOGO+++", kosmorro_logo_path)
         document = document.replace("+++DOCUMENT-TITLE+++", _("Overview of your sky"))
         document = document.replace(
