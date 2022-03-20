@@ -1,6 +1,6 @@
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 ## Contributors ✨
 
@@ -17,6 +17,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/nicfb"><img src="https://avatars.githubusercontent.com/u/19811100?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Nic</b></sub></a><br /><a href="https://github.com/Jérôme Deuchnord/kosmorro/commits?author=nicfb" title="Code">💻</a></td>
     <td align="center"><a href="https://liberapay.com/kingu/"><img src="https://avatars.githubusercontent.com/u/13802408?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Allan Nordhøy</b></sub></a><br /><a href="#translation-comradekingu" title="Translation">🌍</a></td>
     <td align="center"><a href="https://amaury.carrade.eu/"><img src="https://avatars.githubusercontent.com/u/1417570?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Amaury Carrade</b></sub></a><br /><a href="#translation-AmauryCarrade" title="Translation">🌍</a></td>
+    <td align="center"><a href="https://github.com/StaloneLab"><img src="https://avatars.githubusercontent.com/u/6739422?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Titouan S.</b></sub></a><br /><a href="#translation-StaloneLab" title="Translation">🌍</a></td>
   </tr>
 </table>
 
