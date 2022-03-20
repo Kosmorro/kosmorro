@@ -1,6 +1,6 @@
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-11-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-12-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 ## Contributors ✨
 
@@ -20,6 +20,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/nicfb"><img src="https://avatars.githubusercontent.com/u/19811100?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Nic</b></sub></a><br /><a href="https://github.com/Jérôme Deuchnord/kosmorro/commits?author=nicfb" title="Code">💻</a></td>
   </tr>
   <tr>
+    <td align="center"><a href="https://github.com/romco1410"><img src="https://avatars.githubusercontent.com/u/40452973?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Roman Hanečák</b></sub></a><br /><a href="https://github.com/Jérôme Deuchnord/kosmorro/commits?author=romco1410" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/SpeedCode"><img src="https://avatars.githubusercontent.com/u/12190842?v=4?s=100" width="100px;" alt=""/><br /><sub><b>SpeedCode</b></sub></a><br /><a href="https://github.com/Jérôme Deuchnord/kosmorro/issues?q=author%3ASpeedCode" title="Bug reports">🐛</a></td>
     <td align="center"><a href="http://people.freebsd.org/~thierry/"><img src="https://avatars.githubusercontent.com/u/6819982?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Thierry Thomas</b></sub></a><br /><a href="#platform-thierry-FreeBSD" title="Packaging/porting to new platform">📦</a></td>
     <td align="center"><a href="https://github.com/StaloneLab"><img src="https://avatars.githubusercontent.com/u/6739422?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Titouan S.</b></sub></a><br /><a href="#translation-StaloneLab" title="Translation">🌍</a></td>

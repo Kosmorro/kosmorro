@@ -109,6 +109,15 @@
       "contributions": [
         "ideas"
       ]
+    },
+    {
+      "login": "romco1410",
+      "name": "Roman Hanečák",
+      "avatar_url": "https://avatars.githubusercontent.com/u/40452973?v=4",
+      "profile": "https://github.com/romco1410",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7
