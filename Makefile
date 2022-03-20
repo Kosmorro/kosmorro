@@ -6,7 +6,7 @@ tests:
 	LANG=C python3 -m poetry run pytest tests/*.py
 
 .PHONY: build
-build: manpage
+build:
 	poetry build
 
 .PHONY: manpage
