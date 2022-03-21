@@ -156,6 +156,14 @@ optional = false
 python-versions = ">=3.7,<3.11"
 
 [[package]]
+name = "openlocationcode"
+version = "1.0.1"
+description = "Python library for Open Location Code (Plus Codes)"
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "packaging"
 version = "21.3"
 description = "Core utilities for Python packages"
@@ -361,7 +369,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.7,<3.11"
-content-hash = "351d9199cffd4c1ad1b234c67a8f463b54d724b24215745584cb4555cf13283c"
+content-hash = "5acdc2ed4308157d945caaba6a73f934ad62fe2eef397cb88d885453878bb7d7"
 
 [metadata.files]
 atomicwrites = [
@@ -467,6 +475,9 @@ numpy = [
     {file = "numpy-1.21.5-cp39-cp39-win_amd64.whl", hash = "sha256:1964db2d4a00348b7a60ee9d013c8cb0c566644a589eaa80995126eac3b99ced"},
     {file = "numpy-1.21.5-pp37-pypy37_pp73-manylinux_2_12_x86_64.manylinux2010_x86_64.whl", hash = "sha256:a7c4b701ca418cd39e28ec3b496e6388fe06de83f5f0cb74794fa31cfa384c02"},
     {file = "numpy-1.21.5.zip", hash = "sha256:6a5928bc6241264dce5ed509e66f33676fc97f464e7a919edc672fb5532221ee"},
+]
+openlocationcode = [
+    {file = "openlocationcode-1.0.1.tar.gz", hash = "sha256:6fc0108a8214b65d74964105bd69645a8a7529237f0de6aadcfa83cc3373b359"},
 ]
 packaging = [
     {file = "packaging-21.3-py3-none-any.whl", hash = "sha256:ef103e05f519cdc783ae24ea4e2e0f508a9c99b2d4969652eed6a2e1ea5bd522"},

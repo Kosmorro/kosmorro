@@ -44,10 +44,9 @@ def test_help_message():
 
         assert (
             result.stdout
-            == """usage: kosmorro [-h] [--version] [--format {text,json,pdf}]
-                [--latitude LATITUDE] [--longitude LONGITUDE] [--date DATE]
-                [--timezone TIMEZONE] [--no-colors] [--output OUTPUT]
-                [--no-graph] [--debug]
+            == """usage: kosmorro [-h] [--version] [--format {txt,json,pdf,tex}]
+                [--position POSITION] [--date DATE] [--timezone TIMEZONE]
+                [--no-colors] [--output OUTPUT] [--no-graph] [--debug]
 
 Compute the ephemerides and the events for a given date and a given position
 on Earth.
@@ -55,14 +54,14 @@ on Earth.
 %s:
   -h, --help            show this help message and exit
   --version, -v         Show the program version
-  --format {text,json,pdf}, -f {text,json,pdf}
-                        The format to output the information to
-  --latitude LATITUDE, -lat LATITUDE
-                        The observer's latitude on Earth. Can also be set in
-                        the KOSMORRO_LATITUDE environment variable.
-  --longitude LONGITUDE, -lon LONGITUDE
-                        The observer's longitude on Earth. Can also be set in
-                        the KOSMORRO_LONGITUDE environment variable.
+  --format {txt,json,pdf,tex}, -f {txt,json,pdf,tex}
+                        The format to output the information to. If not
+                        provided, the output format will be inferred from the
+                        file extension of the output file.
+  --position POSITION, -p POSITION
+                        The observer's position on Earth, in the
+                        "{latitude},{longitude}" format. Can also be set in
+                        the KOSMORRO_POSITION environment variable.
   --date DATE, -d DATE  The date for which the ephemerides must be calculated.
                         Can be in the YYYY-MM-DD format or an interval in the
                         "[+-]YyMmDd" format (with Y, M, and D numbers).

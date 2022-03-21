@@ -37,9 +37,7 @@ Note: All the hours are given in UTC.
 
 
 def test_with_position():
-    result = execute(
-        KOSMORRO + ["--latitude=50.5876", "--longitude=3.0624", "-d2020-01-27"]
-    )
+    result = execute(KOSMORRO + ["--position=50.5876,3.0624", "-d2020-01-27"])
     check_command_return(result)
 
 
@@ -48,8 +46,7 @@ def test_with_position_env_vars():
         execute(
             KOSMORRO + ["-d2020-01-27"],
             environment={
-                "KOSMORRO_LATITUDE": "50.5876",
-                "KOSMORRO_LONGITUDE": "3.0624",
+                "KOSMORRO_POSITION": "50.5876,3.0624",
             },
         )
     )

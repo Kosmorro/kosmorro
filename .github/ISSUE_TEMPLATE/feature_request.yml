@@ -1,0 +1,60 @@
+name: Feature request
+description: Suggest a new feature for Kosmorro
+labels:
+  - enhancement
+
+body:
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: I have searched for an opened issue and didn't find my bug
+      description: |
+        Before continuing, please verify that your bug is not already known, i.e.:
+
+        - there is an issue that describe your bug;
+        - the issue is not closed.
+
+        If you have found a closed issue that describes the same bug as yours, please don't comment inside and open a new issue instead.
+        Even though it may look the same, your bug might be totally different :smile:
+
+      options:
+        - label: I confirm I didn't find any issue regarding my bug
+          required: true
+
+  - type: textarea
+    id: description
+    validations:
+      required: true
+    attributes:
+      label: Feature description
+      description: |
+        Describe the feature you would like to see in Kosmorro.
+
+  - type: textarea
+    id: context
+    validations:
+      required: false
+    attributes:
+      label: Suggestion context
+      description: |
+        If you have some context to share about your suggestion, feel free to describe here.
+        For instance, a frustration.
+
+  - type: textarea
+    id: alternatives
+    validations:
+      required: false
+    attributes:
+      label: Considered alternatives
+      description: |
+        Did you find any alternative solution that meet your need?
+        It can be a workaround in Kosmorro usage, or even the use of another software with or in replacement.
+
+   - type: textarea
+     id: additional-info
+     validations:
+       required: false
+     attributes:
+       label: Additional information
+       description: |
+         Anything else to say?
