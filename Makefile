@@ -1,9 +1,13 @@
 black:
-	pipenv run black kosmorro _kosmorro setup.py
+	poetry run black kosmorro tests
+
+.PHONY: tests
+tests:
+	LANG=C python3 -m poetry run pytest tests/*.py
 
 .PHONY: build
-build: manpage
-	python3 setup.py sdist bdist_wheel
+build:
+	poetry build
 
 .PHONY: manpage
 manpage:
@@ -11,10 +15,10 @@ manpage:
 	ronn --roff manpage/kosmorro.7.md
 
 messages:
-	pipenv run python setup.py extract_messages --output-file=_kosmorro/locales/messages.pot
+	poetry run pybabel extract --output=kosmorro/locales/messages.pot kosmorro
 
 i18n:
-	pipenv run python setup.py compile_catalog
+	poetry run pybabel compile --directory=kosmorro/locales
 
 changelog:
 	conventional-changelog -p angular -i CHANGELOG.md -s

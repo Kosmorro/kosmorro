@@ -88,10 +88,9 @@ body:
         - PyPI
         - Arch User Repository (AUR)
         - FreshPorts
-        - Docker
+        - I used the AppImage
         - I have compiled the package from source
-        - I have run Kosmorro with Pipenv
-        - other
+        - Other (explain in the description)
 
   - type: textarea
     id: description

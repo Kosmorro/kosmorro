@@ -1,0 +1,28 @@
+name: Man pages
+
+on:
+  push:
+    branches: [master, features]
+  pull_request:
+    branches: [master, features]
+
+jobs:
+  e2e-tests:
+    runs-on: ubuntu-latest
+    name: Check
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Compile man pages
+      run: |
+        sudo gem install ronn
+        make manpage
+
+    - name: manpage (section 1)
+      run: |
+        man -P $(which cat) manpage/kosmorro.1
+
+    - name: manpage (section 7)
+      run: |
+        man -P $(which cat) manpage/kosmorro.7

@@ -4,6 +4,7 @@ on:
   pull_request:
     branches: [master, features]
   release:
+    types: [published]
 
 jobs:
   build-appimage:
@@ -18,8 +19,8 @@ jobs:
           sudo gem install ronn
           wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage -O /usr/local/bin/appimagetool
           sudo chmod +x /usr/local/bin/appimagetool
-          pip install -U pip pipenv Babel wheel appimage-builder
-          pipenv install --dev
+          pip install -U pip poetry appimage-builder
+          poetry install
 
       - name: Build wheel
         run: |
@@ -40,3 +41,8 @@ jobs:
         with:
           name: kosmorro.AppImage.zsync
           path: dist/kosmorro-latest-x86_64.AppImage.zsync
+
+      - name: Run basic command
+        run: |
+          chmod +x dist/kosmorro-latest-x86_64.AppImage
+          ./dist/kosmorro-latest-x86_64.AppImage

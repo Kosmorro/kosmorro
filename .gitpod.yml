@@ -10,5 +10,5 @@ vscode:
 
 tasks:
   - before: sudo apt update && sudo apt install -y texlive texlive-latex-extra
-  - before: pip install -U pip pipenv
-    init: pipenv sync --dev --pre
+  - before: pip install -U pip poetry
+    init: poetry install

@@ -1,3 +1,24 @@
+# [Version 0.10.10](https://github.com/Kosmorro/kosmorro/compare/v0.10.9...v0.10.10) (2022-03-20)
+
+
+### Bug Fixes
+
+* use Babel to translate the dates ([9268113](https://github.com/Kosmorro/kosmorro/commit/92681131062eb0a93e901a5598353e36d9fc590f))
+* **events:** ignore unsupported event types ([9bfa8f5](https://github.com/Kosmorro/kosmorro/commit/9bfa8f503d4b46f91777d0b99fbc84f2a116a340))
+
+
+### Features
+
+* **i18n:** delete pseudo-translation ([b2535ab](https://github.com/Kosmorro/kosmorro/commit/b2535abd4aa03e700e5e482f8c5cf7af050eac29))
+
+
+### BREAKING CHANGES
+
+* Docker support has been removed.
+  If you were using it, please migrate to [one of the other available options](https://kosmorro.space/cli/download/).
+
+
+
 # [Version 0.10.9](https://github.com/Kosmorro/kosmorro/compare/v0.10.7...v0.10.9) (2022-01-12)
 
 

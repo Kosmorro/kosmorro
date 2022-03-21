@@ -1,0 +1,124 @@
+{
+  "projectName": "kosmorro",
+  "projectOwner": "Jérôme Deuchnord",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "CONTRIBUTORS.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "commitConvention": "angular",
+  "contributorsSortAlphabetically": true,
+  "contributors": [
+    {
+      "login": "Deuchnord",
+      "name": "Jérôme Deuchnord",
+      "avatar_url": "https://avatars.githubusercontent.com/u/7600265?v=4",
+      "profile": "https://deuchnord.fr/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Brainface1",
+      "name": "brain_face",
+      "avatar_url": "https://avatars.githubusercontent.com/u/40472418?v=4",
+      "profile": "https://github.com/Brainface1",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Damgermys",
+      "name": "Damgermys",
+      "avatar_url": "https://avatars.githubusercontent.com/u/82285874?v=4",
+      "profile": "https://github.com/Damgermys",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "nicfb",
+      "name": "Nic",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19811100?v=4",
+      "profile": "https://github.com/nicfb",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "comradekingu",
+      "name": "Allan Nordhøy",
+      "avatar_url": "https://avatars.githubusercontent.com/u/13802408?v=4",
+      "profile": "https://liberapay.com/kingu/",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "AmauryCarrade",
+      "name": "Amaury Carrade",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1417570?v=4",
+      "profile": "https://amaury.carrade.eu/",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "StaloneLab",
+      "name": "Titouan S.",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6739422?v=4",
+      "profile": "https://github.com/StaloneLab",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "thierry-FreeBSD",
+      "name": "Thierry Thomas",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6819982?v=4",
+      "profile": "http://people.freebsd.org/~thierry/",
+      "contributions": [
+        "platform"
+      ]
+    },
+    {
+      "login": "SpeedCode",
+      "name": "SpeedCode",
+      "avatar_url": "https://avatars.githubusercontent.com/u/12190842?v=4",
+      "profile": "https://github.com/SpeedCode",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "ChabaneAmaury",
+      "name": "Amaury Chabane",
+      "avatar_url": "https://avatars.githubusercontent.com/u/24982486?v=4",
+      "profile": "https://github.com/ChabaneAmaury",
+      "contributions": [
+        "ideas"
+      ]
+    },
+    {
+      "login": "WinXaito",
+      "name": "Kevin Vuilleumier",
+      "avatar_url": "https://avatars.githubusercontent.com/u/8223773?v=4",
+      "profile": "http://winxaito.com/",
+      "contributions": [
+        "ideas"
+      ]
+    },
+    {
+      "login": "romco1410",
+      "name": "Roman Hanečák",
+      "avatar_url": "https://avatars.githubusercontent.com/u/40452973?v=4",
+      "profile": "https://github.com/romco1410",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7
+}

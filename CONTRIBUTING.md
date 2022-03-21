@@ -23,7 +23,7 @@ If you speak another language than English, another nice way to enhance Kosmorro
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/Kosmorro/kosmorro)
 
-First of all, if you are fixing an opened issue, check that nobody is already working on it — if someone seems to be but their Pull Request seems stuck, please ask them first if you can continue the development. If you retake the code they produced, **don't change the author of the commits**.
+First, if you are fixing an opened issue, check that nobody is already working on it — if someone seems to be but their Pull Request seems stuck, please ask them first if you can continue the development. If you retake the code they produced, **don't change the author of the commits**.
 
 Before writing the code, first create a fork of the repository and clone it. You may also want to add the original repository (`Kosmorro/kosmorro`), so you can update your fork with the last upstream commits.
 
@@ -50,7 +50,7 @@ When you add a new string that will be displayed to the end user, please pass it
 print('Note: All the hours are given in UTC.')
 
 # Do:
-from kosmorrolib.i18n import _
+from kosmorro.i18n import _
 print(_('Note: All the hours are given in UTC.'))
 ```
 
@@ -58,45 +58,37 @@ This will allow Python's internationalization tool to translate the string in an
 
 Once you have done your work, please remember to tell [Babel](http://babel.pocoo.org) to extract the new strings:
 
-```console
-$ make messages
+```bash
+make messages
 ```
-
-> If the `setup.py` script tells you that the `extract_messages` command does not exist, then run `pipenv sync` to ensure all the dev dependencies are installed and try again.
 
 Note that if you forget to update the messages file, the CI will fail.
 
 ### Matching the coding standards
 
-Kosmorro's source code follows the major coding standards of Python (PEPs). Before marking your Pull Request as ready for review, don't forget to check that the code respects the coding standards with PyLint (it is run on the CI, but feel free to run it on your local machine too). Your PR must have a global note of 10/10 to be elligible to merge.
+Kosmorro's source code follows the major coding standards of Python (PEPs).
+Before marking your Pull Request as ready for review, don't forget to check that the code respects the coding standards with Black:
+
+```bash
+make black
+```
 
 ### Testing the code
 
-There are two kinds of tests on this project: **unit tests** and **end-to-end tests** (sometimes abbreviated to _E2E tests_).
+The tests are located in the `/tests` folder.
+Their principle is pretty simple:
 
-#### Unit tests
+1. First, we run a Kosmorro command as we would in command line application. We use the [Aurornis](https://pypi.org/project/aurornis/) package to do this.
+2. Then, we test the return of the command against what we expected. We use [PyTest](https://pypi.org/project/pytest/) to do this.
 
-[Unit tests](https://en.wikipedia.org/wiki/Unit_testing) check that every little piece of code (any _unit_) does exactly what it is supposed to do. They have several advantages, like proving that new things in the codebase works exactly as they should, and making sure that future changes done later won't break them.
+To run the tests, invoke the following command:
 
-Kosmorro's unit tests use Python's official `unittest` module. They live in the `/test` folder of the repository. Whenever you write a new feature or a bug fix, please write the unit tests that will make sure it works.
-You can also run them by invoking the following command:
+```bash
+make tests
 
-```shell
-make test
+# Or, if you have TeXLive installed on your machine (Linux only):
+make TEXLIVE_INSTALLED=1 tests
 ```
-
-Note: there are currently some memory leaks in the unit tests, making the result quite difficult to read. I am working to fix this.
-If you have troubles reading them, feel free to ask.
-
-#### End-to-end tests
-
-If unit tests are really good at checking that every individual parts of code work well, they fail at checking that so does the _whole_ program as a finished product. That is the job of end-to-end tests.
-
-The goal here is to make sure that if you install Kosmorro from scratch, it will work without any problem. If a mandatory dependency has not been installed, or if something goes wrong in the main program (which is not possible to unit test), the E2E tests will fail.
-
-Kosmorro's 2E2 tests are a Bash script living in the `/.scripts/tests-e2e.sh` file. You should only add tests here if you add new ways to interact with Kosmorro itself (e.g. adding a new argument in the command line).
-
-Fore security purpose, it is not recommended running E2E tests locally, because some tests need the root privilege to pass (e.g. installing optional dependencies). They are run on the CI.
 
 ### Commiting
 
@@ -112,11 +104,7 @@ Once your PR is ready to review, please squash your commits so it contains only 
 
 > To ensure your commits follow this convention, you can use [glint](https://github.com/brigand/glint).
 
-The commit messages are then used to generate the changelog using [`conventional-changelog`](https://github.com/conventional-changelog/conventional-changelog):
-
-```bash
-conventional-changelog -p angular -i CHANGELOG.md -s
-```
+The commit messages are then used to generate the changelog using [`conventional-changelog`](https://github.com/conventional-changelog/conventional-changelog).
 
 ## Licensing and Copyright Attribution
 
