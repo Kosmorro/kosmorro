@@ -1,0 +1,6 @@
+blank_issue_enabled: true
+
+contact_links:
+  - name: Event type
+    description: Suggest an event type that is not supported yet
+    url: https://github.com/Kosmorro/lib/issues/new/choose

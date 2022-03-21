@@ -279,7 +279,7 @@ def get_args(output_formats: [str]):
         type=str,
         default=None,
         help=_(
-            'The observer\'s position on Earth, in the "{latitude},{longitude}" format.'
+            'The observer\'s position on Earth, in the "{latitude},{longitude}" format. '
             "Can also be set in the KOSMORRO_POSITION environment variable."
         ),
     )

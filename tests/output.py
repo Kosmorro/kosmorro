@@ -11,8 +11,7 @@ from sys import platform
 
 def test_json_output():
     result = execute(
-        KOSMORRO
-        + ["--latitude=50.5876", "--longitude=3.0624", "-d2020-01-27", "--format=json"]
+        KOSMORRO + ["--position=50.5876,3.0624", "-d2020-01-27", "--format=json"]
     )
     assert result.is_successful()
     assert (
@@ -162,8 +161,7 @@ def test_pdf_output():
     result = execute(
         KOSMORRO
         + [
-            "--latitude=50.5876",
-            "--longitude=3.0624",
+            "--position=50.5876,3.0624",
             "-d2020-01-27",
             "--format=pdf",
             f"--output={tmp_dir}/document.pdf",
