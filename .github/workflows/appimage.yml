@@ -31,13 +31,13 @@ jobs:
           make appimage
 
       - name: Upload AppImage
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: kosmorro.AppImage
           path: dist/kosmorro-latest-x86_64.AppImage
 
       - name: Upload AppImage version synchronization file
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: kosmorro.AppImage.zsync
           path: dist/kosmorro-latest-x86_64.AppImage.zsync
