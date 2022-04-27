@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 from termcolor import colored as do_color
+from sys import stderr
 
 try:
     from importlib.metadata import version
@@ -25,3 +26,7 @@ def colored(text, color=None, on_color=None, attrs=None):
         return text
 
     return do_color(text, color, on_color, attrs)
+
+
+def print_stderr(*values: object):
+    print(*values, file=stderr)

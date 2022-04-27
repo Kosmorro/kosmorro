@@ -171,35 +171,37 @@ def test_tex_output():
         i += 1
 
 
+def test_pdf_output():
+    if platform != "linux":
+        # Consider it works everywhere if it does at least on Linux
+        return
+
+    tmp_dir = tempfile.mkdtemp()
+    result = execute(
+        KOSMORRO
+        + [
+            "--position=50.5876,3.0624",
+            "-d2020-01-27",
+            "--format=pdf",
+            f"--output={tmp_dir}/document.pdf",
+        ]
+    )
+
+    if environ.get("TEXLIVE_INSTALLED") is None:
+        assert not result.is_successful()
+        assert (
+            result.stdout
+            == "Save the planet and paper!\nConsider printing your PDF document only if really necessary, and use the other side of the sheet.\n"
+        )
+        assert (
+            result.stderr
+            == "Building PDF was not possible, because some dependencies are not installed.\nPlease look at the documentation at https://kosmorro.space/cli/generate-pdf/ for more information.\n"
+        )
+
+
+#        return
+#
 # disabled for now, waiting for the new pdf generator
-# def test_pdf_output():
-#     if platform != "linux":
-#         # Consider it works everywhere if it does at least on Linux
-#         return
-#
-#     tmp_dir = tempfile.mkdtemp()
-#     result = execute(
-#         KOSMORRO
-#         + [
-#             "--position=50.5876,3.0624",
-#             "-d2020-01-27",
-#             "--format=pdf",
-#             f"--output={tmp_dir}/document.pdf",
-#         ]
-#     )
-#
-#     if environ.get("TEXLIVE_INSTALLED") is None:
-#         assert not result.is_successful()
-#         assert (
-#             result.stdout
-#             == """Save the planet and paper!
-# Consider printing your PDF document only if really necessary, and use the other side of the sheet.
-# Building PDF was not possible, because some dependencies are not installed.
-# Please look at the documentation at https://kosmorro.space/cli/generate-pdf/ for more information.
-# """
-#         )
-#
-#         return
 #
 #     assert result.is_successful()
 #     assert (

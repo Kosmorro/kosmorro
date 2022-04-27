@@ -29,7 +29,7 @@ def test_with_incorrect_date_values():
         result = execute(KOSMORRO + arg)
         assert not result.is_successful()
         assert (
-            result.stdout
+            result.stderr
             == f"The date {value} does not match the required YYYY-MM-DD format or the offset format.\n"
         )
 
@@ -38,7 +38,7 @@ def test_with_incorrect_date_values():
         result = execute(KOSMORRO + arg)
         assert not result.is_successful()
         assert (
-            result.stdout == f"The date {value} is not valid: month must be in 1..12\n"
+            result.stderr == f"The date {value} is not valid: month must be in 1..12\n"
         )
 
 
@@ -47,6 +47,16 @@ def test_with_out_of_range_dates():
         result = execute(KOSMORRO + arg)
         assert not result.is_successful()
         assert (
-            result.stdout
+            result.stderr
+            == "Moon phase can only be computed between August 9, 1899 and September 26, 2053\nThe date must be between July 28, 1899 and October 8, 2053\n"
+        )
+
+
+def test_with_out_of_range_dates_for_moon_phase_only():
+    for arg in [["-d", "1899-07-30"], ["-d", "2053-10-06"]]:
+        result = execute(KOSMORRO + arg)
+        assert result.is_successful()
+        assert (
+            result.stderr
             == "Moon phase can only be computed between August 9, 1899 and September 26, 2053\n"
         )
