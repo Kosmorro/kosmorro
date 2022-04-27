@@ -28,7 +28,13 @@ from datetime import date
 from . import dumper, environment, debug
 from .date import parse_date
 from .geolocation import get_position
-from .utils import KOSMORRO_VERSION, KOSMORROLIB_VERSION, colored, set_colors_activated
+from .utils import (
+    KOSMORRO_VERSION,
+    KOSMORROLIB_VERSION,
+    colored,
+    set_colors_activated,
+    print_stderr,
+)
 from .exceptions import (
     InvalidOutputFormatError,
     UnavailableFeatureError,
@@ -52,7 +58,7 @@ def run():
     try:
         compute_date = parse_date(args.date)
     except ValueError as error:
-        print(colored(error.args[0], color="red", attrs=["bold"]))
+        print_stderr(colored(error.args[0], color="red", attrs=["bold"]))
         return -1
 
     position = None
@@ -79,8 +85,7 @@ def run():
             )
         )
         if position is None:
-            print()
-            print(
+            print_stderr(
                 colored(
                     _(
                         "PDF output will not contain the ephemerides, because you didn't provide the observation "
@@ -109,15 +114,15 @@ def run():
             args.show_graph,
         )
     except InvalidOutputFormatError as error:
-        print(colored(error.msg, "red"))
+        print_stderr(colored(error.msg, "red"))
         debug.debug_print(error)
         return 3
     except UnavailableFeatureError as error:
-        print(colored(error.msg, "red"))
+        print_stderr(colored(error.msg, "red"))
         debug.debug_print(error)
         return 2
     except DateRangeError as error:
-        print(colored(error.msg, "red"))
+        print_stderr(colored(error.msg, "red"))
         debug.debug_print(error)
         return 1
 
@@ -128,11 +133,11 @@ def run():
             with open(args.output, opening_mode) as output_file:
                 output_file.write(file_content)
         except UnavailableFeatureError as error:
-            print(colored(error.msg, "red"))
+            print_stderr(colored(error.msg, "red"))
             debug.debug_print(error)
             return 2
         except OSError as error:
-            print(
+            print_stderr(
                 colored(
                     _('The file could not be saved in "{path}": {error}').format(
                         path=args.output, error=error.strerror
@@ -146,7 +151,7 @@ def run():
     elif not output.is_file_output_needed():
         print(output)
     else:
-        print(
+        print_stderr(
             colored(
                 _("Please provide a file path to export in this format (--output)."),
                 color="red",
@@ -165,35 +170,32 @@ def get_information(
     colors: bool,
     show_graph: bool,
 ) -> dumper.Dumper:
-    if position is not None:
-        try:
+    try:
+        if position is not None:
             eph = get_ephemerides(
                 for_date=compute_date, position=position, timezone=timezone
             )
+        else:
+            eph = []
+
+        try:
+            moon_phase = get_moon_phase(for_date=compute_date, timezone=timezone)
         except OutOfRangeDateError as error:
-            raise DateRangeError(error.min_date, error.max_date)
-    else:
-        eph = []
-
-    try:
-        moon_phase = get_moon_phase(for_date=compute_date, timezone=timezone)
-    except OutOfRangeDateError as error:
-        moon_phase = None
-        print(
-            colored(
-                _(
-                    "Moon phase can only be computed between {min_date} and {max_date}"
-                ).format(
-                    min_date=format_date(error.min_date, "long"),
-                    max_date=format_date(error.max_date, "long"),
-                ),
-                "yellow",
+            moon_phase = None
+            print_stderr(
+                colored(
+                    _(
+                        "Moon phase can only be computed between {min_date} and {max_date}"
+                    ).format(
+                        min_date=format_date(error.min_date, "long"),
+                        max_date=format_date(error.max_date, "long"),
+                    ),
+                    "yellow",
+                )
             )
-        )
 
-    events_list = get_events(compute_date, timezone)
+        events_list = get_events(compute_date, timezone)
 
-    try:
         return get_dumpers()[output_format](
             ephemerides=eph,
             moon_phase=moon_phase,
@@ -205,6 +207,8 @@ def get_information(
         )
     except KeyError as error:
         raise InvalidOutputFormatError(output_format, list(get_dumpers().keys()))
+    except OutOfRangeDateError as error:
+        raise DateRangeError(error.min_date, error.max_date)
 
 
 def get_dumpers() -> {str: dumper.Dumper}:
