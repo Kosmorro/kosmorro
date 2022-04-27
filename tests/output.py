@@ -152,42 +152,62 @@ def test_json_output():
     )
 
 
-def test_pdf_output():
-    if platform != "linux":
-        # Consider it works everywhere if it does at least on Linux
-        return
+def test_tex_output():
+    tmpdir = tempfile.mkdtemp()
 
-    tmp_dir = tempfile.mkdtemp()
-    result = execute(
-        KOSMORRO
-        + [
-            "--position=50.5876,3.0624",
-            "-d2020-01-27",
-            "--format=pdf",
-            f"--output={tmp_dir}/document.pdf",
-        ]
-    )
+    i = 1
 
-    if environ.get("TEXLIVE_INSTALLED") is None:
-        assert not result.is_successful()
-        assert (
-            result.stdout
-            == """Save the planet and paper!
-Consider printing your PDF document only if really necessary, and use the other side of the sheet.
-Building PDF was not possible, because some dependencies are not installed.
-Please look at the documentation at https://kosmorro.space/cli/generate-pdf/ for more information.
-"""
+    for args in [["--format=tex"], []]:
+        args.append(f"--output={tmpdir}/document_{i}.tex")
+
+        result = execute(
+            KOSMORRO + ["--position=50.5876,3.0624", "--date=2020-01-27"] + args
         )
+        assert result.is_successful()
+        assert result.stdout == ""
+        assert result.stderr == ""
+        assert path.exists(f"{tmpdir}/document_{i}.tex")
 
-        return
+        i += 1
 
-    assert result.is_successful()
-    assert (
-        result.stdout
-        == """Save the planet and paper!
-Consider printing your PDF document only if really necessary, and use the other side of the sheet.
-"""
-        ""
-    )
 
-    assert path.exists(f"{tmp_dir}/document.pdf")
+# disabled for now, waiting for the new pdf generator
+# def test_pdf_output():
+#     if platform != "linux":
+#         # Consider it works everywhere if it does at least on Linux
+#         return
+#
+#     tmp_dir = tempfile.mkdtemp()
+#     result = execute(
+#         KOSMORRO
+#         + [
+#             "--position=50.5876,3.0624",
+#             "-d2020-01-27",
+#             "--format=pdf",
+#             f"--output={tmp_dir}/document.pdf",
+#         ]
+#     )
+#
+#     if environ.get("TEXLIVE_INSTALLED") is None:
+#         assert not result.is_successful()
+#         assert (
+#             result.stdout
+#             == """Save the planet and paper!
+# Consider printing your PDF document only if really necessary, and use the other side of the sheet.
+# Building PDF was not possible, because some dependencies are not installed.
+# Please look at the documentation at https://kosmorro.space/cli/generate-pdf/ for more information.
+# """
+#         )
+#
+#         return
+#
+#     assert result.is_successful()
+#     assert (
+#         result.stdout
+#         == """Save the planet and paper!
+# Consider printing your PDF document only if really necessary, and use the other side of the sheet.
+# """
+#         ""
+#     )
+#
+#     assert path.exists(f"{tmp_dir}/document.pdf")
