@@ -25,7 +25,7 @@ importlib-metadata = "^4.11"
 openlocationcode = "^1.0"
 
 [tool.poetry.dev-dependencies]
-black = "^22.1"
+black = "^22.3"
 pytest = "^7.0"
 aurornis = "^1.2"
 
