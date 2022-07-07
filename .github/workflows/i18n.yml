@@ -25,19 +25,7 @@ jobs:
         poetry run pybabel extract --output=/tmp/kosmorro-messages.pot kosmorro
         echo
         diff=$(diff kosmorro/locales/messages.pot /tmp/kosmorro-messages.pot | grep '^>')
-        n=$(echo "$diff" | grep -v '> "POT-Creation-Date: ' | wc -l)
-
-        if [ "$(echo "$diff" | grep -E '^"Generated-By: Babel' | wc -l)" -eq "1" ]; then
-          echo "❌ Your dependencies may be out of date!"
-          echo "   Please run the following command to fix this:"
-          echo
-          echo "     poetry install"
-          echo
-          echo "   Then update the messages file:"
-          echo
-          echo "     make messages"
-          exit 2
-        fi
+        n=$(echo "$diff" | grep -Ev '> "(POT-Creation-Date)|(Generated-By): ' | wc -l)
 
         if [ "$n" -ne "0" ]; then
           echo "❌ The messages file is not up-to-date!"
