@@ -2,12 +2,11 @@
 version: 1
 
 script: |
-  mkdir -p build/AppDir build/AppDir/usr/share/icons/hicolor/scalable/apps
-  cp kosmorro/assets/svg/kosmorro-icon.svg build/AppDir/usr/share/icons/hicolor/scalable/apps/kosmorro.svg
-  pip3 install --isolated --root="./build/AppDir" ./dist/kosmorro-*.whl
+  mkdir -p AppDir AppDir/usr/share/icons/hicolor/scalable/apps
+  cp kosmorro/assets/svg/kosmorro-icon.svg AppDir/usr/share/icons/kosmorro.svg
+  pip3 install --isolated --root="./AppDir" ./dist/kosmorro-*.whl
 
 AppDir:
-  path: build/AppDir
   app_info:
     id: space.kosmorro.cli
     name: kosmorro
