@@ -54,6 +54,7 @@ def from_object(identifier: ObjectIdentifier) -> str:
         ObjectIdentifier.MOON: _("Moon"),
         ObjectIdentifier.MERCURY: _("Mercury"),
         ObjectIdentifier.VENUS: _("Venus"),
+        ObjectIdentifier.EARTH: _("Earth"),
         ObjectIdentifier.MARS: _("Mars"),
         ObjectIdentifier.JUPITER: _("Jupiter"),
         ObjectIdentifier.SATURN: _("Saturn"),
