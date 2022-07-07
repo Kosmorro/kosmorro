@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kosmorro 0.9.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-15 13:19+0200\n"
+"POT-Creation-Date: 2022-07-07 13:10+0200\n"
 "PO-Revision-Date: 2022-03-19 17:51+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/kosmorro/cli/es/"
@@ -290,13 +290,15 @@ msgid "Elongation of %s is maximal"
 msgstr ""
 
 #: kosmorro/i18n/strings.py:18
-#, python-format
-msgid "%s is at its perigee"
+#, fuzzy, python-format
+#| msgid "%s is at its perigee"
+msgid "%s is at its periapsis"
 msgstr "%s está en su perigeo"
 
 #: kosmorro/i18n/strings.py:19
-#, python-format
-msgid "%s is at its apogee"
+#, fuzzy, python-format
+#| msgid "%s is at its apogee"
+msgid "%s is at its apoapsis"
 msgstr "%s está en su apogeo"
 
 #: kosmorro/i18n/strings.py:35
@@ -354,26 +356,30 @@ msgid "Venus"
 msgstr "Venus"
 
 #: kosmorro/i18n/strings.py:57
+msgid "Earth"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:58
 msgid "Mars"
 msgstr "Mars"
 
-#: kosmorro/i18n/strings.py:58
+#: kosmorro/i18n/strings.py:59
 msgid "Jupiter"
 msgstr "Júpiter"
 
-#: kosmorro/i18n/strings.py:59
+#: kosmorro/i18n/strings.py:60
 msgid "Saturn"
 msgstr "Saturno"
 
-#: kosmorro/i18n/strings.py:60
+#: kosmorro/i18n/strings.py:61
 msgid "Uranus"
 msgstr "Urano"
 
-#: kosmorro/i18n/strings.py:61
+#: kosmorro/i18n/strings.py:62
 msgid "Neptune"
 msgstr "Neptuno"
 
-#: kosmorro/i18n/strings.py:62
+#: kosmorro/i18n/strings.py:63
 msgid "Pluto"
 msgstr "Plutón"
 
