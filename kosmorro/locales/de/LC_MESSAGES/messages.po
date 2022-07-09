@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kosmorro 0.9.0\n"
 "Report-Msgid-Bugs-To: jerome@deuchnord.fr\n"
 "POT-Creation-Date: 2022-07-07 13:10+0200\n"
-"PO-Revision-Date: 2022-07-08 12:20+0000\n"
+"PO-Revision-Date: 2022-07-10 07:14+0000\n"
 "Last-Translator: Jérôme Deuchnord <jerome@deuchnord.fr>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/kosmorro/cli/de/>"
 "\n"
@@ -280,12 +280,12 @@ msgstr "Die Elongation von %s ist maximal"
 #: kosmorro/i18n/strings.py:18
 #, python-format
 msgid "%s is at its periapsis"
-msgstr "%s befindet sich an der Periapsis"
+msgstr "%s steht auf der Periapsis"
 
 #: kosmorro/i18n/strings.py:19
 #, python-format
 msgid "%s is at its apoapsis"
-msgstr "%s steht auf seiner Apoapsis"
+msgstr "%s steht auf der Apoapsis"
 
 #: kosmorro/i18n/strings.py:35
 msgid "New Moon"
