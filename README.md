@@ -1,4 +1,4 @@
-# ![Kosmorro](https://raw.githubusercontent.com/Kosmorro/logos/main/png/kosmorro-logo-grey.png)
+# ![Kosmorro](https://github.com/Kosmorro/logos/raw/main/kosmorro/kosmorro-artwork.jpg)
 [![Version on PyPI](https://img.shields.io/pypi/v/kosmorro)](https://pypi.org/project/kosmorro) [![Packaging status](https://repology.org/badge/tiny-repos/kosmorro.svg)](https://repology.org/project/kosmorro/versions) [![Help translating Kosmorro!](https://hosted.weblate.org/widgets/kosmorro/-/cli/svg-badge.svg)](https://hosted.weblate.org/engage/kosmorro/)
 
 A program that calculates your astronomical ephemerides!
