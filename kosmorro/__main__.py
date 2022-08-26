@@ -29,8 +29,6 @@ from . import dumper, environment, debug
 from .date import parse_date
 from .geolocation import get_position
 from .utils import (
-    KOSMORRO_VERSION,
-    KOSMORROLIB_VERSION,
     colored,
     set_colors_activated,
     print_stderr,
@@ -40,6 +38,7 @@ from .exceptions import (
     UnavailableFeatureError,
     OutOfRangeDateError as DateRangeError,
 )
+from .version import KOSMORRO_VERSION, KOSMORROLIB_VERSION, get_last_version
 from kosmorro.i18n.utils import _
 
 
@@ -54,6 +53,17 @@ def run():
 
     if args.special_action is not None:
         return 0 if args.special_action() else 1
+
+    last_version = get_last_version()
+    if last_version is not None and last_version != KOSMORRO_VERSION:
+        print(
+            colored(
+                _(
+                    "Kosmorro v{new_version} is available! Download it on https://kosmorro.space/cli/download!"
+                ).format(new_version=last_version),
+                color="yellow",
+            )
+        )
 
     try:
         compute_date = parse_date(args.date)

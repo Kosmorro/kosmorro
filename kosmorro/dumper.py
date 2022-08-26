@@ -22,8 +22,6 @@ import json
 import os
 import tempfile
 import subprocess
-import shutil
-from pathlib import Path
 
 from babel.dates import format_date, format_time
 from tabulate import tabulate
@@ -39,7 +37,7 @@ from .exceptions import (
     UnavailableFeatureError as KosmorroUnavailableFeatureError,
 )
 from .debug import debug_print
-from .utils import KOSMORRO_VERSION
+from .version import KOSMORRO_VERSION
 
 
 class Dumper(ABC):

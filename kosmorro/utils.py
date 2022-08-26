@@ -3,14 +3,6 @@
 from termcolor import colored as do_color
 from sys import stderr
 
-try:
-    from importlib.metadata import version
-except ImportError:
-    from importlib_metadata import version
-
-KOSMORRO_VERSION = version("kosmorro")
-KOSMORROLIB_VERSION = version("kosmorrolib")
-
 
 global _COLORS_ACTIVATED
 
