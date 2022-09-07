@@ -20,6 +20,8 @@ import argparse
 import sys
 import os.path
 
+print(sys.path)
+
 from babel.dates import format_date
 from kosmorrolib import Position, get_ephemerides, get_events, get_moon_phase
 from kosmorrolib.exceptions import OutOfRangeDateError
@@ -344,3 +346,7 @@ def get_args(output_formats: [str]):
 
 def main():
     sys.exit(run())
+
+
+if __name__ == '__main__':
+    main()

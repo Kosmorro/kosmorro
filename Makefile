@@ -27,12 +27,10 @@ prepare-release: messages changelog
 	@echo
 	@echo "Before tagging, don't forget to update version number in CHANGELOG"
 
-appdir:
+appimage:
 	appimage-builder --skip-tests
 	mv *.AppImage dist/
 	mv *.zsync dist/
-
-appimage: appdir
 
 clean:
 	rm -rf build dist appimage-builder-cache kosmorro.egg-info manpage/kosmorro.{1,7}{,.html}

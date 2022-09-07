@@ -9,18 +9,20 @@ on:
 jobs:
   build-appimage:
     name: Build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
       - uses: actions/checkout@v3
 
       - name: Prepare environment
+        env:
+          PYTHON_KEYRING_BACKEND: keyring.backends.null.Keyring
         run: |
-          sudo gem install ronn
-          wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage -O /usr/local/bin/appimagetool
-          sudo chmod +x /usr/local/bin/appimagetool
+          sudo apt install libfuse2
           pip install -U pip poetry appimage-builder
           poetry install
+          sudo mkdir -p /usr/share/icons/hicolor/scalable/apps/kosmorro.svg
+          sudo cp -r kosmorro/assets/svg/kosmorro-icon.svg /usr/share/icons/hicolor/scalable/apps/kosmorro.svg
 
       - name: Build wheel
         run: |
@@ -29,6 +31,7 @@ jobs:
       - name: Build AppImage
         run: |
           make appimage
+          tree build
 
       - name: Upload AppImage
         uses: actions/upload-artifact@v2
