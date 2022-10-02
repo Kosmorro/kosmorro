@@ -21,8 +21,15 @@ import sys
 import os.path
 
 from babel.dates import format_date
-from kosmorrolib import Position, get_ephemerides, get_events, get_moon_phase
-from kosmorrolib.exceptions import OutOfRangeDateError
+from kosmorrolib import (
+    Position,
+    get_ephemerides,
+    get_events,
+    get_moon_phase,
+    search_events,
+)
+from kosmorrolib.exceptions import OutOfRangeDateError, InvalidDateRangeError
+from kosmorrolib.enum import EventType
 from datetime import date
 
 from . import dumper, environment, debug
@@ -37,6 +44,7 @@ from .utils import (
 )
 from .exceptions import (
     InvalidOutputFormatError,
+    SearchDatesNotGivenError,
     UnavailableFeatureError,
     OutOfRangeDateError as DateRangeError,
 )
@@ -54,6 +62,8 @@ def run():
 
     if args.special_action is not None:
         return 0 if args.special_action() else 1
+
+    search_enabled = args.search is not None
 
     try:
         compute_date = parse_date(args.date)
@@ -105,14 +115,34 @@ def run():
     try:
         use_colors = not environment.NO_COLOR and args.colors
 
-        output = get_information(
-            compute_date,
-            position,
-            timezone,
-            output_format,
-            use_colors,
-            args.show_graph,
-        )
+        output = None
+        if search_enabled:
+            output = get_search_information(
+                args.search,
+                args.from_,
+                args.to,
+                timezone,
+                output_format,
+                use_colors,
+                args.show_graph,
+            )
+        else:
+            output = get_information(
+                compute_date,
+                position,
+                timezone,
+                output_format,
+                use_colors,
+                args.show_graph,
+            )
+    except SearchDatesNotGivenError as error:
+        print_stderr(colored(error.msg, "red"))
+        debug.debug_print(error)
+        return 5
+    except ValueError as error:
+        print_stderr(colored(error.args[0], color="red", attrs=["bold"]))
+        debug.debug_print(error)
+        return 4
     except InvalidOutputFormatError as error:
         print_stderr(colored(error.msg, "red"))
         debug.debug_print(error)
@@ -204,11 +234,59 @@ def get_information(
             timezone=timezone,
             with_colors=colors,
             show_graph=show_graph,
+            search_enabled=False,
         )
     except KeyError as error:
         raise InvalidOutputFormatError(output_format, list(get_dumpers().keys()))
     except OutOfRangeDateError as error:
         raise DateRangeError(error.min_date, error.max_date)
+
+
+def get_search_information(
+    requested_events: [EventType],
+    search_from: date,
+    search_to: date,
+    timezone: int,
+    output_format: str,
+    colors: bool,
+    show_graph: bool,
+) -> dumper.Dumper:
+    try:
+        if search_from is None or search_to is None:
+            raise SearchDatesNotGivenError
+
+        event_types = [EventType[event.upper()] for event in requested_events]
+        from_ = parse_date(search_from)
+        to = parse_date(search_to)
+        events_list = search_events(event_types, to, from_, timezone)
+
+        return get_dumpers()[output_format](
+            ephemerides=[],
+            moon_phase=None,
+            events=events_list,
+            date=None,
+            timezone=timezone,
+            with_colors=colors,
+            show_graph=show_graph,
+            search_enabled=True,
+        )
+    except InvalidDateRangeError as error:
+        print(
+            colored(
+                _(
+                    "Search start date {start_search} must be before end date {end_search}"
+                ).format(
+                    start_search=format_date(error.start_date, "long"),
+                    end_search=format_date(error.end_date, "long"),
+                ),
+                "red",
+            )
+        )
+    except KeyError as error:
+        raise InvalidOutputFormatError(output_format, list(get_dumpers().keys()))
+    except OutOfRangeDateError as error:
+        print(colored(error.msg, "red"))
+        debug.debug_print(error)
 
 
 def get_dumpers() -> {str: dumper.Dumper}:
@@ -307,6 +385,24 @@ def get_args(output_formats: [str]):
             "The timezone to display the hours in (e.g. 2 for UTC+2 or -3 for UTC-3). "
             "Can also be set in the KOSMORRO_TIMEZONE environment variable."
         ),
+    )
+    parser.add_argument(
+        "--search",
+        "-s",
+        type=str,
+        nargs="*",
+        default=None,
+        help=_("Search for specific event types by date."),
+    )
+    parser.add_argument(
+        "--from",
+        dest="from_",
+        type=str,
+        default=None,
+        help=_("The date to begin searching for events."),
+    )
+    parser.add_argument(
+        "--to", type=str, default=None, help=_("The date to end searching for events.")
     )
     parser.add_argument(
         "--no-colors",
