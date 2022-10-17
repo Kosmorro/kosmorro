@@ -15,13 +15,12 @@ include = [
 kosmorro = 'kosmorro.__main__:main'
 
 [tool.poetry.dependencies]
-python = ">=3.7,<3.11"
+python = ">=3.9,<3.11"
 tabulate = "^0.8"
 termcolor = "^1.1"
 kosmorrolib = "^1.0"
 python-dateutil = "^2.8"
 Babel = "^2.9"
-importlib-metadata = "^4.11"
 openlocationcode = "^1.0"
 
 [tool.poetry.dev-dependencies]
