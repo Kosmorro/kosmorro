@@ -70,7 +70,7 @@ class SearchDatesNotGivenError(RuntimeError):
     def __init__(self):
         super().__init__()
         self.msg = _(
-            "Both 'from' and 'to' dates are required when searching for events."
+            "Search end date (--until) is required when searching events.'"
         )
 
 

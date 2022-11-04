@@ -120,7 +120,7 @@ def run():
             output = get_search_information(
                 args.search,
                 args.from_,
-                args.to,
+                args.until,
                 timezone,
                 output_format,
                 use_colors,
@@ -245,20 +245,20 @@ def get_information(
 def get_search_information(
     requested_events: [EventType],
     search_from: date,
-    search_to: date,
+    search_until: date,
     timezone: int,
     output_format: str,
     colors: bool,
     show_graph: bool,
 ) -> dumper.Dumper:
     try:
-        if search_from is None or search_to is None:
+        if search_until is None:
             raise SearchDatesNotGivenError
 
         event_types = [EventType[event.upper()] for event in requested_events]
         from_ = parse_date(search_from)
-        to = parse_date(search_to)
-        events_list = search_events(event_types, to, from_, timezone)
+        until = parse_date(search_until)
+        events_list = search_events(event_types, until, from_, timezone)
 
         return get_dumpers()[output_format](
             ephemerides=[],
@@ -398,11 +398,11 @@ def get_args(output_formats: [str]):
         "--from",
         dest="from_",
         type=str,
-        default=None,
-        help=_("The date to begin searching for events."),
+        default=today.strftime("%Y-%m-%d"),
+        help=_("The date to begin searching for events. Default is today."),
     )
     parser.add_argument(
-        "--to", type=str, default=None, help=_("The date to end searching for events.")
+        "--until", type=str, default=None, help=_("The date to end searching for events.")
     )
     parser.add_argument(
         "--no-colors",
