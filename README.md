@@ -1,5 +1,5 @@
-# ![Kosmorro](https://raw.githubusercontent.com/Kosmorro/logos/main/png/kosmorro-logo-grey.png)
-[![Coverage Status](https://coveralls.io/repos/github/Kosmorro/kosmorro/badge.svg?branch=master)](https://coveralls.io/github/Kosmorro/kosmorro?branch=master) [![Version on PyPI](https://img.shields.io/pypi/v/kosmorro)](https://pypi.org/project/kosmorro) [![Packaging status](https://repology.org/badge/tiny-repos/kosmorro.svg)](https://repology.org/project/kosmorro/versions) [![Help translating Kosmorro!](https://hosted.weblate.org/widgets/kosmorro/-/cli/svg-badge.svg)](https://hosted.weblate.org/engage/kosmorro/) [![IRC: #kosmorro on Libera.Chat](https://img.shields.io/badge/Libera.Chat-%23kosmorro-blueviolet)](https://web.libera.chat/?nick=Astronaut?#kosmorro)
+# ![Kosmorro](https://github.com/Kosmorro/logos/raw/main/kosmorro/kosmorro-artwork.jpg)
+[![Version on PyPI](https://img.shields.io/pypi/v/kosmorro)](https://pypi.org/project/kosmorro) [![Packaging status](https://repology.org/badge/tiny-repos/kosmorro.svg)](https://repology.org/project/kosmorro/versions) [![Help translating Kosmorro!](https://hosted.weblate.org/widgets/kosmorro/-/cli/svg-badge.svg)](https://hosted.weblate.org/engage/kosmorro/) [![IRC: #kosmorro on Libera.Chat](https://img.shields.io/badge/Libera.Chat-%23kosmorro-blueviolet)](https://web.libera.chat/?nick=Astronaut?#kosmorro)
 
 A program that calculates your astronomical ephemerides!
 
@@ -15,14 +15,14 @@ If you want to give a try to Kosmorro, head to [its official download page](http
 
 Before you run Kosmorro in your development environment, check you have installed these programs on your system:
 
-- Python ≥ 3.7.0 (needed run Kosmorro)
-- PIP3 (needed for package management, usually installed among with Python 3)
-- [Poetry](https://python-poetry.org/) (needed to manage the virtual environment)
+- Python ≥ 3.8
+- PIP3
+- [Poetry](https://python-poetry.org/)
 
 Clone this repository and run `poetry install` to install all the dependencies.
-Then, run Kosmorro by invoking `poetry run python kosmorro`.
+Then, run Kosmorro by invoking `poetry run kosmorro`.
 
-For comfort, you may want to invoke `poetry shell` first and then just `python kosmoro`.
+For comfort, you may want to invoke `poetry shell` first and then just `kosmorro`.
 
 ## Using Kosmorro
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kosmorro 0.9.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-03-19 13:28+0100\n"
+"POT-Creation-Date: 2022-07-07 13:10+0200\n"
 "PO-Revision-Date: 2022-03-19 17:51+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/kosmorro/cli/ru/"
@@ -21,99 +21,99 @@ msgstr ""
 "X-Generator: Weblate 4.12-dev\n"
 "Generated-By: Babel 2.9.0\n"
 
-#: kosmorro/__main__.py:63
+#: kosmorro/__main__.py:61
 msgid ""
 "Save the planet and paper!\n"
 "Consider printing your PDF document only if really necessary, and use the "
 "other side of the sheet."
 msgstr ""
 
-#: kosmorro/__main__.py:72
+#: kosmorro/__main__.py:70
 msgid ""
 "PDF output will not contain the ephemerides, because you didn't provide the "
 "observation coordinates."
 msgstr ""
 
-#: kosmorro/__main__.py:117
+#: kosmorro/__main__.py:115
 msgid "The file could not be saved in \"{path}\": {error}"
 msgstr ""
 
-#: kosmorro/__main__.py:131
+#: kosmorro/__main__.py:129
 msgid "Please provide a file path to export in this format (--output)."
 msgstr ""
 
-#: kosmorro/__main__.py:164
+#: kosmorro/__main__.py:162
 msgid "Moon phase can only be computed between {min_date} and {max_date}"
 msgstr ""
 
-#: kosmorro/__main__.py:203
+#: kosmorro/__main__.py:201
 #, fuzzy
 msgid ""
 "Running on Python {python_version} with Kosmorrolib v{kosmorrolib_version}"
 msgstr "Работают под Python {python_version}"
 
-#: kosmorro/__main__.py:216
+#: kosmorro/__main__.py:214
 msgid ""
 "Compute the ephemerides and the events for a given date and a given position "
 "on Earth."
 msgstr ""
 
-#: kosmorro/__main__.py:219
+#: kosmorro/__main__.py:217
 msgid ""
 "By default, only the events will be computed for today.\n"
 "To compute also the ephemerides, latitude and longitude arguments are needed."
 msgstr ""
 
-#: kosmorro/__main__.py:232
+#: kosmorro/__main__.py:230
 msgid "Show the program version"
 msgstr "Показать версия программы"
 
-#: kosmorro/__main__.py:240
+#: kosmorro/__main__.py:238
 msgid "The format to output the information to"
 msgstr ""
 
-#: kosmorro/__main__.py:247
+#: kosmorro/__main__.py:245
 msgid ""
 "The observer's latitude on Earth. Can also be set in the KOSMORRO_LATITUDE "
 "environment variable."
 msgstr ""
 
-#: kosmorro/__main__.py:257
+#: kosmorro/__main__.py:255
 msgid ""
 "The observer's longitude on Earth. Can also be set in the KOSMORRO_LONGITUDE "
 "environment variable."
 msgstr ""
 
-#: kosmorro/__main__.py:267
+#: kosmorro/__main__.py:265
 msgid ""
 "The date for which the ephemerides must be calculated. Can be in the YYYY-MM-"
 "DD format or an interval in the \"[+-]YyMmDd\" format (with Y, M, and D "
 "numbers). Defaults to current date."
 msgstr ""
 
-#: kosmorro/__main__.py:278
+#: kosmorro/__main__.py:276
 msgid ""
 "The timezone to display the hours in (e.g. 2 for UTC+2 or -3 for UTC-3). Can "
 "also be set in the KOSMORRO_TIMEZONE environment variable."
 msgstr ""
 
-#: kosmorro/__main__.py:287
+#: kosmorro/__main__.py:285
 msgid "Disable the colors in the console."
 msgstr ""
 
-#: kosmorro/__main__.py:294
+#: kosmorro/__main__.py:292
 msgid ""
 "A file to export the output to. If not given, the standard output is used. "
 "This argument is needed for PDF format."
 msgstr ""
 
-#: kosmorro/__main__.py:303
+#: kosmorro/__main__.py:301
 msgid ""
 "Do not generate a graph to represent the rise and set times in the PDF "
 "format."
 msgstr ""
 
-#: kosmorro/__main__.py:311
+#: kosmorro/__main__.py:309
 msgid "Show debugging messages"
 msgstr ""
 
@@ -240,12 +240,12 @@ msgstr ""
 
 #: kosmorro/i18n/strings.py:18
 #, python-format
-msgid "%s is at its perigee"
+msgid "%s is at its periapsis"
 msgstr ""
 
 #: kosmorro/i18n/strings.py:19
 #, python-format
-msgid "%s is at its apogee"
+msgid "%s is at its apoapsis"
 msgstr ""
 
 #: kosmorro/i18n/strings.py:35
@@ -297,26 +297,30 @@ msgid "Venus"
 msgstr "Венера"
 
 #: kosmorro/i18n/strings.py:57
+msgid "Earth"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:58
 msgid "Mars"
 msgstr "Марс"
 
-#: kosmorro/i18n/strings.py:58
+#: kosmorro/i18n/strings.py:59
 msgid "Jupiter"
 msgstr "Юпитер"
 
-#: kosmorro/i18n/strings.py:59
+#: kosmorro/i18n/strings.py:60
 msgid "Saturn"
 msgstr "Сатурн"
 
-#: kosmorro/i18n/strings.py:60
+#: kosmorro/i18n/strings.py:61
 msgid "Uranus"
 msgstr "Уран"
 
-#: kosmorro/i18n/strings.py:61
+#: kosmorro/i18n/strings.py:62
 msgid "Neptune"
 msgstr "Нептун"
 
-#: kosmorro/i18n/strings.py:62
+#: kosmorro/i18n/strings.py:63
 msgid "Pluto"
 msgstr "Плутон"
 
