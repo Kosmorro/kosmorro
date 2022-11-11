@@ -15,14 +15,14 @@ If you want to give a try to Kosmorro, head to [its official download page](http
 
 Before you run Kosmorro in your development environment, check you have installed these programs on your system:
 
-- Python ≥ 3.7.0 (needed run Kosmorro)
-- PIP3 (needed for package management, usually installed among with Python 3)
-- [Poetry](https://python-poetry.org/) (needed to manage the virtual environment)
+- Python ≥ 3.8
+- PIP3
+- [Poetry](https://python-poetry.org/)
 
 Clone this repository and run `poetry install` to install all the dependencies.
-Then, run Kosmorro by invoking `poetry run python kosmorro`.
+Then, run Kosmorro by invoking `poetry run kosmorro`.
 
-For comfort, you may want to invoke `poetry shell` first and then just `python kosmoro`.
+For comfort, you may want to invoke `poetry shell` first and then just `kosmorro`.
 
 ## Using Kosmorro
 
