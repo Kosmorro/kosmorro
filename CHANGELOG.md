@@ -1,3 +1,24 @@
+# [Version 0.10.11](https://github.com/Kosmorro/kosmorro/compare/v0.10.10...v0.10.11) (2022-11-11)
+
+
+### Bug Fixes
+
+* fix localization for Earth and apsis ([#275](https://github.com/Kosmorro/kosmorro/issues/275)) ([1f1118c](https://github.com/Kosmorro/kosmorro/commit/1f1118cf3e003c773a429f3d5d593960368a50e1))
+
+
+### Build System
+
+* add support for Python 3.11 ([#295](https://github.com/Kosmorro/kosmorro/issues/295)) ([08da307](https://github.com/Kosmorro/kosmorro/commit/08da3072f57add8c40b52a4fd45291b1c9216b8a))
+* remove AppImage ([#294](https://github.com/Kosmorro/kosmorro/issues/294)) ([3bf4ed7](https://github.com/Kosmorro/kosmorro/commit/3bf4ed737c3278173dabb47324d9993e87141741))
+
+
+### BREAKING CHANGES
+
+* Python 3.7 is not supported anymore
+* AppImage is no longer available. This decision has been made because it has become hard to maintain lately, and I don't have time nor motivation to fix it.
+
+
+
 # [Version 0.10.10](https://github.com/Kosmorro/kosmorro/compare/v0.10.9...v0.10.10) (2022-03-20)
 
 
