@@ -135,6 +135,10 @@ def run():
                 use_colors,
                 args.show_graph,
             )
+    except InvalidDateRangeError as error:
+        print_stderr(colored(error, "red"))
+        debug.debug_print(error)
+        return 6
     except SearchDatesNotGivenError as error:
         print_stderr(colored(error.msg, "red"))
         debug.debug_print(error)
@@ -270,23 +274,10 @@ def get_search_information(
             show_graph=show_graph,
             search_enabled=True,
         )
-    except InvalidDateRangeError as error:
-        print(
-            colored(
-                _(
-                    "Search start date {start_search} must be before end date {end_search}"
-                ).format(
-                    start_search=format_date(error.start_date, "long"),
-                    end_search=format_date(error.end_date, "long"),
-                ),
-                "red",
-            )
-        )
     except KeyError as error:
         raise InvalidOutputFormatError(output_format, list(get_dumpers().keys()))
     except OutOfRangeDateError as error:
-        print(colored(error.msg, "red"))
-        debug.debug_print(error)
+        raise DateRangeError(error.min_date, error.max_date)
 
 
 def get_dumpers() -> {str: dumper.Dumper}:

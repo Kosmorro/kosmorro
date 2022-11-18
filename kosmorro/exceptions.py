@@ -40,19 +40,6 @@ class OutOfRangeDateError(RuntimeError):
         )
 
 
-class InvalidDateRangeError(RuntimeError):
-    def __init__(self, start_date: date, end_date: date):
-        super().__init__()
-        self.start_date = start_date
-        self.end_date = end_date
-        self.msg = _(
-            "The start date {starting_date} must be before the end date {ending_date}"
-        ).format(
-            starting_date=format_date(start_date, "long"),
-            ending_date=format_date(end_date, "long"),
-        )
-
-
 class InvalidOutputFormatError(RuntimeError):
     def __init__(self, output_format: str, accepted_extensions: [str]):
         super().__init__()
@@ -70,7 +57,7 @@ class SearchDatesNotGivenError(RuntimeError):
     def __init__(self):
         super().__init__()
         self.msg = _(
-            "Search end date (--until) is required when searching events.'"
+            "Search end date (--until) is required when searching events."
         )
 
 
