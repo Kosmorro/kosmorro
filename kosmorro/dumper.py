@@ -25,7 +25,7 @@ import subprocess
 import shutil
 from pathlib import Path
 
-from babel.dates import format_date, format_time
+from babel.dates import format_date, format_time, format_datetime
 from tabulate import tabulate
 from termcolor import colored
 
@@ -60,6 +60,7 @@ class Dumper(ABC):
         timezone: int,
         with_colors: bool,
         show_graph: bool,
+        search_enabled: bool,
     ):
         self.ephemerides = ephemerides
         self.moon_phase = moon_phase
@@ -68,6 +69,7 @@ class Dumper(ABC):
         self.timezone = timezone
         self.with_colors = with_colors
         self.show_graph = show_graph
+        self.search_enabled = search_enabled
 
     def get_date_as_string(self, capitalized: bool = False) -> str:
         date = format_date(self.date, "full")
@@ -220,9 +222,10 @@ class TextDumper(Dumper):
             if description is None:
                 continue
 
+            date_format = "MMM dd, yyyy hh:mm a" if self.search_enabled else "hh:mm a"
             data.append(
                 [
-                    self.style(format_time(event.start_time, "short"), "th"),
+                    self.style(format_datetime(event.start_time, date_format), "th"),
                     description,
                 ]
             )

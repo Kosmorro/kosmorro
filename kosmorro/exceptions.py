@@ -19,6 +19,7 @@
 from datetime import date
 from babel.dates import format_date
 from kosmorro.i18n.utils import _, SHORT_DATE_FORMAT
+from kosmorrolib.enum import EventType
 
 
 class UnavailableFeatureError(RuntimeError):
@@ -50,6 +51,25 @@ class InvalidOutputFormatError(RuntimeError):
         ).format(
             output_format=output_format,
             accepted_extensions=", ".join(accepted_extensions),
+        )
+
+
+class SearchDatesNotGivenError(RuntimeError):
+    def __init__(self):
+        super().__init__()
+        self.msg = _("Search end date (--until) is required when searching events.")
+
+
+class InvalidEventTypeError(RuntimeError):
+    def __init__(self, invalid_event: EventType):
+        super().__init__()
+        self.invalid_event = invalid_event
+        supported_events = ", ".join([event.name for _, event in enumerate(EventType)])
+        self.msg = _(
+            "Invalid event type {event}.\nSupported events are {events}."
+        ).format(
+            event=self.invalid_event,
+            events=supported_events,
         )
 
 
