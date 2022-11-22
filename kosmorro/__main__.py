@@ -47,6 +47,7 @@ from .exceptions import (
     SearchDatesNotGivenError,
     UnavailableFeatureError,
     OutOfRangeDateError as DateRangeError,
+    InvalidEventTypeError,
 )
 from kosmorro.i18n.utils import _
 
@@ -135,6 +136,10 @@ def run():
                 use_colors,
                 args.show_graph,
             )
+    except InvalidEventTypeError as error:
+        print_stderr(colored(error.msg, "red"))
+        debug.debug_print(error)
+        return 7
     except InvalidDateRangeError as error:
         print_stderr(colored(error, "red"))
         debug.debug_print(error)
@@ -258,8 +263,12 @@ def get_search_information(
     try:
         if search_until is None:
             raise SearchDatesNotGivenError
-
-        event_types = [EventType[event.upper()] for event in requested_events]
+        
+        try:
+            event_types = [EventType[event.upper()] for event in requested_events]
+        except KeyError as error:
+            raise InvalidEventTypeError(error.args[0])
+            
         from_ = parse_date(search_from)
         until = parse_date(search_until)
         events_list = search_events(event_types, until, from_, timezone)
