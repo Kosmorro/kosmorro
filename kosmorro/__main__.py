@@ -263,12 +263,12 @@ def get_search_information(
     try:
         if search_until is None:
             raise SearchDatesNotGivenError
-        
+
         try:
             event_types = [EventType[event.upper()] for event in requested_events]
         except KeyError as error:
             raise InvalidEventTypeError(error.args[0])
-            
+
         from_ = parse_date(search_from)
         until = parse_date(search_until)
         events_list = search_events(event_types, until, from_, timezone)
@@ -402,7 +402,10 @@ def get_args(output_formats: [str]):
         help=_("The date to begin searching for events. Default is today."),
     )
     parser.add_argument(
-        "--until", type=str, default=None, help=_("The date to end searching for events.")
+        "--until",
+        type=str,
+        default=None,
+        help=_("The date to end searching for events."),
     )
     parser.add_argument(
         "--no-colors",

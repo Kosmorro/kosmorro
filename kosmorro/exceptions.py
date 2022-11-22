@@ -57,21 +57,21 @@ class InvalidOutputFormatError(RuntimeError):
 class SearchDatesNotGivenError(RuntimeError):
     def __init__(self):
         super().__init__()
-        self.msg = _(
-            "Search end date (--until) is required when searching events."
-        )
+        self.msg = _("Search end date (--until) is required when searching events.")
+
 
 class InvalidEventTypeError(RuntimeError):
     def __init__(self, invalid_event: EventType):
         super().__init__()
         self.invalid_event = invalid_event
-        supported_events = ', '.join([event.name for _, event in enumerate(EventType)])
+        supported_events = ", ".join([event.name for _, event in enumerate(EventType)])
         self.msg = _(
             "Invalid event type {event}.\nSupported events are {events}."
         ).format(
             event=self.invalid_event,
             events=supported_events,
         )
+
 
 class CompileError(RuntimeError):
     def __init__(self, msg):
