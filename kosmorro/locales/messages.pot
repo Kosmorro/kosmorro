@@ -266,12 +266,12 @@ msgstr ""
 
 #: kosmorro/i18n/strings.py:18
 #, python-format
-msgid "%s is at its perigee"
+msgid "%s is at its periapsis"
 msgstr ""
 
 #: kosmorro/i18n/strings.py:19
 #, python-format
-msgid "%s is at its apogee"
+msgid "%s is at its apoapsis"
 msgstr ""
 
 #: kosmorro/i18n/strings.py:35
@@ -323,26 +323,30 @@ msgid "Venus"
 msgstr ""
 
 #: kosmorro/i18n/strings.py:57
-msgid "Mars"
+msgid "Earth"
 msgstr ""
 
 #: kosmorro/i18n/strings.py:58
-msgid "Jupiter"
+msgid "Mars"
 msgstr ""
 
 #: kosmorro/i18n/strings.py:59
-msgid "Saturn"
+msgid "Jupiter"
 msgstr ""
 
 #: kosmorro/i18n/strings.py:60
-msgid "Uranus"
+msgid "Saturn"
 msgstr ""
 
 #: kosmorro/i18n/strings.py:61
-msgid "Neptune"
+msgid "Uranus"
 msgstr ""
 
 #: kosmorro/i18n/strings.py:62
+msgid "Neptune"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:63
 msgid "Pluto"
 msgstr ""
 

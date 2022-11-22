@@ -15,8 +15,8 @@ def from_event(event: Event, with_description: bool = True) -> Union[None, str]:
             _("Elongation of %s is maximal"),
             lambda e: "{:.3n}°".format(e.details["deg"]),
         ),
-        EventType.PERIGEE: (_("%s is at its perigee"), None),
-        EventType.APOGEE: (_("%s is at its apogee"), None),
+        EventType.PERIGEE: (_("%s is at its periapsis"), None),
+        EventType.APOGEE: (_("%s is at its apoapsis"), None),
     }.get(event.event_type, (None, None))
 
     if string is None:
@@ -54,6 +54,7 @@ def from_object(identifier: ObjectIdentifier) -> str:
         ObjectIdentifier.MOON: _("Moon"),
         ObjectIdentifier.MERCURY: _("Mercury"),
         ObjectIdentifier.VENUS: _("Venus"),
+        ObjectIdentifier.EARTH: _("Earth"),
         ObjectIdentifier.MARS: _("Mars"),
         ObjectIdentifier.JUPITER: _("Jupiter"),
         ObjectIdentifier.SATURN: _("Saturn"),

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "kosmorro"
-version = "0.10.10"
+version = "0.10.11"
 description = "A program to compute the ephemerides."
 authors = ["Jérôme Deuchnord <jerome@deuchnord.fr>"]
 license = "AGPL-3.0-or-later"
@@ -15,19 +15,19 @@ include = [
 kosmorro = 'kosmorro.__main__:main'
 
 [tool.poetry.dependencies]
-python = ">=3.7,<3.11"
-tabulate = "^0.8"
-termcolor = "^1.1"
+python = ">=3.8,<3.11"
+tabulate = ">=0.8,<0.10"
+termcolor = ">=1.1,<3.0"
 kosmorrolib = "^1.0"
 python-dateutil = "^2.8"
 Babel = "^2.9"
-importlib-metadata = "^4.11"
+importlib-metadata = ">=4.11,<6.0"
 openlocationcode = "^1.0"
 
 [tool.poetry.dev-dependencies]
-black = "^22.3"
-pytest = "^7.0"
-aurornis = "^1.2"
+black = "^22.10"
+pytest = "^7.2"
+aurornis = "^1.4"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
