@@ -13,10 +13,10 @@ def test_with_date():
             == """Monday, January 27, 2020
 
 Moon phase: New Moon
-First Quarter on Sunday, February 2, 2020 at 1:41 AM
+First Quarter on Sunday, February 2, 2020 at 1:41 AM
 
 Expected events:
-8:00 PM  Venus and Neptune are in conjunction
+8:00 PM  Venus and Neptune are in conjunction
 
 Note: All the hours are given in UTC.
 """
