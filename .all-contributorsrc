@@ -1,6 +1,6 @@
 {
   "projectName": "kosmorro",
-  "projectOwner": "Jérôme Deuchnord",
+  "projectOwner": "Kosmorro",
   "repoType": "github",
   "repoHost": "https://github.com",
   "files": [
@@ -117,6 +117,15 @@
       "profile": "https://github.com/romco1410",
       "contributions": [
         "code"
+      ]
+    },
+    {
+      "login": "gallegonovato",
+      "name": "gallegonovato",
+      "avatar_url": "https://avatars.githubusercontent.com/u/59177763?v=4",
+      "profile": "https://github.com/gallegonovato",
+      "contributions": [
+        "translation"
       ]
     }
   ],

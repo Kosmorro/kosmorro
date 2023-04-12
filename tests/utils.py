@@ -26,7 +26,7 @@ NEXT_MOON_PHASE_PATTERN = re.compile(
     r"on ((Monday)|(Tuesday)|(Wednesday)|(Thursday)|(Friday)|(Saturday)|(Sunday)), "
     r"((January)|(February)|(March)|(April)|(May)|(June)|"
     r"(July)|(August)|(September)|(October)|(November)|(December)) "
-    r"[0-9]{1,2}, [0-9]{4} at [0-9]{1,2}:[0-9]{2} [AP]M$"
+    r"[0-9]{1,2}, [0-9]{4} at [0-9]{1,2}:[0-9]{2} [AP]M$"
 )
 
 
