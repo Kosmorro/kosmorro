@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from sys import version_info
+from sys import version_info as python_version
 from .utils import (
     execute,
     KOSMORRO,
@@ -19,7 +19,7 @@ def test_run_without_argument():
     print(stdout)
 
     # It always starts with the current date, an empty line and the current and next Moon date:
-    assert stdout[0] == format_date(date.today(), "full")
+    assert stdout[0] == format_date(date.today(), "full", "EN")
     assert stdout[1] == ""
     assert CURRENT_MOON_PHASE_PATTERN.match(stdout[2])
     assert NEXT_MOON_PHASE_PATTERN.match(stdout[3])
@@ -31,15 +31,13 @@ def test_run_without_argument():
 
 
 def test_help_message():
-    python_version = (version_info.major, version_info.minor)
-
     for arg in ["--help", "-h"]:
         result = execute(KOSMORRO + [arg])
         assert result.is_successful()
 
         # Options header has changed from "optional arguments" to "options" in Python 3.10.
         options_header = (
-            "options" if python_version == (3, 10) else "optional arguments"
+            "optional arguments" if python_version.minor < 10 else "options"
         )
 
         assert (

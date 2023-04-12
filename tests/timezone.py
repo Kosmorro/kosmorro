@@ -13,10 +13,10 @@ def check_command_return_t_plus_one(result):
         == """Monday, January 27, 2020
 
 Moon phase: New Moon
-First Quarter on Sunday, February 2, 2020 at 2:41 AM
+First Quarter on Sunday, February 2, 2020 at 2:41 AM
 
 Expected events:
-9:00 PM  Venus and Neptune are in conjunction
+9:00 PM  Venus and Neptune are in conjunction
 
 Note: All the hours are given in the UTC+1 timezone.
 """
@@ -30,10 +30,10 @@ def check_command_return_t_minus_one(result):
         == """Monday, January 27, 2020
 
 Moon phase: New Moon
-First Quarter on Sunday, February 2, 2020 at 12:41 AM
+First Quarter on Sunday, February 2, 2020 at 12:41 AM
 
 Expected events:
-7:00 PM  Venus and Neptune are in conjunction
+7:00 PM  Venus and Neptune are in conjunction
 
 Note: All the hours are given in the UTC-1 timezone.
 """
