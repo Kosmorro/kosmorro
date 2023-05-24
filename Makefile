@@ -20,12 +20,25 @@ messages:
 i18n:
 	poetry run pybabel compile --directory=kosmorro/locales
 
-changelog:
-	conventional-changelog -p angular -i CHANGELOG.md -s
+changelog: install-conventional-changelog generate-changelog delete-conventional-changelog
+
+
+install-conventional-changelog:
+	npm install conventional-changelog-cli
+
+generate-changelog:
+	node_modules/.bin/conventional-changelog -p angular -i CHANGELOG.md -s
 
 prepare-release: messages changelog
-	@echo
-	@echo "Before tagging, don't forget to update version number in CHANGELOG"
 
-clean:
-	rm -rf build dist appimage-builder-cache kosmorro.egg-info manpage/kosmorro.{1,7}{,.html}
+delete-conventional-changelog:
+	rm -rf \
+		node_modules \
+		package{,-lock}.json
+
+clean: delete-conventional-changelog
+	rm -rf \
+		build \
+		dist appimage-builder-cache \
+		kosmorro.egg-info \
+		manpage/kosmorro.{1,7}{,.html}
