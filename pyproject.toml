@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "kosmorro"
-version = "0.10.11"
+version = "0.10.12"
 description = "A program to compute the ephemerides."
 authors = ["Jérôme Deuchnord <jerome@deuchnord.fr>"]
 license = "AGPL-3.0-or-later"
