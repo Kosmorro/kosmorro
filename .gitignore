@@ -23,3 +23,8 @@ coverage.xml
 /appimage-builder-cache
 *.AppImage
 *.AppImage.zsync
+
+# Changelog-specific
+/node_modules
+package.json
+package-lock.json
