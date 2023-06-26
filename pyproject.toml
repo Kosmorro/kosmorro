@@ -25,7 +25,7 @@ importlib-metadata = ">=4.11,<7.0"
 
 [tool.poetry.dev-dependencies]
 black = "^23.1"
-pytest = "^7.3"
+pytest = "^7.4"
 aurornis = "^1.4"
 
 [build-system]
