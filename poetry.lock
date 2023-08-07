@@ -2,14 +2,17 @@
 
 [[package]]
 name = "aurornis"
-version = "1.4.0"
+version = "1.5.0"
 description = "A command line program test helper"
 optional = false
 python-versions = ">=3.7,<4.0"
 files = [
-    {file = "aurornis-1.4.0-py3-none-any.whl", hash = "sha256:8b59764a13843ec2d937bdc7b93123144d96349a5cee56a3d5b181c7dd86ba71"},
-    {file = "aurornis-1.4.0.tar.gz", hash = "sha256:0d9280b7d03cd84a874deaf6506ba720ab5f68ff90a0d3af1d8966d5f31b707b"},
+    {file = "aurornis-1.5.0-py3-none-any.whl", hash = "sha256:565376bc5cec9f7f6797accc24e614fb43fc2bfb18d0b5576f2102a7c3be790d"},
+    {file = "aurornis-1.5.0.tar.gz", hash = "sha256:2cf67b43d480caeee60bbb99ba3d3139db47386347dace5dc77d7e3885e3993f"},
 ]
+
+[package.dependencies]
+deprecation = ">=2.1.0,<3.0.0"
 
 [[package]]
 name = "babel"
@@ -106,6 +109,20 @@ files = [
     {file = "colorama-0.4.6-py2.py3-none-any.whl", hash = "sha256:4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6"},
     {file = "colorama-0.4.6.tar.gz", hash = "sha256:08695f5cb7ed6e0531a20572697297273c47b8cae5a63ffc6d6ed5c201be6e44"},
 ]
+
+[[package]]
+name = "deprecation"
+version = "2.1.0"
+description = "A library to handle automated deprecations"
+optional = false
+python-versions = "*"
+files = [
+    {file = "deprecation-2.1.0-py2.py3-none-any.whl", hash = "sha256:a10811591210e1fb0e768a8c25517cabeabcba6f0bf96564f8ff45189f90b14a"},
+    {file = "deprecation-2.1.0.tar.gz", hash = "sha256:72b3bde64e5d778694b0cf68178aed03d15e15477116add3fb773e581f9518ff"},
+]
+
+[package.dependencies]
+packaging = "*"
 
 [[package]]
 name = "exceptiongroup"
@@ -495,4 +512,4 @@ testing = ["big-O", "flake8 (<5)", "jaraco.functools", "jaraco.itertools", "more
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.8,<3.12"
-content-hash = "da38bca43f1629ce51f558a8ab81914391ac3e490c1856cbb89d7552ab7620f5"
+content-hash = "662dab672c29b657cc7e30e896c812fe522a7bc62ef44cbfcac40236582a5886"
