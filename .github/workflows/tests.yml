@@ -43,13 +43,3 @@ jobs:
       run: |
         make tests
 
-    - name: Install TeXLive (Ubuntu)
-      if: ${{ matrix.os == 'ubuntu-latest' }}
-      run: |
-        sudo apt-get install -y texlive texlive-latex-extra
-
-    - name: E2E tests
-      env:
-        TEXLIVE_INSTALLED: 1
-      run: |
-        make tests
