@@ -24,7 +24,7 @@ Babel = "^2.9"
 importlib-metadata = ">=4.11,<7.0"
 
 [tool.poetry.dev-dependencies]
-black = "^23.7"
+black = "^23.10"
 pytest = "^7.4"
 aurornis = "^1.5"
 
