@@ -1,3 +1,12 @@
+# [Version 0.10.12](https://github.com/Kosmorro/kosmorro/compare/v0.10.11...v0.10.12) (2023-05-24)
+
+
+### Bug Fixes
+
+* support Python 3.11 ([#316](https://github.com/Kosmorro/kosmorro/issues/316)) ([209aab0](https://github.com/Kosmorro/kosmorro/commit/209aab06e48a75b3161f337b0d0f56b6a63ce97f))
+
+
+
 # [Version 0.10.11](https://github.com/Kosmorro/kosmorro/compare/v0.10.10...v0.10.11) (2022-11-11)
 
 

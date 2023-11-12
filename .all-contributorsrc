@@ -17,7 +17,8 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/7600265?v=4",
       "profile": "https://deuchnord.fr/",
       "contributions": [
-        "code"
+        "code",
+        "translation"
       ]
     },
     {
@@ -129,5 +130,6 @@
       ]
     }
   ],
-  "contributorsPerLine": 7
+  "contributorsPerLine": 7,
+  "commitType": "docs"
 }
