@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from .utils import (
+from .test_utils import (
     execute,
     KOSMORRO,
 )
