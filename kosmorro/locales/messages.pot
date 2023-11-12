@@ -8,103 +8,94 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-24 13:41+0200\n"
+"POT-Creation-Date: 2023-11-12 11:33+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.12.1\n"
+"Generated-By: Babel 2.13.1\n"
 
-#: kosmorro/__main__.py:82
+#: kosmorro/__main__.py:83
 msgid ""
-"Save the planet and paper!\n"
-"Consider printing your PDF document only if really necessary, and use the"
-" other side of the sheet."
-msgstr ""
-
-#: kosmorro/__main__.py:90
-msgid ""
-"PDF output will not contain the ephemerides, because you didn't provide "
+"Output file will not contain the ephemerides, because you didn't provide "
 "the observation coordinates."
 msgstr ""
 
-#: kosmorro/__main__.py:142
+#: kosmorro/__main__.py:135
 msgid "The file could not be saved in \"{path}\": {error}"
 msgstr ""
 
-#: kosmorro/__main__.py:156
+#: kosmorro/__main__.py:149
 msgid "Please provide a file path to export in this format (--output)."
 msgstr ""
 
-#: kosmorro/__main__.py:187
+#: kosmorro/__main__.py:180
 msgid "Moon phase can only be computed between {min_date} and {max_date}"
 msgstr ""
 
-#: kosmorro/__main__.py:238
+#: kosmorro/__main__.py:227
 msgid "Running on Python {python_version} with Kosmorrolib v{kosmorrolib_version}"
 msgstr ""
 
-#: kosmorro/__main__.py:251
+#: kosmorro/__main__.py:240
 msgid ""
 "Compute the ephemerides and the events for a given date and a given "
 "position on Earth."
 msgstr ""
 
-#: kosmorro/__main__.py:254
+#: kosmorro/__main__.py:243
 msgid ""
 "By default, only the events will be computed for today.\n"
 "To compute also the ephemerides, latitude and longitude arguments are "
 "needed."
 msgstr ""
 
-#: kosmorro/__main__.py:267
+#: kosmorro/__main__.py:256
 msgid "Show the program version"
 msgstr ""
 
-#: kosmorro/__main__.py:275
+#: kosmorro/__main__.py:264
 msgid ""
 "The format to output the information to. If not provided, the output "
 "format will be inferred from the file extension of the output file."
 msgstr ""
 
-#: kosmorro/__main__.py:285
+#: kosmorro/__main__.py:274
 msgid ""
 "The observer's position on Earth, in the \"{latitude},{longitude}\" "
 "format. Can also be set in the KOSMORRO_POSITION environment variable."
 msgstr ""
 
-#: kosmorro/__main__.py:295
+#: kosmorro/__main__.py:284
 msgid ""
 "The date for which the ephemerides must be calculated. Can be in the "
 "YYYY-MM-DD format or an interval in the \"[+-]YyMmDd\" format (with Y, M,"
 " and D numbers). Defaults to current date."
 msgstr ""
 
-#: kosmorro/__main__.py:306
+#: kosmorro/__main__.py:295
 msgid ""
 "The timezone to display the hours in (e.g. 2 for UTC+2 or -3 for UTC-3). "
 "Can also be set in the KOSMORRO_TIMEZONE environment variable."
 msgstr ""
 
-#: kosmorro/__main__.py:315
+#: kosmorro/__main__.py:304
 msgid "Disable the colors in the console."
 msgstr ""
 
-#: kosmorro/__main__.py:322
-msgid ""
-"A file to export the output to. If not given, the standard output is "
-"used. This argument is needed for PDF format."
+#: kosmorro/__main__.py:311
+msgid "A file to export the output to. If not given, the standard output is used."
 msgstr ""
 
-#: kosmorro/__main__.py:331
+#: kosmorro/__main__.py:319
 msgid ""
-"Do not generate a graph to represent the rise and set times in the PDF "
-"format."
+"Do not generate a graph to represent the rise and set times in the LaTeX "
+"file."
 msgstr ""
 
-#: kosmorro/__main__.py:339
+#: kosmorro/__main__.py:327
 msgid "Show debugging messages"
 msgstr ""
 
@@ -130,19 +121,19 @@ msgstr ""
 msgid "Note: All the hours are given in the UTC{offset} timezone."
 msgstr ""
 
-#: kosmorro/dumper.py:205 kosmorro/dumper.py:339
+#: kosmorro/dumper.py:205 kosmorro/dumper.py:336
 msgid "Object"
 msgstr ""
 
-#: kosmorro/dumper.py:206 kosmorro/dumper.py:340
+#: kosmorro/dumper.py:206 kosmorro/dumper.py:337
 msgid "Rise time"
 msgstr ""
 
-#: kosmorro/dumper.py:207 kosmorro/dumper.py:342
+#: kosmorro/dumper.py:207 kosmorro/dumper.py:339
 msgid "Culmination time"
 msgstr ""
 
-#: kosmorro/dumper.py:208 kosmorro/dumper.py:344
+#: kosmorro/dumper.py:208 kosmorro/dumper.py:341
 msgid "Set time"
 msgstr ""
 
@@ -150,7 +141,7 @@ msgstr ""
 msgid "Moon phase is unavailable for this date."
 msgstr ""
 
-#: kosmorro/dumper.py:238 kosmorro/dumper.py:348
+#: kosmorro/dumper.py:238 kosmorro/dumper.py:345
 msgid "Moon phase:"
 msgstr ""
 
@@ -158,49 +149,33 @@ msgstr ""
 msgid "{next_moon_phase} on {next_moon_phase_date} at {next_moon_phase_time}"
 msgstr ""
 
-#: kosmorro/dumper.py:312
+#: kosmorro/dumper.py:309
 msgid "Overview of your sky"
 msgstr ""
 
-#: kosmorro/dumper.py:320
+#: kosmorro/dumper.py:317
 msgid ""
 "This document summarizes the ephemerides and the events of {date}. It "
 "aims to help you to prepare your observation session. All the hours are "
 "given in {timezone}."
 msgstr ""
 
-#: kosmorro/dumper.py:330
+#: kosmorro/dumper.py:327
 msgid ""
 "Don't forget to check the weather forecast before you go out with your "
 "equipment."
 msgstr ""
 
-#: kosmorro/dumper.py:337
+#: kosmorro/dumper.py:334
 msgid "Ephemerides of the day"
 msgstr ""
 
-#: kosmorro/dumper.py:346
+#: kosmorro/dumper.py:343
 msgid "hours"
 msgstr ""
 
-#: kosmorro/dumper.py:353
+#: kosmorro/dumper.py:350
 msgid "Expected events"
-msgstr ""
-
-#: kosmorro/dumper.py:493
-msgid ""
-"Building PDF was not possible, because some dependencies are not "
-"installed.\n"
-"Please look at the documentation at https://kosmorro.space/cli/generate-"
-"pdf/ for more information."
-msgstr ""
-
-#: kosmorro/dumper.py:542
-#, python-format
-msgid ""
-"An error occurred during the compilation of the PDF.\n"
-"Please open an issue at https://github.com/Kosmorro/kosmorro/issues and "
-"share the content of the log file at /tmp/kosmorro-%s.log"
 msgstr ""
 
 #: kosmorro/exceptions.py:35

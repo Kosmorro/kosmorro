@@ -4,9 +4,8 @@ from .utils import (
     execute,
     KOSMORRO,
 )
-import tempfile
-from os import path, environ
-from sys import platform
+
+from os import path
 
 
 def test_json_output():
@@ -150,3 +149,20 @@ def test_json_output():
 }
 """
     )
+
+
+def test_latex_output():
+    result = execute(
+        KOSMORRO + ["--position=50.5876,3.0624", "-d2020-01-27", "--format=tex"]
+    )
+    assert result.successful
+
+    with open(
+        path.join(path.dirname(__file__), "outputs", "2020-01-27-with-position.tex")
+    ) as expected_output:
+        expected_output = expected_output.read().replace(
+            "__PROJECT_PATH__",
+            path.join(path.dirname(path.dirname(__file__)), "kosmorro"),
+        )
+
+        assert result.stdout == expected_output

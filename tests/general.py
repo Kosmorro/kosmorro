@@ -42,7 +42,7 @@ def test_help_message():
 
         assert (
             result.stdout
-            == """usage: kosmorro [-h] [--version] [--format {txt,json,pdf,tex}]
+            == """usage: kosmorro [-h] [--version] [--format {txt,json,tex}]
                 [--position POSITION] [--date DATE] [--timezone TIMEZONE]
                 [--no-colors] [--output OUTPUT] [--no-graph] [--debug]
 
@@ -52,7 +52,7 @@ on Earth.
 %s:
   -h, --help            show this help message and exit
   --version, -v         Show the program version
-  --format {txt,json,pdf,tex}, -f {txt,json,pdf,tex}
+  --format {txt,json,tex}, -f {txt,json,tex}
                         The format to output the information to. If not
                         provided, the output format will be inferred from the
                         file extension of the output file.
@@ -71,10 +71,9 @@ on Earth.
   --no-colors           Disable the colors in the console.
   --output OUTPUT, -o OUTPUT
                         A file to export the output to. If not given, the
-                        standard output is used. This argument is needed for
-                        PDF format.
+                        standard output is used.
   --no-graph            Do not generate a graph to represent the rise and set
-                        times in the PDF format.
+                        times in the LaTeX file.
   --debug               Show debugging messages
 
 By default, only the events will be computed for today. To compute also the

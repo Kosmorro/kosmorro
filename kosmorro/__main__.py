@@ -77,23 +77,16 @@ def run():
     if output_format is None:
         output_format = "txt"
 
-    if output_format == "pdf":
-        print(
-            _(
-                "Save the planet and paper!\n"
-                "Consider printing your PDF document only if really necessary, and use the other side of the sheet."
+    if output_format == "tex" and position is None:
+        print_stderr(
+            colored(
+                _(
+                    "Output file will not contain the ephemerides, because you didn't provide the observation "
+                    "coordinates."
+                ),
+                "yellow",
             )
         )
-        if position is None:
-            print_stderr(
-                colored(
-                    _(
-                        "PDF output will not contain the ephemerides, because you didn't provide the observation "
-                        "coordinates."
-                    ),
-                    "yellow",
-                )
-            )
 
     timezone = args.timezone
 
@@ -215,15 +208,11 @@ def get_dumpers() -> {str: dumper.Dumper}:
     return {
         "txt": dumper.TextDumper,
         "json": dumper.JsonDumper,
-        "pdf": dumper.PdfDumper,
         "tex": dumper.LatexDumper,
     }
 
 
 def get_opening_mode(format: str) -> str:
-    if format == "pdf":
-        return "wb"
-
     return "w"
 
 
@@ -320,8 +309,7 @@ def get_args(output_formats: [str]):
         type=str,
         default=None,
         help=_(
-            "A file to export the output to. If not given, the standard output is used. "
-            "This argument is needed for PDF format."
+            "A file to export the output to. If not given, the standard output is used."
         ),
     )
     parser.add_argument(
@@ -329,7 +317,7 @@ def get_args(output_formats: [str]):
         dest="show_graph",
         action="store_false",
         help=_(
-            "Do not generate a graph to represent the rise and set times in the PDF format."
+            "Do not generate a graph to represent the rise and set times in the LaTeX file."
         ),
     )
     parser.add_argument(

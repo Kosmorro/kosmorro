@@ -118,61 +118,64 @@
 }
 
 % Commands to handle the translated strings
-\newcommand{\currentmoonphasetitle}{+++CURRENT-MOON-PHASE-TITLE+++}
-\newcommand{\ephemeridesobjecttitle}{+++EPHEMERIDES-OBJECT+++}
-\newcommand{\ephemeridesrisetimetitle}{+++EPHEMERIDES-RISE-TIME+++}
-\newcommand{\ephemeridesculminationtimetitle}{+++EPHEMERIDES-CULMINATION-TIME+++}
-\newcommand{\ephemeridessettimetitle}{+++EPHEMERIDES-SET-TIME+++}
-\newcommand{\hourslabel}{+++GRAPH_LABEL_HOURS+++}
+\newcommand{\currentmoonphasetitle}{Moon phase:}
+\newcommand{\ephemeridesobjecttitle}{Object}
+\newcommand{\ephemeridesrisetimetitle}{Rise time}
+\newcommand{\ephemeridesculminationtimetitle}{Culmination time}
+\newcommand{\ephemeridessettimetitle}{Set time}
+\newcommand{\hourslabel}{hours}
 
-\newcommand{\Pluto}{+++ASTER_PLUTO+++}
-\newcommand{\Neptune}{+++ASTER_NEPTUNE+++}
-\newcommand{\Uranus}{+++ASTER_URANUS+++}
-\newcommand{\Saturn}{+++ASTER_SATURN+++}
-\newcommand{\Jupiter}{+++ASTER_JUPITER+++}
-\newcommand{\Mars}{+++ASTER_MARS+++}
-\newcommand{\Venus}{+++ASTER_VENUS+++}
-\newcommand{\Mercury}{+++ASTER_MERCURY+++}
-\newcommand{\Moon}{+++ASTER_MOON+++}
-\newcommand{\Sun}{+++ASTER_SUN+++}
+\newcommand{\Pluto}{Pluto}
+\newcommand{\Neptune}{Neptune}
+\newcommand{\Uranus}{Uranus}
+\newcommand{\Saturn}{Saturn}
+\newcommand{\Jupiter}{Jupiter}
+\newcommand{\Mars}{Mars}
+\newcommand{\Venus}{Venus}
+\newcommand{\Mercury}{Mercury}
+\newcommand{\Moon}{Moon}
+\newcommand{\Sun}{Sun}
 
 % Fix Unicode issues
 \DeclareUnicodeCharacter{202F}{~}
 \DeclareUnicodeCharacter{00B0}{$^\circ$}
 
 \hypersetup{pdfinfo={%
-    Title={+++DOCUMENT-TITLE+++},
-    Creator={Kosmorro v+++KOSMORRO-VERSION+++}
+    Title={Overview of your sky},
+    Creator={Kosmorro v0.10.12}
 }}
 
 \pagenumbering{gobble}
 \setcounter{secnumdepth}{0}
 
-\title{\sffamily\href{http://kosmorro.space}{\includegraphics[width=5cm]{+++KOSMORRO-LOGO+++}}\\+++DOCUMENT-TITLE+++}
-\date{\vspace{-11mm}\sffamily +++DOCUMENT-DATE+++}
+\title{\sffamily\href{http://kosmorro.space}{\includegraphics[width=5cm]{__PROJECT_PATH__/assets/png/kosmorro-logo.png}}\\Overview of your sky}
+\date{\vspace{-11mm}\sffamily Monday, January 27, 2020}
 
 \begin{document}
 
     \maketitle
 
-    +++INTRODUCTION+++
+    This document summarizes the ephemerides and the events of Monday, January 27, 2020. It aims to help you to prepare your observation session. All the hours are given in UTC.
 
-    \moonphase{+++MOON-PHASE-GRAPHICS+++}{+++CURRENT-MOON-PHASE+++}
+Don't forget to check the weather forecast before you go out with your equipment.
+
+    \moonphase{__PROJECT_PATH__/assets/moonphases/png/new-moon.png}{New Moon}
 
     %%% BEGIN-EPHEMERIDES-SECTION
-    \section{\sffamily +++SECTION-EPHEMERIDES+++}
+    \section{\sffamily Ephemerides of the day}
 
-    \begin{ephemerides}
-+++EPHEMERIDES+++
-    \end{ephemerides}
+    \begin{graphephemerides}%
+\graphobject{18}{gray}{7}{31}{16}{30}{7:31 AM}{4:30 PM}\graphobject{16}{gray}{9}{6}{19}{13}{9:06 AM}{7:13 PM}\graphobject{14}{gray}{8}{10}{17}{28}{8:10 AM}{5:28 PM}\graphobject{12}{gray}{9}{1}{20}{10}{9:01 AM}{8:10 PM}\graphobject{10}{gray}{4}{19}{12}{28}{4:19 AM}{12:28 PM}\graphobject{8}{gray}{6}{15}{14}{21}{6:15 AM}{2:21 PM}\graphobject{6}{gray}{6}{56}{15}{22}{6:56 AM}{3:22 PM}\graphobject{4}{gray}{0}{0}{0}{33}{}{12:33 AM}\graphobject{4}{gray}{10}{21}{24}{0}{10:21 AM}{}\graphobject{2}{gray}{9}{1}{20}{10}{9:01 AM}{8:10 PM}\graphobject{0}{gray}{6}{57}{15}{11}{6:57 AM}{3:11 PM}
+    \end{graphephemerides}
     %%% END-EPHEMERIDES-SECTION
 
     %%% BEGIN-EVENTS-SECTION
-    \section{\sffamily +++SECTION-EVENTS+++}
+    \section{\sffamily Expected events}
 
     \begin{events}
-        +++EVENTS+++
+        \event{8:00 PM}{Venus and Neptune are in conjunction}
     \end{events}
     %%% END-EVENTS-SECTION
 
 \end{document}
+

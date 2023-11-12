@@ -35,11 +35,6 @@ Kosmorro has a lot of available options. To get a list of them, run `kosmorro --
 
 Note: the first time it runs, Kosmorro will download some important files needed to make the computations. They are stored in a cache folder named `.kosmorro-cache` located in your home directory (`/home/<username>` on Linux, `/Users/<username>` on macOS).
 
-### Exporting to PDF
-
-Kosmorro can export the computation results to PDF files, but this feature requires first that you install some additional dependencies.
-You can find documentation about this on [Kosmorro's website](https://kosmorro.space/cli/generate-pdf/).
-
 ## Help translating Kosmorro!
 
 Kosmorro is translated on [Weblate](https://hosted.weblate.org/engage/kosmorro/), a popular free platform for crowd-sourced internationalization.
