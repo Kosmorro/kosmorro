@@ -183,19 +183,19 @@ numpy = "*"
 
 [[package]]
 name = "kosmorrolib"
-version = "1.0.9"
+version = "1.0.10"
 description = "A library to computes the ephemerides."
 optional = false
 python-versions = ">=3.8,<4.0"
 files = [
-    {file = "kosmorrolib-1.0.9-py3-none-any.whl", hash = "sha256:9daf232f3f270f89e9dfafb62ee455b8a1a057abbd9436fad80148148ef7e489"},
-    {file = "kosmorrolib-1.0.9.tar.gz", hash = "sha256:4f26020e6c5f50af0abc92f302efc85fddc153e62125ec3f90480838aceac063"},
+    {file = "kosmorrolib-1.0.10-py3-none-any.whl", hash = "sha256:da8c2c7fb339ce6e7beebab7b6ee278a9f799aa3ea7e66079254fba895c6c6c5"},
+    {file = "kosmorrolib-1.0.10.tar.gz", hash = "sha256:2bcde95e5f1b97ab6a93f55a0633610b6df9e0b30527469693340c5a38ff6ddc"},
 ]
 
 [package.dependencies]
 numpy = [
     {version = "<1.25", markers = "python_version >= \"3.8.dev0\" and python_version < \"3.9.dev0\""},
-    {version = ">=1.25,<2.0", markers = "python_version >= \"3.9\" and python_version < \"4.0\""},
+    {version = ">=1.25,<2.0", markers = "python_version >= \"3.9\" and python_version < \"3.13\""},
 ]
 python-dateutil = ">=2.8,<3.0"
 skyfield = ">=1.21,<2.0"
