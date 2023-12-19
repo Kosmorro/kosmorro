@@ -3,7 +3,7 @@ black:
 
 .PHONY: tests
 tests:
-	LANG=C python3 -m poetry run pytest tests/*.py
+	python3 -m poetry run pytest tests/
 
 .PHONY: build
 build:

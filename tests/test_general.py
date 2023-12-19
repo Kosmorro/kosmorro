@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from sys import version_info as python_version
-from .utils import (
+from .test_utils import (
     execute,
     KOSMORRO,
     CURRENT_MOON_PHASE_PATTERN,

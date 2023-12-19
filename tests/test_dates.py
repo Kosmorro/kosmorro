@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from .utils import execute, KOSMORRO
+from .test_utils import execute, KOSMORRO
 
 
 def test_with_date():
