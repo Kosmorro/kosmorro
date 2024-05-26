@@ -317,9 +317,9 @@ class _LatexDumper(Dumper):
                         "All the hours are given in {timezone}."
                     ).format(
                         date=self.get_date_as_string(),
-                        timezone="UTC+%d" % self.timezone
-                        if self.timezone != 0
-                        else "UTC",
+                        timezone=(
+                            "UTC+%d" % self.timezone if self.timezone != 0 else "UTC"
+                        ),
                     ),
                     _(
                         "Don't forget to check the weather forecast before you go out with your equipment."
