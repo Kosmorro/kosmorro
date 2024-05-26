@@ -85,11 +85,11 @@ body:
       description: What did you use to install Kosmorro?
 
       options:
-        - PyPI
         - Arch User Repository (AUR)
         - FreshPorts
-        - I used the AppImage
-        - I have compiled the package from source
+        - HomeBrew
+        - PyPI
+        - I have compiled the package from sources
         - Other (explain in the description)
 
   - type: textarea

@@ -1,0 +1,45 @@
+name: Event type
+description: Suggest an event type
+labels:
+  - enhancement
+  - events
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        If you think that there's a missing supported event type, fill this form out to suggest it!
+
+  - type: checkboxes
+    id: involved-objects
+    attributes:
+      label: Involved objects
+      description: |
+        An event must involve at least one object.
+        Please select below the objects that take part in it.
+
+        For example, a lunar eclipse involves the Moon, the Earth and the Sun.
+
+      options:
+        - label: Sun
+        - label: Earth
+        - label: Moon
+        - label: Planets or dwarf planets of the Solar system
+        - label: Other (explain in description)
+
+  - type: textarea
+    id: event-definition
+    validations:
+      required: true
+    attributes:
+      label: Event definition
+      description: |
+        Explain the event type you wish to see in Kosmorro.
+        This can be a simple copy and paste from an external source (don't forget to give the source!).
+
+  - type: textarea
+    id: other-information
+    attributes:
+      label: Other useful information
+      description: |
+        If you have any other useful information, feel free to put them here!
