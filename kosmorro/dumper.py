@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 #    Kosmorro - Compute The Next Ephemerides
 #    Copyright (C) 2019  Jérôme Deuchnord <jerome@deuchnord.fr>
 #
@@ -22,6 +21,7 @@ import json
 import os
 import tempfile
 import subprocess
+import locale
 import shutil
 from pathlib import Path
 
@@ -70,7 +70,7 @@ class Dumper(ABC):
         self.show_graph = show_graph
 
     def get_date_as_string(self, capitalized: bool = False) -> str:
-        date = format_date(self.date, "full")
+        date = format_date(self.date, "full", locale.getlocale()[0])
 
         if capitalized:
             return "".join([date[0].upper(), date[1:]])
@@ -243,8 +243,8 @@ class TextDumper(Dumper):
             "{next_moon_phase} on {next_moon_phase_date} at {next_moon_phase_time}"
         ).format(
             next_moon_phase=_(strings.from_moon_phase(moon_phase.get_next_phase())),
-            next_moon_phase_date=format_date(moon_phase.next_phase_date, "full"),
-            next_moon_phase_time=format_time(moon_phase.next_phase_date, "short"),
+            next_moon_phase_date=format_date(moon_phase.next_phase_date, "full", locale.getlocale()[0]),
+            next_moon_phase_time=format_time(moon_phase.next_phase_date, "short", locale=locale.getlocale()[0]),
         )
 
         return "\n".join([current_moon_phase, new_moon_phase])
