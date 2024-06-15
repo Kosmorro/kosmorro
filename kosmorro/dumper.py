@@ -243,8 +243,12 @@ class TextDumper(Dumper):
             "{next_moon_phase} on {next_moon_phase_date} at {next_moon_phase_time}"
         ).format(
             next_moon_phase=_(strings.from_moon_phase(moon_phase.get_next_phase())),
-            next_moon_phase_date=format_date(moon_phase.next_phase_date, "full", locale.getlocale()[0]),
-            next_moon_phase_time=format_time(moon_phase.next_phase_date, "short", locale=locale.getlocale()[0]),
+            next_moon_phase_date=format_date(
+                moon_phase.next_phase_date, "full", locale.getlocale()[0]
+            ),
+            next_moon_phase_time=format_time(
+                moon_phase.next_phase_date, "short", locale=locale.getlocale()[0]
+            ),
         )
 
         return "\n".join([current_moon_phase, new_moon_phase])
