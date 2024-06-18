@@ -6,15 +6,19 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"Report-Msgid-Bugs-To: jerome@deuchnord.fr\n"
 "POT-Creation-Date: 2024-05-26 11:23+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2024-06-18 11:27+0000\n"
+"Last-Translator: Nicolas Tantau <nicolastantau2003@gmail.com>\n"
+"Language-Team: Romanian <https://hosted.weblate.org/projects/kosmorro/cli/ro/"
+">\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2;\n"
+"X-Generator: Weblate 5.6-dev\n"
 "Generated-By: Babel 2.14.0\n"
 
 #: kosmorro/__main__.py:61
@@ -23,34 +27,43 @@ msgid ""
 "Consider printing your PDF document only if really necessary, and use the"
 " other side of the sheet."
 msgstr ""
+"Salvați planeta si pagina!\n"
+"Considerați printarea documentului PDF doar daca este necesar, si folositi "
+"cealalta parte a pagini."
 
 #: kosmorro/__main__.py:70
 msgid ""
 "PDF output will not contain the ephemerides, because you didn't provide "
 "the observation coordinates."
 msgstr ""
+"Rezultatul documentului PDF nu va conține efemeride, deoarece nu ați "
+"furnizat coordinatele observării."
 
 #: kosmorro/__main__.py:115
 msgid "The file could not be saved in \"{path}\": {error}"
-msgstr ""
+msgstr "Fișierul nu a putut fi salvat in \"{path}\": {error}"
 
 #: kosmorro/__main__.py:129
 msgid "Please provide a file path to export in this format (--output)."
 msgstr ""
+"Va rugăm sa furnizați o locație de fișier pentru exportarea in acest format "
+"(--output)."
 
 #: kosmorro/__main__.py:162
 msgid "Moon phase can only be computed between {min_date} and {max_date}"
-msgstr ""
+msgstr "Fazele lunii pot să fie calculate doar între {min_date} și {max_date}"
 
 #: kosmorro/__main__.py:201
 msgid "Running on Python {python_version} with Kosmorrolib v{kosmorrolib_version}"
-msgstr ""
+msgstr "Rulează Python {python_version} cu Kosmorrolib v{kosmorrolib_version}"
 
 #: kosmorro/__main__.py:214
 msgid ""
 "Compute the ephemerides and the events for a given date and a given "
 "position on Earth."
 msgstr ""
+"Calculează efemeridele si evenimentele pentru perioadă si o pozitie dată de "
+"pe pământ."
 
 #: kosmorro/__main__.py:217
 msgid ""
@@ -61,11 +74,11 @@ msgstr ""
 
 #: kosmorro/__main__.py:230
 msgid "Show the program version"
-msgstr ""
+msgstr "Arată versiunea programului"
 
 #: kosmorro/__main__.py:238
 msgid "The format to output the information to"
-msgstr ""
+msgstr "Formatul în care vrei sa salvezi informația"
 
 #: kosmorro/__main__.py:245
 msgid ""
@@ -85,22 +98,30 @@ msgid ""
 "YYYY-MM-DD format or an interval in the \"[+-]YyMmDd\" format (with Y, M,"
 " and D numbers). Defaults to current date."
 msgstr ""
+"Data pentru calcularea efemeridelor trebuie calculata. Poate fi in format "
+"YYYY-MM-DD sau un interval \"[+-]YyMmDd\" (cu Y, M, și D numere). Implicit "
+"la data curentă."
 
 #: kosmorro/__main__.py:276
 msgid ""
 "The timezone to display the hours in (e.g. 2 for UTC+2 or -3 for UTC-3). "
 "Can also be set in the KOSMORRO_TIMEZONE environment variable."
 msgstr ""
+"Fusul orar pentru afișarea in ore în (e.g. 2 for UTC+2 or -3 for UTC-3). "
+"Poate să fie și setat în variabila de mediu KOSMORRO_TIMEZONE."
 
 #: kosmorro/__main__.py:285
 msgid "Disable the colors in the console."
-msgstr ""
+msgstr "Dezactivează culorile în consolă."
 
 #: kosmorro/__main__.py:292
 msgid ""
 "A file to export the output to. If not given, the standard output is "
 "used. This argument is needed for PDF format."
 msgstr ""
+"Un fișier în care sa fie salvat rezultatul. Daca nu este dat, metoda "
+"standard de salvare va fi solosită. Acest argument este necesar pentru "
+"formatul PDF."
 
 #: kosmorro/__main__.py:301
 msgid ""
@@ -114,25 +135,27 @@ msgstr ""
 
 #: kosmorro/date.py:17
 msgid "The date {date} is not valid: {error}"
-msgstr ""
+msgstr "Data {date} nu este validă: {error}"
 
 #: kosmorro/date.py:39
 msgid ""
 "The date {date} does not match the required YYYY-MM-DD format or the "
 "offset format."
 msgstr ""
+"Data {date} nu se potriveste cu formatul necesar YYYY-MM-DD sau cu formatul "
+"decalat."
 
 #: kosmorro/dumper.py:137
 msgid "Expected events:"
-msgstr ""
+msgstr "Evenimente așteptate:"
 
 #: kosmorro/dumper.py:144
 msgid "Note: All the hours are given in UTC."
-msgstr ""
+msgstr "Notă: Toate orele sunt date in formatul UTC."
 
 #: kosmorro/dumper.py:151
 msgid "Note: All the hours are given in the UTC{offset} timezone."
-msgstr ""
+msgstr "Notă: Toate orele sunt date in fusul orar UTC{offset}."
 
 #: kosmorro/dumper.py:205 kosmorro/dumper.py:333
 msgid "Object"
@@ -148,23 +171,23 @@ msgstr ""
 
 #: kosmorro/dumper.py:208 kosmorro/dumper.py:338
 msgid "Set time"
-msgstr ""
+msgstr "Setează timpul"
 
 #: kosmorro/dumper.py:234
 msgid "Moon phase is unavailable for this date."
-msgstr ""
+msgstr "Faza lunii este indisponibilă pentru această dată."
 
 #: kosmorro/dumper.py:238 kosmorro/dumper.py:342
 msgid "Moon phase:"
-msgstr ""
+msgstr "Faza lunii:"
 
 #: kosmorro/dumper.py:242
 msgid "{next_moon_phase} on {next_moon_phase_date} at {next_moon_phase_time}"
-msgstr ""
+msgstr "{next_moon_phase} în {next_moon_phase_date} la {next_moon_phase_time}"
 
 #: kosmorro/dumper.py:306
 msgid "Overview of your sky"
-msgstr ""
+msgstr "Prezentarea cerului tău"
 
 #: kosmorro/dumper.py:314
 msgid ""
