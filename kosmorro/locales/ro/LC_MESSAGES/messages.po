@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: jerome@deuchnord.fr\n"
 "POT-Creation-Date: 2024-05-26 11:23+0200\n"
-"PO-Revision-Date: 2024-06-18 11:27+0000\n"
+"PO-Revision-Date: 2024-06-18 15:09+0000\n"
 "Last-Translator: Nicolas Tantau <nicolastantau2003@gmail.com>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/kosmorro/cli/ro/"
 ">\n"
@@ -71,6 +71,9 @@ msgid ""
 "To compute also the ephemerides, latitude and longitude arguments are "
 "needed."
 msgstr ""
+"Implicit, doar evenimentele vor fi calculate pentru azi.\n"
+"Pentru calcularea efemeridelor, sunt necesare argumentele de latitudine si "
+"longitudine."
 
 #: kosmorro/__main__.py:230
 msgid "Show the program version"
@@ -85,12 +88,16 @@ msgid ""
 "The observer's latitude on Earth. Can also be set in the "
 "KOSMORRO_LATITUDE environment variable."
 msgstr ""
+"Latitudinea observatorului pe pământ. Poate de asemenea sa fie setată in "
+"variabilela de mediu KOSMORRO_LATITUDE."
 
 #: kosmorro/__main__.py:255
 msgid ""
 "The observer's longitude on Earth. Can also be set in the "
 "KOSMORRO_LONGITUDE environment variable."
 msgstr ""
+"Longitudinea observatorului pe pământ. Poate de asemenea sa fie setată in "
+"variabilela de mediu KOSMORRO_LONGITUDE."
 
 #: kosmorro/__main__.py:265
 msgid ""
@@ -128,10 +135,12 @@ msgid ""
 "Do not generate a graph to represent the rise and set times in the PDF "
 "format."
 msgstr ""
+"Nu generați un grafic care să reprezinte orele de urcare și coborâre în "
+"format PDF."
 
 #: kosmorro/__main__.py:309
 msgid "Show debugging messages"
-msgstr ""
+msgstr "Arată mesajele de depanare"
 
 #: kosmorro/date.py:17
 msgid "The date {date} is not valid: {error}"
@@ -159,15 +168,15 @@ msgstr "Notă: Toate orele sunt date in fusul orar UTC{offset}."
 
 #: kosmorro/dumper.py:205 kosmorro/dumper.py:333
 msgid "Object"
-msgstr ""
+msgstr "Obiect"
 
 #: kosmorro/dumper.py:206 kosmorro/dumper.py:334
 msgid "Rise time"
-msgstr ""
+msgstr "Timp de creștere"
 
 #: kosmorro/dumper.py:207 kosmorro/dumper.py:336
 msgid "Culmination time"
-msgstr ""
+msgstr "Timpul de culminare"
 
 #: kosmorro/dumper.py:208 kosmorro/dumper.py:338
 msgid "Set time"
@@ -208,11 +217,11 @@ msgstr ""
 
 #: kosmorro/dumper.py:340
 msgid "hours"
-msgstr ""
+msgstr "ore"
 
 #: kosmorro/dumper.py:347
 msgid "Expected events"
-msgstr ""
+msgstr "Evenimente așteptate"
 
 #: kosmorro/dumper.py:487
 msgid ""
@@ -221,6 +230,10 @@ msgid ""
 "Please look at the documentation at https://kosmorro.space/cli/generate-"
 "pdf/ for more information."
 msgstr ""
+"Crearea unui PDF nu a fost posibilă, deoarece unele dependențe nu sunt "
+"instalate.\n"
+"Uitați-vă la documentare la https://kosmorro.space/cli/generate-pdf/ pentru "
+"mai multe informații."
 
 #: kosmorro/dumper.py:540
 #, python-format
@@ -229,20 +242,23 @@ msgid ""
 "Please open an issue at https://github.com/Kosmorro/kosmorro/issues and "
 "share the content of the log file at /tmp/kosmorro-%s.log"
 msgstr ""
+"A decurs o eroare în comilarea PDF-ului.\n"
+"Va rugăm deschideți o problemă la https://github.com/Kosmorro/kosmorro/"
+"issues și să împărtășiți conținutul fișierului de log la /tmp/kosmorro-%s.log"
 
 #: kosmorro/exceptions.py:35
 msgid "The date must be between {minimum_date} and {maximum_date}"
-msgstr ""
+msgstr "Data trebuie să fie intre {minimum_date} și {maximum_date}"
 
 #: kosmorro/i18n/strings.py:11
 #, python-format
 msgid "%s is in opposition"
-msgstr ""
+msgstr "%s este in opozitie"
 
 #: kosmorro/i18n/strings.py:12
 #, python-format
 msgid "%s and %s are in conjunction"
-msgstr ""
+msgstr "%s și %s sunt în conjuncție"
 
 #: kosmorro/i18n/strings.py:13
 #, python-format
@@ -282,7 +298,7 @@ msgstr ""
 
 #: kosmorro/i18n/strings.py:39
 msgid "Full Moon"
-msgstr ""
+msgstr "Lună plină"
 
 #: kosmorro/i18n/strings.py:40
 msgid "Waning Gibbous"
@@ -290,7 +306,7 @@ msgstr ""
 
 #: kosmorro/i18n/strings.py:41
 msgid "Last Quarter"
-msgstr ""
+msgstr "Ultimul sfert"
 
 #: kosmorro/i18n/strings.py:42
 msgid "Waning Crescent"
@@ -298,47 +314,47 @@ msgstr ""
 
 #: kosmorro/i18n/strings.py:53
 msgid "Sun"
-msgstr ""
+msgstr "Soare"
 
 #: kosmorro/i18n/strings.py:54
 msgid "Moon"
-msgstr ""
+msgstr "Lună"
 
 #: kosmorro/i18n/strings.py:55
 msgid "Mercury"
-msgstr ""
+msgstr "Mercur"
 
 #: kosmorro/i18n/strings.py:56
 msgid "Venus"
-msgstr ""
+msgstr "Venus"
 
 #: kosmorro/i18n/strings.py:57
 msgid "Earth"
-msgstr ""
+msgstr "Pământ"
 
 #: kosmorro/i18n/strings.py:58
 msgid "Mars"
-msgstr ""
+msgstr "Marte"
 
 #: kosmorro/i18n/strings.py:59
 msgid "Jupiter"
-msgstr ""
+msgstr "Jupiter"
 
 #: kosmorro/i18n/strings.py:60
 msgid "Saturn"
-msgstr ""
+msgstr "Saturn"
 
 #: kosmorro/i18n/strings.py:61
 msgid "Uranus"
-msgstr ""
+msgstr "Uranus"
 
 #: kosmorro/i18n/strings.py:62
 msgid "Neptune"
-msgstr ""
+msgstr "Neptun"
 
 #: kosmorro/i18n/strings.py:63
 msgid "Pluto"
-msgstr ""
+msgstr "Pluto"
 
 #: kosmorro/i18n/utils.py:27
 msgid "{day_of_week} {month} {day_number}, {year}"
