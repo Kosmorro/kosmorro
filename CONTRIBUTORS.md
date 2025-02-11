@@ -30,7 +30,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/gallegonovato"><img src="https://avatars.githubusercontent.com/u/59177763?v=4?s=100" width="100px;" alt="gallegonovato"/><br /><sub><b>gallegonovato</b></sub></a><br /><a href="#translation-gallegonovato" title="Translation">🌍</a></td>
     </tr>
     <tr>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/TamilNeram"><img src="https://avatars.githubusercontent.com/u/67970539?v=4?s=100" width="100px;" alt="தமிழ் நேரம்"/><br /><sub><b>தமிழ் நேரம்</b></sub></a><br /><a href="#translation-TamilNeram" title="Translation">🌍</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://tamilneram.github.io/"><img src="https://avatars.githubusercontent.com/u/67970539?v=4?s=100" width="100px;" alt="தமிழ் நேரம்"/><br /><sub><b>தமிழ்நேரக்குழு</b></sub></a><br /><a href="#translation-TamilNeram" title="Translation">🌍</a></td>
     </tr>
   </tbody>
 </table>
