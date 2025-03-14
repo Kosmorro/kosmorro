@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+from importlib.metadata import version
 from .utils import (
     execute,
     KOSMORRO,
@@ -163,6 +164,9 @@ def test_latex_output():
         expected_output = expected_output.read().replace(
             "__PROJECT_PATH__",
             path.join(path.dirname(path.dirname(__file__)), "kosmorro"),
+        ).replace(
+            "__APP_VERSION__",
+            version("kosmorro"),
         )
 
         assert result.stdout == expected_output
