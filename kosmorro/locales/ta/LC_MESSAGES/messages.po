@@ -6,14 +6,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"Report-Msgid-Bugs-To: jerome@deuchnord.fr\n"
-"POT-Creation-Date: 2024-05-26 11:23+0200\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2025-03-16 11:24+0100\n"
 "PO-Revision-Date: 2025-02-09 21:01+0000\n"
 "Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/kosmorro/cli/ta/>\n"
 "Language: ta\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.10-dev\n"
@@ -22,8 +22,8 @@ msgstr ""
 #: kosmorro/__main__.py:61
 msgid ""
 "Save the planet and paper!\n"
-"Consider printing your PDF document only if really necessary, and use the"
-" other side of the sheet."
+"Consider printing your PDF document only if really necessary, and use the "
+"other side of the sheet."
 msgstr ""
 "கோளையும் காகிதத்தையும் காப்பாற்றுங்கள்!\n"
 "உண்மையிலேயே தேவைப்பட்டால் மட்டுமே உங்கள் எஆவ ஆவணத்தை அச்சிடுவதைக் கருத்தில் கொண்டு, தாளின் "
@@ -31,8 +31,8 @@ msgstr ""
 
 #: kosmorro/__main__.py:70
 msgid ""
-"PDF output will not contain the ephemerides, because you didn't provide "
-"the observation coordinates."
+"PDF output will not contain the ephemerides, because you didn't provide the "
+"observation coordinates."
 msgstr ""
 "எஆவ வெளியீட்டில் எஃபெமரைடுகள் இருக்காது, ஏனெனில் நீங்கள் கண்காணிப்பு ஆயங்களை வழங்கவில்லை."
 
@@ -42,8 +42,7 @@ msgstr "கோப்பை \"{path}\" இல் சேமிக்க முட�
 
 #: kosmorro/__main__.py:129
 msgid "Please provide a file path to export in this format (--output)."
-msgstr ""
-"இந்த வடிவத்தில் ஏற்றுமதி செய்ய ஒரு கோப்புப் பாதையை வழங்கவும் (--output)."
+msgstr "இந்த வடிவத்தில் ஏற்றுமதி செய்ய ஒரு கோப்புப் பாதையை வழங்கவும் (--output)."
 
 #: kosmorro/__main__.py:162
 msgid "Moon phase can only be computed between {min_date} and {max_date}"
@@ -51,14 +50,15 @@ msgstr ""
 "திங்கள் கட்டத்தை {min_date} மற்றும் {max_date} க்கு இடையில் மட்டுமே கணக்கிட முடியும்"
 
 #: kosmorro/__main__.py:201
-msgid "Running on Python {python_version} with Kosmorrolib v{kosmorrolib_version}"
+msgid ""
+"Running on Python {python_version} with Kosmorrolib v{kosmorrolib_version}"
 msgstr ""
 "கோச்மொரோலிப் ப{kosmorrolib_version}பதிப்புடன் {python_version} இல் இயங்குகிறது"
 
 #: kosmorro/__main__.py:214
 msgid ""
-"Compute the ephemerides and the events for a given date and a given "
-"position on Earth."
+"Compute the ephemerides and the events for a given date and a given position "
+"on Earth."
 msgstr ""
 "கொடுக்கப்பட்ட தேதி மற்றும் பூமியில் கொடுக்கப்பட்ட நிலைக்கான எஃபெமரைடுகளையும் "
 "நிகழ்வுகளையும் கணக்கிடுங்கள்."
@@ -66,8 +66,7 @@ msgstr ""
 #: kosmorro/__main__.py:217
 msgid ""
 "By default, only the events will be computed for today.\n"
-"To compute also the ephemerides, latitude and longitude arguments are "
-"needed."
+"To compute also the ephemerides, latitude and longitude arguments are needed."
 msgstr ""
 "இயல்பாக, நிகழ்வுகள் மட்டுமே இன்று கணக்கிடப்படும்.\n"
 "எஃபெமரைடுகள், அட்சரேகை மற்றும் தீர்க்கரேகை வாதங்கள் தேவை."
@@ -82,23 +81,23 @@ msgstr "தகவல்களை வெளியிடுவதற்கான �
 
 #: kosmorro/__main__.py:245
 msgid ""
-"The observer's latitude on Earth. Can also be set in the "
-"KOSMORRO_LATITUDE environment variable."
+"The observer's latitude on Earth. Can also be set in the KOSMORRO_LATITUDE "
+"environment variable."
 msgstr ""
 "பூமியில் பார்வையாளரின் குறுக்குக்கோடு. கோச்மோரோ_குறுக்குக்கோடு சூழல் மாறியில் அமைக்கலாம்."
 
 #: kosmorro/__main__.py:255
 msgid ""
-"The observer's longitude on Earth. Can also be set in the "
-"KOSMORRO_LONGITUDE environment variable."
+"The observer's longitude on Earth. Can also be set in the KOSMORRO_LONGITUDE "
+"environment variable."
 msgstr ""
 "பூமியில் பார்வையாளரின் நெடுங்கோடு. கோச்மோரோ_நெடுங்கோடு சூழல் மாறியில் அமைக்கலாம்."
 
 #: kosmorro/__main__.py:265
 msgid ""
-"The date for which the ephemerides must be calculated. Can be in the "
-"YYYY-MM-DD format or an interval in the \"[+-]YyMmDd\" format (with Y, M,"
-" and D numbers). Defaults to current date."
+"The date for which the ephemerides must be calculated. Can be in the YYYY-MM-"
+"DD format or an interval in the \"[+-]YyMmDd\" format (with Y, M, and D "
+"numbers). Defaults to current date."
 msgstr ""
 "எஃபெமரைடுகள் கணக்கிடப்பட வேண்டிய தேதி. YYYY-MM-DD வடிவத்தில் அல்லது \"[+-]YyMmDd\" "
 "வடிவத்தில் (Y, M மற்றும் D எண்களுடன்) இடைவெளியில் இருக்கலாம். தற்போதைய தேதிக்கு "
@@ -106,8 +105,8 @@ msgstr ""
 
 #: kosmorro/__main__.py:276
 msgid ""
-"The timezone to display the hours in (e.g. 2 for UTC+2 or -3 for UTC-3). "
-"Can also be set in the KOSMORRO_TIMEZONE environment variable."
+"The timezone to display the hours in (e.g. 2 for UTC+2 or -3 for UTC-3). Can "
+"also be set in the KOSMORRO_TIMEZONE environment variable."
 msgstr ""
 "மணிநேரங்களைக் காண்பிப்பதற்கான நேர மண்டலம் (எ.கா. UTC+2 க்கு 2 அல்லது UTC -3 க்கு -3). "
 "கோச்மோரோ_ நேரமண்டலம் சூழல் மாறியில் அமைக்கலாம்."
@@ -118,8 +117,8 @@ msgstr "முனையத்தில் வண்ணங்களை முட�
 
 #: kosmorro/__main__.py:292
 msgid ""
-"A file to export the output to. If not given, the standard output is "
-"used. This argument is needed for PDF format."
+"A file to export the output to. If not given, the standard output is used. "
+"This argument is needed for PDF format."
 msgstr ""
 "வெளியீட்டை ஏற்றுமதி செய்ய ஒரு கோப்பு. கொடுக்கப்படாவிட்டால், நிலையான வெளியீடு "
 "பயன்படுத்தப்படுகிறது. எஆவ வடிவமைப்பிற்கு இந்த உரையாடல் தேவை."
@@ -128,8 +127,7 @@ msgstr ""
 msgid ""
 "Do not generate a graph to represent the rise and set times in the PDF "
 "format."
-msgstr ""
-"எஆவ வடிவத்தில் உயர்வு மற்றும் நேரங்களை அமைக்க ஒரு வரைபடத்தை உருவாக்க வேண்டாம்."
+msgstr "எஆவ வடிவத்தில் உயர்வு மற்றும் நேரங்களை அமைக்க ஒரு வரைபடத்தை உருவாக்க வேண்டாம்."
 
 #: kosmorro/__main__.py:309
 msgid "Show debugging messages"
@@ -141,8 +139,8 @@ msgstr "தேதி {date} செல்லுபடியாகாது: {erro
 
 #: kosmorro/date.py:39
 msgid ""
-"The date {date} does not match the required YYYY-MM-DD format or the "
-"offset format."
+"The date {date} does not match the required YYYY-MM-DD format or the offset "
+"format."
 msgstr ""
 "தேதி {date} தேவையான YYYY-MM-DD வடிவம் அல்லது ஈடுசெய் வடிவத்துடன் பொருந்தவில்லை."
 
@@ -156,8 +154,7 @@ msgstr "குறிப்பு: அனைத்து மணிநேரங்
 
 #: kosmorro/dumper.py:151
 msgid "Note: All the hours are given in the UTC{offset} timezone."
-msgstr ""
-"குறிப்பு: அனைத்து மணிநேரங்களும் UTC{offset} நேர மண்டலத்தில் கொடுக்கப்பட்டுள்ளன."
+msgstr "குறிப்பு: அனைத்து மணிநேரங்களும் UTC{offset} நேர மண்டலத்தில் கொடுக்கப்பட்டுள்ளன."
 
 #: kosmorro/dumper.py:205 kosmorro/dumper.py:333
 msgid "Object"
@@ -193,9 +190,9 @@ msgstr "உங்கள் வானத்தின் கண்ணோட்ட�
 
 #: kosmorro/dumper.py:314
 msgid ""
-"This document summarizes the ephemerides and the events of {date}. It "
-"aims to help you to prepare your observation session. All the hours are "
-"given in {timezone}."
+"This document summarizes the ephemerides and the events of {date}. It aims "
+"to help you to prepare your observation session. All the hours are given in "
+"{timezone}."
 msgstr ""
 "இந்த ஆவணம் எஃபெமரைடுகள் மற்றும் {date} இன் நிகழ்வுகளைச் சுருக்கமாகக் கூறுகிறது. உங்கள் "
 "கண்காணிப்பு அமர்வைத் தயாரிக்க இது உங்களுக்கு உதவுவதை நோக்கமாகக் கொண்டுள்ளது. அனைத்து "
@@ -222,10 +219,9 @@ msgstr "எதிர்பார்க்கப்படும் நிகழ�
 
 #: kosmorro/dumper.py:487
 msgid ""
-"Building PDF was not possible, because some dependencies are not "
-"installed.\n"
-"Please look at the documentation at https://kosmorro.space/cli/generate-"
-"pdf/ for more information."
+"Building PDF was not possible, because some dependencies are not installed.\n"
+"Please look at the documentation at https://kosmorro.space/cli/generate-pdf/ "
+"for more information."
 msgstr ""
 "எஆவ ஐ உருவாக்குவது முடியாது, ஏனெனில் சில சார்புநிலைகள் நிறுவப்படவில்லை.\n"
 "மேலும் தகவலுக்கு https://kosmorro.space/cli/generate-pdf/ இல் உள்ள ஆவணங்களைப் "
