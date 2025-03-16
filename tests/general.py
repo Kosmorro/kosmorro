@@ -33,6 +33,7 @@ def test_run_without_argument():
 def test_help_message():
     for arg in ["--help", "-h"]:
         result = execute(KOSMORRO + [arg])
+
         assert result.is_successful()
 
         # Options header has changed from "optional arguments" to "options" in Python 3.10.
@@ -40,9 +41,10 @@ def test_help_message():
             "optional arguments" if python_version.minor < 10 else "options"
         )
 
-        assert (
-            result.stdout
-            == """usage: kosmorro [-h] [--version] [--format {text,json,pdf}]
+        if python_version.major == 3 and python_version.minor < 13:
+            assert (
+                result.stdout
+                == """usage: kosmorro [-h] [--version] [--format {text,json,pdf}]
                 [--latitude LATITUDE] [--longitude LONGITUDE] [--date DATE]
                 [--timezone TIMEZONE] [--no-colors] [--output OUTPUT]
                 [--no-graph] [--debug]
@@ -81,5 +83,47 @@ on Earth.
 By default, only the events will be computed for today. To compute also the
 ephemerides, latitude and longitude arguments are needed.
 """
-            % options_header
-        )
+                % options_header
+            )
+        else:
+            assert (
+                result.stdout
+                == """usage: kosmorro [-h] [--version] [--format {text,json,pdf}]
+                [--latitude LATITUDE] [--longitude LONGITUDE] [--date DATE]
+                [--timezone TIMEZONE] [--no-colors] [--output OUTPUT]
+                [--no-graph] [--debug]
+
+Compute the ephemerides and the events for a given date and a given position
+on Earth.
+
+options:
+  -h, --help            show this help message and exit
+  --version, -v         Show the program version
+  --format, -f {text,json,pdf}
+                        The format to output the information to
+  --latitude, -lat LATITUDE
+                        The observer's latitude on Earth. Can also be set in
+                        the KOSMORRO_LATITUDE environment variable.
+  --longitude, -lon LONGITUDE
+                        The observer's longitude on Earth. Can also be set in
+                        the KOSMORRO_LONGITUDE environment variable.
+  --date, -d DATE       The date for which the ephemerides must be calculated.
+                        Can be in the YYYY-MM-DD format or an interval in the
+                        "[+-]YyMmDd" format (with Y, M, and D numbers).
+                        Defaults to current date.
+  --timezone, -t TIMEZONE
+                        The timezone to display the hours in (e.g. 2 for UTC+2
+                        or -3 for UTC-3). Can also be set in the
+                        KOSMORRO_TIMEZONE environment variable.
+  --no-colors           Disable the colors in the console.
+  --output, -o OUTPUT   A file to export the output to. If not given, the
+                        standard output is used. This argument is needed for
+                        PDF format.
+  --no-graph            Do not generate a graph to represent the rise and set
+                        times in the PDF format.
+  --debug               Show debugging messages
+
+By default, only the events will be computed for today. To compute also the
+ephemerides, latitude and longitude arguments are needed.
+"""
+            )
