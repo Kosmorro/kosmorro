@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kosmorro 0.9.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-16 11:24+0100\n"
+"POT-Creation-Date: 2025-03-16 11:59+0100\n"
 "PO-Revision-Date: 2024-03-13 12:01+0000\n"
 "Last-Translator: Jérôme Deuchnord <jerome@deuchnord.fr>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/kosmorro/cli/ru/"
@@ -22,20 +22,21 @@ msgstr ""
 "X-Generator: Weblate 5.5-dev\n"
 "Generated-By: Babel 2.9.0\n"
 
-#: kosmorro/__main__.py:61
+#: kosmorro/__main__.py:62
 msgid ""
 "Save the planet and paper!\n"
 "Consider printing your PDF document only if really necessary, and use the "
 "other side of the sheet."
 msgstr ""
 
-#: kosmorro/__main__.py:70
+#: kosmorro/__main__.py:71
 msgid ""
 "PDF output will not contain the ephemerides, because you didn't provide the "
 "observation coordinates."
 msgstr ""
 
 #: kosmorro/__main__.py:115
+#, python-brace-format
 msgid "The file could not be saved in \"{path}\": {error}"
 msgstr ""
 
@@ -43,23 +44,24 @@ msgstr ""
 msgid "Please provide a file path to export in this format (--output)."
 msgstr ""
 
-#: kosmorro/__main__.py:162
+#: kosmorro/__main__.py:163
+#, python-brace-format
 msgid "Moon phase can only be computed between {min_date} and {max_date}"
 msgstr ""
 
-#: kosmorro/__main__.py:201
-#, fuzzy
+#: kosmorro/__main__.py:202
+#, fuzzy, python-brace-format
 msgid ""
 "Running on Python {python_version} with Kosmorrolib v{kosmorrolib_version}"
 msgstr "Работают под Python {python_version}"
 
-#: kosmorro/__main__.py:214
+#: kosmorro/__main__.py:215
 msgid ""
 "Compute the ephemerides and the events for a given date and a given position "
 "on Earth."
 msgstr ""
 
-#: kosmorro/__main__.py:217
+#: kosmorro/__main__.py:218
 msgid ""
 "By default, only the events will be computed for today.\n"
 "To compute also the ephemerides, latitude and longitude arguments are needed."
@@ -73,26 +75,26 @@ msgstr "Показать версия программы"
 msgid "The format to output the information to"
 msgstr ""
 
-#: kosmorro/__main__.py:245
+#: kosmorro/__main__.py:246
 msgid ""
 "The observer's latitude on Earth. Can also be set in the KOSMORRO_LATITUDE "
 "environment variable."
 msgstr ""
 
-#: kosmorro/__main__.py:255
+#: kosmorro/__main__.py:256
 msgid ""
 "The observer's longitude on Earth. Can also be set in the KOSMORRO_LONGITUDE "
 "environment variable."
 msgstr ""
 
-#: kosmorro/__main__.py:265
+#: kosmorro/__main__.py:266
 msgid ""
 "The date for which the ephemerides must be calculated. Can be in the YYYY-MM-"
 "DD format or an interval in the \"[+-]YyMmDd\" format (with Y, M, and D "
 "numbers). Defaults to current date."
 msgstr ""
 
-#: kosmorro/__main__.py:276
+#: kosmorro/__main__.py:277
 msgid ""
 "The timezone to display the hours in (e.g. 2 for UTC+2 or -3 for UTC-3). Can "
 "also be set in the KOSMORRO_TIMEZONE environment variable."
@@ -102,13 +104,13 @@ msgstr ""
 msgid "Disable the colors in the console."
 msgstr ""
 
-#: kosmorro/__main__.py:292
+#: kosmorro/__main__.py:293
 msgid ""
 "A file to export the output to. If not given, the standard output is used. "
 "This argument is needed for PDF format."
 msgstr ""
 
-#: kosmorro/__main__.py:301
+#: kosmorro/__main__.py:302
 msgid ""
 "Do not generate a graph to represent the rise and set times in the PDF "
 "format."
@@ -119,10 +121,13 @@ msgid "Show debugging messages"
 msgstr ""
 
 #: kosmorro/date.py:17
+#, fuzzy, python-brace-format
+#| msgid "The date {date} is not valid: {error}"
 msgid "The date {date} is not valid: {error}"
 msgstr "Дата {date} - неправильно"
 
-#: kosmorro/date.py:39
+#: kosmorro/date.py:40
+#, python-brace-format
 msgid ""
 "The date {date} does not match the required YYYY-MM-DD format or the offset "
 "format."
@@ -136,7 +141,8 @@ msgstr "Ожидаемые события:"
 msgid "Note: All the hours are given in UTC."
 msgstr "Примечание: все время указано в формате UTC."
 
-#: kosmorro/dumper.py:151
+#: kosmorro/dumper.py:152
+#, python-brace-format
 msgid "Note: All the hours are given in the UTC{offset} timezone."
 msgstr "Примечание: все часы указаны по UTC{offset} времени."
 
@@ -164,7 +170,8 @@ msgstr ""
 msgid "Moon phase:"
 msgstr ""
 
-#: kosmorro/dumper.py:242
+#: kosmorro/dumper.py:243
+#, python-brace-format
 msgid "{next_moon_phase} on {next_moon_phase_date} at {next_moon_phase_time}"
 msgstr "{next_moon_phase} в {next_moon_phase_date} в {next_moon_phase_time}"
 
@@ -172,7 +179,8 @@ msgstr "{next_moon_phase} в {next_moon_phase_date} в {next_moon_phase_time}"
 msgid "Overview of your sky"
 msgstr ""
 
-#: kosmorro/dumper.py:314
+#: kosmorro/dumper.py:315
+#, python-brace-format
 msgid ""
 "This document summarizes the ephemerides and the events of {date}. It aims "
 "to help you to prepare your observation session. All the hours are given in "
@@ -181,7 +189,7 @@ msgstr ""
 "Этот документ резюмирует эфемериды и события {date}. Это поможет вам "
 "подготовиться к сеансу наблюдения. Все часы указаны по {timezone}."
 
-#: kosmorro/dumper.py:324
+#: kosmorro/dumper.py:325
 msgid ""
 "Don't forget to check the weather forecast before you go out with your "
 "equipment."
@@ -199,14 +207,14 @@ msgstr ""
 msgid "Expected events"
 msgstr ""
 
-#: kosmorro/dumper.py:487
+#: kosmorro/dumper.py:488
 msgid ""
 "Building PDF was not possible, because some dependencies are not installed.\n"
 "Please look at the documentation at https://kosmorro.space/cli/generate-pdf/ "
 "for more information."
 msgstr ""
 
-#: kosmorro/dumper.py:540
+#: kosmorro/dumper.py:541
 #, python-format
 msgid ""
 "An error occurred during the compilation of the PDF.\n"
@@ -214,7 +222,8 @@ msgid ""
 "share the content of the log file at /tmp/kosmorro-%s.log"
 msgstr ""
 
-#: kosmorro/exceptions.py:35
+#: kosmorro/exceptions.py:36
+#, python-brace-format
 msgid "The date must be between {minimum_date} and {maximum_date}"
 msgstr ""
 
@@ -325,18 +334,22 @@ msgid "Pluto"
 msgstr "Плутон"
 
 #: kosmorro/i18n/utils.py:27
+#, python-brace-format
 msgid "{day_of_week} {month} {day_number}, {year}"
 msgstr "{day_of_week}, {day_number} {month} {year} г."
 
 #: kosmorro/i18n/utils.py:30
+#, python-brace-format
 msgid "{month} {day_number}, {hours}:{minutes}"
 msgstr "{month} {day_number}, {hours}:{minutes}"
 
 #: kosmorro/i18n/utils.py:33
+#, python-brace-format
 msgid "{month} {day_number}, {year}"
 msgstr "{month} {day_number}, {year}"
 
 #: kosmorro/i18n/utils.py:36
+#, python-brace-format
 msgid "{hours}:{minutes}"
 msgstr "{hours}:{minutes}"
 
