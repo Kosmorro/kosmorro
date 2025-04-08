@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-28 20:36+0100\n"
+"POT-Creation-Date: 2025-04-15 23:15+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -208,109 +208,140 @@ msgstr ""
 msgid "The given Plus Code seems to be a short code, please provide a full code."
 msgstr ""
 
-#: kosmorro/i18n/strings.py:11
+#: kosmorro/i18n/strings.py:21
 #, python-format
 msgid "%s is in opposition"
 msgstr ""
 
-#: kosmorro/i18n/strings.py:12
+#: kosmorro/i18n/strings.py:26
 #, python-format
 msgid "%s and %s are in conjunction"
 msgstr ""
 
-#: kosmorro/i18n/strings.py:13
+#: kosmorro/i18n/strings.py:35
 #, python-format
 msgid "%s occults %s"
 msgstr ""
 
-#: kosmorro/i18n/strings.py:15
+#: kosmorro/i18n/strings.py:44
 #, python-format
 msgid "Elongation of %s is maximal"
 msgstr ""
 
-#: kosmorro/i18n/strings.py:18
+#: kosmorro/i18n/strings.py:50
 #, python-format
 msgid "%s is at its periapsis"
 msgstr ""
 
-#: kosmorro/i18n/strings.py:19
+#: kosmorro/i18n/strings.py:55
 #, python-format
 msgid "%s is at its apoapsis"
 msgstr ""
 
-#: kosmorro/i18n/strings.py:35
-msgid "New Moon"
-msgstr ""
-
-#: kosmorro/i18n/strings.py:36
-msgid "Waxing Crescent"
-msgstr ""
-
-#: kosmorro/i18n/strings.py:37
-msgid "First Quarter"
-msgstr ""
-
-#: kosmorro/i18n/strings.py:38
-msgid "Waxing Gibbous"
-msgstr ""
-
-#: kosmorro/i18n/strings.py:39
-msgid "Full Moon"
-msgstr ""
-
-#: kosmorro/i18n/strings.py:40
-msgid "Waning Gibbous"
-msgstr ""
-
-#: kosmorro/i18n/strings.py:41
-msgid "Last Quarter"
-msgstr ""
-
-#: kosmorro/i18n/strings.py:42
-msgid "Waning Crescent"
-msgstr ""
-
-#: kosmorro/i18n/strings.py:53
-msgid "Sun"
-msgstr ""
-
-#: kosmorro/i18n/strings.py:54
-msgid "Moon"
-msgstr ""
-
-#: kosmorro/i18n/strings.py:55
-msgid "Mercury"
-msgstr ""
-
-#: kosmorro/i18n/strings.py:56
-msgid "Venus"
-msgstr ""
-
-#: kosmorro/i18n/strings.py:57
-msgid "Earth"
-msgstr ""
-
-#: kosmorro/i18n/strings.py:58
-msgid "Mars"
-msgstr ""
-
-#: kosmorro/i18n/strings.py:59
-msgid "Jupiter"
-msgstr ""
-
-#: kosmorro/i18n/strings.py:60
-msgid "Saturn"
-msgstr ""
-
 #: kosmorro/i18n/strings.py:61
-msgid "Uranus"
-msgstr ""
-
-#: kosmorro/i18n/strings.py:62
-msgid "Neptune"
+msgid "March equinox"
 msgstr ""
 
 #: kosmorro/i18n/strings.py:63
+msgid "June solstice"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:65
+msgid "September equinox"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:67
+msgid "December solstice"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:73
+#, python-format
+msgid "Total lunar eclipse until %(hour)s"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:78
+#, python-format
+msgid "Penumbral lunar eclipse until %(hour)s"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:83
+#, python-format
+msgid "Partial lunar eclipse until %(hour)s"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:99
+msgid "New Moon"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:100
+msgid "Waxing Crescent"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:101
+msgid "First Quarter"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:102
+msgid "Waxing Gibbous"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:103
+msgid "Full Moon"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:104
+msgid "Waning Gibbous"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:105
+msgid "Last Quarter"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:106
+msgid "Waning Crescent"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:117
+msgid "Sun"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:118
+msgid "Moon"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:119
+msgid "Mercury"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:120
+msgid "Venus"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:121
+msgid "Earth"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:122
+msgid "Mars"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:123
+msgid "Jupiter"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:124
+msgid "Saturn"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:125
+msgid "Uranus"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:126
+msgid "Neptune"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:127
 msgid "Pluto"
 msgstr ""
 
