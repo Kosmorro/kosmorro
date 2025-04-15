@@ -25,7 +25,7 @@ Uranus     10:21 AM         5:25 PM         12:33 AM
 Neptune     9:01 AM         2:36 PM         8:10 PM
 Pluto       6:57 AM         11:04 AM        3:11 PM
 
-Moon phase: New Moon
+New Moon
 First Quarter on Sunday, February 2, 2020 at 1:41 AM
 
 Expected events:

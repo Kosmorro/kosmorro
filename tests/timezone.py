@@ -12,7 +12,7 @@ def check_command_return_t_plus_one(result):
         result.stdout
         == """Monday, January 27, 2020
 
-Moon phase: New Moon
+New Moon
 First Quarter on Sunday, February 2, 2020 at 2:41 AM
 
 Expected events:
@@ -29,7 +29,7 @@ def check_command_return_t_minus_one(result):
         result.stdout
         == """Monday, January 27, 2020
 
-Moon phase: New Moon
+New Moon
 First Quarter on Sunday, February 2, 2020 at 12:41 AM
 
 Expected events:

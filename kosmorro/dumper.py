@@ -233,11 +233,8 @@ class TextDumper(Dumper):
         if moon_phase is None:
             return _("Moon phase is unavailable for this date.")
 
-        current_moon_phase = " ".join(
-            [
-                self.style(_("Moon phase:"), "strong"),
-                strings.from_moon_phase(moon_phase.phase_type),
-            ]
+        current_moon_phase = self.style(
+            strings.from_moon_phase(moon_phase.phase_type), "strong"
         )
         new_moon_phase = _(
             "{next_moon_phase} on {next_moon_phase_date} at {next_moon_phase_time}"
