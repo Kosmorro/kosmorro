@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-15 23:15+0200\n"
+"POT-Creation-Date: 2025-04-21 15:35+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -128,19 +128,19 @@ msgstr ""
 msgid "Note: All the hours are given in the UTC{offset} timezone."
 msgstr ""
 
-#: kosmorro/dumper.py:205 kosmorro/dumper.py:336
+#: kosmorro/dumper.py:205 kosmorro/dumper.py:333
 msgid "Object"
 msgstr ""
 
-#: kosmorro/dumper.py:206 kosmorro/dumper.py:337
+#: kosmorro/dumper.py:206 kosmorro/dumper.py:334
 msgid "Rise time"
 msgstr ""
 
-#: kosmorro/dumper.py:207 kosmorro/dumper.py:339
+#: kosmorro/dumper.py:207 kosmorro/dumper.py:336
 msgid "Culmination time"
 msgstr ""
 
-#: kosmorro/dumper.py:208 kosmorro/dumper.py:341
+#: kosmorro/dumper.py:208 kosmorro/dumper.py:338
 msgid "Set time"
 msgstr ""
 
@@ -148,20 +148,16 @@ msgstr ""
 msgid "Moon phase is unavailable for this date."
 msgstr ""
 
-#: kosmorro/dumper.py:238 kosmorro/dumper.py:345
-msgid "Moon phase:"
-msgstr ""
-
-#: kosmorro/dumper.py:243
+#: kosmorro/dumper.py:240
 #, python-brace-format
 msgid "{next_moon_phase} on {next_moon_phase_date} at {next_moon_phase_time}"
 msgstr ""
 
-#: kosmorro/dumper.py:309
+#: kosmorro/dumper.py:306
 msgid "Overview of your sky"
 msgstr ""
 
-#: kosmorro/dumper.py:318
+#: kosmorro/dumper.py:315
 #, python-brace-format
 msgid ""
 "This document summarizes the ephemerides and the events of {date}. It "
@@ -169,21 +165,25 @@ msgid ""
 "given in {timezone}."
 msgstr ""
 
-#: kosmorro/dumper.py:328
+#: kosmorro/dumper.py:325
 msgid ""
 "Don't forget to check the weather forecast before you go out with your "
 "equipment."
 msgstr ""
 
-#: kosmorro/dumper.py:334
+#: kosmorro/dumper.py:331
 msgid "Ephemerides of the day"
 msgstr ""
 
-#: kosmorro/dumper.py:343
+#: kosmorro/dumper.py:340
 msgid "hours"
 msgstr ""
 
-#: kosmorro/dumper.py:350
+#: kosmorro/dumper.py:342
+msgid "Moon phase:"
+msgstr ""
+
+#: kosmorro/dumper.py:347
 msgid "Expected events"
 msgstr ""
 

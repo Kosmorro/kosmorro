@@ -12,7 +12,7 @@ def test_with_date():
             result.stdout
             == """Monday, January 27, 2020
 
-Moon phase: New Moon
+New Moon
 First Quarter on Sunday, February 2, 2020 at 1:41 AM
 
 Expected events:
