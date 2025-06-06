@@ -2,15 +2,15 @@
 
 [[package]]
 name = "aurornis"
-version = "1.5.0"
+version = "1.6.0"
 description = "A command line program test helper"
 optional = false
-python-versions = ">=3.7,<4.0"
+python-versions = "<4.0,>=3.7"
 groups = ["dev"]
 markers = "python_version < \"3.10.dev0\" or python_version >= \"3.10\""
 files = [
-    {file = "aurornis-1.5.0-py3-none-any.whl", hash = "sha256:565376bc5cec9f7f6797accc24e614fb43fc2bfb18d0b5576f2102a7c3be790d"},
-    {file = "aurornis-1.5.0.tar.gz", hash = "sha256:2cf67b43d480caeee60bbb99ba3d3139db47386347dace5dc77d7e3885e3993f"},
+    {file = "aurornis-1.6.0-py3-none-any.whl", hash = "sha256:457ff4b8b3b0f1f16b434071c267a706bb96a23e5ada37f611f3a6520536e5ea"},
+    {file = "aurornis-1.6.0.tar.gz", hash = "sha256:3b86689370fdf17f63f32db56795234923a031c783cf7a47b0578093cc26b5ee"},
 ]
 
 [package.dependencies]
@@ -651,4 +651,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.8"
-content-hash = "71274431afbadbcd81622aa3b982dc8ec1541e807775eba3803a32023e3a45e1"
+content-hash = "a4fa3a2b71ef294caf512c090faae95e9f940303ddba7e34740db0c30ddafc3f"
