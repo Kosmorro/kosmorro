@@ -7,7 +7,7 @@ from .utils import (
 
 
 def check_command_return_t_plus_one(result):
-    assert result.is_successful()
+    assert result.successful
     assert (
         result.stdout
         == """Monday, January 27, 2020
@@ -24,7 +24,7 @@ Note: All the hours are given in the UTC+1 timezone.
 
 
 def check_command_return_t_minus_one(result):
-    assert result.is_successful()
+    assert result.successful
     assert (
         result.stdout
         == """Monday, January 27, 2020
