@@ -22,6 +22,7 @@ kosmorrolib = "^1.0"
 python-dateutil = "^2.8"
 Babel = "^2.9"
 openlocationcode = "^1.0"
+pytz = "^2025.2"
 
 [tool.poetry.group.dev.dependencies]
 black = "^24.4"

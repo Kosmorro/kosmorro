@@ -17,13 +17,17 @@
 #    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import argparse
+import datetime
 import sys
 import os.path
 
+import pytz
 from babel.dates import format_date
 from kosmorrolib import Position, get_ephemerides, get_events, get_moon_phase
 from kosmorrolib.exceptions import OutOfRangeDateError
 from datetime import date
+
+from pytz import timezone
 
 from . import dumper, environment, debug
 from .date import parse_date
@@ -34,6 +38,7 @@ from .utils import (
     colored,
     set_colors_activated,
     print_stderr,
+    get_timezone,
 )
 from .exceptions import (
     InvalidOutputFormatError,
@@ -88,12 +93,31 @@ def run():
             )
         )
 
-    timezone = args.timezone
+    timezone = 0
 
-    if timezone is None and env_vars.timezone is not None:
-        timezone = int(env_vars.timezone)
-    elif timezone is None:
-        timezone = 0
+    try:
+        if args.timezone is not None:
+            timezone = get_timezone(args.timezone)
+        elif env_vars.tz is not None:
+            timezone = get_timezone(env_vars.tz)
+        elif env_vars.timezone is not None:
+            print_stderr(
+                colored(
+                    _(
+                        "Environment variable KOSMORRO_TIMEZONE is deprecated. Use TZ instead, which is more standard."
+                    ),
+                    "yellow",
+                )
+            )
+            timezone = get_timezone(env_vars.timezone)
+    except pytz.UnknownTimeZoneError as error:
+        print_stderr(
+            colored(
+                _("Unknown timezone: {timezone}").format(timezone=error.args[0]),
+                color="red",
+            )
+        )
+        return -1
 
     try:
         use_colors = not environment.NO_COLOR and args.colors
@@ -290,11 +314,12 @@ def get_args(output_formats: [str]):
     parser.add_argument(
         "--timezone",
         "-t",
-        type=int,
+        type=str,
         default=None,
         help=_(
-            "The timezone to display the hours in (e.g. 2 for UTC+2 or -3 for UTC-3). "
-            "Can also be set in the KOSMORRO_TIMEZONE environment variable."
+            "The timezone to use to display the hours. It can be either a number (e.g. 1 for UTC+1) or a timezone name (e.g. Europe/Paris). "
+            "See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones to find your timezone. "
+            "Can also be set in the TZ environment variable."
         ),
     )
     parser.add_argument(

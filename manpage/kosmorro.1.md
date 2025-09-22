@@ -23,7 +23,7 @@
     The date for which the ephemerides must be computed, either in the YYYY-MM-DD format or as an interval in the "[+-]YyMmDd" format (with Y, M, and D numbers); defaults to the current date
 
 `--timezone=`_TIMEZONE_, `-t` _TIMEZONE_  
-    the timezone to display the hours in; e.g. 2 for UTC+2 or -3 for UTC-3
+    the timezone to use to display the hours; it can be either a number (e.g. 1 for UTC+1) or a timezone name (e.g. Europe/Paris)
 
 `--no-colors`  
     disable the colors in the console

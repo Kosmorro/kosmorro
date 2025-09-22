@@ -392,6 +392,18 @@ files = [
 six = ">=1.5"
 
 [[package]]
+name = "pytz"
+version = "2025.2"
+description = "World timezone definitions, modern and historical"
+optional = false
+python-versions = "*"
+groups = ["main"]
+files = [
+    {file = "pytz-2025.2-py2.py3-none-any.whl", hash = "sha256:5ddf76296dd8c44c26eb8f4b6f35488f3ccbf6fbbd7adee0b7262d43f0ec2f00"},
+    {file = "pytz-2025.2.tar.gz", hash = "sha256:360b9e3dbb49a209c21ad61809c7fb453643e048b38924c765813546746e81c3"},
+]
+
+[[package]]
 name = "sgp4"
 version = "2.25"
 description = "Track Earth satellites given TLE data, using up-to-date 2020 SGP4 routines."
@@ -529,4 +541,4 @@ tests = ["pytest", "pytest-cov"]
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.12"
-content-hash = "edfb347df82f9895ce51f3af9005b1d924129c24aa7e38b5e2f7bd858e33ec25"
+content-hash = "12bf9cdda9cfaf9616bf3d899450e105991f788267601a41a79fed1b5cbd73a9"

@@ -44,6 +44,8 @@ class Environment:
 def get_env_vars() -> Environment:
     environment = Environment()
 
+    environment.tz = os.getenv("TZ")
+
     for var in os.environ:
         if not re.search("^KOSMORRO_", var):
             continue
