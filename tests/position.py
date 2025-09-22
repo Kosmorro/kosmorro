@@ -7,7 +7,7 @@ from .utils import (
 
 
 def check_command_return(result):
-    assert result.is_successful()
+    assert result.successful
     assert (
         result.stdout
         == """Monday, January 27, 2020

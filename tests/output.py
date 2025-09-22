@@ -13,7 +13,7 @@ def test_json_output():
     result = execute(
         KOSMORRO + ["--position=50.5876,3.0624", "-d2020-01-27", "--format=json"]
     )
-    assert result.is_successful()
+    assert result.successful
     assert (
         result.stdout
         == """{

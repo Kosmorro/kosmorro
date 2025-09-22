@@ -13,7 +13,7 @@ from babel.dates import format_date
 
 def test_run_without_argument():
     result = execute(KOSMORRO)
-    assert result.is_successful()
+    assert result.successful
 
     stdout = result.stdout.split("\n")
     print(stdout)
@@ -34,7 +34,7 @@ def test_help_message():
     for arg in ["--help", "-h"]:
         result = execute(KOSMORRO + [arg])
 
-        assert result.is_successful()
+        assert result.successful
 
         if python_version.major == 3 and python_version.minor < 13:
             assert (
