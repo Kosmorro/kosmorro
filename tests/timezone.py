@@ -6,68 +6,88 @@ from .utils import (
 )
 
 
-def check_command_return_t_plus_one(result):
+def test_timezone_with_command_line_arg():
+    result = execute(KOSMORRO + ["--timezone=1", "-d2020-01-27"])
     assert result.successful
-    assert (
-        result.stdout
-        == """Monday, January 27, 2020
+    assert "Note: All the hours are given in the UTC+1.0 timezone." in result.stdout
 
-New Moon
-First Quarter on Sunday, February 2, 2020 at 2:41 AM
-
-Expected events:
-9:00 PM  Venus and Neptune are in conjunction
-
-Note: All the hours are given in the UTC+1 timezone.
-"""
-    )
-
-
-def check_command_return_t_minus_one(result):
+    result = execute(KOSMORRO + ["--timezone=Europe/Paris", "-d2020-01-27"])
     assert result.successful
-    assert (
-        result.stdout
-        == """Monday, January 27, 2020
+    assert "Note: All the hours are given in the UTC+1.0 timezone." not in result.stdout
 
-New Moon
-First Quarter on Sunday, February 2, 2020 at 12:41 AM
+    result = execute(KOSMORRO + ["--timezone=-5", "-d2020-01-27"])
+    assert result.successful
+    assert "Note: All the hours are given in the UTC-5.0 timezone." in result.stdout
 
-Expected events:
-7:00 PM  Venus and Neptune are in conjunction
-
-Note: All the hours are given in the UTC-1 timezone.
-"""
-    )
-
-
-def test_timezone():
-    check_command_return_t_plus_one(
-        execute(KOSMORRO + ["--timezone=1", "-d2020-01-27"])
-    )
-    check_command_return_t_minus_one(
-        execute(KOSMORRO + ["--timezone=-1", "-d2020-01-27"])
-    )
+    result = execute(KOSMORRO + ["--timezone=America/Chicago", "-d2020-01-27"])
+    assert result.successful
+    assert "Note: All the hours are given in the UTC-5.0 timezone." in result.stdout
 
 
 def test_timezone_with_env_var():
-    check_command_return_t_plus_one(
-        execute(KOSMORRO + ["-d2020-01-27"], environment={"KOSMORRO_TIMEZONE": "1"})
-    )
-    check_command_return_t_minus_one(
-        execute(KOSMORRO + ["-d2020-01-27"], environment={"KOSMORRO_TIMEZONE": "-1"})
-    )
+    result = execute(KOSMORRO + ["-d2020-01-27"], environment={"TZ": "1"})
+    assert result.successful
+    assert "Note: All the hours are given in the UTC+1.0 timezone." in result.stdout
 
-    # If both environment variable and argument are set, use argument:
+    result = execute(KOSMORRO + ["-d2020-01-27"], environment={"TZ": "Europe/Paris"})
+    assert result.successful
+    assert "Note: All the hours are given in the UTC+1.0 timezone." not in result.stdout
 
-    check_command_return_t_plus_one(
-        execute(
-            KOSMORRO + ["--timezone=1", "-d2020-01-27"],
-            environment={"KOSMORRO_TIMEZONE": "-1"},
-        )
+    result = execute(KOSMORRO + ["-d2020-01-27"], environment={"TZ": "-5"})
+    assert result.successful
+    assert "Note: All the hours are given in the UTC-5.0 timezone." in result.stdout
+
+    result = execute(KOSMORRO + ["-d2020-01-27"], environment={"TZ": "America/Chicago"})
+    assert result.successful
+    assert "Note: All the hours are given in the UTC-5.0 timezone." in result.stdout
+
+
+def test_timezone_with_env_var_and_command_line_arg():
+    result = execute(
+        KOSMORRO + ["--timezone=3", "-d2020-01-27"], environment={"TZ": "Europe/Paris"}
     )
-    check_command_return_t_minus_one(
-        execute(
-            KOSMORRO + ["--timezone=-1", "-d2020-01-27"],
-            environment={"KOSMORRO_TIMEZONE": "1"},
-        )
+    assert result.successful
+    assert "Note: All the hours are given in the UTC+3.0 timezone." in result.stdout
+
+
+def test_timezone_with_deprecated_env_var():
+    result = execute(
+        KOSMORRO + ["-d2020-01-27"], environment={"KOSMORRO_TIMEZONE": "1"}
     )
+    assert result.successful
+    assert (
+        "Environment variable KOSMORRO_TIMEZONE is deprecated. Use TZ instead, which is more standard."
+        in result.stderr
+    )
+    assert "Note: All the hours are given in the UTC+1.0 timezone." in result.stdout
+
+    result = execute(
+        KOSMORRO + ["-d2020-01-27"], environment={"KOSMORRO_TIMEZONE": "Europe/Paris"}
+    )
+    assert result.successful
+    assert (
+        "Environment variable KOSMORRO_TIMEZONE is deprecated. Use TZ instead, which is more standard."
+        in result.stderr
+    )
+    assert "Note: All the hours are given in the UTC+1.0 timezone." not in result.stdout
+
+    result = execute(
+        KOSMORRO + ["-d2020-01-27"], environment={"KOSMORRO_TIMEZONE": "-5"}
+    )
+    assert result.successful
+    assert (
+        "Environment variable KOSMORRO_TIMEZONE is deprecated. Use TZ instead, which is more standard."
+        in result.stderr
+    )
+    assert "Note: All the hours are given in the UTC-5.0 timezone." in result.stdout
+
+    result = execute(
+        KOSMORRO + ["-d2020-01-27"],
+        environment={"KOSMORRO_TIMEZONE": "America/Chicago"},
+    )
+    assert result.successful
+    assert (
+        "Environment variable KOSMORRO_TIMEZONE is deprecated. Use TZ instead, which is more standard."
+        in result.stderr
+    )
+    assert "Note: All the hours are given in the UTC-5.0 timezone." in result.stdout

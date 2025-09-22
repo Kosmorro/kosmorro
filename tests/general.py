@@ -62,9 +62,11 @@ options:
                         "[+-]YyMmDd" format (with Y, M, and D numbers).
                         Defaults to current date.
   --timezone TIMEZONE, -t TIMEZONE
-                        The timezone to display the hours in (e.g. 2 for UTC+2
-                        or -3 for UTC-3). Can also be set in the
-                        KOSMORRO_TIMEZONE environment variable.
+                        The timezone to use to display the hours. It can be
+                        either a number (e.g. 1 for UTC+1) or a timezone name
+                        (e.g. Europe/Paris). See https://en.wikipedia.org/wiki
+                        /List_of_tz_database_time_zones to find your timezone.
+                        Can also be set in the TZ environment variable.
   --no-colors           Disable the colors in the console.
   --output OUTPUT, -o OUTPUT
                         A file to export the output to. If not given, the
@@ -103,9 +105,11 @@ options:
                         "[+-]YyMmDd" format (with Y, M, and D numbers).
                         Defaults to current date.
   --timezone, -t TIMEZONE
-                        The timezone to display the hours in (e.g. 2 for UTC+2
-                        or -3 for UTC-3). Can also be set in the
-                        KOSMORRO_TIMEZONE environment variable.
+                        The timezone to use to display the hours. It can be
+                        either a number (e.g. 1 for UTC+1) or a timezone name
+                        (e.g. Europe/Paris). See https://en.wikipedia.org/wiki
+                        /List_of_tz_database_time_zones to find your timezone.
+                        Can also be set in the TZ environment variable.
   --no-colors           Disable the colors in the console.
   --output, -o OUTPUT   A file to export the output to. If not given, the
                         standard output is used.

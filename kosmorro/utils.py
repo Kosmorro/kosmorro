@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
+from datetime import datetime
 
+import pytz
 from termcolor import colored as do_color
 from sys import stderr
 
@@ -27,3 +29,12 @@ def colored(text, color=None, on_color=None, attrs=None):
 
 def print_stderr(*values: object):
     print(*values, file=stderr)
+
+
+def get_timezone(value: int | str) -> float:
+    try:
+        timezone = float(value)
+    except ValueError:
+        timezone = pytz.timezone(value).utcoffset(datetime.now()).total_seconds() / 3600
+
+    return timezone
