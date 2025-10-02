@@ -39,6 +39,9 @@
 `--no-graph`  
     present the ephemerides in a table instead of a graph; LaTeX output format only
 
+`--completion [SHELL]`  
+    generate completion scripts for the specified shell (bash, zsh, fish, powershell)
+
 ## ENVIRONMENT VARIABLES
 
 The environment variable listed below may be used instead of the options.

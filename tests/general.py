@@ -42,6 +42,7 @@ def test_help_message():
                 == """usage: kosmorro [-h] [--version] [--format {txt,json,tex}]
                 [--position POSITION] [--date DATE] [--timezone TIMEZONE]
                 [--no-colors] [--output OUTPUT] [--no-graph] [--debug]
+                [--completion COMPLETION]
 
 Compute the ephemerides and the events for a given date and a given position
 on Earth.
@@ -74,6 +75,8 @@ options:
   --no-graph            Do not generate a graph to represent the rise and set
                         times in the LaTeX file.
   --debug               Show debugging messages
+  --completion COMPLETION
+                        Print a script allowing completion for your shell
 
 By default, only the events will be computed for today. To compute also the
 ephemerides, latitude and longitude arguments are needed.
@@ -85,6 +88,7 @@ ephemerides, latitude and longitude arguments are needed.
                 == """usage: kosmorro [-h] [--version] [--format {txt,json,tex}]
                 [--position POSITION] [--date DATE] [--timezone TIMEZONE]
                 [--no-colors] [--output OUTPUT] [--no-graph] [--debug]
+                [--completion COMPLETION]
 
 Compute the ephemerides and the events for a given date and a given position
 on Earth.
@@ -116,6 +120,8 @@ options:
   --no-graph            Do not generate a graph to represent the rise and set
                         times in the LaTeX file.
   --debug               Show debugging messages
+  --completion COMPLETION
+                        Print a script allowing completion for your shell
 
 By default, only the events will be computed for today. To compute also the
 ephemerides, latitude and longitude arguments are needed.

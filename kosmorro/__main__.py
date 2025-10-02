@@ -17,7 +17,7 @@
 #    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import argparse
-import datetime
+import argcomplete
 import sys
 import os.path
 
@@ -26,8 +26,6 @@ from babel.dates import format_date
 from kosmorrolib import Position, get_ephemerides, get_events, get_moon_phase
 from kosmorrolib.exceptions import OutOfRangeDateError
 from datetime import date
-
-from pytz import timezone
 
 from . import dumper, environment, debug
 from .date import parse_date
@@ -56,6 +54,9 @@ def run():
     output_format = args.format
 
     set_colors_activated(args.colors)
+
+    if args.completion is not None:
+        return 0 if output_completion(args.completion) else 1
 
     if args.special_action is not None:
         return 0 if args.special_action() else 1
@@ -352,7 +353,27 @@ def get_args(output_formats: [str]):
         help=_("Show debugging messages"),
     )
 
+    argcomplete.autocomplete(parser)
+
+    parser.add_argument(
+        "--completion",
+        type=str,
+        help=_("Print a script allowing completion for your shell"),
+    )
+
     return parser.parse_args()
+
+
+def output_completion(shell: str) -> bool:
+    shellcode = argcomplete.shellcode([sys.argv[0]], shell=shell)
+    if shellcode == "":
+        print_stderr(
+            colored(_("No completion script available for this shell."), "red")
+        )
+        return False
+
+    print(shellcode)
+    return True
 
 
 def main():
