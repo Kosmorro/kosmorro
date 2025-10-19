@@ -1,3 +1,26 @@
+# [Version 1.0.0](https://github.com/Kosmorro/kosmorro/compare/v0.10.13...v) (2025-10-19)
+
+
+### Features
+
+* Python 3.13 support ([d7def50](https://github.com/Kosmorro/kosmorro/commit/d7def507034e6af0d7c7bdbc4d4174b046b082ac))
+* replace latitude and longitude with one argument alone: --position ([#191](https://github.com/Kosmorro/kosmorro/issues/191)) ([5cab68e](https://github.com/Kosmorro/kosmorro/commit/5cab68ee926e1e085b6fbcff98e7575bb91327db))
+* add support for `KOSMORRO_POSITION` environment variable ([6c5dc6f](https://github.com/Kosmorro/kosmorro/commit/6c5dc6fac63ad23e689aa8d9819128f0c7232193))
+* add support for command line completion ([151c3a7](https://github.com/Kosmorro/kosmorro/commit/151c3a7a5fecc756f1ca66daa43bfb4e49180ae8))
+* add support for seasons and lunar eclipses ([facd319](https://github.com/Kosmorro/kosmorro/commit/facd3197d602371a0a96d3ddde6033f1e6673f13))
+* guess output format from output file extension ([#197](https://github.com/Kosmorro/kosmorro/issues/197)) ([4b1f06e](https://github.com/Kosmorro/kosmorro/commit/4b1f06e221dba2efcfca68119df25eca28bc89d7))
+* New export format: LaTeX ([4d5b941](https://github.com/Kosmorro/kosmorro/commit/4d5b9415d528533d42fd3466e4425287e9f6867d))
+* send error and warning messages in standard error instead of standard output ([c377c63](https://github.com/Kosmorro/kosmorro/commit/c377c634cbfe246246bfbb34ed6c45e7bf80a1e6))
+* **timezone:** add support for the [tz database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) ([3a87cfa](https://github.com/Kosmorro/kosmorro/commit/3a87cfad10e45e94cf508b924b287fcd6321f08a))
+* add support for the [Open location code](https://en.wikipedia.org/wiki/Open_Location_Code) format.
+  * Warning: this does not support Plus Codes yet.
+
+### BREAKING CHANGES
+
+* `--latitude` and `-longitude` are not supported anymore. Use `--position` instead.
+
+
+
 # [Version 0.10.13](https://github.com/Kosmorro/kosmorro/compare/v0.10.12...v0.10.13) (2023-12-17)
 
 
