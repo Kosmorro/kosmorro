@@ -2,21 +2,21 @@
 # Copyright (C) 2021 ORGANIZATION
 # This file is distributed under the same license as the kosmorro project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
-# Damgermys <damhub28@gmail.com>, 2021.
+# Damgermys <damhub28@gmail.com>, 2021, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: kosmorro 0.9.0\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"Report-Msgid-Bugs-To: jerome@deuchnord.fr\n"
 "POT-Creation-Date: 2025-03-16 11:59+0100\n"
-"PO-Revision-Date: 2022-03-19 17:51+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2025-10-20 04:51+0000\n"
+"Last-Translator: Damgermys <damhub28@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/kosmorro/cli/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.12-dev\n"
+"X-Generator: Weblate 5.14-dev\n"
 "Generated-By: Babel 2.9.0\n"
 
 #: kosmorro/__main__.py:62
@@ -359,7 +359,7 @@ msgstr "Venus"
 
 #: kosmorro/i18n/strings.py:57
 msgid "Earth"
-msgstr ""
+msgstr "Aarde"
 
 #: kosmorro/i18n/strings.py:58
 msgid "Mars"
