@@ -355,7 +355,7 @@ def get_args(output_formats: [str]):
         dest="show_graph",
         action="store_false",
         help=_(
-            "Do not generate a graph to represent the rise and set times in the PDF format."
+            "Do not generate a graph to represent the rise and set times in the LaTeX or PDF file."
         ),
     )
     parser.add_argument(

@@ -74,7 +74,7 @@ options:
                         standard output is used. This argument is needed for
                         PDF format.
   --no-graph            Do not generate a graph to represent the rise and set
-                        times in the PDF format.
+                        times in the LaTeX or PDF file.
   --debug               Show debugging messages
   --completion COMPLETION
                         Print a script allowing completion for your shell
@@ -86,7 +86,7 @@ ephemerides, latitude and longitude arguments are needed.
         else:
             assert (
                 result.stdout
-                == """usage: kosmorro [-h] [--version] [--format {txt,json,tex}]
+                == """usage: kosmorro [-h] [--version] [--format {txt,json,pdf,tex}]
                 [--position POSITION] [--date DATE] [--timezone TIMEZONE]
                 [--no-colors] [--output OUTPUT] [--no-graph] [--debug]
                 [--completion COMPLETION]
@@ -97,7 +97,7 @@ on Earth.
 options:
   -h, --help            show this help message and exit
   --version, -v         Show the program version
-  --format, -f {txt,json,tex}
+  --format, -f {txt,json,pdf,tex}
                         The format to output the information to. If not
                         provided, the output format will be inferred from the
                         file extension of the output file.
@@ -117,9 +117,10 @@ options:
                         Can also be set in the TZ environment variable.
   --no-colors           Disable the colors in the console.
   --output, -o OUTPUT   A file to export the output to. If not given, the
-                        standard output is used.
+                        standard output is used. This argument is needed for
+                        PDF format.
   --no-graph            Do not generate a graph to represent the rise and set
-                        times in the LaTeX file.
+                        times in the LaTeX or PDF file.
   --debug               Show debugging messages
   --completion COMPLETION
                         Print a script allowing completion for your shell

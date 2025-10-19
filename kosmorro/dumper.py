@@ -43,9 +43,9 @@ from .utils import KOSMORRO_VERSION
 
 
 class Dumper(ABC):
-    ephemerides: [AsterEphemerides]
+    ephemerides: list[AsterEphemerides]
     moon_phase: MoonPhase
-    events: [Event]
+    events: list[Event]
     date: datetime.date
     timezone: int
     with_colors: bool
@@ -53,9 +53,9 @@ class Dumper(ABC):
 
     def __init__(
         self,
-        ephemerides: [AsterEphemerides],
+        ephemerides: list[AsterEphemerides],
         moon_phase: MoonPhase,
-        events: [Event],
+        events: list[Event],
         date: datetime.date,
         timezone: int,
         with_colors: bool,
@@ -281,7 +281,7 @@ class LatexDumper(Dumper):
 
         document = template
 
-        if self.ephemerides is None:
+        if len(self.ephemerides) == 0:
             document = self._remove_section(document, "ephemerides")
 
         if len(self.events) == 0:
