@@ -1,5 +1,5 @@
 # ![Kosmorro](https://github.com/Kosmorro/logos/raw/main/kosmorro/kosmorro-artwork.jpg)
-[![Version on PyPI](https://img.shields.io/pypi/v/kosmorro)](https://pypi.org/project/kosmorro) [![Packaging status](https://repology.org/badge/tiny-repos/kosmorro.svg)](https://repology.org/project/kosmorro/versions) [![Help translating Kosmorro!](https://hosted.weblate.org/widgets/kosmorro/-/cli/svg-badge.svg)](https://hosted.weblate.org/engage/kosmorro/)
+[![Version on PyPI](https://img.shields.io/pypi/v/kosmorro)](https://pypi.org/project/kosmorro) [![Packaging status](https://repology.org/badge/tiny-repos/kosmorro.svg)](https://repology.org/project/kosmorro/versions) [![Help translating Kosmorro!](https://hosted.weblate.org/widgets/kosmorro/-/cli/svg-badge.svg)](https://hosted.weblate.org/engage/kosmorro/) [![IRC: #kosmorro on Libera.Chat](https://img.shields.io/badge/Libera.Chat-%23kosmorro-blueviolet)](https://web.libera.chat/?nick=Astronaut?#kosmorro)
 
 Kosmorro is a program that calculates your astronomical ephemerides.
 
@@ -23,6 +23,11 @@ Using Kosmorro is as simple as invoking `kosmorro` in your terminal!
 By default, it will give you the current Moon phase and, if any, the events that will occur today.
 
 Kosmorro has a lot of available options to get exactly what you want, including the possibility to get planets rise and set. To get a list of them, run `kosmorro --help`, or read its manual with `man kosmorro`. You can also find usage examples in [the `tldr` manual](https://tldr.sh) with [`tldr kosmorro`](https://tldr.inbrowser.app/pages/common/kosmorro).
+
+### Exporting to PDF
+
+Kosmorro can export the computation results to PDF files, but this feature requires first that you install some additional dependencies.
+You can find documentation about this on [Kosmorro's website](https://kosmorro.space/cli/generate-pdf/).
 
 ## Help translating Kosmorro!
 

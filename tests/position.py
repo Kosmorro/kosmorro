@@ -7,7 +7,7 @@ from .utils import (
 
 
 def check_command_return(result):
-    assert result.is_successful()
+    assert result.successful
     assert (
         result.stdout
         == """Monday, January 27, 2020
@@ -25,7 +25,7 @@ Uranus     10:21 AM         5:25 PM         12:33 AM
 Neptune     9:01 AM         2:36 PM         8:10 PM
 Pluto       6:57 AM         11:04 AM        3:11 PM
 
-Moon phase: New Moon
+New Moon
 First Quarter on Sunday, February 2, 2020 at 1:41 AM
 
 Expected events:
@@ -37,9 +37,7 @@ Note: All the hours are given in UTC.
 
 
 def test_with_position():
-    result = execute(
-        KOSMORRO + ["--latitude=50.5876", "--longitude=3.0624", "-d2020-01-27"]
-    )
+    result = execute(KOSMORRO + ["--position=50.5876,3.0624", "-d2020-01-27"])
     check_command_return(result)
 
 
@@ -48,8 +46,7 @@ def test_with_position_env_vars():
         execute(
             KOSMORRO + ["-d2020-01-27"],
             environment={
-                "KOSMORRO_LATITUDE": "50.5876",
-                "KOSMORRO_LONGITUDE": "3.0624",
+                "KOSMORRO_POSITION": "50.5876,3.0624",
             },
         )
     )

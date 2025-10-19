@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+from importlib.metadata import version
 from .utils import (
     execute,
     KOSMORRO,
@@ -11,10 +12,9 @@ from sys import platform
 
 def test_json_output():
     result = execute(
-        KOSMORRO
-        + ["--latitude=50.5876", "--longitude=3.0624", "-d2020-01-27", "--format=json"]
+        KOSMORRO + ["--position=50.5876,3.0624", "-d2020-01-27", "--format=json"]
     )
-    assert result.is_successful()
+    assert result.successful
     assert (
         result.stdout
         == """{
@@ -151,3 +151,27 @@ def test_json_output():
 }
 """
     )
+
+
+def test_latex_output():
+    result = execute(
+        KOSMORRO + ["--position=50.5876,3.0624", "-d2020-01-27", "--format=tex"]
+    )
+    assert result.successful
+
+    with open(
+        path.join(path.dirname(__file__), "outputs", "2020-01-27-with-position.tex")
+    ) as expected_output:
+        expected_output = (
+            expected_output.read()
+            .replace(
+                "__PROJECT_PATH__",
+                path.join(path.dirname(path.dirname(__file__)), "kosmorro"),
+            )
+            .replace(
+                "__APP_VERSION__",
+                version("kosmorro"),
+            )
+        )
+
+        assert result.stdout == expected_output

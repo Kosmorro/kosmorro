@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
+from datetime import datetime
 
+import pytz
 from termcolor import colored as do_color
+from sys import stderr
 
-try:
-    from importlib.metadata import version
-except ImportError:
-    from importlib_metadata import version
+from importlib.metadata import version
 
 KOSMORRO_VERSION = version("kosmorro")
 KOSMORROLIB_VERSION = version("kosmorrolib")
@@ -25,3 +25,16 @@ def colored(text, color=None, on_color=None, attrs=None):
         return text
 
     return do_color(text, color, on_color, attrs)
+
+
+def print_stderr(*values: object):
+    print(*values, file=stderr)
+
+
+def get_timezone(value: int | str) -> float:
+    try:
+        timezone = float(value)
+    except ValueError:
+        timezone = pytz.timezone(value).utcoffset(datetime.now()).total_seconds() / 3600
+
+    return timezone

@@ -21,6 +21,7 @@ import re
 from pathlib import Path
 
 CACHE_FOLDER = str(Path.home()) + "/.kosmorro-cache"
+NO_COLOR = "NO_COLOR" in os.environ
 
 
 class Environment:
@@ -42,6 +43,8 @@ class Environment:
 
 def get_env_vars() -> Environment:
     environment = Environment()
+
+    environment.tz = os.getenv("TZ")
 
     for var in os.environ:
         if not re.search("^KOSMORRO_", var):

@@ -17,8 +17,11 @@
 #    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import argparse
+import argcomplete
 import sys
+import os.path
 
+import pytz
 from babel.dates import format_date
 from kosmorrolib import Position, get_ephemerides, get_events, get_moon_phase
 from kosmorrolib.exceptions import OutOfRangeDateError
@@ -26,8 +29,20 @@ from datetime import date
 
 from . import dumper, environment, debug
 from .date import parse_date
-from .utils import KOSMORRO_VERSION, KOSMORROLIB_VERSION, colored, set_colors_activated
-from .exceptions import UnavailableFeatureError, OutOfRangeDateError as DateRangeError
+from .geolocation import get_position
+from .utils import (
+    KOSMORRO_VERSION,
+    KOSMORROLIB_VERSION,
+    colored,
+    set_colors_activated,
+    print_stderr,
+    get_timezone,
+)
+from .exceptions import (
+    InvalidOutputFormatError,
+    UnavailableFeatureError,
+    OutOfRangeDateError as DateRangeError,
+)
 from kosmorro.i18n.utils import _
 
 
@@ -40,21 +55,33 @@ def run():
 
     set_colors_activated(args.colors)
 
+    if args.completion is not None:
+        return 0 if output_completion(args.completion) else 1
+
     if args.special_action is not None:
         return 0 if args.special_action() else 1
 
     try:
         compute_date = parse_date(args.date)
     except ValueError as error:
-        print(colored(error.args[0], color="red", attrs=["bold"]))
+        print_stderr(colored(error.args[0], color="red", attrs=["bold"]))
         return -1
 
     position = None
+    if args.position not in [None, ""]:
+        position = get_position(args.position)
+    elif env_vars.position not in [None, ""]:
+        position = get_position(env_vars.position)
 
-    if args.latitude is not None or args.longitude is not None:
-        position = Position(args.latitude, args.longitude)
-    elif env_vars.latitude is not None and env_vars.longitude is not None:
-        position = Position(float(env_vars.latitude), float(env_vars.longitude))
+    # if output format is not specified, try to use output file extension as output format
+    if args.output is not None and output_format is None:
+        file_extension = os.path.splitext(args.output)[-1][1:].lower()
+        if file_extension:
+            output_format = file_extension
+
+    # default to .txt if output format was not given and output file did not have file extension
+    if output_format is None:
+        output_format = "txt"
 
     if output_format == "pdf":
         print(
@@ -64,8 +91,7 @@ def run():
             )
         )
         if position is None:
-            print()
-            print(
+            print_stderr(
                 colored(
                     _(
                         "PDF output will not contain the ephemerides, because you didn't provide the observation "
@@ -75,42 +101,68 @@ def run():
                 )
             )
 
-    timezone = args.timezone
-
-    if timezone is None and env_vars.timezone is not None:
-        timezone = int(env_vars.timezone)
-    elif timezone is None:
-        timezone = 0
+    timezone = 0
 
     try:
+        if args.timezone is not None:
+            timezone = get_timezone(args.timezone)
+        elif env_vars.tz is not None:
+            timezone = get_timezone(env_vars.tz)
+        elif env_vars.timezone is not None:
+            print_stderr(
+                colored(
+                    _(
+                        "Environment variable KOSMORRO_TIMEZONE is deprecated. Use TZ instead, which is more standard."
+                    ),
+                    "yellow",
+                )
+            )
+            timezone = get_timezone(env_vars.timezone)
+    except pytz.UnknownTimeZoneError as error:
+        print_stderr(
+            colored(
+                _("Unknown timezone: {timezone}").format(timezone=error.args[0]),
+                color="red",
+            )
+        )
+        return -1
+
+    try:
+        use_colors = not environment.NO_COLOR and args.colors
+
         output = get_information(
             compute_date,
             position,
             timezone,
             output_format,
-            args.colors,
+            use_colors,
             args.show_graph,
         )
+    except InvalidOutputFormatError as error:
+        print_stderr(colored(error.msg, "red"))
+        debug.debug_print(error)
+        return 3
     except UnavailableFeatureError as error:
-        print(colored(error.msg, "red"))
+        print_stderr(colored(error.msg, "red"))
         debug.debug_print(error)
         return 2
     except DateRangeError as error:
-        print(colored(error.msg, "red"))
+        print_stderr(colored(error.msg, "red"))
         debug.debug_print(error)
         return 1
 
     if args.output is not None:
         try:
-            pdf_content = output.to_string()
-            with open(args.output, "wb") as output_file:
-                output_file.write(pdf_content)
+            file_content = output.to_string()
+            opening_mode = get_opening_mode(output_format)
+            with open(args.output, opening_mode) as output_file:
+                output_file.write(file_content)
         except UnavailableFeatureError as error:
-            print(colored(error.msg, "red"))
+            print_stderr(colored(error.msg, "red"))
             debug.debug_print(error)
             return 2
         except OSError as error:
-            print(
+            print_stderr(
                 colored(
                     _('The file could not be saved in "{path}": {error}').format(
                         path=args.output, error=error.strerror
@@ -124,7 +176,7 @@ def run():
     elif not output.is_file_output_needed():
         print(output)
     else:
-        print(
+        print_stderr(
             colored(
                 _("Please provide a file path to export in this format (--output)."),
                 color="red",
@@ -143,51 +195,61 @@ def get_information(
     colors: bool,
     show_graph: bool,
 ) -> dumper.Dumper:
-    if position is not None:
-        try:
+    try:
+        if position is not None:
             eph = get_ephemerides(
                 for_date=compute_date, position=position, timezone=timezone
             )
+        else:
+            eph = []
+
+        try:
+            moon_phase = get_moon_phase(for_date=compute_date, timezone=timezone)
         except OutOfRangeDateError as error:
-            raise DateRangeError(error.min_date, error.max_date)
-    else:
-        eph = []
-
-    try:
-        moon_phase = get_moon_phase(for_date=compute_date, timezone=timezone)
-    except OutOfRangeDateError as error:
-        moon_phase = None
-        print(
-            colored(
-                _(
-                    "Moon phase can only be computed between {min_date} and {max_date}"
-                ).format(
-                    min_date=format_date(error.min_date, "long"),
-                    max_date=format_date(error.max_date, "long"),
-                ),
-                "yellow",
+            moon_phase = None
+            print_stderr(
+                colored(
+                    _(
+                        "Moon phase can only be computed between {min_date} and {max_date}"
+                    ).format(
+                        min_date=format_date(error.min_date, "long"),
+                        max_date=format_date(error.max_date, "long"),
+                    ),
+                    "yellow",
+                )
             )
+
+        events_list = get_events(compute_date, timezone)
+
+        return get_dumpers()[output_format](
+            ephemerides=eph,
+            moon_phase=moon_phase,
+            events=events_list,
+            date=compute_date,
+            timezone=timezone,
+            with_colors=colors,
+            show_graph=show_graph,
         )
-
-    events_list = get_events(compute_date, timezone)
-
-    return get_dumpers()[output_format](
-        ephemerides=eph,
-        moon_phase=moon_phase,
-        events=events_list,
-        date=compute_date,
-        timezone=timezone,
-        with_colors=colors,
-        show_graph=show_graph,
-    )
+    except KeyError as error:
+        raise InvalidOutputFormatError(output_format, list(get_dumpers().keys()))
+    except OutOfRangeDateError as error:
+        raise DateRangeError(error.min_date, error.max_date)
 
 
 def get_dumpers() -> {str: dumper.Dumper}:
     return {
-        "text": dumper.TextDumper,
+        "txt": dumper.TextDumper,
         "json": dumper.JsonDumper,
         "pdf": dumper.PdfDumper,
+        "tex": dumper.LatexDumper,
     }
+
+
+def get_opening_mode(format: str) -> str:
+    if format == "pdf":
+        return "wb"
+
+    return "w"
 
 
 def output_version() -> bool:
@@ -233,28 +295,21 @@ def get_args(output_formats: [str]):
         "--format",
         "-f",
         type=str,
-        default=output_formats[0],
-        choices=output_formats,
-        help=_("The format to output the information to"),
-    )
-    parser.add_argument(
-        "--latitude",
-        "-lat",
-        type=float,
         default=None,
+        choices=output_formats,
         help=_(
-            "The observer's latitude on Earth. Can also be set in the KOSMORRO_LATITUDE environment "
-            "variable."
+            "The format to output the information to. If not provided, the output format "
+            "will be inferred from the file extension of the output file."
         ),
     )
     parser.add_argument(
-        "--longitude",
-        "-lon",
-        type=float,
+        "--position",
+        "-p",
+        type=str,
         default=None,
         help=_(
-            "The observer's longitude on Earth. Can also be set in the KOSMORRO_LONGITUDE "
-            "environment variable."
+            'The observer\'s position on Earth, in the "{latitude},{longitude}" format. '
+            "Can also be set in the KOSMORRO_POSITION environment variable."
         ),
     )
     parser.add_argument(
@@ -271,11 +326,12 @@ def get_args(output_formats: [str]):
     parser.add_argument(
         "--timezone",
         "-t",
-        type=int,
+        type=str,
         default=None,
         help=_(
-            "The timezone to display the hours in (e.g. 2 for UTC+2 or -3 for UTC-3). "
-            "Can also be set in the KOSMORRO_TIMEZONE environment variable."
+            "The timezone to use to display the hours. It can be either a number (e.g. 1 for UTC+1) or a timezone name (e.g. Europe/Paris). "
+            "See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones to find your timezone. "
+            "Can also be set in the TZ environment variable."
         ),
     )
     parser.add_argument(
@@ -299,7 +355,7 @@ def get_args(output_formats: [str]):
         dest="show_graph",
         action="store_false",
         help=_(
-            "Do not generate a graph to represent the rise and set times in the PDF format."
+            "Do not generate a graph to represent the rise and set times in the LaTeX or PDF file."
         ),
     )
     parser.add_argument(
@@ -309,7 +365,27 @@ def get_args(output_formats: [str]):
         help=_("Show debugging messages"),
     )
 
+    argcomplete.autocomplete(parser)
+
+    parser.add_argument(
+        "--completion",
+        type=str,
+        help=_("Print a script allowing completion for your shell"),
+    )
+
     return parser.parse_args()
+
+
+def output_completion(shell: str) -> bool:
+    shellcode = argcomplete.shellcode([sys.argv[0]], shell=shell)
+    if shellcode == "":
+        print_stderr(
+            colored(_("No completion script available for this shell."), "red")
+        )
+        return False
+
+    print(shellcode)
+    return True
 
 
 def main():

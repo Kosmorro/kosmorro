@@ -1,30 +1,94 @@
 #!/usr/bin/env python3
 
 from typing import Union
+from babel.dates import format_time
 from .utils import _
+from kosmorrolib import (
+    EventType,
+    MoonPhaseType,
+    ObjectIdentifier,
+    Event,
+    SeasonType,
+    LunarEclipseType,
+)
 
-from kosmorrolib import EventType, MoonPhaseType, ObjectIdentifier, Event
 
+def from_event(event: Event) -> Union[None, str]:
+    string = None
+    match event.event_type:
+        case EventType.OPPOSITION:
+            string, details = (
+                _("%s is in opposition") % from_object(event.objects[0].identifier),
+                None,
+            )
+        case EventType.CONJUNCTION:
+            string, details = (
+                _("%s and %s are in conjunction")
+                % (
+                    from_object(event.objects[0].identifier),
+                    from_object(event.objects[1].identifier),
+                ),
+                None,
+            )
+        case EventType.OCCULTATION:
+            string, details = (
+                _("%s occults %s")
+                % (
+                    from_object(event.objects[0].identifier),
+                    from_object(event.objects[1].identifier),
+                ),
+                None,
+            )
+        case EventType.MAXIMAL_ELONGATION:
+            string, details = (
+                _("Elongation of %s is maximal")
+                % from_object(event.objects[0].identifier),
+                lambda e: "{:.3n}°".format(e.details["deg"]),
+            )
+        case EventType.PERIGEE:
+            string, details = (
+                _("%s is at its periapsis") % from_object(event.objects[0].identifier),
+                None,
+            )
+        case EventType.APOGEE:
+            string, details = (
+                _("%s is at its apoapsis") % from_object(event.objects[0].identifier),
+                None,
+            )
+        case EventType.SEASON_CHANGE:
+            match event.details["season"]:
+                case SeasonType.MARCH_EQUINOX:
+                    string = _("March equinox")
+                case SeasonType.JUNE_SOLSTICE:
+                    string = _("June solstice")
+                case SeasonType.SEPTEMBER_EQUINOX:
+                    string = _("September equinox")
+                case _:
+                    string = _("December solstice")
 
-def from_event(event: Event, with_description: bool = True) -> Union[None, str]:
-    string, details = {
-        EventType.OPPOSITION: (_("%s is in opposition"), None),
-        EventType.CONJUNCTION: (_("%s and %s are in conjunction"), None),
-        EventType.OCCULTATION: (_("%s occults %s"), None),
-        EventType.MAXIMAL_ELONGATION: (
-            _("Elongation of %s is maximal"),
-            lambda e: "{:.3n}°".format(e.details["deg"]),
-        ),
-        EventType.PERIGEE: (_("%s is at its periapsis"), None),
-        EventType.APOGEE: (_("%s is at its apoapsis"), None),
-    }.get(event.event_type, (None, None))
+            details = None
+        case EventType.LUNAR_ECLIPSE:
+            match event.details["type"]:
+                case LunarEclipseType.TOTAL:
+                    string = _("Total lunar eclipse until %(hour)s") % {
+                        "hour": format_time(event.end_time, "short")
+                    }
 
-    if string is None:
-        return None
+                case LunarEclipseType.PENUMBRAL:
+                    string = _("Penumbral lunar eclipse until %(hour)s") % {
+                        "hour": format_time(event.end_time, "short")
+                    }
 
-    string = string % tuple([from_object(o.identifier) for o in event.objects])
+                case LunarEclipseType.PARTIAL:
+                    string = _("Partial lunar eclipse until %(hour)s") % {
+                        "hour": format_time(event.end_time, "short")
+                    }
 
-    if details is not None and with_description:
+            details = None
+        case _:
+            return None
+
+    if details is not None:
         return "%s (%s)" % (string, details(event))
 
     return string

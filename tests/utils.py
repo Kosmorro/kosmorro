@@ -10,7 +10,7 @@ DEFAULT_ENVIRONMENT = {"PATH": environ["PATH"]}
 KOSMORRO = ["kosmorro", "--no-color"]
 
 CURRENT_MOON_PHASE_PATTERN = re.compile(
-    r"^Moon phase: ("
+    r"^("
     r"(New Moon)|(Waxing Crescent)|"
     r"(First Quarter)|(Waxing Gibbous)|"
     r"(Full Moon)|(Waning Gibbous)|"

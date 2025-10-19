@@ -1,0 +1,178 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=25mm]{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{fp}
+
+% Command showing the Moon phase
+\newcommand{\moonphase}[2]{
+    \begin{center}
+        \begin{minipage}{2cm}
+            \includegraphics[width=\linewidth]{#1}
+        \end{minipage}
+        \hspace{5mm}
+        \begin{minipage}{7cm}
+            \textbf{\currentmoonphasetitle}\\#2
+        \end{minipage}
+    \end{center}
+}
+
+% Environment for the ephemerides, when --no-graph is given on the command line
+\newenvironment{ephemerides}{
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{lccc}
+            \textbf{\ephemeridesobjecttitle} &
+            \textbf{\ephemeridesrisetimetitle} &
+            \textbf{\ephemeridesculminationtimetitle} &
+            \textbf{\ephemeridessettimetitle}\\
+\hline
+}{
+        \end{tabular}
+    \end{table}
+}
+
+% Command adding an object to the ephemerides environment
+\newcommand{\object}[4]{
+    \hline
+    \textbf{#1} & {#2} & {#3} & {#4}\\
+}
+
+% Environment to insert the ephemerides graph
+\newenvironment{graphephemerides}{\setlength{\unitlength}{0.02\linewidth}
+\begin{picture}(20,20)
+    % Axes
+    \put(0,-2){\vector(1,0){50}}
+    \multiput(0,-2)(2,0){24}{
+        \line(0,-1){0.25}
+    }
+    \newcounter{hour}
+    \multiput(-0.25,-3.5)(4,0){12}{
+        \sffamily\footnotesize
+        \arabic{hour}\stepcounter{hour}\stepcounter{hour}
+    }
+    \put(49,-3.5){\sffamily\footnotesize \hourslabel}
+
+    % Graduation
+
+    \put(50,-0.5){\sffamily\footnotesize \Pluto}
+    \put(50,1.5){\sffamily\footnotesize \Neptune}
+    \put(50,3.5){\sffamily\footnotesize \Uranus}
+    \put(50,5.5){\sffamily\footnotesize \Saturn}
+    \put(50,7.5){\sffamily\footnotesize \Jupiter}
+    \put(50,9.5){\sffamily\footnotesize \Mars}
+    \put(50,11.5){\sffamily\footnotesize \Venus}
+    \put(50,13.5){\sffamily\footnotesize \Mercury}
+    \put(50,15.5){\sffamily\footnotesize \Moon}
+    \put(50,17.5){\sffamily\footnotesize \Sun}
+
+    \multiput(0,0)(0,2){10}{
+        \color{gray}\line(1,0){48}
+    }
+
+    \linethickness{1.5mm}
+}{
+\end{picture}
+\vspace{1cm}
+}
+
+% Command to add an object to the graph
+\newcommand{\graphobject}[8]{%
+    % #1: Y coordinate component
+    % #2: Color
+    % #3: Hour rise time
+    % #4: Minute rise time
+    % #5: Hour set time
+    % #6: Minute set time
+    % #7: Human-readable rise time
+    % #8: Human-readable set time
+
+    \FPeval{\start}{#3*2+(#4/60)*2}%
+    \FPeval{\length}{#5*2+(#6/60)*2 - \start}%
+    \FPeval{\starttext}{\start+0.7}%
+    \FPeval{\endtext}{\start+\length-3.25}%
+
+    {\color{#2}%
+    \put(\start,#1){%
+        \line(1, 0){\length}%
+    }}%
+
+    \put(\starttext,#1.5){\sffamily\footnotesize #7}%
+    \put(\endtext,#1.5){\sffamily\footnotesize #8}%
+}
+
+\newcommand{\event}[2]{
+    \textbf{#1} & {#2}\\
+}
+
+\newenvironment{events}{
+    \begin{table}[h]
+        \begin{tabular}{ll}
+}{
+        \end{tabular}
+    \end{table}
+}
+
+% Commands to handle the translated strings
+\newcommand{\currentmoonphasetitle}{+++CURRENT-MOON-PHASE-TITLE+++}
+\newcommand{\ephemeridesobjecttitle}{+++EPHEMERIDES-OBJECT+++}
+\newcommand{\ephemeridesrisetimetitle}{+++EPHEMERIDES-RISE-TIME+++}
+\newcommand{\ephemeridesculminationtimetitle}{+++EPHEMERIDES-CULMINATION-TIME+++}
+\newcommand{\ephemeridessettimetitle}{+++EPHEMERIDES-SET-TIME+++}
+\newcommand{\hourslabel}{+++GRAPH_LABEL_HOURS+++}
+
+\newcommand{\Pluto}{+++ASTER_PLUTO+++}
+\newcommand{\Neptune}{+++ASTER_NEPTUNE+++}
+\newcommand{\Uranus}{+++ASTER_URANUS+++}
+\newcommand{\Saturn}{+++ASTER_SATURN+++}
+\newcommand{\Jupiter}{+++ASTER_JUPITER+++}
+\newcommand{\Mars}{+++ASTER_MARS+++}
+\newcommand{\Venus}{+++ASTER_VENUS+++}
+\newcommand{\Mercury}{+++ASTER_MERCURY+++}
+\newcommand{\Moon}{+++ASTER_MOON+++}
+\newcommand{\Sun}{+++ASTER_SUN+++}
+
+% Fix Unicode issues
+\DeclareUnicodeCharacter{202F}{~}
+\DeclareUnicodeCharacter{00B0}{$^\circ$}
+
+\hypersetup{pdfinfo={%
+    Title={+++DOCUMENT-TITLE+++},
+    Creator={Kosmorro v+++KOSMORRO-VERSION+++}
+}}
+
+\pagenumbering{gobble}
+\setcounter{secnumdepth}{0}
+
+\title{\sffamily\href{http://kosmorro.space}{\includegraphics[width=5cm]{+++KOSMORRO-LOGO+++}}\\+++DOCUMENT-TITLE+++}
+\date{\vspace{-11mm}\sffamily +++DOCUMENT-DATE+++}
+
+\begin{document}
+
+    \maketitle
+
+    +++INTRODUCTION+++
+
+    \moonphase{+++MOON-PHASE-GRAPHICS+++}{+++CURRENT-MOON-PHASE+++}
+
+    %%% BEGIN-EPHEMERIDES-SECTION
+    \section{\sffamily +++SECTION-EPHEMERIDES+++}
+
+    \begin{ephemerides}
++++EPHEMERIDES+++
+    \end{ephemerides}
+    %%% END-EPHEMERIDES-SECTION
+
+    %%% BEGIN-EVENTS-SECTION
+    \section{\sffamily +++SECTION-EVENTS+++}
+
+    \begin{events}
+        +++EVENTS+++
+    \end{events}
+    %%% END-EVENTS-SECTION
+
+\end{document}
