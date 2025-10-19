@@ -5,6 +5,10 @@ kosmorro.egg-info
 .coverage
 coverage.xml
 
+/kosmorrolib/assets/pdf/*
+!/kosmorrolib/assets/pdf/*.tex
+!/kosmorrolib/assets/pdf/*.sty
+
 /manpage/*
 !/manpage/*.md
 
