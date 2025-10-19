@@ -1,6 +1,6 @@
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-13-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-15-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 ## Contributors ✨
 
@@ -21,12 +21,16 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/nicfb"><img src="https://avatars.githubusercontent.com/u/19811100?v=4?s=100" width="100px;" alt="Nic"/><br /><sub><b>Nic</b></sub></a><br /><a href="https://github.com/Kosmorro/kosmorro/commits?author=nicfb" title="Code">💻</a></td>
     </tr>
     <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Nic-T"><img src="https://avatars.githubusercontent.com/u/67067741?v=4?s=100" width="100px;" alt="Nicolas Tantau"/><br /><sub><b>Nicolas Tantau</b></sub></a><br /><a href="#translation-Nic-T" title="Translation">🌍</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/romco1410"><img src="https://avatars.githubusercontent.com/u/40452973?v=4?s=100" width="100px;" alt="Roman Hanečák"/><br /><sub><b>Roman Hanečák</b></sub></a><br /><a href="https://github.com/Kosmorro/kosmorro/commits?author=romco1410" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/SpeedCode"><img src="https://avatars.githubusercontent.com/u/12190842?v=4?s=100" width="100px;" alt="SpeedCode"/><br /><sub><b>SpeedCode</b></sub></a><br /><a href="https://github.com/Kosmorro/kosmorro/issues?q=author%3ASpeedCode" title="Bug reports">🐛</a></td>
       <td align="center" valign="top" width="14.28%"><a href="http://people.freebsd.org/~thierry/"><img src="https://avatars.githubusercontent.com/u/6819982?v=4?s=100" width="100px;" alt="Thierry Thomas"/><br /><sub><b>Thierry Thomas</b></sub></a><br /><a href="#platform-thierry-FreeBSD" title="Packaging/porting to new platform">📦</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/StaloneLab"><img src="https://avatars.githubusercontent.com/u/6739422?v=4?s=100" width="100px;" alt="Titouan S."/><br /><sub><b>Titouan S.</b></sub></a><br /><a href="#translation-StaloneLab" title="Translation">🌍</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/Brainface1"><img src="https://avatars.githubusercontent.com/u/40472418?v=4?s=100" width="100px;" alt="brain_face"/><br /><sub><b>brain_face</b></sub></a><br /><a href="https://github.com/Kosmorro/kosmorro/commits?author=Brainface1" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/gallegonovato"><img src="https://avatars.githubusercontent.com/u/59177763?v=4?s=100" width="100px;" alt="gallegonovato"/><br /><sub><b>gallegonovato</b></sub></a><br /><a href="#translation-gallegonovato" title="Translation">🌍</a></td>
+    </tr>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://tamilneram.github.io/"><img src="https://avatars.githubusercontent.com/u/67970539?v=4?s=100" width="100px;" alt="தமிழ் நேரம்"/><br /><sub><b>தமிழ்நேரக்குழு</b></sub></a><br /><a href="#translation-TamilNeram" title="Translation">🌍</a></td>
     </tr>
   </tbody>
 </table>

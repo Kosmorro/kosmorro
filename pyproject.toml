@@ -26,8 +26,8 @@ pytz = "^2025.2"
 argcomplete = "^3.6.2"
 
 [tool.poetry.group.dev.dependencies]
-black = "^24.4"
-pytest = "^8.2"
+black = "^24.8"
+pytest = "^8.3"
 aurornis = "^1.5"
 
 [build-system]
