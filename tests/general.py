@@ -39,7 +39,7 @@ def test_help_message():
         if python_version.major == 3 and python_version.minor < 13:
             assert (
                 result.stdout
-                == """usage: kosmorro [-h] [--version] [--format {txt,json,tex}]
+                == """usage: kosmorro [-h] [--version] [--format {txt,json,pdf,tex}]
                 [--position POSITION] [--date DATE] [--timezone TIMEZONE]
                 [--no-colors] [--output OUTPUT] [--no-graph] [--debug]
                 [--completion COMPLETION]
@@ -50,7 +50,7 @@ on Earth.
 options:
   -h, --help            show this help message and exit
   --version, -v         Show the program version
-  --format {txt,json,tex}, -f {txt,json,tex}
+  --format {txt,json,pdf,tex}, -f {txt,json,pdf,tex}
                         The format to output the information to. If not
                         provided, the output format will be inferred from the
                         file extension of the output file.
@@ -71,9 +71,10 @@ options:
   --no-colors           Disable the colors in the console.
   --output OUTPUT, -o OUTPUT
                         A file to export the output to. If not given, the
-                        standard output is used.
+                        standard output is used. This argument is needed for
+                        PDF format.
   --no-graph            Do not generate a graph to represent the rise and set
-                        times in the LaTeX file.
+                        times in the PDF format.
   --debug               Show debugging messages
   --completion COMPLETION
                         Print a script allowing completion for your shell

@@ -301,6 +301,9 @@ class LatexDumper(Dumper):
     def add_strings(
         self, document: str, kosmorro_logo_path: str, moon_phase_graphics: str
     ) -> str:
+        document = document.replace(
+            "+++CURRENT-DATE+++", datetime.datetime.now().isoformat()
+        )
         document = document.replace("+++KOSMORRO-VERSION+++", KOSMORRO_VERSION)
         document = document.replace("+++KOSMORRO-LOGO+++", kosmorro_logo_path)
         document = document.replace("+++DOCUMENT-TITLE+++", _("Overview of your sky"))
@@ -466,3 +469,76 @@ class LatexDumper(Dumper):
             new_document.append(line)
 
         return "\n".join(new_document)
+
+
+class PdfDumper(Dumper):
+    def to_string(self):
+        try:
+            latex_dumper = LatexDumper(
+                self.ephemerides,
+                self.moon_phase,
+                self.events,
+                date=self.date,
+                timezone=self.timezone,
+                with_colors=self.with_colors,
+                show_graph=self.show_graph,
+            )
+
+            return self._compile(latex_dumper.to_string())
+        except RuntimeError as error:
+            raise KosmorroUnavailableFeatureError(
+                _(
+                    "Building PDF was not possible, because some dependencies are not"
+                    " installed.\nPlease look at the documentation at https://kosmorro.space/cli/generate-pdf/ "
+                    "for more information."
+                )
+            ) from error
+
+    @staticmethod
+    def is_file_output_needed() -> bool:
+        return True
+
+    @staticmethod
+    def _compile(latex_input) -> bytes:
+        timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+        current_dir = (
+            os.getcwd()
+        )  # Keep the current directory to return to it after the PDFLaTeX execution
+
+        try:
+            temp_dir = tempfile.mkdtemp()
+            temp_tex = "%s/%s.tex" % (temp_dir, timestamp)
+
+            with open(temp_tex, "w") as tex_file:
+                tex_file.write(latex_input)
+
+            os.chdir(temp_dir)
+            debug_print("LaTeX content:\n%s" % latex_input)
+
+            subprocess.run(
+                ["pdflatex", "-interaction", "nonstopmode", "%s.tex" % timestamp],
+                capture_output=True,
+                check=True,
+            )
+
+            os.chdir(current_dir)
+
+            with open("%s/%s.pdf" % (temp_dir, timestamp), "rb") as pdffile:
+                return bytes(pdffile.read())
+
+        except FileNotFoundError as error:
+            raise KosmorroUnavailableFeatureError(
+                "TeXLive is not installed."
+            ) from error
+
+        except subprocess.CalledProcessError as error:
+            with open("/tmp/kosmorro-%s.log" % timestamp, "wb") as file:
+                file.write(error.stdout)
+
+            raise CompileError(
+                _(
+                    "An error occurred during the compilation of the PDF.\n"
+                    "Please open an issue at https://github.com/Kosmorro/kosmorro/issues and share "
+                    "the content of the log file at /tmp/kosmorro-%s.log" % timestamp
+                )
+            ) from error

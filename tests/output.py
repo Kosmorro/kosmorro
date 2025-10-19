@@ -5,8 +5,9 @@ from .utils import (
     execute,
     KOSMORRO,
 )
-
-from os import path
+import tempfile
+from os import path, environ
+from sys import platform
 
 
 def test_json_output():

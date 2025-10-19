@@ -24,6 +24,11 @@ By default, it will give you the current Moon phase and, if any, the events that
 
 Kosmorro has a lot of available options to get exactly what you want, including the possibility to get planets rise and set. To get a list of them, run `kosmorro --help`, or read its manual with `man kosmorro`. You can also find usage examples in [the `tldr` manual](https://tldr.sh) with [`tldr kosmorro`](https://tldr.inbrowser.app/pages/common/kosmorro).
 
+### Exporting to PDF
+
+Kosmorro can export the computation results to PDF files, but this feature requires first that you install some additional dependencies.
+You can find documentation about this on [Kosmorro's website](https://kosmorro.space/cli/generate-pdf/).
+
 ## Help translating Kosmorro!
 
 Kosmorro is translated on [Weblate](https://hosted.weblate.org/engage/kosmorro/), a popular free platform for crowd-sourced internationalization.
