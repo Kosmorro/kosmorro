@@ -2,22 +2,22 @@
 # Copyright (C) 2021 ORGANIZATION
 # This file is distributed under the same license as the kosmorro project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
-# Jérôme Deuchnord <jerome@deuchnord.fr>, 2021, 2022.
+# Jérôme Deuchnord <jerome@deuchnord.fr>, 2021, 2022, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: kosmorro 0.9.0\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"Report-Msgid-Bugs-To: jerome@deuchnord.fr\n"
 "POT-Creation-Date: 2025-10-19 16:46+0200\n"
-"PO-Revision-Date: 2022-07-08 12:20+0000\n"
+"PO-Revision-Date: 2025-10-20 08:26+0000\n"
 "Last-Translator: Jérôme Deuchnord <jerome@deuchnord.fr>\n"
-"Language-Team: French <https://hosted.weblate.org/projects/kosmorro/cli/fr/"
-">\n"
+"Language-Team: French <https://hosted.weblate.org/projects/kosmorro/cli/fr/>"
+"\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.13.1-dev\n"
+"X-Generator: Weblate 5.14-dev\n"
 "Generated-By: Babel 2.9.0\n"
 
 #: kosmorro/__main__.py:89
@@ -43,11 +43,13 @@ msgid ""
 "Environment variable KOSMORRO_TIMEZONE is deprecated. Use TZ instead, which "
 "is more standard."
 msgstr ""
+"La variable d'environnement KOSMORRO_TIMEZONE est dépréciée. Utilisez "
+"variable plus standard TZ à la place."
 
 #: kosmorro/__main__.py:124
 #, python-brace-format
 msgid "Unknown timezone: {timezone}"
-msgstr ""
+msgstr "Fuseau horaire inconnu : {timezone}"
 
 #: kosmorro/__main__.py:167
 #, python-brace-format
@@ -99,18 +101,17 @@ msgid ""
 "The format to output the information to. If not provided, the output format "
 "will be inferred from the file extension of the output file."
 msgstr ""
+"Le format dans lequel les informations doivent être présentées. Si non "
+"fourni, le format sera choisi en fonction de l'extension du fichier d'export."
 
 #: kosmorro/__main__.py:311
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "The observer's longitude on Earth. Can also be set in the "
-#| "KOSMORRO_LONGITUDE environment variable."
+#, python-brace-format
 msgid ""
 "The observer's position on Earth, in the \"{latitude},{longitude}\" format. "
 "Can also be set in the KOSMORRO_POSITION environment variable."
 msgstr ""
-"La longitude de l'observateur. Peut également être renseignée dans la "
-"variable d'environnement KOSMORRO_LONGITUDE."
+"La position de l'observateur, dans le format \"{latitude}{longitude}. Peut "
+"également être renseignée dans la variable d'environnement KOSMORRO_POSITION."
 
 #: kosmorro/__main__.py:321
 msgid ""
