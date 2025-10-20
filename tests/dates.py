@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+from sys import version_info as python_version
 from .utils import execute, KOSMORRO
 
 
@@ -38,7 +39,8 @@ def test_with_incorrect_date_values():
         result = execute(KOSMORRO + arg)
         assert not result.successful
         assert (
-            result.stderr == f"The date {value} is not valid: month must be in 1..12\n"
+            result.stderr
+            == f"The date {value} is not valid: month must be in 1..12{", not 13" if python_version.minor >= 14 else ""}\n"
         )
 
 
