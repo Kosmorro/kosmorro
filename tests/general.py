@@ -34,7 +34,7 @@ def test_help_message():
     for arg in ["--help", "-h"]:
         result = execute(KOSMORRO + [arg])
 
-        assert result.is_successful()
+        assert result.successful
 
         assert result.successful
 
