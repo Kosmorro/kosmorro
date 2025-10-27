@@ -105,9 +105,9 @@ def run():
 
     try:
         if args.timezone is not None:
-            timezone = get_timezone(args.timezone)
+            timezone = get_timezone(args.timezone, compute_date)
         elif env_vars.tz is not None:
-            timezone = get_timezone(env_vars.tz)
+            timezone = get_timezone(env_vars.tz, compute_date)
         elif env_vars.timezone is not None:
             print_stderr(
                 colored(
@@ -117,7 +117,7 @@ def run():
                     "yellow",
                 )
             )
-            timezone = get_timezone(env_vars.timezone)
+            timezone = get_timezone(env_vars.timezone, compute_date)
     except pytz.UnknownTimeZoneError as error:
         print_stderr(
             colored(
