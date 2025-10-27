@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from datetime import datetime
+from datetime import datetime, date
 
 import pytz
 from termcolor import colored as do_color
@@ -31,10 +31,12 @@ def print_stderr(*values: object):
     print(*values, file=stderr)
 
 
-def get_timezone(value: int | str) -> float:
+def get_timezone(value: int | str, dt: datetime | date) -> float:
     try:
         timezone = float(value)
     except ValueError:
-        timezone = pytz.timezone(value).utcoffset(datetime.now()).total_seconds() / 3600
+        if isinstance(dt, date):
+            dt = datetime.combine(dt, datetime.min.time())
+        timezone = pytz.timezone(value).utcoffset(dt).total_seconds() / 3600
 
     return timezone
