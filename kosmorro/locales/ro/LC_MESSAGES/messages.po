@@ -2,13 +2,13 @@
 # Copyright (C) 2024 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
-# Nicolas Tantau <nicolastantau2003@gmail.com>, 2024.
+# Nicolas Tantau <nicolastantau2003@gmail.com>, 2024, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"Report-Msgid-Bugs-To: jerome@deuchnord.fr\n"
 "POT-Creation-Date: 2025-10-19 16:46+0200\n"
-"PO-Revision-Date: 2024-06-18 15:09+0000\n"
+"PO-Revision-Date: 2025-10-30 21:02+0000\n"
 "Last-Translator: Nicolas Tantau <nicolastantau2003@gmail.com>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/kosmorro/cli/ro/"
 ">\n"
@@ -16,9 +16,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
-"20)) ? 1 : 2;\n"
-"X-Generator: Weblate 5.6-dev\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : "
+"(n==0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2;\n"
+"X-Generator: Weblate 5.14.1-dev\n"
 "Generated-By: Babel 2.14.0\n"
 
 #: kosmorro/__main__.py:89
@@ -44,11 +44,13 @@ msgid ""
 "Environment variable KOSMORRO_TIMEZONE is deprecated. Use TZ instead, which "
 "is more standard."
 msgstr ""
+"Variabila de mediu KOSMORRO_TIMEZONE este învechita. Foloseșește TZ, care "
+"este standard."
 
 #: kosmorro/__main__.py:124
 #, python-brace-format
 msgid "Unknown timezone: {timezone}"
-msgstr ""
+msgstr "Fur orar necunoscut: {timezone}"
 
 #: kosmorro/__main__.py:167
 #, python-brace-format
@@ -98,18 +100,17 @@ msgid ""
 "The format to output the information to. If not provided, the output format "
 "will be inferred from the file extension of the output file."
 msgstr ""
+"Fromatul in care trebuie afișată informația. Daca nu este oferit, formatul "
+"afișării va fi dedus din extensia fișierului de ieșire."
 
 #: kosmorro/__main__.py:311
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "The observer's longitude on Earth. Can also be set in the "
-#| "KOSMORRO_LONGITUDE environment variable."
+#, python-brace-format
 msgid ""
 "The observer's position on Earth, in the \"{latitude},{longitude}\" format. "
 "Can also be set in the KOSMORRO_POSITION environment variable."
 msgstr ""
-"Longitudinea observatorului pe pământ. Poate de asemenea sa fie setată in "
-"variabilela de mediu KOSMORRO_LONGITUDE."
+"Poziția observatorului pe pământ, in formatul \"{latitude},{longitude}\" . "
+"Poate de asemenea sa fie setată in variabilela de mediu KOSMORRO_POSITION."
 
 #: kosmorro/__main__.py:321
 msgid ""
@@ -128,6 +129,10 @@ msgid ""
 "org/wiki/List_of_tz_database_time_zones to find your timezone. Can also be "
 "set in the TZ environment variable."
 msgstr ""
+"Fusul orar folosit pentru afișarea orelor. Poate sa a fie ori un număr"
+"(ex. 1 pentru UTC+1) sau un nume de fus orar(ex. Europe/Paris). Accesează "
+"https://en.wikipedia.org/wiki/List_of_tz_database_time_zones ca să îți "
+"găsești fusul orar. Poate de asemenea sa fie setat in variabila de medium TZ."
 
 #: kosmorro/__main__.py:341
 msgid "Disable the colors in the console."
@@ -143,16 +148,12 @@ msgstr ""
 "formatul PDF."
 
 #: kosmorro/__main__.py:358
-#, fuzzy
-#| msgid ""
-#| "Do not generate a graph to represent the rise and set times in the PDF "
-#| "format."
 msgid ""
 "Do not generate a graph to represent the rise and set times in the LaTeX or "
 "PDF file."
 msgstr ""
-"Nu generați un grafic care să reprezinte orele de urcare și coborâre în "
-"format PDF."
+"Nu generați un grafic care să reprezinte orele de urcare și coborâre într-un "
+"fișier LaTeX sau PDF."
 
 #: kosmorro/__main__.py:365
 msgid "Show debugging messages"
@@ -160,13 +161,11 @@ msgstr "Arată mesajele de depanare"
 
 #: kosmorro/__main__.py:373
 msgid "Print a script allowing completion for your shell"
-msgstr ""
+msgstr "Printează un script care să permită completarea pentru terminalul tău/"
 
 #: kosmorro/__main__.py:383
-#, fuzzy
-#| msgid "Moon phase is unavailable for this date."
 msgid "No completion script available for this shell."
-msgstr "Faza lunii este indisponibilă pentru această dată."
+msgstr "Nu există script de completare pentru acest terminal."
 
 #: kosmorro/date.py:17
 #, python-brace-format
@@ -231,16 +230,20 @@ msgid ""
 "to help you to prepare your observation session. All the hours are given in "
 "{timezone}."
 msgstr ""
+"Acest document rezumă efemeridele si evenimentele datei: {date}. Te ajută sa "
+"pregătești observarea sesiunii. Toate orele sunt în {timezone}."
 
 #: kosmorro/dumper.py:328
 msgid ""
 "Don't forget to check the weather forecast before you go out with your "
 "equipment."
 msgstr ""
+"Nu uita să verifici prognoza meteo înainte de a merge afară cu echipamentul "
+"tău."
 
 #: kosmorro/dumper.py:334
 msgid "Ephemerides of the day"
-msgstr ""
+msgstr "Efemeridele zilei"
 
 #: kosmorro/dumper.py:343
 msgid "hours"
@@ -287,16 +290,18 @@ msgid ""
 "Invalid output format: {output_format}. Output file must end with: "
 "{accepted_extensions}"
 msgstr ""
+"Format invalid de ieșire: {output_format}. Fișierul de ieșire trebuie să se "
+"termine cu {accepted_extensions}"
 
 #: kosmorro/geolocation.py:14
 #, python-format
 msgid "The given position (%s) is not valid."
-msgstr ""
+msgstr "Poziția (%s) nu este validă."
 
 #: kosmorro/geolocation.py:30
 msgid ""
 "The given Plus Code seems to be a short code, please provide a full code."
-msgstr ""
+msgstr "Codul Plus dat pare să fie prea scurt, te rog furnizează codul întreg."
 
 #: kosmorro/i18n/strings.py:21
 #, python-format
@@ -316,7 +321,7 @@ msgstr ""
 #: kosmorro/i18n/strings.py:44
 #, python-format
 msgid "Elongation of %s is maximal"
-msgstr ""
+msgstr "Elongația lui %s este maximă"
 
 #: kosmorro/i18n/strings.py:50
 #, python-format
@@ -330,38 +335,38 @@ msgstr ""
 
 #: kosmorro/i18n/strings.py:61
 msgid "March equinox"
-msgstr ""
+msgstr "Echinocțiul de martie"
 
 #: kosmorro/i18n/strings.py:63
 msgid "June solstice"
-msgstr ""
+msgstr "Solstițiul de iunie"
 
 #: kosmorro/i18n/strings.py:65
 msgid "September equinox"
-msgstr ""
+msgstr "Echinocțiul de septembrie"
 
 #: kosmorro/i18n/strings.py:67
 msgid "December solstice"
-msgstr ""
+msgstr "Solstițiul de decembrie"
 
 #: kosmorro/i18n/strings.py:73
 #, python-format
 msgid "Total lunar eclipse until %(hour)s"
-msgstr ""
+msgstr "Eclipsă lunară totală pentru %(hour)s"
 
 #: kosmorro/i18n/strings.py:78
 #, python-format
 msgid "Penumbral lunar eclipse until %(hour)s"
-msgstr ""
+msgstr "Eclipsă penumbrală de lună pentru %(hour)s"
 
 #: kosmorro/i18n/strings.py:83
 #, python-format
 msgid "Partial lunar eclipse until %(hour)s"
-msgstr ""
+msgstr "Eclipsă parțială de lună pentru %(hour)s"
 
 #: kosmorro/i18n/strings.py:99
 msgid "New Moon"
-msgstr ""
+msgstr "Lună nouă"
 
 #: kosmorro/i18n/strings.py:100
 msgid "Waxing Crescent"
@@ -369,7 +374,7 @@ msgstr ""
 
 #: kosmorro/i18n/strings.py:101
 msgid "First Quarter"
-msgstr ""
+msgstr "Primul sfert"
 
 #: kosmorro/i18n/strings.py:102
 msgid "Waxing Gibbous"
@@ -389,7 +394,7 @@ msgstr "Ultimul sfert"
 
 #: kosmorro/i18n/strings.py:106
 msgid "Waning Crescent"
-msgstr ""
+msgstr "Semilună în declin"
 
 #: kosmorro/i18n/strings.py:117
 msgid "Sun"
@@ -438,12 +443,12 @@ msgstr "Pluto"
 #: kosmorro/i18n/utils.py:27
 #, python-brace-format
 msgid "{day_of_week} {month} {day_number}, {year}"
-msgstr ""
+msgstr "{ziua_săptămânii} {lună} {numărul_zilei}, {an}"
 
 #: kosmorro/i18n/utils.py:30
 #, python-brace-format
 msgid "{month} {day_number}, {hours}:{minutes}"
-msgstr ""
+msgstr "{lună} {numărul_zilei}, {ora}:{minutul}"
 
 #: kosmorro/i18n/utils.py:33
 #, python-brace-format
