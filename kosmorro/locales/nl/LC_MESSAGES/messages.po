@@ -6,9 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: kosmorro 0.9.0\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"Report-Msgid-Bugs-To: jerome@deuchnord.fr\n"
 "POT-Creation-Date: 2025-11-03 18:23+0100\n"
-"PO-Revision-Date: 2025-10-20 04:51+0000\n"
+"PO-Revision-Date: 2025-11-03 22:56+0000\n"
 "Last-Translator: Damgermys <damhub28@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/kosmorro/cli/nl/>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.14-dev\n"
+"X-Generator: Weblate 5.14.1-dev\n"
 "Generated-By: Babel 2.9.0\n"
 
 #: kosmorro/__main__.py:89
@@ -40,15 +40,18 @@ msgstr ""
 "hebt opgegeven."
 
 #: kosmorro/__main__.py:115
+#, fuzzy
 msgid ""
 "Environment variable KOSMORRO_TIMEZONE is deprecated. Use TZ instead, which "
 "is more standard."
 msgstr ""
+"De omgevingsvariabele KOSMORRO_TIMEZONE is verouderd. Gebruik in plaats "
+"daarvan TZ, wat meer standaard is."
 
 #: kosmorro/__main__.py:124
 #, python-brace-format
 msgid "Unknown timezone: {timezone}"
-msgstr ""
+msgstr "Onbekende tijdzone: {timezone}"
 
 #: kosmorro/__main__.py:167
 #, fuzzy, python-brace-format
@@ -102,6 +105,9 @@ msgid ""
 "The format to output the information to. If not provided, the output format "
 "will be inferred from the file extension of the output file."
 msgstr ""
+"Het formaat waarin de informatie moet worden gepresenteerd. Indien niet "
+"opgegeven, wordt het formaat gekozen op basis van de extensie van het "
+"exportbestand."
 
 #: kosmorro/__main__.py:311
 #, fuzzy, python-brace-format
@@ -137,6 +143,11 @@ msgid ""
 "en.wikipedia.org/wiki/List_of_tz_database_time_zones to find your timezone. "
 "Can also be set in the TZ environment variable."
 msgstr ""
+"De tijdzone die moet worden gebruikt om de uren weer te geven. Dit kan een "
+"getal zijn (bijvoorbeeld 1 voor UTC+1) of een tijdzonenaam "
+"(bijv. Europa/Parijs). Zie https://en.wikipedia.org/wiki/"
+"List_of_tz_database_time_zones om uw tijdzone te vinden. Kan ook worden "
+"ingesteld in de TZ-omgevingsvariabele."
 
 #: kosmorro/__main__.py:341
 msgid "Disable the colors in the console."
@@ -165,7 +176,7 @@ msgstr "Foutopsporingsberichten weergeven"
 
 #: kosmorro/__main__.py:373
 msgid "Print a script allowing completion for your shell"
-msgstr ""
+msgstr "Druk een script af waarmee je je shell kunt voltooien"
 
 #: kosmorro/__main__.py:383
 #, fuzzy
@@ -300,16 +311,20 @@ msgid ""
 "Invalid output format: {output_format}. Output file must end with: "
 "{accepted_extensions}"
 msgstr ""
+"Ongeldig uitvoerformaat: {output_format}. Het uitvoerbestand moet eindigen "
+"op: {accepted_extensions}"
 
 #: kosmorro/geolocation.py:14
 #, python-format
 msgid "The given position (%s) is not valid."
-msgstr ""
+msgstr "De opgegeven positie (%s) is ongeldig."
 
 #: kosmorro/geolocation.py:30
 msgid ""
 "The given Plus Code seems to be a short code, please provide a full code."
 msgstr ""
+"De opgegeven Plus Code lijkt een korte code te zijn. Geef een volledige code "
+"op."
 
 #: kosmorro/i18n/strings.py:21
 #, fuzzy, python-format
@@ -345,34 +360,34 @@ msgstr "%s is op zijn apogeum"
 
 #: kosmorro/i18n/strings.py:61
 msgid "March equinox"
-msgstr ""
+msgstr "Maartse equinox"
 
 #: kosmorro/i18n/strings.py:63
 msgid "June solstice"
-msgstr ""
+msgstr "Zonnewende van juni"
 
 #: kosmorro/i18n/strings.py:65
 msgid "September equinox"
-msgstr ""
+msgstr "Equinox van september"
 
 #: kosmorro/i18n/strings.py:67
 msgid "December solstice"
-msgstr ""
+msgstr "Winterwende van december"
 
 #: kosmorro/i18n/strings.py:73
 #, python-format
 msgid "Total lunar eclipse until %(hour)s"
-msgstr ""
+msgstr "Totale maansverduistering tot %(hour)s"
 
 #: kosmorro/i18n/strings.py:78
-#, python-format
+#, fuzzy, python-format
 msgid "Penumbral lunar eclipse until %(hour)s"
-msgstr ""
+msgstr "Penumbrale maansverduistering tot %(hour)s"
 
 #: kosmorro/i18n/strings.py:83
 #, python-format
 msgid "Partial lunar eclipse until %(hour)s"
-msgstr ""
+msgstr "Gedeeltelijke maansverduistering tot %(hour)s"
 
 #: kosmorro/i18n/strings.py:99
 msgid "New Moon"
