@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-19 16:46+0200\n"
+"POT-Creation-Date: 2025-11-03 18:23+0100\n"
 "PO-Revision-Date: 2025-03-16 18:01+0000\n"
 "Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/kosmorro/cli/ta/>\n"
@@ -119,9 +119,9 @@ msgstr ""
 #: kosmorro/__main__.py:332
 msgid ""
 "The timezone to use to display the hours. It can be either a number (e.g. 1 "
-"for UTC+1) or a timezone name (e.g. Europe/Paris). See https://en.wikipedia."
-"org/wiki/List_of_tz_database_time_zones to find your timezone. Can also be "
-"set in the TZ environment variable."
+"for UTC+1) or a timezone name (e.g. Europe/Paris). See https://"
+"en.wikipedia.org/wiki/List_of_tz_database_time_zones to find your timezone. "
+"Can also be set in the TZ environment variable."
 msgstr ""
 
 #: kosmorro/__main__.py:341
@@ -430,25 +430,21 @@ msgstr "நெப்டியூன்"
 msgid "Pluto"
 msgstr "புளூட்டோ"
 
-#: kosmorro/i18n/utils.py:27
 #, python-brace-format
-msgid "{day_of_week} {month} {day_number}, {year}"
-msgstr "{year} {month} {day_number}, {day_of_week}"
+#~ msgid "{day_of_week} {month} {day_number}, {year}"
+#~ msgstr "{year} {month} {day_number}, {day_of_week}"
 
-#: kosmorro/i18n/utils.py:30
 #, python-brace-format
-msgid "{month} {day_number}, {hours}:{minutes}"
-msgstr "{month} {day_number}, {hours}: {minutes}"
+#~ msgid "{month} {day_number}, {hours}:{minutes}"
+#~ msgstr "{month} {day_number}, {hours}: {minutes}"
 
-#: kosmorro/i18n/utils.py:33
 #, python-brace-format
-msgid "{month} {day_number}, {year}"
-msgstr "{year} {month} {day_number}"
+#~ msgid "{month} {day_number}, {year}"
+#~ msgstr "{year} {month} {day_number}"
 
-#: kosmorro/i18n/utils.py:36
 #, python-brace-format
-msgid "{hours}:{minutes}"
-msgstr "{hours}: {minutes}"
+#~ msgid "{hours}:{minutes}"
+#~ msgstr "{hours}: {minutes}"
 
 #~ msgid "The format to output the information to"
 #~ msgstr "தகவல்களை வெளியிடுவதற்கான வடிவம்"

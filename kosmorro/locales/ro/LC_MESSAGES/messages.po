@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"Report-Msgid-Bugs-To: jerome@deuchnord.fr\n"
-"POT-Creation-Date: 2025-10-19 16:46+0200\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2025-11-03 18:23+0100\n"
 "PO-Revision-Date: 2025-10-30 21:02+0000\n"
 "Last-Translator: Nicolas Tantau <nicolastantau2003@gmail.com>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/kosmorro/cli/ro/"
@@ -16,8 +16,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n==1 ? 0 : "
-"(n==0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2;\n"
 "X-Generator: Weblate 5.14.1-dev\n"
 "Generated-By: Babel 2.14.0\n"
 
@@ -125,14 +125,14 @@ msgstr ""
 #: kosmorro/__main__.py:332
 msgid ""
 "The timezone to use to display the hours. It can be either a number (e.g. 1 "
-"for UTC+1) or a timezone name (e.g. Europe/Paris). See https://en.wikipedia."
-"org/wiki/List_of_tz_database_time_zones to find your timezone. Can also be "
-"set in the TZ environment variable."
+"for UTC+1) or a timezone name (e.g. Europe/Paris). See https://"
+"en.wikipedia.org/wiki/List_of_tz_database_time_zones to find your timezone. "
+"Can also be set in the TZ environment variable."
 msgstr ""
-"Fusul orar folosit pentru afișarea orelor. Poate sa a fie ori un număr"
-"(ex. 1 pentru UTC+1) sau un nume de fus orar(ex. Europe/Paris). Accesează "
-"https://en.wikipedia.org/wiki/List_of_tz_database_time_zones ca să îți "
-"găsești fusul orar. Poate de asemenea sa fie setat in variabila de medium TZ."
+"Fusul orar folosit pentru afișarea orelor. Poate sa a fie ori un număr(ex. 1 "
+"pentru UTC+1) sau un nume de fus orar(ex. Europe/Paris). Accesează https://"
+"en.wikipedia.org/wiki/List_of_tz_database_time_zones ca să îți găsești fusul "
+"orar. Poate de asemenea sa fie setat in variabila de medium TZ."
 
 #: kosmorro/__main__.py:341
 msgid "Disable the colors in the console."
@@ -440,25 +440,13 @@ msgstr "Neptun"
 msgid "Pluto"
 msgstr "Pluto"
 
-#: kosmorro/i18n/utils.py:27
 #, python-brace-format
-msgid "{day_of_week} {month} {day_number}, {year}"
-msgstr "{ziua_săptămânii} {lună} {numărul_zilei}, {an}"
+#~ msgid "{day_of_week} {month} {day_number}, {year}"
+#~ msgstr "{ziua_săptămânii} {lună} {numărul_zilei}, {an}"
 
-#: kosmorro/i18n/utils.py:30
 #, python-brace-format
-msgid "{month} {day_number}, {hours}:{minutes}"
-msgstr "{lună} {numărul_zilei}, {ora}:{minutul}"
-
-#: kosmorro/i18n/utils.py:33
-#, python-brace-format
-msgid "{month} {day_number}, {year}"
-msgstr ""
-
-#: kosmorro/i18n/utils.py:36
-#, python-brace-format
-msgid "{hours}:{minutes}"
-msgstr ""
+#~ msgid "{month} {day_number}, {hours}:{minutes}"
+#~ msgstr "{lună} {numărul_zilei}, {ora}:{minutul}"
 
 #~ msgid "The format to output the information to"
 #~ msgstr "Formatul în care vrei sa salvezi informația"

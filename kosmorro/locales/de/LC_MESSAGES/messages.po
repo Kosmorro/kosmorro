@@ -6,12 +6,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: kosmorro 0.9.0\n"
-"Report-Msgid-Bugs-To: jerome@deuchnord.fr\n"
-"POT-Creation-Date: 2025-10-19 16:46+0200\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2025-11-03 18:23+0100\n"
 "PO-Revision-Date: 2025-10-20 19:00+0000\n"
 "Last-Translator: Jérôme Deuchnord <jerome@deuchnord.fr>\n"
-"Language-Team: German <https://hosted.weblate.org/projects/kosmorro/cli/de/>"
-"\n"
+"Language-Team: German <https://hosted.weblate.org/projects/kosmorro/cli/de/"
+">\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -110,9 +110,9 @@ msgid ""
 "The observer's position on Earth, in the \"{latitude},{longitude}\" format. "
 "Can also be set in the KOSMORRO_POSITION environment variable."
 msgstr ""
-"Die Position des Beobachters auf der Erde im Format "
-"„{Breitengrad},{Längengrad}“. Kann auch in der Umgebungsvariablen "
-"KOSMORRO_POSITION festgelegt werden."
+"Die Position des Beobachters auf der Erde im Format „{Breitengrad},"
+"{Längengrad}“. Kann auch in der Umgebungsvariablen KOSMORRO_POSITION "
+"festgelegt werden."
 
 #: kosmorro/__main__.py:321
 msgid ""
@@ -127,15 +127,14 @@ msgstr ""
 #: kosmorro/__main__.py:332
 msgid ""
 "The timezone to use to display the hours. It can be either a number (e.g. 1 "
-"for UTC+1) or a timezone name (e.g. Europe/Paris). See https://en.wikipedia."
-"org/wiki/List_of_tz_database_time_zones to find your timezone. Can also be "
-"set in the TZ environment variable."
+"for UTC+1) or a timezone name (e.g. Europe/Paris). See https://"
+"en.wikipedia.org/wiki/List_of_tz_database_time_zones to find your timezone. "
+"Can also be set in the TZ environment variable."
 msgstr ""
-"Die Zeitzone zur Anzeige der Stunden. Es kann entweder eine Zahl "
-"(z.B. 1 für UTC+1) oder ein Zeitzonenname (z.B. Europa/Paris) sein. Siehe "
-"https://en.wikipedia.org/wiki/List_of_tz_database_time_zones, um Dein "
-"Zeitzonenname zu finden. Kann auch in der Umgebungsvariable TZ eingestellt "
-"werden."
+"Die Zeitzone zur Anzeige der Stunden. Es kann entweder eine Zahl (z.B. 1 für "
+"UTC+1) oder ein Zeitzonenname (z.B. Europa/Paris) sein. Siehe https://"
+"en.wikipedia.org/wiki/List_of_tz_database_time_zones, um Dein Zeitzonenname "
+"zu finden. Kann auch in der Umgebungsvariable TZ eingestellt werden."
 
 #: kosmorro/__main__.py:341
 msgid "Disable the colors in the console."
@@ -447,25 +446,21 @@ msgstr "Neptun"
 msgid "Pluto"
 msgstr "Pluto"
 
-#: kosmorro/i18n/utils.py:27
 #, python-brace-format
-msgid "{day_of_week} {month} {day_number}, {year}"
-msgstr "{day_of_week}, den {day_number}. {month} {year}"
+#~ msgid "{day_of_week} {month} {day_number}, {year}"
+#~ msgstr "{day_of_week}, den {day_number}. {month} {year}"
 
-#: kosmorro/i18n/utils.py:30
 #, python-brace-format
-msgid "{month} {day_number}, {hours}:{minutes}"
-msgstr "{day_number}. {month}, {hours}:{minutes}"
+#~ msgid "{month} {day_number}, {hours}:{minutes}"
+#~ msgstr "{day_number}. {month}, {hours}:{minutes}"
 
-#: kosmorro/i18n/utils.py:33
 #, python-brace-format
-msgid "{month} {day_number}, {year}"
-msgstr "{day_number}. {month} {year}"
+#~ msgid "{month} {day_number}, {year}"
+#~ msgstr "{day_number}. {month} {year}"
 
-#: kosmorro/i18n/utils.py:36
 #, python-brace-format
-msgid "{hours}:{minutes}"
-msgstr "{hours}:{minutes}"
+#~ msgid "{hours}:{minutes}"
+#~ msgstr "{hours}:{minutes}"
 
 #~ msgid "The format to output the information to"
 #~ msgstr "Die Datenstruktur der Ausgabe"
