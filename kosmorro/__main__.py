@@ -298,8 +298,7 @@ def get_args(output_formats: [str]):
         default=None,
         choices=output_formats,
         help=_(
-            "The format to output the information to. If not provided, the output format "
-            "will be inferred from the file extension of the output file."
+            "The output format. If not provided, it will be inferred from the file extension of the output file."
         ),
     )
     parser.add_argument(
@@ -308,7 +307,7 @@ def get_args(output_formats: [str]):
         type=str,
         default=None,
         help=_(
-            'The observer\'s position on Earth, in the "{latitude},{longitude}" format. '
+            'The observer\'s position on Earth, in the "latitude,longitude" format. '
             "Can also be set in the KOSMORRO_POSITION environment variable."
         ),
     )
@@ -345,10 +344,7 @@ def get_args(output_formats: [str]):
         "-o",
         type=str,
         default=None,
-        help=_(
-            "A file to export the output to. If not given, the standard output is used. "
-            "This argument is needed for PDF format."
-        ),
+        help=_("Use this option to save the result in a file."),
     )
     parser.add_argument(
         "--no-graph",
