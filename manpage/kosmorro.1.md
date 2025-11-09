@@ -29,12 +29,10 @@
     disable the colors in the console
 
 `--output=`_OUTPUT_, `-o` _OUTPUT_  
-    a file to export the output to; if not given, the standard output is used
+    use this option to save the result in a file
 
 `--format=`_FORMAT_, `-f` _FORMAT_ (optional)  
-    the format under which the information have to be output; one of the following:
-    text (plain text, like normal console output), json, tex (LaTeX), pdf.
-    If no format is provided, the output format will be inferred from the extension of the output file
+    The output format. If not provided, it will be inferred from the file extension of the output file
 
 `--no-graph`  
     present the ephemerides in a table instead of a graph; PDF output format only
