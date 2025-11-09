@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-03 18:23+0100\n"
+"POT-Creation-Date: 2025-11-09 11:42+0100\n"
 "PO-Revision-Date: 2025-10-30 21:02+0000\n"
 "Last-Translator: Nicolas Tantau <nicolastantau2003@gmail.com>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/kosmorro/cli/ro/"
@@ -96,23 +96,30 @@ msgid "Show the program version"
 msgstr "Arată versiunea programului"
 
 #: kosmorro/__main__.py:301
+#, fuzzy
+#| msgid ""
+#| "The format to output the information to. If not provided, the output "
+#| "format will be inferred from the file extension of the output file."
 msgid ""
-"The format to output the information to. If not provided, the output format "
-"will be inferred from the file extension of the output file."
+"The output format. If not provided, it will be inferred from the file "
+"extension of the output file."
 msgstr ""
 "Fromatul in care trebuie afișată informația. Daca nu este oferit, formatul "
 "afișării va fi dedus din extensia fișierului de ieșire."
 
-#: kosmorro/__main__.py:311
-#, python-brace-format
+#: kosmorro/__main__.py:310
+#, fuzzy
+#| msgid ""
+#| "The observer's position on Earth, in the \"{latitude},{longitude}\" "
+#| "format. Can also be set in the KOSMORRO_POSITION environment variable."
 msgid ""
-"The observer's position on Earth, in the \"{latitude},{longitude}\" format. "
-"Can also be set in the KOSMORRO_POSITION environment variable."
+"The observer's position on Earth, in the \"latitude,longitude\" format. Can "
+"also be set in the KOSMORRO_POSITION environment variable."
 msgstr ""
 "Poziția observatorului pe pământ, in formatul \"{latitude},{longitude}\" . "
 "Poate de asemenea sa fie setată in variabilela de mediu KOSMORRO_POSITION."
 
-#: kosmorro/__main__.py:321
+#: kosmorro/__main__.py:320
 msgid ""
 "The date for which the ephemerides must be calculated. Can be in the YYYY-MM-"
 "DD format or an interval in the \"[+-]YyMmDd\" format (with Y, M, and D "
@@ -122,7 +129,7 @@ msgstr ""
 "YYYY-MM-DD sau un interval \"[+-]YyMmDd\" (cu Y, M, și D numere). Implicit "
 "la data curentă."
 
-#: kosmorro/__main__.py:332
+#: kosmorro/__main__.py:331
 msgid ""
 "The timezone to use to display the hours. It can be either a number (e.g. 1 "
 "for UTC+1) or a timezone name (e.g. Europe/Paris). See https://"
@@ -134,20 +141,15 @@ msgstr ""
 "en.wikipedia.org/wiki/List_of_tz_database_time_zones ca să îți găsești fusul "
 "orar. Poate de asemenea sa fie setat in variabila de medium TZ."
 
-#: kosmorro/__main__.py:341
+#: kosmorro/__main__.py:340
 msgid "Disable the colors in the console."
 msgstr "Dezactivează culorile în consolă."
 
-#: kosmorro/__main__.py:349
-msgid ""
-"A file to export the output to. If not given, the standard output is used. "
-"This argument is needed for PDF format."
+#: kosmorro/__main__.py:347
+msgid "Use this option to save the result in a file."
 msgstr ""
-"Un fișier în care sa fie salvat rezultatul. Daca nu este dat, metoda "
-"standard de salvare va fi solosită. Acest argument este necesar pentru "
-"formatul PDF."
 
-#: kosmorro/__main__.py:358
+#: kosmorro/__main__.py:354
 msgid ""
 "Do not generate a graph to represent the rise and set times in the LaTeX or "
 "PDF file."
@@ -155,15 +157,15 @@ msgstr ""
 "Nu generați un grafic care să reprezinte orele de urcare și coborâre într-un "
 "fișier LaTeX sau PDF."
 
-#: kosmorro/__main__.py:365
+#: kosmorro/__main__.py:361
 msgid "Show debugging messages"
 msgstr "Arată mesajele de depanare"
 
-#: kosmorro/__main__.py:373
+#: kosmorro/__main__.py:369
 msgid "Print a script allowing completion for your shell"
 msgstr "Printează un script care să permită completarea pentru terminalul tău/"
 
-#: kosmorro/__main__.py:383
+#: kosmorro/__main__.py:379
 msgid "No completion script available for this shell."
 msgstr "Nu există script de completare pentru acest terminal."
 
@@ -439,6 +441,14 @@ msgstr "Neptun"
 #: kosmorro/i18n/strings.py:127
 msgid "Pluto"
 msgstr "Pluto"
+
+#~ msgid ""
+#~ "A file to export the output to. If not given, the standard output is "
+#~ "used. This argument is needed for PDF format."
+#~ msgstr ""
+#~ "Un fișier în care sa fie salvat rezultatul. Daca nu este dat, metoda "
+#~ "standard de salvare va fi solosită. Acest argument este necesar pentru "
+#~ "formatul PDF."
 
 #, python-brace-format
 #~ msgid "{day_of_week} {month} {day_number}, {year}"

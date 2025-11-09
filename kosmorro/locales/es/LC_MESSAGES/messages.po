@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kosmorro 0.9.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-03 18:23+0100\n"
+"POT-Creation-Date: 2025-11-09 11:42+0100\n"
 "PO-Revision-Date: 2023-01-11 16:48+0000\n"
 "Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/kosmorro/cli/es/"
@@ -94,23 +94,23 @@ msgstr "Mostrar la versión del programa"
 
 #: kosmorro/__main__.py:301
 msgid ""
-"The format to output the information to. If not provided, the output format "
-"will be inferred from the file extension of the output file."
+"The output format. If not provided, it will be inferred from the file "
+"extension of the output file."
 msgstr ""
 
-#: kosmorro/__main__.py:311
-#, fuzzy, python-brace-format
+#: kosmorro/__main__.py:310
+#, fuzzy
 #| msgid ""
 #| "The observer's longitude on Earth. Can also be set in the "
 #| "KOSMORRO_LONGITUDE environment variable."
 msgid ""
-"The observer's position on Earth, in the \"{latitude},{longitude}\" format. "
-"Can also be set in the KOSMORRO_POSITION environment variable."
+"The observer's position on Earth, in the \"latitude,longitude\" format. Can "
+"also be set in the KOSMORRO_POSITION environment variable."
 msgstr ""
 "La longitud del observador en la Tierra. También se puede establecer en la "
 "variable ambiental KOSMORRO_LONGITUDE."
 
-#: kosmorro/__main__.py:321
+#: kosmorro/__main__.py:320
 msgid ""
 "The date for which the ephemerides must be calculated. Can be in the YYYY-MM-"
 "DD format or an interval in the \"[+-]YyMmDd\" format (with Y, M, and D "
@@ -120,7 +120,7 @@ msgstr ""
 "AAAA-MM-DD o un intervalo en el formato \"[+-]AAAA-MMDd\" (con los números "
 "Y, M y D). Por defecto es la fecha actual."
 
-#: kosmorro/__main__.py:332
+#: kosmorro/__main__.py:331
 msgid ""
 "The timezone to use to display the hours. It can be either a number (e.g. 1 "
 "for UTC+1) or a timezone name (e.g. Europe/Paris). See https://"
@@ -128,19 +128,15 @@ msgid ""
 "Can also be set in the TZ environment variable."
 msgstr ""
 
-#: kosmorro/__main__.py:341
+#: kosmorro/__main__.py:340
 msgid "Disable the colors in the console."
 msgstr "Deshabilita los colores de la consola."
 
-#: kosmorro/__main__.py:349
-msgid ""
-"A file to export the output to. If not given, the standard output is used. "
-"This argument is needed for PDF format."
+#: kosmorro/__main__.py:347
+msgid "Use this option to save the result in a file."
 msgstr ""
-"Un archivo al que exportar la salida. Si no se da, se utiliza la salida "
-"estándar. Este argumento es necesario para el formato PDF."
 
-#: kosmorro/__main__.py:358
+#: kosmorro/__main__.py:354
 #, fuzzy
 #| msgid ""
 #| "Do not generate a graph to represent the rise and set times in the PDF "
@@ -152,15 +148,15 @@ msgstr ""
 "No genere un gráfico para representar el aumento y los tiempos de ajuste en "
 "el formato PDF."
 
-#: kosmorro/__main__.py:365
+#: kosmorro/__main__.py:361
 msgid "Show debugging messages"
 msgstr "Mostrar mensajes de depuración"
 
-#: kosmorro/__main__.py:373
+#: kosmorro/__main__.py:369
 msgid "Print a script allowing completion for your shell"
 msgstr ""
 
-#: kosmorro/__main__.py:383
+#: kosmorro/__main__.py:379
 #, fuzzy
 #| msgid "Moon phase is unavailable for this date."
 msgid "No completion script available for this shell."
@@ -446,6 +442,13 @@ msgstr "Neptuno"
 #: kosmorro/i18n/strings.py:127
 msgid "Pluto"
 msgstr "Plutón"
+
+#~ msgid ""
+#~ "A file to export the output to. If not given, the standard output is "
+#~ "used. This argument is needed for PDF format."
+#~ msgstr ""
+#~ "Un archivo al que exportar la salida. Si no se da, se utiliza la salida "
+#~ "estándar. Este argumento es necesario para el formato PDF."
 
 #, python-brace-format
 #~ msgid "{day_of_week} {month} {day_number}, {year}"
