@@ -6,18 +6,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: kosmorro 0.9.0\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"Report-Msgid-Bugs-To: jerome@deuchnord.fr\n"
 "POT-Creation-Date: 2025-11-09 11:42+0100\n"
-"PO-Revision-Date: 2025-10-20 19:00+0000\n"
+"PO-Revision-Date: 2025-11-09 13:51+0000\n"
 "Last-Translator: Jérôme Deuchnord <jerome@deuchnord.fr>\n"
-"Language-Team: German <https://hosted.weblate.org/projects/kosmorro/cli/de/"
-">\n"
+"Language-Team: German <https://hosted.weblate.org/projects/kosmorro/cli/de/>"
+"\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.14-dev\n"
+"X-Generator: Weblate 5.15-dev\n"
 "Generated-By: Babel 2.9.0\n"
 
 #: kosmorro/__main__.py:89
@@ -97,10 +97,6 @@ msgid "Show the program version"
 msgstr "Stellt die Version des Programms aus"
 
 #: kosmorro/__main__.py:301
-#, fuzzy
-#| msgid ""
-#| "The format to output the information to. If not provided, the output "
-#| "format will be inferred from the file extension of the output file."
 msgid ""
 "The output format. If not provided, it will be inferred from the file "
 "extension of the output file."
@@ -109,17 +105,12 @@ msgstr ""
 "Ausgabeformat von der Dateierweiterung der Ausgabedatei abgeleitet."
 
 #: kosmorro/__main__.py:310
-#, fuzzy
-#| msgid ""
-#| "The observer's position on Earth, in the \"{latitude},{longitude}\" "
-#| "format. Can also be set in the KOSMORRO_POSITION environment variable."
 msgid ""
 "The observer's position on Earth, in the \"latitude,longitude\" format. Can "
 "also be set in the KOSMORRO_POSITION environment variable."
 msgstr ""
-"Die Position des Beobachters auf der Erde im Format „{Breitengrad},"
-"{Längengrad}“. Kann auch in der Umgebungsvariablen KOSMORRO_POSITION "
-"festgelegt werden."
+"Die Position des Beobachters im Format „Breitengrad,Längengrad“. Kann auch "
+"in der Umgebungsvariablen KOSMORRO_POSITION festgelegt werden."
 
 #: kosmorro/__main__.py:320
 msgid ""
@@ -149,7 +140,7 @@ msgstr "Deaktiviert die Farben in der Konsole."
 
 #: kosmorro/__main__.py:347
 msgid "Use this option to save the result in a file."
-msgstr ""
+msgstr "Benutz diese Option, um das Ergebnis in einer Datei zu speichern."
 
 #: kosmorro/__main__.py:354
 msgid ""
