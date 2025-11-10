@@ -27,7 +27,7 @@ argcomplete = "^3.6.2"
 
 [tool.poetry.group.dev.dependencies]
 black = ">=24.8,<26.0"
-pytest = "^8.3"
+pytest = ">=8.3,<10.0"
 aurornis = "^1.6"
 
 [build-system]
