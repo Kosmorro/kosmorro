@@ -175,18 +175,18 @@ numpy = "*"
 
 [[package]]
 name = "kosmorrolib"
-version = "1.0.12"
+version = "1.0.13"
 description = "A library to computes the ephemerides."
 optional = false
 python-versions = "<4.0,>=3.8"
 groups = ["main"]
 files = [
-    {file = "kosmorrolib-1.0.12-py3-none-any.whl", hash = "sha256:4ea6b0cb2933836b32684f92f7df29a48b8a60cf27a4c513ac38189d47dbcbdc"},
-    {file = "kosmorrolib-1.0.12.tar.gz", hash = "sha256:8c9da76165c91503406b2cae395236d37c3899c0116cd4e7e338e58643ef0cc7"},
+    {file = "kosmorrolib-1.0.13-py3-none-any.whl", hash = "sha256:e6df9ebc73d3a149351b7644569ca470242e0b22683afb332d0999e010bf8175"},
+    {file = "kosmorrolib-1.0.13.tar.gz", hash = "sha256:d327a3f20f485e46f520c2c55d573fcbe804bdb40131946f815feabc8a964d39"},
 ]
 
 [package.dependencies]
-numpy = {version = ">=2.1,<3.0", markers = "python_version >= \"3.10\" and python_version < \"4.0\""}
+numpy = {version = ">=2.3,<3.0", markers = "python_version >= \"3.11\""}
 python-dateutil = ">=2.8,<3.0"
 skyfield = ">=1.49,<2.0"
 skyfield-data = "*"
