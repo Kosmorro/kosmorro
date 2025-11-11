@@ -1,9 +1,9 @@
-# [Version 1.0.0](https://github.com/Kosmorro/kosmorro/compare/v0.10.13...v) (2025-10-19)
+# [Version 1.0.0](https://github.com/Kosmorro/kosmorro/compare/v0.10.13...v) (2025-11-??)
 
 
 ### Features
 
-* Python 3.13 and 3.14 support ([d7def50](https://github.com/Kosmorro/kosmorro/commit/d7def507034e6af0d7c7bdbc4d4174b046b082ac))
+* add support for Python 3.13 and 3.14 ([d7def50](https://github.com/Kosmorro/kosmorro/commit/d7def507034e6af0d7c7bdbc4d4174b046b082ac))
 * **i18n:** add Romanian translation ([a61bdb8](https://github.com/Kosmorro/kosmorro/commit/a61bdb8dc774e8cbbe6feac918e4625e0a273b86)) (thanks @[Nic-T](https://github.com/Nic-T)!)
 * **i18n:** add Tamil translation ([089d439](https://github.com/Kosmorro/kosmorro/commit/089d4391cded47b97fc683a44c6068e2d0dd0caf)) (thanks [தமிழ்நேரக்குழு](https://tamilneram.github.io/)!)
 * replace latitude and longitude with one argument alone: --position ([#191](https://github.com/Kosmorro/kosmorro/issues/191)) ([5cab68e](https://github.com/Kosmorro/kosmorro/commit/5cab68ee926e1e085b6fbcff98e7575bb91327db))
