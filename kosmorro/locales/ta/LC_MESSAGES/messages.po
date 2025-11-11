@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-09 11:42+0100\n"
+"POT-Creation-Date: 2025-11-11 11:06+0100\n"
 "PO-Revision-Date: 2025-11-03 19:51+0000\n"
 "Last-Translator: Jérôme Deuchnord <jerome@deuchnord.fr>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/kosmorro/cli/ta/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Weblate 5.14.1-dev\n"
 "Generated-By: Babel 2.14.0\n"
 
-#: kosmorro/__main__.py:89
+#: kosmorro/__main__.py:92
 msgid ""
 "Save the planet and paper!\n"
 "Consider printing your PDF document only if really necessary, and use the "
@@ -30,47 +30,47 @@ msgstr ""
 "உண்மையிலேயே தேவைப்பட்டால் மட்டுமே உங்கள் எஆவ ஆவணத்தை அச்சிடுவதைக் கருத்தில் கொண்டு, தாளின் "
 "மறுபக்கத்தைப் பயன்படுத்தவும்."
 
-#: kosmorro/__main__.py:97
+#: kosmorro/__main__.py:100
 msgid ""
 "PDF output will not contain the ephemerides, because you didn't provide the "
 "observation coordinates."
 msgstr ""
 "எஆவ வெளியீட்டில் எஃபெமரைடுகள் இருக்காது, ஏனெனில் நீங்கள் கண்காணிப்பு ஆயங்களை வழங்கவில்லை."
 
-#: kosmorro/__main__.py:115
+#: kosmorro/__main__.py:118
 msgid ""
 "Environment variable KOSMORRO_TIMEZONE is deprecated. Use TZ instead, which "
 "is more standard."
 msgstr ""
 
-#: kosmorro/__main__.py:124
+#: kosmorro/__main__.py:127
 #, python-brace-format
 msgid "Unknown timezone: {timezone}"
 msgstr ""
 
-#: kosmorro/__main__.py:167
+#: kosmorro/__main__.py:170
 #, python-brace-format
 msgid "The file could not be saved in \"{path}\": {error}"
 msgstr "கோப்பை \"{path}\" இல் சேமிக்க முடியவில்லை: {error}"
 
-#: kosmorro/__main__.py:181
+#: kosmorro/__main__.py:184
 msgid "Please provide a file path to export in this format (--output)."
 msgstr "இந்த வடிவத்தில் ஏற்றுமதி செய்ய ஒரு கோப்புப் பாதையை வழங்கவும் (--output)."
 
-#: kosmorro/__main__.py:213
+#: kosmorro/__main__.py:216
 #, python-brace-format
 msgid "Moon phase can only be computed between {min_date} and {max_date}"
 msgstr ""
 "திங்கள் கட்டத்தை {min_date} மற்றும் {max_date} க்கு இடையில் மட்டுமே கணக்கிட முடியும்"
 
-#: kosmorro/__main__.py:264
+#: kosmorro/__main__.py:267
 #, python-brace-format
 msgid ""
 "Running on Python {python_version} with Kosmorrolib v{kosmorrolib_version}"
 msgstr ""
 "கோச்மொரோலிப் ப{kosmorrolib_version}பதிப்புடன் {python_version} இல் இயங்குகிறது"
 
-#: kosmorro/__main__.py:277
+#: kosmorro/__main__.py:280
 msgid ""
 "Compute the ephemerides and the events for a given date and a given position "
 "on Earth."
@@ -78,7 +78,7 @@ msgstr ""
 "கொடுக்கப்பட்ட தேதி மற்றும் பூமியில் கொடுக்கப்பட்ட நிலைக்கான எஃபெமரைடுகளையும் "
 "நிகழ்வுகளையும் கணக்கிடுங்கள்."
 
-#: kosmorro/__main__.py:280
+#: kosmorro/__main__.py:283
 msgid ""
 "By default, only the events will be computed for today.\n"
 "To compute also the ephemerides, latitude and longitude arguments are needed."
@@ -86,17 +86,17 @@ msgstr ""
 "இயல்பாக, நிகழ்வுகள் மட்டுமே இன்று கணக்கிடப்படும்.\n"
 "எஃபெமரைடுகள், அட்சரேகை மற்றும் தீர்க்கரேகை வாதங்கள் தேவை."
 
-#: kosmorro/__main__.py:292
+#: kosmorro/__main__.py:295
 msgid "Show the program version"
 msgstr "நிரல் பதிப்பைக் காட்டு"
 
-#: kosmorro/__main__.py:301
+#: kosmorro/__main__.py:304
 msgid ""
 "The output format. If not provided, it will be inferred from the file "
 "extension of the output file."
 msgstr ""
 
-#: kosmorro/__main__.py:310
+#: kosmorro/__main__.py:313
 #, fuzzy
 #| msgid ""
 #| "The observer's latitude on Earth. Can also be set in the "
@@ -107,7 +107,7 @@ msgid ""
 msgstr ""
 "பூமியில் பார்வையாளரின் குறுக்குக்கோடு. கோச்மோரோ_குறுக்குக்கோடு சூழல் மாறியில் அமைக்கலாம்."
 
-#: kosmorro/__main__.py:320
+#: kosmorro/__main__.py:323
 msgid ""
 "The date for which the ephemerides must be calculated. Can be in the YYYY-MM-"
 "DD format or an interval in the \"[+-]YyMmDd\" format (with Y, M, and D "
@@ -117,7 +117,7 @@ msgstr ""
 "வடிவத்தில் (Y, M மற்றும் D எண்களுடன்) இடைவெளியில் இருக்கலாம். தற்போதைய தேதிக்கு "
 "இயல்புநிலை."
 
-#: kosmorro/__main__.py:331
+#: kosmorro/__main__.py:334
 msgid ""
 "The timezone to use to display the hours. It can be either a number (e.g. 1 "
 "for UTC+1) or a timezone name (e.g. Europe/Paris). See https://"
@@ -125,15 +125,15 @@ msgid ""
 "Can also be set in the TZ environment variable."
 msgstr ""
 
-#: kosmorro/__main__.py:340
+#: kosmorro/__main__.py:343
 msgid "Disable the colors in the console."
 msgstr "முனையத்தில் வண்ணங்களை முடக்கு."
 
-#: kosmorro/__main__.py:347
+#: kosmorro/__main__.py:350
 msgid "Use this option to save the result in a file."
 msgstr ""
 
-#: kosmorro/__main__.py:354
+#: kosmorro/__main__.py:357
 #, fuzzy
 #| msgid ""
 #| "Do not generate a graph to represent the rise and set times in the PDF "
@@ -143,15 +143,15 @@ msgid ""
 "PDF file."
 msgstr "எஆவ வடிவத்தில் உயர்வு மற்றும் நேரங்களை அமைக்க ஒரு வரைபடத்தை உருவாக்க வேண்டாம்."
 
-#: kosmorro/__main__.py:361
+#: kosmorro/__main__.py:364
 msgid "Show debugging messages"
 msgstr "பிழைத்திருத்த செய்திகளைக் காட்டு"
 
-#: kosmorro/__main__.py:369
+#: kosmorro/__main__.py:372
 msgid "Print a script allowing completion for your shell"
 msgstr ""
 
-#: kosmorro/__main__.py:379
+#: kosmorro/__main__.py:382
 #, fuzzy
 #| msgid "Moon phase is unavailable for this date."
 msgid "No completion script available for this shell."
