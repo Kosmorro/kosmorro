@@ -68,10 +68,13 @@ def run():
         return -1
 
     position = None
-    if args.position not in [None, ""]:
-        position = get_position(args.position)
-    elif env_vars.position not in [None, ""]:
-        position = get_position(env_vars.position)
+    try:
+        if args.position not in [None, ""]:
+            position = get_position(args.position)
+        elif env_vars.position not in [None, ""]:
+            position = get_position(env_vars.position)
+    except ValueError as e:
+        print_stderr(colored(e.args[0], color="red", attrs=["bold"]))
 
     # if output format is not specified, try to use output file extension as output format
     if args.output is not None and output_format is None:
