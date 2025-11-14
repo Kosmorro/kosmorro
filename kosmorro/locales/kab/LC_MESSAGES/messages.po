@@ -1,0 +1,390 @@
+# Translations template for PROJECT.
+# Copyright (C) 2025 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+# ButterflyOfFire <boffire@users.noreply.hosted.weblate.org>, 2025.
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2025-11-11 11:06+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: kab\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: kosmorro/__main__.py:92
+msgid ""
+"Save the planet and paper!\n"
+"Consider printing your PDF document only if really necessary, and use the"
+" other side of the sheet."
+msgstr ""
+
+#: kosmorro/__main__.py:100
+msgid ""
+"PDF output will not contain the ephemerides, because you didn't provide "
+"the observation coordinates."
+msgstr ""
+
+#: kosmorro/__main__.py:118
+msgid ""
+"Environment variable KOSMORRO_TIMEZONE is deprecated. Use TZ instead, "
+"which is more standard."
+msgstr ""
+
+#: kosmorro/__main__.py:127
+#, python-brace-format
+msgid "Unknown timezone: {timezone}"
+msgstr ""
+
+#: kosmorro/__main__.py:170
+#, python-brace-format
+msgid "The file could not be saved in \"{path}\": {error}"
+msgstr ""
+
+#: kosmorro/__main__.py:184
+msgid "Please provide a file path to export in this format (--output)."
+msgstr ""
+
+#: kosmorro/__main__.py:216
+#, python-brace-format
+msgid "Moon phase can only be computed between {min_date} and {max_date}"
+msgstr ""
+
+#: kosmorro/__main__.py:267
+#, python-brace-format
+msgid "Running on Python {python_version} with Kosmorrolib v{kosmorrolib_version}"
+msgstr ""
+
+#: kosmorro/__main__.py:280
+msgid ""
+"Compute the ephemerides and the events for a given date and a given "
+"position on Earth."
+msgstr ""
+
+#: kosmorro/__main__.py:283
+msgid ""
+"By default, only the events will be computed for today.\n"
+"To compute also the ephemerides, latitude and longitude arguments are "
+"needed."
+msgstr ""
+
+#: kosmorro/__main__.py:295
+msgid "Show the program version"
+msgstr ""
+
+#: kosmorro/__main__.py:304
+msgid ""
+"The output format. If not provided, it will be inferred from the file "
+"extension of the output file."
+msgstr ""
+
+#: kosmorro/__main__.py:313
+msgid ""
+"The observer's position on Earth, in the \"latitude,longitude\" format. "
+"Can also be set in the KOSMORRO_POSITION environment variable."
+msgstr ""
+
+#: kosmorro/__main__.py:323
+msgid ""
+"The date for which the ephemerides must be calculated. Can be in the "
+"YYYY-MM-DD format or an interval in the \"[+-]YyMmDd\" format (with Y, M,"
+" and D numbers). Defaults to current date."
+msgstr ""
+
+#: kosmorro/__main__.py:334
+msgid ""
+"The timezone to use to display the hours. It can be either a number (e.g."
+" 1 for UTC+1) or a timezone name (e.g. Europe/Paris). See "
+"https://en.wikipedia.org/wiki/List_of_tz_database_time_zones to find your"
+" timezone. Can also be set in the TZ environment variable."
+msgstr ""
+
+#: kosmorro/__main__.py:343
+msgid "Disable the colors in the console."
+msgstr ""
+
+#: kosmorro/__main__.py:350
+msgid "Use this option to save the result in a file."
+msgstr ""
+
+#: kosmorro/__main__.py:357
+msgid ""
+"Do not generate a graph to represent the rise and set times in the LaTeX "
+"or PDF file."
+msgstr ""
+
+#: kosmorro/__main__.py:364
+msgid "Show debugging messages"
+msgstr ""
+
+#: kosmorro/__main__.py:372
+msgid "Print a script allowing completion for your shell"
+msgstr ""
+
+#: kosmorro/__main__.py:382
+msgid "No completion script available for this shell."
+msgstr ""
+
+#: kosmorro/date.py:17
+#, python-brace-format
+msgid "The date {date} is not valid: {error}"
+msgstr ""
+
+#: kosmorro/date.py:40
+#, python-brace-format
+msgid ""
+"The date {date} does not match the required YYYY-MM-DD format or the "
+"offset format."
+msgstr ""
+
+#: kosmorro/dumper.py:137
+msgid "Expected events:"
+msgstr ""
+
+#: kosmorro/dumper.py:144
+msgid "Note: All the hours are given in UTC."
+msgstr ""
+
+#: kosmorro/dumper.py:152
+#, python-brace-format
+msgid "Note: All the hours are given in the UTC{offset} timezone."
+msgstr ""
+
+#: kosmorro/dumper.py:205 kosmorro/dumper.py:336
+msgid "Object"
+msgstr ""
+
+#: kosmorro/dumper.py:206 kosmorro/dumper.py:337
+msgid "Rise time"
+msgstr ""
+
+#: kosmorro/dumper.py:207 kosmorro/dumper.py:339
+msgid "Culmination time"
+msgstr ""
+
+#: kosmorro/dumper.py:208 kosmorro/dumper.py:341
+msgid "Set time"
+msgstr ""
+
+#: kosmorro/dumper.py:234
+msgid "Moon phase is unavailable for this date."
+msgstr ""
+
+#: kosmorro/dumper.py:240
+#, python-brace-format
+msgid "{next_moon_phase} on {next_moon_phase_date} at {next_moon_phase_time}"
+msgstr ""
+
+#: kosmorro/dumper.py:309
+msgid "Overview of your sky"
+msgstr ""
+
+#: kosmorro/dumper.py:318
+#, python-brace-format
+msgid ""
+"This document summarizes the ephemerides and the events of {date}. It "
+"aims to help you to prepare your observation session. All the hours are "
+"given in {timezone}."
+msgstr ""
+
+#: kosmorro/dumper.py:328
+msgid ""
+"Don't forget to check the weather forecast before you go out with your "
+"equipment."
+msgstr ""
+
+#: kosmorro/dumper.py:334
+msgid "Ephemerides of the day"
+msgstr ""
+
+#: kosmorro/dumper.py:343
+msgid "hours"
+msgstr ""
+
+#: kosmorro/dumper.py:345
+msgid "Moon phase:"
+msgstr ""
+
+#: kosmorro/dumper.py:350
+msgid "Expected events"
+msgstr ""
+
+#: kosmorro/dumper.py:491
+msgid ""
+"Building PDF was not possible, because some dependencies are not "
+"installed.\n"
+"Please look at the documentation at https://kosmorro.space/cli/generate-"
+"pdf/ for more information."
+msgstr ""
+
+#: kosmorro/dumper.py:540
+#, python-format
+msgid ""
+"An error occurred during the compilation of the PDF.\n"
+"Please open an issue at https://github.com/Kosmorro/kosmorro/issues and "
+"share the content of the log file at /tmp/kosmorro-%s.log"
+msgstr ""
+
+#: kosmorro/exceptions.py:36
+#, python-brace-format
+msgid "The date must be between {minimum_date} and {maximum_date}"
+msgstr ""
+
+#: kosmorro/exceptions.py:49
+#, python-brace-format
+msgid ""
+"Invalid output format: {output_format}. Output file must end with: "
+"{accepted_extensions}"
+msgstr ""
+
+#: kosmorro/geolocation.py:14
+#, python-format
+msgid "The given position (%s) is not valid."
+msgstr ""
+
+#: kosmorro/geolocation.py:30
+msgid "The given Plus Code seems to be a short code, please provide a full code."
+msgstr ""
+
+#: kosmorro/i18n/strings.py:21
+#, python-format
+msgid "%s is in opposition"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:26
+#, python-format
+msgid "%s and %s are in conjunction"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:35
+#, python-format
+msgid "%s occults %s"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:44
+#, python-format
+msgid "Elongation of %s is maximal"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:50
+#, python-format
+msgid "%s is at its periapsis"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:55
+#, python-format
+msgid "%s is at its apoapsis"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:61
+msgid "March equinox"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:63
+msgid "June solstice"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:65
+msgid "September equinox"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:67
+msgid "December solstice"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:73
+#, python-format
+msgid "Total lunar eclipse until %(hour)s"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:78
+#, python-format
+msgid "Penumbral lunar eclipse until %(hour)s"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:83
+#, python-format
+msgid "Partial lunar eclipse until %(hour)s"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:99
+msgid "New Moon"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:100
+msgid "Waxing Crescent"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:101
+msgid "First Quarter"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:102
+msgid "Waxing Gibbous"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:103
+msgid "Full Moon"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:104
+msgid "Waning Gibbous"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:105
+msgid "Last Quarter"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:106
+msgid "Waning Crescent"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:117
+msgid "Sun"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:118
+msgid "Moon"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:119
+msgid "Mercury"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:120
+msgid "Venus"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:121
+msgid "Earth"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:122
+msgid "Mars"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:123
+msgid "Jupiter"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:124
+msgid "Saturn"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:125
+msgid "Uranus"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:126
+msgid "Neptune"
+msgstr ""
+
+#: kosmorro/i18n/strings.py:127
+msgid "Pluto"
+msgstr ""
