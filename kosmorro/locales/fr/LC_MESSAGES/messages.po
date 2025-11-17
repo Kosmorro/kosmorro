@@ -6,12 +6,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: kosmorro 0.9.0\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"Report-Msgid-Bugs-To: jerome@deuchnord.fr\n"
 "POT-Creation-Date: 2025-11-11 11:06+0100\n"
-"PO-Revision-Date: 2025-11-09 13:51+0000\n"
+"PO-Revision-Date: 2025-11-17 10:51+0000\n"
 "Last-Translator: Jérôme Deuchnord <jerome@deuchnord.fr>\n"
-"Language-Team: French <https://hosted.weblate.org/projects/kosmorro/cli/fr/"
-">\n"
+"Language-Team: French <https://hosted.weblate.org/projects/kosmorro/cli/fr/>"
+"\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -339,7 +339,7 @@ msgstr "Équinoxe de mars"
 
 #: kosmorro/i18n/strings.py:63
 msgid "June solstice"
-msgstr "Soltice de juin"
+msgstr "Solstice de juin"
 
 #: kosmorro/i18n/strings.py:65
 msgid "September equinox"
