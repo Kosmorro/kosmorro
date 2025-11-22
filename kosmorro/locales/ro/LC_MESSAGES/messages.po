@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-09 11:42+0100\n"
+"POT-Creation-Date: 2025-11-11 11:06+0100\n"
 "PO-Revision-Date: 2025-10-30 21:02+0000\n"
 "Last-Translator: Nicolas Tantau <nicolastantau2003@gmail.com>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/kosmorro/cli/ro/"
@@ -21,7 +21,7 @@ msgstr ""
 "X-Generator: Weblate 5.14.1-dev\n"
 "Generated-By: Babel 2.14.0\n"
 
-#: kosmorro/__main__.py:89
+#: kosmorro/__main__.py:92
 msgid ""
 "Save the planet and paper!\n"
 "Consider printing your PDF document only if really necessary, and use the "
@@ -31,7 +31,7 @@ msgstr ""
 "Considerați printarea documentului PDF doar daca este necesar, si folositi "
 "cealalta parte a pagini."
 
-#: kosmorro/__main__.py:97
+#: kosmorro/__main__.py:100
 msgid ""
 "PDF output will not contain the ephemerides, because you didn't provide the "
 "observation coordinates."
@@ -39,7 +39,7 @@ msgstr ""
 "Rezultatul documentului PDF nu va conține efemeride, deoarece nu ați "
 "furnizat coordinatele observării."
 
-#: kosmorro/__main__.py:115
+#: kosmorro/__main__.py:118
 msgid ""
 "Environment variable KOSMORRO_TIMEZONE is deprecated. Use TZ instead, which "
 "is more standard."
@@ -47,34 +47,34 @@ msgstr ""
 "Variabila de mediu KOSMORRO_TIMEZONE este învechita. Foloseșește TZ, care "
 "este standard."
 
-#: kosmorro/__main__.py:124
+#: kosmorro/__main__.py:127
 #, python-brace-format
 msgid "Unknown timezone: {timezone}"
 msgstr "Fur orar necunoscut: {timezone}"
 
-#: kosmorro/__main__.py:167
+#: kosmorro/__main__.py:170
 #, python-brace-format
 msgid "The file could not be saved in \"{path}\": {error}"
 msgstr "Fișierul nu a putut fi salvat in \"{path}\": {error}"
 
-#: kosmorro/__main__.py:181
+#: kosmorro/__main__.py:184
 msgid "Please provide a file path to export in this format (--output)."
 msgstr ""
 "Va rugăm sa furnizați o locație de fișier pentru exportarea in acest format "
 "(--output)."
 
-#: kosmorro/__main__.py:213
+#: kosmorro/__main__.py:216
 #, python-brace-format
 msgid "Moon phase can only be computed between {min_date} and {max_date}"
 msgstr "Fazele lunii pot să fie calculate doar între {min_date} și {max_date}"
 
-#: kosmorro/__main__.py:264
+#: kosmorro/__main__.py:267
 #, python-brace-format
 msgid ""
 "Running on Python {python_version} with Kosmorrolib v{kosmorrolib_version}"
 msgstr "Rulează Python {python_version} cu Kosmorrolib v{kosmorrolib_version}"
 
-#: kosmorro/__main__.py:277
+#: kosmorro/__main__.py:280
 msgid ""
 "Compute the ephemerides and the events for a given date and a given position "
 "on Earth."
@@ -82,7 +82,7 @@ msgstr ""
 "Calculează efemeridele si evenimentele pentru perioadă si o pozitie dată de "
 "pe pământ."
 
-#: kosmorro/__main__.py:280
+#: kosmorro/__main__.py:283
 msgid ""
 "By default, only the events will be computed for today.\n"
 "To compute also the ephemerides, latitude and longitude arguments are needed."
@@ -91,11 +91,11 @@ msgstr ""
 "Pentru calcularea efemeridelor, sunt necesare argumentele de latitudine si "
 "longitudine."
 
-#: kosmorro/__main__.py:292
+#: kosmorro/__main__.py:295
 msgid "Show the program version"
 msgstr "Arată versiunea programului"
 
-#: kosmorro/__main__.py:301
+#: kosmorro/__main__.py:304
 #, fuzzy
 #| msgid ""
 #| "The format to output the information to. If not provided, the output "
@@ -107,7 +107,7 @@ msgstr ""
 "Fromatul in care trebuie afișată informația. Daca nu este oferit, formatul "
 "afișării va fi dedus din extensia fișierului de ieșire."
 
-#: kosmorro/__main__.py:310
+#: kosmorro/__main__.py:313
 #, fuzzy
 #| msgid ""
 #| "The observer's position on Earth, in the \"{latitude},{longitude}\" "
@@ -119,7 +119,7 @@ msgstr ""
 "Poziția observatorului pe pământ, in formatul \"{latitude},{longitude}\" . "
 "Poate de asemenea sa fie setată in variabilela de mediu KOSMORRO_POSITION."
 
-#: kosmorro/__main__.py:320
+#: kosmorro/__main__.py:323
 msgid ""
 "The date for which the ephemerides must be calculated. Can be in the YYYY-MM-"
 "DD format or an interval in the \"[+-]YyMmDd\" format (with Y, M, and D "
@@ -129,7 +129,7 @@ msgstr ""
 "YYYY-MM-DD sau un interval \"[+-]YyMmDd\" (cu Y, M, și D numere). Implicit "
 "la data curentă."
 
-#: kosmorro/__main__.py:331
+#: kosmorro/__main__.py:334
 msgid ""
 "The timezone to use to display the hours. It can be either a number (e.g. 1 "
 "for UTC+1) or a timezone name (e.g. Europe/Paris). See https://"
@@ -141,15 +141,15 @@ msgstr ""
 "en.wikipedia.org/wiki/List_of_tz_database_time_zones ca să îți găsești fusul "
 "orar. Poate de asemenea sa fie setat in variabila de medium TZ."
 
-#: kosmorro/__main__.py:340
+#: kosmorro/__main__.py:343
 msgid "Disable the colors in the console."
 msgstr "Dezactivează culorile în consolă."
 
-#: kosmorro/__main__.py:347
+#: kosmorro/__main__.py:350
 msgid "Use this option to save the result in a file."
 msgstr ""
 
-#: kosmorro/__main__.py:354
+#: kosmorro/__main__.py:357
 msgid ""
 "Do not generate a graph to represent the rise and set times in the LaTeX or "
 "PDF file."
@@ -157,15 +157,15 @@ msgstr ""
 "Nu generați un grafic care să reprezinte orele de urcare și coborâre într-un "
 "fișier LaTeX sau PDF."
 
-#: kosmorro/__main__.py:361
+#: kosmorro/__main__.py:364
 msgid "Show debugging messages"
 msgstr "Arată mesajele de depanare"
 
-#: kosmorro/__main__.py:369
+#: kosmorro/__main__.py:372
 msgid "Print a script allowing completion for your shell"
 msgstr "Printează un script care să permită completarea pentru terminalul tău/"
 
-#: kosmorro/__main__.py:379
+#: kosmorro/__main__.py:382
 msgid "No completion script available for this shell."
 msgstr "Nu există script de completare pentru acest terminal."
 
