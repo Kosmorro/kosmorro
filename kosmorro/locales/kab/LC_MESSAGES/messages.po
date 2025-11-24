@@ -1,48 +1,48 @@
-# Translations template for kosmorro.
-# Copyright (C) 2021 ORGANIZATION
-# This file is distributed under the same license as the kosmorro project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
-#
+# Translations template for PROJECT.
+# Copyright (C) 2025 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+# ButterflyOfFire <boffire@users.noreply.hosted.weblate.org>, 2025.
 msgid ""
 msgstr ""
-"Project-Id-Version: kosmorro 0.9.0\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: jerome@deuchnord.fr\n"
 "POT-Creation-Date: 2025-11-11 11:06+0100\n"
-"PO-Revision-Date: 2022-03-19 17:51+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
-"Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
-"kosmorro/cli/nb_NO/>\n"
-"Language: nb_NO\n"
+"PO-Revision-Date: 2025-11-22 17:57+0000\n"
+"Last-Translator: ButterflyOfFire <boffire@users.noreply.hosted.weblate.org>\n"
+"Language-Team: Kabyle <https://hosted.weblate.org/projects/kosmorro/cli/kab/>"
+"\n"
+"Language: kab\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.12-dev\n"
-"Generated-By: Babel 2.9.0\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.15-dev\n"
+"Generated-By: Babel 2.17.0\n"
 
 #: kosmorro/__main__.py:92
 msgid ""
 "Save the planet and paper!\n"
-"Consider printing your PDF document only if really necessary, and use the "
-"other side of the sheet."
+"Consider printing your PDF document only if really necessary, and use the"
+" other side of the sheet."
 msgstr ""
 
 #: kosmorro/__main__.py:100
 msgid ""
-"PDF output will not contain the ephemerides, because you didn't provide the "
-"observation coordinates."
+"PDF output will not contain the ephemerides, because you didn't provide "
+"the observation coordinates."
 msgstr ""
 
 #: kosmorro/__main__.py:118
 msgid ""
-"Environment variable KOSMORRO_TIMEZONE is deprecated. Use TZ instead, which "
-"is more standard."
+"Environment variable KOSMORRO_TIMEZONE is deprecated. Use TZ instead, "
+"which is more standard."
 msgstr ""
 
 #: kosmorro/__main__.py:127
 #, python-brace-format
 msgid "Unknown timezone: {timezone}"
-msgstr ""
+msgstr "Tamnaḍt tasragant tarussint: {timezone}"
 
 #: kosmorro/__main__.py:170
 #, python-brace-format
@@ -59,26 +59,26 @@ msgid "Moon phase can only be computed between {min_date} and {max_date}"
 msgstr ""
 
 #: kosmorro/__main__.py:267
-#, fuzzy, python-brace-format
-msgid ""
-"Running on Python {python_version} with Kosmorrolib v{kosmorrolib_version}"
-msgstr "Kjører med Python {python_version}"
+#, python-brace-format
+msgid "Running on Python {python_version} with Kosmorrolib v{kosmorrolib_version}"
+msgstr ""
 
 #: kosmorro/__main__.py:280
 msgid ""
-"Compute the ephemerides and the events for a given date and a given position "
-"on Earth."
+"Compute the ephemerides and the events for a given date and a given "
+"position on Earth."
 msgstr ""
 
 #: kosmorro/__main__.py:283
 msgid ""
 "By default, only the events will be computed for today.\n"
-"To compute also the ephemerides, latitude and longitude arguments are needed."
+"To compute also the ephemerides, latitude and longitude arguments are "
+"needed."
 msgstr ""
 
 #: kosmorro/__main__.py:295
 msgid "Show the program version"
-msgstr "Vis programversjonen"
+msgstr "Sken-d lqem n useɣẓan"
 
 #: kosmorro/__main__.py:304
 msgid ""
@@ -88,23 +88,23 @@ msgstr ""
 
 #: kosmorro/__main__.py:313
 msgid ""
-"The observer's position on Earth, in the \"latitude,longitude\" format. Can "
-"also be set in the KOSMORRO_POSITION environment variable."
+"The observer's position on Earth, in the \"latitude,longitude\" format. "
+"Can also be set in the KOSMORRO_POSITION environment variable."
 msgstr ""
 
 #: kosmorro/__main__.py:323
 msgid ""
-"The date for which the ephemerides must be calculated. Can be in the YYYY-MM-"
-"DD format or an interval in the \"[+-]YyMmDd\" format (with Y, M, and D "
-"numbers). Defaults to current date."
+"The date for which the ephemerides must be calculated. Can be in the "
+"YYYY-MM-DD format or an interval in the \"[+-]YyMmDd\" format (with Y, M,"
+" and D numbers). Defaults to current date."
 msgstr ""
 
 #: kosmorro/__main__.py:334
 msgid ""
-"The timezone to use to display the hours. It can be either a number (e.g. 1 "
-"for UTC+1) or a timezone name (e.g. Europe/Paris). See https://"
-"en.wikipedia.org/wiki/List_of_tz_database_time_zones to find your timezone. "
-"Can also be set in the TZ environment variable."
+"The timezone to use to display the hours. It can be either a number (e.g."
+" 1 for UTC+1) or a timezone name (e.g. Europe/Paris). See "
+"https://en.wikipedia.org/wiki/List_of_tz_database_time_zones to find your"
+" timezone. Can also be set in the TZ environment variable."
 msgstr ""
 
 #: kosmorro/__main__.py:343
@@ -117,8 +117,8 @@ msgstr ""
 
 #: kosmorro/__main__.py:357
 msgid ""
-"Do not generate a graph to represent the rise and set times in the LaTeX or "
-"PDF file."
+"Do not generate a graph to represent the rise and set times in the LaTeX "
+"or PDF file."
 msgstr ""
 
 #: kosmorro/__main__.py:364
@@ -130,50 +130,45 @@ msgid "Print a script allowing completion for your shell"
 msgstr ""
 
 #: kosmorro/__main__.py:382
-#, fuzzy
-#| msgid "Moon phase is unavailable for this date."
 msgid "No completion script available for this shell."
-msgstr "Månefase er utilgjengelig for denne datoen."
+msgstr ""
 
 #: kosmorro/date.py:17
 #, python-brace-format
 msgid "The date {date} is not valid: {error}"
-msgstr "Datoen {date} er ikke gyldig: {error}"
+msgstr ""
 
 #: kosmorro/date.py:40
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid ""
-"The date {date} does not match the required YYYY-MM-DD format or the offset "
-"format."
+"The date {date} does not match the required YYYY-MM-DD format or the "
+"offset format."
 msgstr ""
-"Datoen {date} passer ikke overens med påkrevd ÅÅÅÅ-MM-DD -format, eller "
-"forskyvningsformatet."
 
 #: kosmorro/dumper.py:137
 msgid "Expected events:"
-msgstr "Forventede hendelser:"
+msgstr ""
 
 #: kosmorro/dumper.py:144
 msgid "Note: All the hours are given in UTC."
-msgstr "Merk: Alle tider er angitt i UTC."
+msgstr ""
 
 #: kosmorro/dumper.py:152
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Note: All the hours are given in the UTC{offset} timezone."
-msgstr "Merk: Alle tider er angitt i UTC{offset}-tidssone."
+msgstr ""
 
 #: kosmorro/dumper.py:205 kosmorro/dumper.py:336
 msgid "Object"
-msgstr "Objekt"
+msgstr "Taɣawsa"
 
 #: kosmorro/dumper.py:206 kosmorro/dumper.py:337
-#, fuzzy
 msgid "Rise time"
-msgstr "Emningstid"
+msgstr ""
 
 #: kosmorro/dumper.py:207 kosmorro/dumper.py:339
 msgid "Culmination time"
-msgstr "Høydepunkt"
+msgstr ""
 
 #: kosmorro/dumper.py:208 kosmorro/dumper.py:341
 msgid "Set time"
@@ -181,13 +176,13 @@ msgstr ""
 
 #: kosmorro/dumper.py:234
 msgid "Moon phase is unavailable for this date."
-msgstr "Månefase er utilgjengelig for denne datoen."
+msgstr ""
 
 #: kosmorro/dumper.py:240
 #, python-brace-format
 msgid "{next_moon_phase} on {next_moon_phase_date} at {next_moon_phase_time}"
 msgstr ""
-"{next_moon_phase} {next_moon_phase_date} klokken {next_moon_phase_time}"
+"{next_moon_phase} ass n {next_moon_phase_date} ɣef {next_moon_phase_time}"
 
 #: kosmorro/dumper.py:309
 msgid "Overview of your sky"
@@ -196,16 +191,16 @@ msgstr ""
 #: kosmorro/dumper.py:318
 #, python-brace-format
 msgid ""
-"This document summarizes the ephemerides and the events of {date}. It aims "
-"to help you to prepare your observation session. All the hours are given in "
-"{timezone}."
+"This document summarizes the ephemerides and the events of {date}. It "
+"aims to help you to prepare your observation session. All the hours are "
+"given in {timezone}."
 msgstr ""
 
 #: kosmorro/dumper.py:328
 msgid ""
 "Don't forget to check the weather forecast before you go out with your "
 "equipment."
-msgstr "Ikke glem å sjekke værmeldingen før du gir deg ivei med utstyret ditt."
+msgstr ""
 
 #: kosmorro/dumper.py:334
 msgid "Ephemerides of the day"
@@ -213,21 +208,22 @@ msgstr ""
 
 #: kosmorro/dumper.py:343
 msgid "hours"
-msgstr "timer"
+msgstr "isragen"
 
 #: kosmorro/dumper.py:345
 msgid "Moon phase:"
-msgstr "Månefase:"
+msgstr ""
 
 #: kosmorro/dumper.py:350
 msgid "Expected events"
-msgstr "Forventede hendelser"
+msgstr ""
 
 #: kosmorro/dumper.py:491
 msgid ""
-"Building PDF was not possible, because some dependencies are not installed.\n"
-"Please look at the documentation at https://kosmorro.space/cli/generate-pdf/ "
-"for more information."
+"Building PDF was not possible, because some dependencies are not "
+"installed.\n"
+"Please look at the documentation at https://kosmorro.space/cli/generate-"
+"pdf/ for more information."
 msgstr ""
 
 #: kosmorro/dumper.py:540
@@ -256,8 +252,7 @@ msgid "The given position (%s) is not valid."
 msgstr ""
 
 #: kosmorro/geolocation.py:30
-msgid ""
-"The given Plus Code seems to be a short code, please provide a full code."
+msgid "The given Plus Code seems to be a short code, please provide a full code."
 msgstr ""
 
 #: kosmorro/i18n/strings.py:21
@@ -271,9 +266,9 @@ msgid "%s and %s are in conjunction"
 msgstr ""
 
 #: kosmorro/i18n/strings.py:35
-#, fuzzy, python-format
+#, python-format
 msgid "%s occults %s"
-msgstr "%s dekker %s"
+msgstr ""
 
 #: kosmorro/i18n/strings.py:44
 #, python-format
@@ -323,55 +318,51 @@ msgstr ""
 
 #: kosmorro/i18n/strings.py:99
 msgid "New Moon"
-msgstr "Nymåne"
+msgstr "Ayyur amaynut"
 
 #: kosmorro/i18n/strings.py:100
-#, fuzzy
 msgid "Waxing Crescent"
-msgstr "Fallende sigd"
+msgstr ""
 
 #: kosmorro/i18n/strings.py:101
 msgid "First Quarter"
-msgstr "Første kvarter"
+msgstr ""
 
 #: kosmorro/i18n/strings.py:102
-#, fuzzy
 msgid "Waxing Gibbous"
-msgstr "Fallende større enn halv"
+msgstr ""
 
 #: kosmorro/i18n/strings.py:103
 msgid "Full Moon"
-msgstr "Fullmåne"
+msgstr ""
 
 #: kosmorro/i18n/strings.py:104
-#, fuzzy
 msgid "Waning Gibbous"
-msgstr "Fallende større enn halv"
+msgstr ""
 
 #: kosmorro/i18n/strings.py:105
 msgid "Last Quarter"
-msgstr "Siste kvarter"
+msgstr ""
 
 #: kosmorro/i18n/strings.py:106
-#, fuzzy
 msgid "Waning Crescent"
-msgstr "Fallende sigd"
+msgstr ""
 
 #: kosmorro/i18n/strings.py:117
 msgid "Sun"
-msgstr "Solen"
+msgstr "Iṭij"
 
 #: kosmorro/i18n/strings.py:118
 msgid "Moon"
-msgstr "Månen"
+msgstr "Ayyur"
 
 #: kosmorro/i18n/strings.py:119
 msgid "Mercury"
-msgstr "Merkur"
+msgstr ""
 
 #: kosmorro/i18n/strings.py:120
 msgid "Venus"
-msgstr "Venus"
+msgstr ""
 
 #: kosmorro/i18n/strings.py:121
 msgid "Earth"
@@ -379,39 +370,24 @@ msgstr ""
 
 #: kosmorro/i18n/strings.py:122
 msgid "Mars"
-msgstr "Mars"
+msgstr ""
 
 #: kosmorro/i18n/strings.py:123
 msgid "Jupiter"
-msgstr "Jupiter"
+msgstr ""
 
 #: kosmorro/i18n/strings.py:124
 msgid "Saturn"
-msgstr "Saturn"
+msgstr ""
 
 #: kosmorro/i18n/strings.py:125
 msgid "Uranus"
-msgstr "Uranus"
+msgstr ""
 
 #: kosmorro/i18n/strings.py:126
 msgid "Neptune"
-msgstr "Neptun"
+msgstr ""
 
 #: kosmorro/i18n/strings.py:127
 msgid "Pluto"
-msgstr "Pluto"
-
-#, python-brace-format
-#~ msgid "{month} {day_number}, {hours}:{minutes}"
-#~ msgstr "{day_number} {month}, {hours}:{minutes}"
-
-#, python-brace-format
-#~ msgid "{month} {day_number}, {year}"
-#~ msgstr "{day_number} {month} {year}"
-
-#, fuzzy
-#~ msgid "Unknown phase"
-#~ msgstr "Månefase:"
-
-#~ msgid "A Summary of your Sky"
-#~ msgstr "Et sammendrag av din himmel"
+msgstr ""
