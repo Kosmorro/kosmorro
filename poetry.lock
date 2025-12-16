@@ -293,17 +293,6 @@ files = [
 ]
 
 [[package]]
-name = "openlocationcode"
-version = "1.0.1"
-description = "Python library for Open Location Code (Plus Codes)"
-optional = false
-python-versions = "*"
-groups = ["main"]
-files = [
-    {file = "openlocationcode-1.0.1.tar.gz", hash = "sha256:6fc0108a8214b65d74964105bd69645a8a7529237f0de6aadcfa83cc3373b359"},
-]
-
-[[package]]
 name = "packaging"
 version = "25.0"
 description = "Core utilities for Python packages"
@@ -577,4 +566,4 @@ tests = ["pytest", "pytest-cov"]
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.12"
-content-hash = "d4dd7d19d1de138ba3d096ebce8edd3c1452be9d96180fa63b5e4558a30f9bf7"
+content-hash = "c33cbfcaa71cda73ea0da8548d0d9300d030509d89c3bd3a642d8db37240dfc6"
