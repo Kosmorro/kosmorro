@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kosmorro 0.9.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-11 11:06+0100\n"
+"POT-Creation-Date: 2025-12-16 17:42+0100\n"
 "PO-Revision-Date: 2024-03-13 12:01+0000\n"
 "Last-Translator: Jérôme Deuchnord <jerome@deuchnord.fr>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/kosmorro/cli/ru/"
@@ -249,14 +249,9 @@ msgid ""
 "{accepted_extensions}"
 msgstr ""
 
-#: kosmorro/geolocation.py:14
+#: kosmorro/geolocation.py:12
 #, python-format
 msgid "The given position (%s) is not valid."
-msgstr ""
-
-#: kosmorro/geolocation.py:30
-msgid ""
-"The given Plus Code seems to be a short code, please provide a full code."
 msgstr ""
 
 #: kosmorro/i18n/strings.py:21

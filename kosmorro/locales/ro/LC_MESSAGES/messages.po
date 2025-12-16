@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-11 11:06+0100\n"
+"POT-Creation-Date: 2025-12-16 17:42+0100\n"
 "PO-Revision-Date: 2025-10-30 21:02+0000\n"
 "Last-Translator: Nicolas Tantau <nicolastantau2003@gmail.com>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/kosmorro/cli/ro/"
@@ -295,15 +295,10 @@ msgstr ""
 "Format invalid de ieșire: {output_format}. Fișierul de ieșire trebuie să se "
 "termine cu {accepted_extensions}"
 
-#: kosmorro/geolocation.py:14
+#: kosmorro/geolocation.py:12
 #, python-format
 msgid "The given position (%s) is not valid."
 msgstr "Poziția (%s) nu este validă."
-
-#: kosmorro/geolocation.py:30
-msgid ""
-"The given Plus Code seems to be a short code, please provide a full code."
-msgstr "Codul Plus dat pare să fie prea scurt, te rog furnizează codul întreg."
 
 #: kosmorro/i18n/strings.py:21
 #, python-format
@@ -441,6 +436,11 @@ msgstr "Neptun"
 #: kosmorro/i18n/strings.py:127
 msgid "Pluto"
 msgstr "Pluto"
+
+#~ msgid ""
+#~ "The given Plus Code seems to be a short code, please provide a full code."
+#~ msgstr ""
+#~ "Codul Plus dat pare să fie prea scurt, te rog furnizează codul întreg."
 
 #~ msgid ""
 #~ "A file to export the output to. If not given, the standard output is "
