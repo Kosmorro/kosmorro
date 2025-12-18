@@ -1,6 +1,6 @@
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-16-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-17-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 ## Contributors ✨
 
@@ -31,6 +31,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     </tr>
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/gallegonovato"><img src="https://avatars.githubusercontent.com/u/59177763?v=4?s=100" width="100px;" alt="gallegonovato"/><br /><sub><b>gallegonovato</b></sub></a><br /><a href="#translation-gallegonovato" title="Translation">🌍</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/korn3r"><img src="https://avatars.githubusercontent.com/u/26372968?v=4?s=100" width="100px;" alt="korn3r"/><br /><sub><b>korn3r</b></sub></a><br /><a href="#translation-korn3r" title="Translation">🌍</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://tamilneram.github.io/"><img src="https://avatars.githubusercontent.com/u/67970539?v=4?s=100" width="100px;" alt="தமிழ்நேரக்குழு"/><br /><sub><b>தமிழ்நேரக்குழு</b></sub></a><br /><a href="#translation-TamilNeram" title="Translation">🌍</a></td>
     </tr>
   </tbody>
