@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kosmorro 0.9.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-11 11:06+0100\n"
+"POT-Creation-Date: 2025-12-16 17:42+0100\n"
 "PO-Revision-Date: 2025-11-03 22:56+0000\n"
 "Last-Translator: Damgermys <damhub28@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/kosmorro/cli/nl/>\n"
@@ -313,17 +313,10 @@ msgstr ""
 "Ongeldig uitvoerformaat: {output_format}. Het uitvoerbestand moet eindigen "
 "op: {accepted_extensions}"
 
-#: kosmorro/geolocation.py:14
+#: kosmorro/geolocation.py:12
 #, python-format
 msgid "The given position (%s) is not valid."
 msgstr "De opgegeven positie (%s) is ongeldig."
-
-#: kosmorro/geolocation.py:30
-msgid ""
-"The given Plus Code seems to be a short code, please provide a full code."
-msgstr ""
-"De opgegeven Plus Code lijkt een korte code te zijn. Geef een volledige code "
-"op."
 
 #: kosmorro/i18n/strings.py:21
 #, fuzzy, python-format
@@ -463,6 +456,12 @@ msgstr "Neptunus"
 #: kosmorro/i18n/strings.py:127
 msgid "Pluto"
 msgstr "Pluto"
+
+#~ msgid ""
+#~ "The given Plus Code seems to be a short code, please provide a full code."
+#~ msgstr ""
+#~ "De opgegeven Plus Code lijkt een korte code te zijn. Geef een volledige "
+#~ "code op."
 
 #~ msgid ""
 #~ "A file to export the output to. If not given, the standard output is "
