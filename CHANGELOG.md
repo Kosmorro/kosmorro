@@ -5,7 +5,7 @@
 * add support for Python 3.13 and 3.14 ([d7def50](https://github.com/Kosmorro/kosmorro/commit/d7def507034e6af0d7c7bdbc4d4174b046b082ac))
 * **i18n:** add Romanian translation ([a61bdb8](https://github.com/Kosmorro/kosmorro/commit/a61bdb8dc774e8cbbe6feac918e4625e0a273b86)) (thanks @[Nic-T](https://github.com/Nic-T)!)
 * **i18n:** add Tamil translation ([089d439](https://github.com/Kosmorro/kosmorro/commit/089d4391cded47b97fc683a44c6068e2d0dd0caf)) (thanks [தமிழ்நேரக்குழு](https://tamilneram.github.io/)!)
-* **i18n:** add Kabyle translation ([fcd99f9](https://github.com/Kosmorro/kosmorro/commit/fcd99f9389d202f0a557e6356d1597805d220f74)) (thanks [ButterflyOfFire](https://github.com/ButterflyOfFire))
+* **i18n:** add Kabyle translation ([fcd99f9](https://github.com/Kosmorro/kosmorro/commit/fcd99f9389d202f0a557e6356d1597805d220f74)) (thanks [ButterflyOfFire](https://github.com/ButterflyOfFire)!)
 * replace latitude and longitude with one argument alone: --position ([#191](https://github.com/Kosmorro/kosmorro/issues/191)) ([5cab68e](https://github.com/Kosmorro/kosmorro/commit/5cab68ee926e1e085b6fbcff98e7575bb91327db))
 * add support for `KOSMORRO_POSITION` environment variable ([6c5dc6f](https://github.com/Kosmorro/kosmorro/commit/6c5dc6fac63ad23e689aa8d9819128f0c7232193))
 * add support for command line completion ([151c3a7](https://github.com/Kosmorro/kosmorro/commit/151c3a7a5fecc756f1ca66daa43bfb4e49180ae8))
@@ -14,8 +14,6 @@
 * New export format: LaTeX ([4d5b941](https://github.com/Kosmorro/kosmorro/commit/4d5b9415d528533d42fd3466e4425287e9f6867d))
 * send error and warning messages in standard error instead of standard output ([c377c63](https://github.com/Kosmorro/kosmorro/commit/c377c634cbfe246246bfbb34ed6c45e7bf80a1e6))
 * **timezone:** add support for the [tz database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) ([3a87cfa](https://github.com/Kosmorro/kosmorro/commit/3a87cfad10e45e94cf508b924b287fcd6321f08a))
-* add support for the [Open location code](https://en.wikipedia.org/wiki/Open_Location_Code) format.
-  * Warning: this does not support Plus Codes yet.
 
 ### BREAKING CHANGES
 
