@@ -1,3 +1,7 @@
+# [Version 1.0.1](https://github.com/Kosmorro/kosmorro/compare/v1.0.0...v1.0.1) (2026-01-03)
+
+This is a release to bypass a buguous release that PyPI does not want me upload.
+
 # [Version 1.0.0](https://github.com/Kosmorro/kosmorro/compare/v0.10.13...v1.0.0) (2026-01-03)
 
 ### Features
