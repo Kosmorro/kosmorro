@@ -1,4 +1,4 @@
-# [Version 1.0.0](https://github.com/Kosmorro/kosmorro/compare/v0.10.13...v1.0.0) (2025-12-12)
+# [Version 1.0.0](https://github.com/Kosmorro/kosmorro/compare/v0.10.13...v1.0.0) (2026-01-03)
 
 ### Features
 

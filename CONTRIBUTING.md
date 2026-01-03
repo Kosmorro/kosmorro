@@ -21,8 +21,6 @@ If you speak another language than English, another nice way to enhance Kosmorro
 
 ## Writing code
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/Kosmorro/kosmorro)
-
 First, if you are fixing an opened issue, check that nobody is already working on it — if someone seems to be but their Pull Request seems stuck, please ask them first if you can continue the development. If you retake the code they produced, **don't change the author of the commits**.
 
 Before writing the code, first create a fork of the repository and clone it. You may also want to add the original repository (`Kosmorro/kosmorro`), so you can update your fork with the last upstream commits.
