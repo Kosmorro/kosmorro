@@ -68,13 +68,13 @@ kosmorro
 Compute the ephemerides for Lille, France, on April 1st, 2022:
 
 ```
-kosmorro --latitude=50.5876 --longitude=3.0624 --date=2022-04-01
+kosmorro --position="50.5876,3.0624" --date=2022-04-01
 ```
 
 Compute the ephemerides for Lille, France, on April 1st, 2022, and export them in a PDF document:
 
 ```
-kosmorro --latitude=50.5876 --longitude=3.0624 -date=2022-04-01 --output=file.pdf
+kosmorro --position="50.5876,3.0624" --date=2022-04-01 --output=file.pdf
 ```
 
 ## AUTHOR
