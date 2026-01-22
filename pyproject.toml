@@ -25,7 +25,7 @@ pytz = "^2025.2"
 argcomplete = "^3.6.2"
 
 [tool.poetry.group.dev.dependencies]
-black = ">=24.8,<26.0"
+black = ">=24.8,<27.0"
 pytest = ">=8.3,<10.0"
 aurornis = "^1.6"
 

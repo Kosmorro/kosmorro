@@ -15,9 +15,7 @@ def test_json_output():
         KOSMORRO + ["--position=50.5876,3.0624", "-d2020-01-27", "--format=json"]
     )
     assert result.successful
-    assert (
-        result.stdout
-        == """{
+    assert result.stdout == """{
     "ephemerides": [
         {
             "object": {
@@ -150,7 +148,6 @@ def test_json_output():
     ]
 }
 """
-    )
 
 
 def test_latex_output():

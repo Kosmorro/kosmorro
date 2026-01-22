@@ -9,9 +9,7 @@ def test_with_date():
         result = execute(KOSMORRO + arg)
         assert result.successful
 
-        assert (
-            result.stdout
-            == """Monday, January 27, 2020
+        assert result.stdout == """Monday, January 27, 2020
 
 New Moon
 First Quarter on Sunday, February 2, 2020 at 1:41 AM
@@ -21,7 +19,6 @@ Expected events:
 
 Note: All the hours are given in UTC.
 """
-        )
 
 
 def test_with_incorrect_date_values():

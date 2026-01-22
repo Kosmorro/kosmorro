@@ -8,9 +8,7 @@ from .utils import (
 
 def check_command_return(result):
     assert result.successful
-    assert (
-        result.stdout
-        == """Monday, January 27, 2020
+    assert result.stdout == """Monday, January 27, 2020
 
 Object     Rise time    Culmination time    Set time
 --------  -----------  ------------------  ----------
@@ -33,7 +31,6 @@ Expected events:
 
 Note: All the hours are given in UTC.
 """
-    )
 
 
 def test_with_position():
