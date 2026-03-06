@@ -21,7 +21,7 @@ termcolor = "^3.0"
 kosmorrolib = "^1.0"
 python-dateutil = "^2.8"
 Babel = "^2.9"
-pytz = "^2025.2"
+pytz = ">=2025.2,<2027.0"
 argcomplete = "^3.6.2"
 
 [tool.poetry.group.dev.dependencies]
