@@ -7,7 +7,7 @@ license = "AGPL-3.0-or-later"
 readme = "README.md"
 
 include = [
-    { path = "kosmorro/locales", format = "wheel" },
+    { path = "kosmorro/locales/**/*.mo", format = "wheel" },
     { path = "kosmorro/assets", format=["sdist", "wheel"] },
 ]
 
