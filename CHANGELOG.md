@@ -1,3 +1,10 @@
+# [Version 1.0.2](https://github.com/Kosmorro/Kosmorro/compare/v1.0.0...v1.0.2) (2026-05-05)
+
+### Bug Fixes
+
+* **i18n:** include the translation files correctly in wheel ([2a370c6](https://github.com/Kosmorro/Kosmorro/commit/2a370c6d3c0eb03303d499ddd61d409132575f5d))
+* fix `pytz` dependency that prevents Kosmorro to be installed on some distributions
+
 # [Version 1.0.1](https://github.com/Kosmorro/kosmorro/compare/v1.0.0...v1.0.1) (2026-01-03)
 
 This is a release to bypass a buguous release that PyPI does not want me upload.
