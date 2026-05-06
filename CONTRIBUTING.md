@@ -27,6 +27,9 @@ Before writing the code, first create a fork of the repository and clone it. You
 
 Then create a new branch and start coding. Finally, commit and push, then open a PR on this project. If your project is not complete, feel free to open it as Draft, then mark it as ready for review when you're done.
 
+> [!warning]
+> LLM-generated code is not accepted in contributions.
+
 ### Choosing the right target branch
 
 Whatever you are doing, always base your working branch on `master`.
