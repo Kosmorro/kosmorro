@@ -1,4 +1,4 @@
-name: Code style
+name: Checks
 
 on:
   push:
@@ -17,3 +17,17 @@ jobs:
       with:
         python-version: '3.x'
     - uses: psf/black@stable
+
+  poetry-check:
+    runs-on: ubuntu-latest
+
+    name: Poetry
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.x'
+      - run: |
+          pip install -U pip poetry
+          poetry install
+      - run: poetry check --strict
