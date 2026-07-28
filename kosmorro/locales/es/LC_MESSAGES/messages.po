@@ -3,21 +3,22 @@
 # This file is distributed under the same license as the kosmorro project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
 # gallegonovato <fran-carro@hotmail.es>, 2023.
+# Libre <6n0n1m0s@proton.me>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: kosmorro 0.9.0\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"Report-Msgid-Bugs-To: jerome@deuchnord.fr\n"
 "POT-Creation-Date: 2026-01-22 17:08+0100\n"
-"PO-Revision-Date: 2023-01-11 16:48+0000\n"
-"Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
-"Language-Team: Spanish <https://hosted.weblate.org/projects/kosmorro/cli/es/"
-">\n"
+"PO-Revision-Date: 2026-07-09 14:01+0000\n"
+"Last-Translator: Libre <6n0n1m0s@proton.me>\n"
+"Language-Team: Spanish <https://hosted.weblate.org/projects/kosmorro/cli/es/>"
+"\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.15.1-dev\n"
+"X-Generator: Weblate 2026.7.1.dev0\n"
 "Generated-By: Babel 2.9.0\n"
 
 #: kosmorro/__main__.py:92
@@ -43,11 +44,13 @@ msgid ""
 "Environment variable KOSMORRO_TIMEZONE is deprecated. Use TZ instead, which "
 "is more standard."
 msgstr ""
+"La variable del entorno KOSMORRO_TIMEZONE esta obsoleta. Utilice en su lugar "
+"TZ, la cual es más estándar."
 
 #: kosmorro/__main__.py:127
 #, python-brace-format
 msgid "Unknown timezone: {timezone}"
-msgstr ""
+msgstr "Zona horaria desconocida: {timezone}"
 
 #: kosmorro/__main__.py:170
 #, python-brace-format
@@ -97,18 +100,16 @@ msgid ""
 "The output format. If not provided, it will be inferred from the file "
 "extension of the output file."
 msgstr ""
+"El formato de salida. Si no se proporciona, será inferido desde la extensión "
+"del archivo de la salida del archivo."
 
 #: kosmorro/__main__.py:313
-#, fuzzy
-#| msgid ""
-#| "The observer's longitude on Earth. Can also be set in the "
-#| "KOSMORRO_LONGITUDE environment variable."
 msgid ""
 "The observer's position on Earth, in the \"latitude,longitude\" format. Can "
 "also be set in the KOSMORRO_POSITION environment variable."
 msgstr ""
-"La longitud del observador en la Tierra. También se puede establecer en la "
-"variable ambiental KOSMORRO_LONGITUDE."
+"La posición del observante en la tierra, en el formato \"latitud,longitud\". "
+"También se puede establecer en la variable del entorno KOSMORRO_POSITION."
 
 #: kosmorro/__main__.py:323
 msgid ""
@@ -127,6 +128,11 @@ msgid ""
 "en.wikipedia.org/wiki/List_of_tz_database_time_zones to find your timezone. "
 "Can also be set in the TZ environment variable."
 msgstr ""
+"La zona horaria a utilizar para exhibir las horas. Puede ser un número (por "
+"ejemplo, 1 para UTC+1) o un nombre de zona horaria (por ejemplo, Europa/"
+"París). Consulte https://en.wikipedia.org/wiki/"
+"List_of_tz_database_time_zones para encontrar su zona horaria. También se "
+"puede establecerlo en la variable de entorno TZ."
 
 #: kosmorro/__main__.py:343
 msgid "Disable the colors in the console."
@@ -134,19 +140,15 @@ msgstr "Deshabilita los colores de la consola."
 
 #: kosmorro/__main__.py:350
 msgid "Use this option to save the result in a file."
-msgstr ""
+msgstr "Utilice esta opción para guardar el resultado en un archivo."
 
 #: kosmorro/__main__.py:357
-#, fuzzy
-#| msgid ""
-#| "Do not generate a graph to represent the rise and set times in the PDF "
-#| "format."
 msgid ""
 "Do not generate a graph to represent the rise and set times in the LaTeX or "
 "PDF file."
 msgstr ""
 "No genere un gráfico para representar el aumento y los tiempos de ajuste en "
-"el formato PDF."
+"el formato PDF o LaTeX."
 
 #: kosmorro/__main__.py:364
 msgid "Show debugging messages"
@@ -154,31 +156,25 @@ msgstr "Mostrar mensajes de depuración"
 
 #: kosmorro/__main__.py:372
 msgid "Print a script allowing completion for your shell"
-msgstr ""
+msgstr "Declare un script que permita la terminación de su consola"
 
 #: kosmorro/__main__.py:382
-#, fuzzy
-#| msgid "Moon phase is unavailable for this date."
 msgid "No completion script available for this shell."
-msgstr "La fase lunar no está disponible para esta fecha."
+msgstr "Ningún script disponible para completado en esta consola."
 
 #: kosmorro/date.py:17
-#, fuzzy, python-brace-format
-#| msgid "The date {date} is not valid: {error}"
+#, python-brace-format
 msgid "The date {date} is not valid: {error}"
-msgstr "La fecha no es válida: {error}"
+msgstr "La fecha {date} no es válida: {error}"
 
 #: kosmorro/date.py:40
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "The date {date} does not match the required YYYY-MM-DD format or the "
-#| "offset format."
+#, python-brace-format
 msgid ""
 "The date {date} does not match the required YYYY-MM-DD format or the offset "
 "format."
 msgstr ""
-"La fecha {fecha} no coincide con el formato requerido AAAA-MM-DD o el "
-"formato de desplazamiento."
+"La fecha {date} no coincide con el formato requerido AAAA-MM-DD o el formato "
+"de desplazamiento."
 
 #: kosmorro/dumper.py:137
 msgid "Expected events:"
@@ -189,10 +185,9 @@ msgid "Note: All the hours are given in UTC."
 msgstr "Nota: Todas las horas se dan en UTC."
 
 #: kosmorro/dumper.py:152
-#, fuzzy, python-brace-format
-#| msgid "Note: All the hours are given in the UTC{offset} timezone."
+#, python-brace-format
 msgid "Note: All the hours are given in the UTC{offset} timezone."
-msgstr "Nota: Todas las horas se dan en la zona horaria UTC."
+msgstr "Nota: Todas las horas se dan en la zona horaria UTC{offset}."
 
 #: kosmorro/dumper.py:205 kosmorro/dumper.py:336
 msgid "Object"
@@ -224,19 +219,15 @@ msgid "Overview of your sky"
 msgstr "Vista general de su cielo"
 
 #: kosmorro/dumper.py:318
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "This document summarizes the ephemerides and the events of {date}. It "
-#| "aims to help you to prepare your observation session. All the hours are "
-#| "given in {timezone}."
+#, python-brace-format
 msgid ""
 "This document summarizes the ephemerides and the events of {date}. It aims "
 "to help you to prepare your observation session. All the hours are given in "
 "{timezone}."
 msgstr ""
-"Este documento resume las efemérides y los eventos de {fecha}. Su objetivo "
-"es ayudarle a preparar su sesión de observación. Todas las horas están dadas "
-"en {zona horaria}."
+"Este documento resume las efemérides y los eventos de {date}. Su objetivo es "
+"ayudarle a preparar su sesión de observación. Todas las horas están dadas en "
+"{timezone}."
 
 #: kosmorro/dumper.py:328
 msgid ""
@@ -284,10 +275,9 @@ msgstr ""
 "el contenido del archivo de registro en /tmp/kosmorro-%s.log"
 
 #: kosmorro/exceptions.py:36
-#, fuzzy, python-brace-format
-#| msgid "The date must be between {minimum_date} and {maximum_date}"
+#, python-brace-format
 msgid "The date must be between {minimum_date} and {maximum_date}"
-msgstr "La fecha debe estar entre {fecha_mínima} y {fecha_máxima}"
+msgstr "La fecha debe estar entre {minimum_date} y {maximum_date}"
 
 #: kosmorro/exceptions.py:49
 #, python-brace-format
@@ -295,11 +285,13 @@ msgid ""
 "Invalid output format: {output_format}. Output file must end with: "
 "{accepted_extensions}"
 msgstr ""
+"Formato de salida no válido. {output_format}. El archivo de salida debe "
+"terminar con: {accepted_extensions}"
 
 #: kosmorro/geolocation.py:12
 #, python-format
 msgid "The given position (%s) is not valid."
-msgstr ""
+msgstr "La posición dada (%s) no es válida."
 
 #: kosmorro/i18n/strings.py:21
 #, python-format
@@ -333,34 +325,34 @@ msgstr "%s está en su apoapsis"
 
 #: kosmorro/i18n/strings.py:61
 msgid "March equinox"
-msgstr ""
+msgstr "Equinoccio de marzo"
 
 #: kosmorro/i18n/strings.py:63
 msgid "June solstice"
-msgstr ""
+msgstr "Solsticio de junio"
 
 #: kosmorro/i18n/strings.py:65
 msgid "September equinox"
-msgstr ""
+msgstr "Equinoccio de septiembre"
 
 #: kosmorro/i18n/strings.py:67
 msgid "December solstice"
-msgstr ""
+msgstr "Solsticio de diciembre"
 
 #: kosmorro/i18n/strings.py:73
 #, python-format
 msgid "Total lunar eclipse until %(hour)s"
-msgstr ""
+msgstr "Eclipse lunar total en %(hour)s horas"
 
 #: kosmorro/i18n/strings.py:78
 #, python-format
 msgid "Penumbral lunar eclipse until %(hour)s"
-msgstr ""
+msgstr "Eclipse lunar de penumbra hasta %(hour)s"
 
 #: kosmorro/i18n/strings.py:83
 #, python-format
 msgid "Partial lunar eclipse until %(hour)s"
-msgstr ""
+msgstr "Eclipse lunar parcial hasta %(hour)s"
 
 #: kosmorro/i18n/strings.py:99
 msgid "New Moon"
