@@ -28,7 +28,7 @@ include = [
 kosmorro = 'kosmorro.__main__:main'
 
 [tool.poetry.group.dev.dependencies]
-black = ">=24.8,<27.0"
+black = ">=26.10.0,<27.0"
 pytest = ">=8.3,<10.0"
 aurornis = "^1.6"
 
