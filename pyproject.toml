@@ -29,7 +29,7 @@ kosmorro = 'kosmorro.__main__:main'
 
 [tool.poetry.group.dev.dependencies]
 black = ">=26.10.1,<27.0"
-pytest = ">=8.3,<10.0"
+pytest = ">=9.2.0,<10.0"
 aurornis = "^1.6"
 
 [build-system]
